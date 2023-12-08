@@ -3,6 +3,6 @@ import 'package:dataspin_academy/controller/service/init/init.dart';
 import 'package:flutter/material.dart';
 
 void main(List<String> args) {
-  init();
+ // init();
   runApp(const MyApp());
 }

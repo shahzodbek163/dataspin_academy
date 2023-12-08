@@ -64,10 +64,6 @@ dependencies:
   get_it: ^7.6.4
   html: ^0.15.4
   animated_flip_counter: ^0.2.6
-  share_plus: ^7.2.1
-  firebase_core: ^2.21.0
-  firebase_messaging: ^14.7.3
-  flutter_native_splash: ^2.3.5
 
 dev_dependencies:
   flutter_test:
@@ -99,7 +95,8 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - asset/font/manrope
+    - assets/font/manrope/
+    - assets/image/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
@@ -117,17 +114,17 @@ flutter:
   fonts:
     - family: Manrope
       fonts:
-        - asset: asset/font/manrope/Manrope-Regular.ttf
+        - asset: assets/font/manrope/Manrope-Regular.ttf
           weight: 400
-        - asset: asset/font/manrope/Manrope-Regular.ttf
+        - asset: assets/font/manrope/Manrope-Regular.ttf
           weight: 500
-        - asset: asset/font/manrope/Manrope-Regular.ttf
+        - asset: assets/font/manrope/Manrope-Regular.ttf
           weight: 600
-        - asset: asset/font/manrope/Manrope-Regular.ttf
+        - asset: assets/font/manrope/Manrope-Regular.ttf
           weight: 700
-        - asset: asset/font/manrope/Manrope-Regular.ttf
+        - asset: assets/font/manrope/Manrope-Regular.ttf
           weight: 800
-        - asset: asset/font/manrope/Manrope-Regular.ttf
+        - asset: assets/font/manrope/Manrope-Regular.ttf
           weight: 900
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Typography {
-  Typography._();
+class AppFonts {
+  AppFonts._();
 
   static const h1 = TextStyle(
       fontSize: 28,
