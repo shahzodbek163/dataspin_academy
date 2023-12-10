@@ -11,6 +11,7 @@ import 'package:go_router/go_router.dart';
 
 class SendCodeScreen extends StatelessWidget {
   static const String routeName = "/send_code_screen";
+
   const SendCodeScreen({super.key});
 
   @override
@@ -38,7 +39,10 @@ class SendCodeScreen extends StatelessWidget {
                     .copyWith(color: AppColor.txtSecondColor),
               ),
               SizedBox(height: 33.h),
-              const MainTextField(),
+              const MainTextField(
+                hintText: "+998 (90) 123-45-67",
+                text: "Telefon raqam",
+              ),
               SizedBox(height: 85.h),
               GestureDetector(
                 onTap: () => context.push(CheckCodeScreen.routeName),
