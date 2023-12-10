@@ -1,18 +1,21 @@
 import 'package:dataspin_academy/view/value/app_color.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MainTextField extends StatelessWidget {
   final bool onReq;
   final String text;
   final String hintText;
+  final TextEditingController? controller;
 
   const MainTextField({
     super.key,
     this.onReq = false,
     required this.text,
     required this.hintText,
+    this.controller
   });
 
   @override

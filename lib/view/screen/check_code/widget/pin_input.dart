@@ -78,9 +78,7 @@ class _PinInputState extends State<PinInput> {
           ),
         ),
         const Gap(28),
-        onComplated ? InkWell(onTap: () {
-          context.pushReplacement(CreateAccountScreen.routeName);
-        }, child: MainButton(text: "Confirm")) : const SizedBox(),
+        onComplated ? MainButton(text: "Confirm", onTap: (){} ,) : const SizedBox(),
       ],
     );
   }

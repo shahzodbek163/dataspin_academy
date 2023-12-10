@@ -75,7 +75,9 @@ class CreateAccountScreen extends StatelessWidget {
                   hintText: "@username",
                 ),
                 SizedBox(height: 64.h),
-                MainButton(text: "Tasdiqlash"),
+                MainButton(text: "Tasdiqlash",onTap: () {
+
+                },),
                 SizedBox(height: 41.h),
               ],
             ),

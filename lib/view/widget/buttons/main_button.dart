@@ -1,26 +1,33 @@
+import 'package:dataspin_academy/view/value/app_color.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class MainButton extends StatelessWidget {
-  String text;
+  final String text;
+  final bool isLoading;
+  final VoidCallback onTap;
 
-  MainButton({super.key, this.text = "Button"});
+  const MainButton({super.key, this.text = "Button", required this.onTap, this.isLoading = false});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      width: double.infinity,
-      height: 58,
-      decoration: BoxDecoration(
-        color: const Color(0xFF292930),
-        borderRadius: BorderRadius.circular(12),
+    return ElevatedButton(
+      style: ButtonStyle(
+        minimumSize: MaterialStateProperty.all(const  Size(double.infinity, 58)),
+        backgroundColor: MaterialStateProperty.all(AppColor.primaryButtonColor),
+        elevation: MaterialStateProperty.all(0),
+        shape: MaterialStateProperty.all(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
       ),
-      child: Text(
+      onPressed: onTap,
+      child: !isLoading? Text(
         text,
         style: AppFonts.h4.copyWith(color: Colors.white),
-      ),
+      ): const CircularProgressIndicator(),
     );
   }
 }

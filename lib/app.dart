@@ -1,6 +1,7 @@
-import 'package:dataspin_academy/controller/service/navigation/go_router.dart';
+import 'package:dataspin_academy/controller/bloc/send_code/send_code_cubit.dart';
 import 'package:dataspin_academy/controller/service/navigation/go_router.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
@@ -13,10 +14,13 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final router = AppGoRouter();
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [Provider(create: (context) => "Salom dastur")],
+      providers: [
+        BlocProvider(create: (context) => SendCodeCubit()),
+      ],
       child: ScreenUtilInit(
         minTextAdapt: true,
         splitScreenMode: true,

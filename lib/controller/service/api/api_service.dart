@@ -1,14 +1,15 @@
-// import 'package:dio/dio.dart';
-// import 'package:retrofit/http.dart';
+import 'package:dataspin_academy/controller/service/models/auth/sendcode/send_code_result.dart';
+import 'package:dio/dio.dart';
+import 'package:retrofit/http.dart';
 
-// part 'api_service.g.dart';
+part 'api_service.g.dart';
 
-// @RestApi(baseUrl: "192.168.2.66:8080/api/")
-// abstract class ApiService {
-//   factory ApiService(Dio dio, {String baseUrl}) = _ApiService;
-
-//   @POST("auth/send-code")
-//   Future<>sendCode(@Part()String phone);
-
-
-// }
+@RestApi(baseUrl: "http://192.168.2.66:8080/api")
+abstract class ApiService {
+  factory ApiService(Dio dio) = _ApiService;
+  //auth
+  @POST("/auth/send-code")
+  Future<SendCodeResult> sendCode(@Part() String phone);
+  @POST("/auth/check-code")
+  Future<CheckCodeResult> checkCode(@Part() String code, String phone);
+}
