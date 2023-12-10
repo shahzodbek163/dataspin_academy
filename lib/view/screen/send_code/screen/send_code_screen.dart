@@ -1,4 +1,5 @@
 import 'package:dataspin_academy/controller/bloc/send_code/send_code_cubit.dart';
+import 'package:dataspin_academy/model/auth/sendcode/send_code_result.dart';
 import 'package:dataspin_academy/view/screen/check_code/screen/check_code_srceen.dart';
 import 'package:dataspin_academy/view/value/app_color.dart';
 import 'package:dataspin_academy/view/value/app_image.dart';
@@ -8,9 +9,7 @@ import 'package:dataspin_academy/view/widget/textfields/main_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
 
 class SendCodeScreen extends StatefulWidget {
   static const String routeName = "/send_code_screen";
@@ -58,12 +57,17 @@ class _SendCodeScreenState extends State<SendCodeScreen> {
               BlocBuilder<SendCodeCubit, SendCodeState>(
                 builder: (context, state) {
                   return MainButton(
-                    isLoading: state.maybeWhen(orElse: () => false, sending: () => true),
+                    isLoading: state.maybeWhen(
+                        orElse: () => false, sending: () => true),
                     text: "Kodni olish",
                     onTap: () {
                       context.read<SendCodeCubit>().sendCode(
-                            phoneController.text.trim(),
-                          );
+                        phoneController.text.trim(),
+                      ).then((value) {
+                        if (value) {
+                          context.push(CheckCodeScreen.routeName);
+                        }
+                      });
                     },
                   );
                 },

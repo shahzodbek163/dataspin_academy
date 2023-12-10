@@ -26,6 +26,8 @@ class _PinInputState extends State<PinInput> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           closeKeyboardWhenCompleted: false,
           animationCurve: Curves.easeIn,
+          length: 5,
+          cursor: null,
           onCompleted: (value) {
             log("harrormforormromrormrorom    $value");
             onComplated = true;
@@ -35,8 +37,6 @@ class _PinInputState extends State<PinInput> {
             onComplated = false;
             setState(() {});
           },
-          length: 5,
-          cursor: null,
           defaultPinTheme: PinTheme(
             textStyle: AppFonts.h4,
             width: 63,
@@ -78,7 +78,12 @@ class _PinInputState extends State<PinInput> {
           ),
         ),
         const Gap(28),
-        onComplated ? MainButton(text: "Confirm", onTap: (){} ,) : const SizedBox(),
+        onComplated
+            ? MainButton(
+                text: "Confirm",
+                onTap: () {},
+              )
+            : const SizedBox(),
       ],
     );
   }

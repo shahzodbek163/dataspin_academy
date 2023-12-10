@@ -1,4 +1,5 @@
-import 'package:dataspin_academy/controller/service/models/auth/sendcode/send_code_result.dart';
+import 'package:dataspin_academy/model/auth/checkcode/check_code_result.dart';
+import 'package:dataspin_academy/model/auth/sendcode/send_code_result.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/http.dart';
 

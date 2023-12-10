@@ -21,7 +21,7 @@ class _ApiService implements ApiService {
   String? baseUrl;
 
   @override
-  Future<InvalidType> sendCode(String phone) async {
+  Future<SendCodeResult> sendCode(String phone) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -31,7 +31,7 @@ class _ApiService implements ApiService {
       phone,
     ));
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<InvalidType>(Options(
+        .fetch<Map<String, dynamic>>(_setStreamType<SendCodeResult>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -47,12 +47,12 @@ class _ApiService implements ApiService {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = InvalidType.fromJson(_result.data!);
+    final value = SendCodeResult.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<InvalidType> checkCode(
+  Future<CheckCodeResult> checkCode(
     String code,
     String phone,
   ) async {
@@ -65,7 +65,7 @@ class _ApiService implements ApiService {
       code,
     ));
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<InvalidType>(Options(
+        .fetch<Map<String, dynamic>>(_setStreamType<CheckCodeResult>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -81,7 +81,7 @@ class _ApiService implements ApiService {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = InvalidType.fromJson(_result.data!);
+    final value = CheckCodeResult.fromJson(_result.data!);
     return value;
   }
 
