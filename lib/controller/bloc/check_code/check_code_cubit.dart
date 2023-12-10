@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:dataspin_academy/controller/service/api/api_service.dart';
 import 'package:dataspin_academy/controller/service/dio/auth_dio.dart';
-import 'package:dataspin_academy/controller/service/models/auth/checkcode/check_code_result.dart';
+import 'package:dataspin_academy/models/auth/checkcode/check_code_result.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'check_code_state.dart';
