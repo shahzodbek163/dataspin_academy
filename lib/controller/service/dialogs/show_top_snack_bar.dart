@@ -13,6 +13,7 @@ showInoSnackBar(String message) {
     borderRadius: BorderRadius.circular(12),
     flushbarPosition: FlushbarPosition.TOP,
     leftBarIndicatorColor: Colors.transparent,
+
     message: message,
     icon: Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -61,11 +62,12 @@ showSuccessSnackBar(String message) {
 
 showErrorSnackBar(String message) {
   Flushbar(
-    duration: const Duration(seconds: 3),
+    duration: const Duration(seconds: 2),
     margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 32),
     borderRadius: BorderRadius.circular(12),
     flushbarPosition: FlushbarPosition.TOP,
     leftBarIndicatorColor: Colors.transparent,
+    backgroundColor: Colors.red,
     message: message,
     icon: Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),

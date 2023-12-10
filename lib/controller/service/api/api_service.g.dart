@@ -64,6 +64,10 @@ class _ApiService implements ApiService {
       'code',
       code,
     ));
+    _data.fields.add(MapEntry(
+      'phone',
+      phone,
+    ));
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<CheckCodeResult>(Options(
       method: 'POST',

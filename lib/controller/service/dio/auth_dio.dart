@@ -49,7 +49,7 @@ class AuthDio {
           handler.next(response);
         },
         onError: (DioException e, handler) async {
-          _snackBar.showError('Error occurred!');
+          _snackBar.showError(e.response!.data["message"]);
           handler.next(e);
         },
       ),

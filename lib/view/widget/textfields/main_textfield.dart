@@ -10,13 +10,12 @@ class MainTextField extends StatelessWidget {
   final String hintText;
   final TextEditingController? controller;
 
-  const MainTextField({
-    super.key,
-    this.onReq = false,
-    required this.text,
-    required this.hintText,
-    this.controller
-  });
+  const MainTextField(
+      {super.key,
+      this.onReq = false,
+      required this.text,
+      required this.hintText,
+      this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +50,7 @@ class MainTextField extends StatelessWidget {
             ),
           ),
           child: TextField(
+            controller: controller,
             cursorColor: Colors.black,
             decoration: InputDecoration(
               contentPadding: EdgeInsets.only(left: 12.w),

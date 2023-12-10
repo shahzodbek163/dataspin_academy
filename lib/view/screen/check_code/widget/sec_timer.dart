@@ -47,7 +47,8 @@ class _SecTimerState extends State<SecTimer> {
                 ),
               ),
               TextSpan(
-                text: "00:$secondsRemaining",
+                text:
+                    "00:${secondsRemaining < 10 ? "0$secondsRemaining" : secondsRemaining}",
                 style: AppFonts.h4,
               ),
             ]),

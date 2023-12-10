@@ -24,7 +24,7 @@ class MainButton extends StatelessWidget {
         ),
       ),
       onPressed: onTap,
-      child: !isLoading? Text(
+      child: !isLoading?  Text(
         text,
         style: AppFonts.h4.copyWith(color: Colors.white),
       ): const CircularProgressIndicator(),

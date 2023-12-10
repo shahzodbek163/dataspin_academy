@@ -21,7 +21,7 @@ mixin _$CheckCodeState {
     required TResult Function() initial,
     required TResult Function() checking,
     required TResult Function(CheckCodeResult checkCodeResult) checked,
-    required TResult Function() error,
+    required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -29,7 +29,7 @@ mixin _$CheckCodeState {
     TResult? Function()? initial,
     TResult? Function()? checking,
     TResult? Function(CheckCodeResult checkCodeResult)? checked,
-    TResult? Function()? error,
+    TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,7 +37,7 @@ mixin _$CheckCodeState {
     TResult Function()? initial,
     TResult Function()? checking,
     TResult Function(CheckCodeResult checkCodeResult)? checked,
-    TResult Function()? error,
+    TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -127,7 +127,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function() initial,
     required TResult Function() checking,
     required TResult Function(CheckCodeResult checkCodeResult) checked,
-    required TResult Function() error,
+    required TResult Function(String message) error,
   }) {
     return initial();
   }
@@ -138,7 +138,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? checking,
     TResult? Function(CheckCodeResult checkCodeResult)? checked,
-    TResult? Function()? error,
+    TResult? Function(String message)? error,
   }) {
     return initial?.call();
   }
@@ -149,7 +149,7 @@ class _$InitialImpl implements _Initial {
     TResult Function()? initial,
     TResult Function()? checking,
     TResult Function(CheckCodeResult checkCodeResult)? checked,
-    TResult Function()? error,
+    TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -241,7 +241,7 @@ class _$CheckingImpl implements _Checking {
     required TResult Function() initial,
     required TResult Function() checking,
     required TResult Function(CheckCodeResult checkCodeResult) checked,
-    required TResult Function() error,
+    required TResult Function(String message) error,
   }) {
     return checking();
   }
@@ -252,7 +252,7 @@ class _$CheckingImpl implements _Checking {
     TResult? Function()? initial,
     TResult? Function()? checking,
     TResult? Function(CheckCodeResult checkCodeResult)? checked,
-    TResult? Function()? error,
+    TResult? Function(String message)? error,
   }) {
     return checking?.call();
   }
@@ -263,7 +263,7 @@ class _$CheckingImpl implements _Checking {
     TResult Function()? initial,
     TResult Function()? checking,
     TResult Function(CheckCodeResult checkCodeResult)? checked,
-    TResult Function()? error,
+    TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (checking != null) {
@@ -392,7 +392,7 @@ class _$CheckedImpl implements _Checked {
     required TResult Function() initial,
     required TResult Function() checking,
     required TResult Function(CheckCodeResult checkCodeResult) checked,
-    required TResult Function() error,
+    required TResult Function(String message) error,
   }) {
     return checked(checkCodeResult);
   }
@@ -403,7 +403,7 @@ class _$CheckedImpl implements _Checked {
     TResult? Function()? initial,
     TResult? Function()? checking,
     TResult? Function(CheckCodeResult checkCodeResult)? checked,
-    TResult? Function()? error,
+    TResult? Function(String message)? error,
   }) {
     return checked?.call(checkCodeResult);
   }
@@ -414,7 +414,7 @@ class _$CheckedImpl implements _Checked {
     TResult Function()? initial,
     TResult Function()? checking,
     TResult Function(CheckCodeResult checkCodeResult)? checked,
-    TResult Function()? error,
+    TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (checked != null) {
@@ -475,6 +475,8 @@ abstract class _$$ErrorImplCopyWith<$Res> {
   factory _$$ErrorImplCopyWith(
           _$ErrorImpl value, $Res Function(_$ErrorImpl) then) =
       __$$ErrorImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String message});
 }
 
 /// @nodoc
@@ -484,26 +486,50 @@ class __$$ErrorImplCopyWithImpl<$Res>
   __$$ErrorImplCopyWithImpl(
       _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_$ErrorImpl(
+      null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$ErrorImpl implements _Error {
-  const _$ErrorImpl();
+  const _$ErrorImpl(this.message);
+
+  @override
+  final String message;
 
   @override
   String toString() {
-    return 'CheckCodeState.error()';
+    return 'CheckCodeState.error(message: $message)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ErrorImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$ErrorImpl &&
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
+      __$$ErrorImplCopyWithImpl<_$ErrorImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -511,9 +537,9 @@ class _$ErrorImpl implements _Error {
     required TResult Function() initial,
     required TResult Function() checking,
     required TResult Function(CheckCodeResult checkCodeResult) checked,
-    required TResult Function() error,
+    required TResult Function(String message) error,
   }) {
-    return error();
+    return error(message);
   }
 
   @override
@@ -522,9 +548,9 @@ class _$ErrorImpl implements _Error {
     TResult? Function()? initial,
     TResult? Function()? checking,
     TResult? Function(CheckCodeResult checkCodeResult)? checked,
-    TResult? Function()? error,
+    TResult? Function(String message)? error,
   }) {
-    return error?.call();
+    return error?.call(message);
   }
 
   @override
@@ -533,11 +559,11 @@ class _$ErrorImpl implements _Error {
     TResult Function()? initial,
     TResult Function()? checking,
     TResult Function(CheckCodeResult checkCodeResult)? checked,
-    TResult Function()? error,
+    TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error();
+      return error(message);
     }
     return orElse();
   }
@@ -581,5 +607,10 @@ class _$ErrorImpl implements _Error {
 }
 
 abstract class _Error implements CheckCodeState {
-  const factory _Error() = _$ErrorImpl;
+  const factory _Error(final String message) = _$ErrorImpl;
+
+  String get message;
+  @JsonKey(ignore: true)
+  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
