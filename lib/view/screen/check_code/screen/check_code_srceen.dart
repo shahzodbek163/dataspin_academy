@@ -1,4 +1,5 @@
 import 'package:dataspin_academy/view/screen/check_code/widget/pin_input.dart';
+import 'package:dataspin_academy/view/screen/check_code/widget/sec_timer.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
 import 'package:dataspin_academy/view/value/app_icons.dart';
 import 'package:dataspin_academy/view/widget/appbars/simple_appbar.dart';
@@ -55,21 +56,8 @@ class CheckCodeScreen extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            Center(
-              child: RichText(
-                text: TextSpan(children: [
-                  TextSpan(
-                    text: "Qayta jo’natish vaqti: ",
-                    style: AppFonts.h4.copyWith(
-                      color: Colors.black.withOpacity(0.4),
-                    ),
-                  ),
-                  const TextSpan(
-                    text: " 00:20",
-                    style: AppFonts.h4,
-                  ),
-                ]),
-              ),
+            const Center(
+              child: SecTimer(),
             ),
             SizedBox(height: 24.h)
           ],
