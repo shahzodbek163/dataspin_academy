@@ -4,14 +4,38 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MainTextField extends StatelessWidget {
-  const MainTextField({super.key});
+  final bool onReq;
+  final String text;
+  final String hintText;
+
+  const MainTextField({
+    super.key,
+    this.onReq = false,
+    required this.text,
+    required this.hintText,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text("Telefon raqam", style: AppFonts.label),
+        Row(
+          children: [
+            Text(
+              text,
+              style: AppFonts.label,
+            ),
+            onReq
+                ? Text(
+                    " *",
+                    style: AppFonts.label.copyWith(
+                      color: const Color(0xFFFF0000),
+                    ),
+                  )
+                : const SizedBox(),
+          ],
+        ),
         SizedBox(height: 6.h),
         Container(
           width: double.infinity,
@@ -27,7 +51,7 @@ class MainTextField extends StatelessWidget {
             cursorColor: Colors.black,
             decoration: InputDecoration(
               contentPadding: EdgeInsets.only(left: 12.w),
-              hintText: "+998 (90) 123-45-67",
+              hintText: hintText,
               hintStyle:
                   AppFonts.label.copyWith(color: AppColor.txtSecondColor),
               border: const OutlineInputBorder(

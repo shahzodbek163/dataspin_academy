@@ -1,8 +1,11 @@
 import 'dart:developer';
 
+import 'package:dataspin_academy/view/screen/create_accaunt/screen/create_account_screen.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
+import 'package:dataspin_academy/view/widget/buttons/main_button.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pinput/pinput.dart';
 
 class PinInput extends StatefulWidget {
@@ -75,25 +78,9 @@ class _PinInputState extends State<PinInput> {
           ),
         ),
         const Gap(28),
-        onComplated
-            ? Container(
-                alignment: Alignment.center,
-                width: double.infinity,
-                height: 58,
-                decoration: BoxDecoration(
-                  color: const Color(0xFF292930),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: const Text(
-                  "Confirm",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    color: Colors.white,
-                    fontSize: 18,
-                  ),
-                ),
-              )
-            : const SizedBox(),
+        onComplated ? InkWell(onTap: () {
+          context.pushReplacement(CreateAccountScreen.routeName);
+        }, child: MainButton(text: "Confirm")) : const SizedBox(),
       ],
     );
   }

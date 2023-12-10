@@ -1,4 +1,3 @@
-
 import 'package:dataspin_academy/controller/service/dialogs/custom_snack_bar.dart';
 import 'package:dio/dio.dart';
 
@@ -22,7 +21,7 @@ class AuthDio {
             return statusCode >= 200 && statusCode < 300;
           }
         },
-        baseUrl: 'https://premiumshop.uz/api',
+        baseUrl: '',
         connectTimeout: const Duration(seconds: 30),
         sendTimeout: const Duration(seconds: 30),
         receiveTimeout: const Duration(seconds: 30),
@@ -44,9 +43,7 @@ class AuthDio {
         onResponse: (response, handler) {
           switch (response.statusCode) {
             case 422:
-              {
-
-              }
+              {}
               break;
           }
           handler.next(response);
@@ -57,7 +54,6 @@ class AuthDio {
         },
       ),
     );
-
   }
 
   Dio get get => _dio;

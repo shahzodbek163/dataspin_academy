@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // ignore: must_be_immutable
 class MainButton extends StatelessWidget {
   String text;
+
   MainButton({super.key, this.text = "Button"});
 
   @override
@@ -16,7 +17,10 @@ class MainButton extends StatelessWidget {
         color: const Color(0xFF292930),
         borderRadius: BorderRadius.circular(12),
       ),
-      child: Text(text, style: AppFonts.h4.copyWith(color: Colors.white)),
+      child: Text(
+        text,
+        style: AppFonts.h4.copyWith(color: Colors.white),
+      ),
     );
   }
 }

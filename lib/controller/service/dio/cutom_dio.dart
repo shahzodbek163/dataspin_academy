@@ -24,7 +24,7 @@ class CustomDio {
             return statusCode >= 200 && statusCode < 300;
           }
         },
-        baseUrl: 'https://I8speak.ucoders.uz',
+        baseUrl: '',
         connectTimeout: const Duration(seconds: 30),
         sendTimeout: const Duration(seconds: 30),
         receiveTimeout: const Duration(seconds: 30),
@@ -42,8 +42,6 @@ class CustomDio {
     _dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) {
-          options.headers['Authorization'] = 'Bearer $token';
-
           return handler.next(options);
         },
         onResponse: (response, handler) {
