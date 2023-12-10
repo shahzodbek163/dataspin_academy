@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CheckCodeScreen extends StatelessWidget {
-  static const String routeName = "/send_code_screen";
+  static const String routeName = "/check_code_screen";
 
   const CheckCodeScreen({super.key});
 

@@ -16,14 +16,12 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [
-        Provider(create: (context) => "Salom dastur")
-      ],
+      providers: [Provider(create: (context) => "Salom dastur")],
       child: ScreenUtilInit(
         minTextAdapt: true,
         splitScreenMode: true,
         designSize: const Size(393, 852),
-        builder:(context, child) => MaterialApp.router(
+        builder: (context, child) => MaterialApp.router(
           title: "DataSpin Academy",
           routerConfig: router.router,
           debugShowCheckedModeBanner: false,
