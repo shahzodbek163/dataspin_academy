@@ -21,7 +21,7 @@ class _ApiService implements ApiService {
   String? baseUrl;
 
   @override
-  Future<SendCodeResult> sendCode(String phone) async {
+  Future<InvalidType> sendCode(String phone) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -31,7 +31,7 @@ class _ApiService implements ApiService {
       phone,
     ));
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<SendCodeResult>(Options(
+        .fetch<Map<String, dynamic>>(_setStreamType<InvalidType>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -47,7 +47,7 @@ class _ApiService implements ApiService {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = SendCodeResult.fromJson(_result.data!);
+    final value = InvalidType.fromJson(_result.data!);
     return value;
   }
 

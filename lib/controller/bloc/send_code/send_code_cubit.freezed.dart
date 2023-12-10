@@ -321,8 +321,6 @@ abstract class _$$SendImplCopyWith<$Res> {
       __$$SendImplCopyWithImpl<$Res>;
   @useResult
   $Res call({SendCodeResult result});
-
-  $SendCodeResultCopyWith<$Res> get result;
 }
 
 /// @nodoc
@@ -335,22 +333,14 @@ class __$$SendImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? result = null,
+    Object? result = freezed,
   }) {
     return _then(_$SendImpl(
-      null == result
+      freezed == result
           ? _value.result
           : result // ignore: cast_nullable_to_non_nullable
               as SendCodeResult,
     ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $SendCodeResultCopyWith<$Res> get result {
-    return $SendCodeResultCopyWith<$Res>(_value.result, (value) {
-      return _then(_value.copyWith(result: value));
-    });
   }
 }
 
@@ -372,11 +362,12 @@ class _$SendImpl implements _Send {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SendImpl &&
-            (identical(other.result, result) || other.result == result));
+            const DeepCollectionEquality().equals(other.result, result));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, result);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(result));
 
   @JsonKey(ignore: true)
   @override
