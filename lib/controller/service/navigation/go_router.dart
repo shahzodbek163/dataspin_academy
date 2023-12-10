@@ -1,13 +1,14 @@
 import 'package:dataspin_academy/controller/service/navigation/navigation_service.dart';
 import 'package:dataspin_academy/controller/service/transition/transitions.dart';
 import 'package:dataspin_academy/view/screen/check_code/screen/check_code_srceen.dart';
+import 'package:dataspin_academy/view/screen/create_accaunt/screen/create_account_screen.dart';
 import 'package:dataspin_academy/view/screen/phone_number/screen/phone_number_screen.dart';
 import 'package:go_router/go_router.dart';
 
 class AppGoRouter {
   final router = GoRouter(
     navigatorKey: NavigationService.navigatorKey,
-    initialLocation: CheckCodeScreen.routeName,
+    initialLocation: CreateAccountScreen.routeName,
     routes: [
       ///main
       GoRoute(
@@ -22,6 +23,13 @@ class AppGoRouter {
         pageBuilder: (context, state) => slideTransitionRight(
           state,
           const PhoneNumberScreen(),
+        ),
+      ),
+      GoRoute(
+        path: CreateAccountScreen.routeName,
+        pageBuilder: (context, state) => slideTransitionRight(
+          state,
+          const CreateAccountScreen(),
         ),
       ),
     ],
