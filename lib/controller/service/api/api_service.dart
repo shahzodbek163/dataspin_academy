@@ -10,6 +10,7 @@ part 'api_service.g.dart';
 @RestApi(baseUrl: "http://192.168.113.66:8080/api")
 abstract class ApiService {
   factory ApiService(Dio dio) = _ApiService;
+
   //auth
   @POST("/auth/send-code")
   Future<SendCodeResult> sendCode(@Part() String phone);

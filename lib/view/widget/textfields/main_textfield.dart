@@ -22,6 +22,7 @@ class MainTextField extends StatelessWidget {
       this.controller,
       this.maskTextInputFormatter,
       this.validationBloc});
+      
 
   @override
   Widget build(BuildContext context) {

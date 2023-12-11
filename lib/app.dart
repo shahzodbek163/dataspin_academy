@@ -1,4 +1,6 @@
+import 'package:dataspin_academy/controller/bloc/check_code/check_code_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/send_code/send_code_cubit.dart';
+import 'package:dataspin_academy/controller/provider/phone_number_provider.dart';
 import 'package:dataspin_academy/controller/service/navigation/go_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,6 +22,10 @@ class _MyAppState extends State<MyApp> {
     return MultiProvider(
       providers: [
         BlocProvider(create: (context) => SendCodeCubit()),
+        BlocProvider(create: (context) => CheckCodeCubit()),
+        ChangeNotifierProvider(
+          create: (context) => PhoneNumberProvider(),
+        )
       ],
       child: ScreenUtilInit(
         minTextAdapt: true,

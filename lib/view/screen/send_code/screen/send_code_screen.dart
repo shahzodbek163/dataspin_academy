@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:dataspin_academy/controller/bloc/create_account/create_account_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/send_code/send_code_cubit.dart';
+import 'package:dataspin_academy/controller/provider/phone_number_provider.dart';
 import 'package:dataspin_academy/model/auth/sendcode/send_code_result.dart';
 import 'package:dataspin_academy/view/screen/check_code/screen/check_code_srceen.dart';
 import 'package:dataspin_academy/view/value/app_color.dart';
@@ -63,10 +66,12 @@ class _SendCodeScreenState extends State<SendCodeScreen> {
                     text: "Kodni olish",
                     onTap: () {
                       context
+                          .read<PhoneNumberProvider>()
+                          .changePhoneNum(phoneController.text.trim());
+                      log("${phoneController.text.trim()} wdaudwbyw");
+                      context
                           .read<SendCodeCubit>()
-                          .sendCode(
-                            phoneController.text.trim(),
-                          )
+                          .sendCode(phoneController.text.trim())
                           .then((value) {
                         if (value) {
                           context.push(CheckCodeScreen.routeName);
