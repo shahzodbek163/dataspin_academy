@@ -1,3 +1,4 @@
+import 'package:dataspin_academy/controller/bloc/create_account/check_tap/cubit/check_tap_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/create_account/empty_validation/validation_bloc.dart';
 import 'package:dataspin_academy/view/value/app_color.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
@@ -13,6 +14,8 @@ class MainTextField extends StatelessWidget {
   final TextEditingController? controller;
   final MaskTextInputFormatter? maskTextInputFormatter;
   final ValidationBloc? validationBloc;
+  final ValidationType? validationType;
+  final TextInputType? keyboardType;
 
   const MainTextField(
       {super.key,
@@ -21,8 +24,9 @@ class MainTextField extends StatelessWidget {
       required this.hintText,
       this.controller,
       this.maskTextInputFormatter,
-      this.validationBloc});
-      
+      this.validationBloc,
+      this.validationType,
+      this.keyboardType});
 
   @override
   Widget build(BuildContext context) {
@@ -48,14 +52,14 @@ class MainTextField extends StatelessWidget {
                     bloc: validationBloc,
                     builder: (context, state) {
                       return state.when(
-                          emptyState: (isValid) => isValid
+                          emptyState: (isEmpty) => isEmpty
                               ? Text(
                                   "(Ma'lumot kiritilishi zarur)",
                                   style: AppFonts.label.copyWith(
                                       color: AppColor.errorColor, fontSize: 12),
                                 )
                               : const SizedBox(),
-                          formatState: (isValid) => isValid
+                          formatState: (isValid) => !isValid
                               ? Text(
                                   "(Noto'g'ri ma'lumot kiritildi)",
                                   style: AppFonts.label.copyWith(
@@ -79,12 +83,16 @@ class MainTextField extends StatelessWidget {
           ),
           child: TextField(
             controller: controller,
+            keyboardType: keyboardType,
             onChanged: (value) {
-              if (value.isEmpty) {
-                validationBloc!.add(ValidationEvent.empty(value));
-              } else {
+              if (validationType != null) {
                 validationBloc!
-                    .add(ValidationEvent.format(ValidationType.date, value));
+                    .add(ValidationEvent.format(validationType!, value));
+              }
+              if (context.read<CheckTapCubit>().state) {
+                if (onReq) {
+                  validationBloc!.add(ValidationEvent.empty(value));
+                }
               }
             },
             inputFormatters: maskTextInputFormatter == null

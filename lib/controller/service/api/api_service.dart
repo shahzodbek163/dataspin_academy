@@ -16,7 +16,6 @@ abstract class ApiService {
   Future<SendCodeResult> sendCode(@Part() String phone);
   @POST("/auth/send-code")
   Future<CheckCodeResult> checkCode(@Part() String code, @Part() String phone);
-
   @POST("/user/create")
   Future<CreateAccountResponse> createAccount(
       @Body() CreateAccountRequest createAccountRequest);

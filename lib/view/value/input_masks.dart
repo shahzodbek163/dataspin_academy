@@ -6,7 +6,7 @@ class InputMasks {
   static final phoneInputMask = MaskTextInputFormatter(
     mask: '+998 (##) ###-##-##',
     filter: {"#": RegExp(r'[0-9]')},
-    type: MaskAutoCompletionType.lazy,
+    type: MaskAutoCompletionType.eager,
 
   );
   static final birthdayInputMask = MaskTextInputFormatter(

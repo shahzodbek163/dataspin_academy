@@ -22,18 +22,22 @@ mixin _$ValidationEvent {
     required TResult Function(String text) empty,
     required TResult Function(ValidationType validationType, String text)
         format,
+    required TResult Function(ValidationType validationType, String text)
+        accept,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String text)? empty,
     TResult? Function(ValidationType validationType, String text)? format,
+    TResult? Function(ValidationType validationType, String text)? accept,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String text)? empty,
     TResult Function(ValidationType validationType, String text)? format,
+    TResult Function(ValidationType validationType, String text)? accept,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -41,18 +45,21 @@ mixin _$ValidationEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Empty value) empty,
     required TResult Function(_Format value) format,
+    required TResult Function(_Accept value) accept,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Empty value)? empty,
     TResult? Function(_Format value)? format,
+    TResult? Function(_Accept value)? accept,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Empty value)? empty,
     TResult Function(_Format value)? format,
+    TResult Function(_Accept value)? accept,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -164,6 +171,8 @@ class _$EmptyImpl implements _Empty {
     required TResult Function(String text) empty,
     required TResult Function(ValidationType validationType, String text)
         format,
+    required TResult Function(ValidationType validationType, String text)
+        accept,
   }) {
     return empty(text);
   }
@@ -173,6 +182,7 @@ class _$EmptyImpl implements _Empty {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String text)? empty,
     TResult? Function(ValidationType validationType, String text)? format,
+    TResult? Function(ValidationType validationType, String text)? accept,
   }) {
     return empty?.call(text);
   }
@@ -182,6 +192,7 @@ class _$EmptyImpl implements _Empty {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String text)? empty,
     TResult Function(ValidationType validationType, String text)? format,
+    TResult Function(ValidationType validationType, String text)? accept,
     required TResult orElse(),
   }) {
     if (empty != null) {
@@ -195,6 +206,7 @@ class _$EmptyImpl implements _Empty {
   TResult map<TResult extends Object?>({
     required TResult Function(_Empty value) empty,
     required TResult Function(_Format value) format,
+    required TResult Function(_Accept value) accept,
   }) {
     return empty(this);
   }
@@ -204,6 +216,7 @@ class _$EmptyImpl implements _Empty {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Empty value)? empty,
     TResult? Function(_Format value)? format,
+    TResult? Function(_Accept value)? accept,
   }) {
     return empty?.call(this);
   }
@@ -213,6 +226,7 @@ class _$EmptyImpl implements _Empty {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Empty value)? empty,
     TResult Function(_Format value)? format,
+    TResult Function(_Accept value)? accept,
     required TResult orElse(),
   }) {
     if (empty != null) {
@@ -311,6 +325,8 @@ class _$FormatImpl implements _Format {
     required TResult Function(String text) empty,
     required TResult Function(ValidationType validationType, String text)
         format,
+    required TResult Function(ValidationType validationType, String text)
+        accept,
   }) {
     return format(validationType, text);
   }
@@ -320,6 +336,7 @@ class _$FormatImpl implements _Format {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String text)? empty,
     TResult? Function(ValidationType validationType, String text)? format,
+    TResult? Function(ValidationType validationType, String text)? accept,
   }) {
     return format?.call(validationType, text);
   }
@@ -329,6 +346,7 @@ class _$FormatImpl implements _Format {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String text)? empty,
     TResult Function(ValidationType validationType, String text)? format,
+    TResult Function(ValidationType validationType, String text)? accept,
     required TResult orElse(),
   }) {
     if (format != null) {
@@ -342,6 +360,7 @@ class _$FormatImpl implements _Format {
   TResult map<TResult extends Object?>({
     required TResult Function(_Empty value) empty,
     required TResult Function(_Format value) format,
+    required TResult Function(_Accept value) accept,
   }) {
     return format(this);
   }
@@ -351,6 +370,7 @@ class _$FormatImpl implements _Format {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Empty value)? empty,
     TResult? Function(_Format value)? format,
+    TResult? Function(_Accept value)? accept,
   }) {
     return format?.call(this);
   }
@@ -360,6 +380,7 @@ class _$FormatImpl implements _Format {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Empty value)? empty,
     TResult Function(_Format value)? format,
+    TResult Function(_Accept value)? accept,
     required TResult orElse(),
   }) {
     if (format != null) {
@@ -383,23 +404,178 @@ abstract class _Format implements ValidationEvent {
 }
 
 /// @nodoc
-mixin _$ValidationState {
-  bool get isValid => throw _privateConstructorUsedError;
+abstract class _$$AcceptImplCopyWith<$Res>
+    implements $ValidationEventCopyWith<$Res> {
+  factory _$$AcceptImplCopyWith(
+          _$AcceptImpl value, $Res Function(_$AcceptImpl) then) =
+      __$$AcceptImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({ValidationType validationType, String text});
+}
+
+/// @nodoc
+class __$$AcceptImplCopyWithImpl<$Res>
+    extends _$ValidationEventCopyWithImpl<$Res, _$AcceptImpl>
+    implements _$$AcceptImplCopyWith<$Res> {
+  __$$AcceptImplCopyWithImpl(
+      _$AcceptImpl _value, $Res Function(_$AcceptImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? validationType = null,
+    Object? text = null,
+  }) {
+    return _then(_$AcceptImpl(
+      null == validationType
+          ? _value.validationType
+          : validationType // ignore: cast_nullable_to_non_nullable
+              as ValidationType,
+      null == text
+          ? _value.text
+          : text // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AcceptImpl implements _Accept {
+  const _$AcceptImpl(this.validationType, this.text);
+
+  @override
+  final ValidationType validationType;
+  @override
+  final String text;
+
+  @override
+  String toString() {
+    return 'ValidationEvent.accept(validationType: $validationType, text: $text)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AcceptImpl &&
+            (identical(other.validationType, validationType) ||
+                other.validationType == validationType) &&
+            (identical(other.text, text) || other.text == text));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, validationType, text);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AcceptImplCopyWith<_$AcceptImpl> get copyWith =>
+      __$$AcceptImplCopyWithImpl<_$AcceptImpl>(this, _$identity);
+
+  @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool isValid) emptyState,
+    required TResult Function(String text) empty,
+    required TResult Function(ValidationType validationType, String text)
+        format,
+    required TResult Function(ValidationType validationType, String text)
+        accept,
+  }) {
+    return accept(validationType, text);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String text)? empty,
+    TResult? Function(ValidationType validationType, String text)? format,
+    TResult? Function(ValidationType validationType, String text)? accept,
+  }) {
+    return accept?.call(validationType, text);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String text)? empty,
+    TResult Function(ValidationType validationType, String text)? format,
+    TResult Function(ValidationType validationType, String text)? accept,
+    required TResult orElse(),
+  }) {
+    if (accept != null) {
+      return accept(validationType, text);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Empty value) empty,
+    required TResult Function(_Format value) format,
+    required TResult Function(_Accept value) accept,
+  }) {
+    return accept(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Empty value)? empty,
+    TResult? Function(_Format value)? format,
+    TResult? Function(_Accept value)? accept,
+  }) {
+    return accept?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Empty value)? empty,
+    TResult Function(_Format value)? format,
+    TResult Function(_Accept value)? accept,
+    required TResult orElse(),
+  }) {
+    if (accept != null) {
+      return accept(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Accept implements ValidationEvent {
+  const factory _Accept(
+      final ValidationType validationType, final String text) = _$AcceptImpl;
+
+  ValidationType get validationType;
+  @override
+  String get text;
+  @override
+  @JsonKey(ignore: true)
+  _$$AcceptImplCopyWith<_$AcceptImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$ValidationState {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool isEmpty) emptyState,
     required TResult Function(bool isValid) formatState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool isValid)? emptyState,
+    TResult? Function(bool isEmpty)? emptyState,
     TResult? Function(bool isValid)? formatState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool isValid)? emptyState,
+    TResult Function(bool isEmpty)? emptyState,
     TResult Function(bool isValid)? formatState,
     required TResult orElse(),
   }) =>
@@ -423,10 +599,6 @@ mixin _$ValidationState {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $ValidationStateCopyWith<ValidationState> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -434,8 +606,6 @@ abstract class $ValidationStateCopyWith<$Res> {
   factory $ValidationStateCopyWith(
           ValidationState value, $Res Function(ValidationState) then) =
       _$ValidationStateCopyWithImpl<$Res, ValidationState>;
-  @useResult
-  $Res call({bool isValid});
 }
 
 /// @nodoc
@@ -447,30 +617,15 @@ class _$ValidationStateCopyWithImpl<$Res, $Val extends ValidationState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? isValid = null,
-  }) {
-    return _then(_value.copyWith(
-      isValid: null == isValid
-          ? _value.isValid
-          : isValid // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$EmptyStateImplCopyWith<$Res>
-    implements $ValidationStateCopyWith<$Res> {
+abstract class _$$EmptyStateImplCopyWith<$Res> {
   factory _$$EmptyStateImplCopyWith(
           _$EmptyStateImpl value, $Res Function(_$EmptyStateImpl) then) =
       __$$EmptyStateImplCopyWithImpl<$Res>;
-  @override
   @useResult
-  $Res call({bool isValid});
+  $Res call({bool isEmpty});
 }
 
 /// @nodoc
@@ -484,12 +639,12 @@ class __$$EmptyStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isValid = null,
+    Object? isEmpty = null,
   }) {
     return _then(_$EmptyStateImpl(
-      null == isValid
-          ? _value.isValid
-          : isValid // ignore: cast_nullable_to_non_nullable
+      null == isEmpty
+          ? _value.isEmpty
+          : isEmpty // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -498,14 +653,14 @@ class __$$EmptyStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$EmptyStateImpl implements _EmptyState {
-  const _$EmptyStateImpl(this.isValid);
+  const _$EmptyStateImpl(this.isEmpty);
 
   @override
-  final bool isValid;
+  final bool isEmpty;
 
   @override
   String toString() {
-    return 'ValidationState.emptyState(isValid: $isValid)';
+    return 'ValidationState.emptyState(isEmpty: $isEmpty)';
   }
 
   @override
@@ -513,11 +668,11 @@ class _$EmptyStateImpl implements _EmptyState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$EmptyStateImpl &&
-            (identical(other.isValid, isValid) || other.isValid == isValid));
+            (identical(other.isEmpty, isEmpty) || other.isEmpty == isEmpty));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isValid);
+  int get hashCode => Object.hash(runtimeType, isEmpty);
 
   @JsonKey(ignore: true)
   @override
@@ -528,30 +683,30 @@ class _$EmptyStateImpl implements _EmptyState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool isValid) emptyState,
+    required TResult Function(bool isEmpty) emptyState,
     required TResult Function(bool isValid) formatState,
   }) {
-    return emptyState(isValid);
+    return emptyState(isEmpty);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool isValid)? emptyState,
+    TResult? Function(bool isEmpty)? emptyState,
     TResult? Function(bool isValid)? formatState,
   }) {
-    return emptyState?.call(isValid);
+    return emptyState?.call(isEmpty);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool isValid)? emptyState,
+    TResult Function(bool isEmpty)? emptyState,
     TResult Function(bool isValid)? formatState,
     required TResult orElse(),
   }) {
     if (emptyState != null) {
-      return emptyState(isValid);
+      return emptyState(isEmpty);
     }
     return orElse();
   }
@@ -589,23 +744,19 @@ class _$EmptyStateImpl implements _EmptyState {
 }
 
 abstract class _EmptyState implements ValidationState {
-  const factory _EmptyState(final bool isValid) = _$EmptyStateImpl;
+  const factory _EmptyState(final bool isEmpty) = _$EmptyStateImpl;
 
-  @override
-  bool get isValid;
-  @override
+  bool get isEmpty;
   @JsonKey(ignore: true)
   _$$EmptyStateImplCopyWith<_$EmptyStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$FormatStateImplCopyWith<$Res>
-    implements $ValidationStateCopyWith<$Res> {
+abstract class _$$FormatStateImplCopyWith<$Res> {
   factory _$$FormatStateImplCopyWith(
           _$FormatStateImpl value, $Res Function(_$FormatStateImpl) then) =
       __$$FormatStateImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({bool isValid});
 }
@@ -665,7 +816,7 @@ class _$FormatStateImpl implements _FormatState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool isValid) emptyState,
+    required TResult Function(bool isEmpty) emptyState,
     required TResult Function(bool isValid) formatState,
   }) {
     return formatState(isValid);
@@ -674,7 +825,7 @@ class _$FormatStateImpl implements _FormatState {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool isValid)? emptyState,
+    TResult? Function(bool isEmpty)? emptyState,
     TResult? Function(bool isValid)? formatState,
   }) {
     return formatState?.call(isValid);
@@ -683,7 +834,7 @@ class _$FormatStateImpl implements _FormatState {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool isValid)? emptyState,
+    TResult Function(bool isEmpty)? emptyState,
     TResult Function(bool isValid)? formatState,
     required TResult orElse(),
   }) {
@@ -728,9 +879,7 @@ class _$FormatStateImpl implements _FormatState {
 abstract class _FormatState implements ValidationState {
   const factory _FormatState(final bool isValid) = _$FormatStateImpl;
 
-  @override
   bool get isValid;
-  @override
   @JsonKey(ignore: true)
   _$$FormatStateImplCopyWith<_$FormatStateImpl> get copyWith =>
       throw _privateConstructorUsedError;

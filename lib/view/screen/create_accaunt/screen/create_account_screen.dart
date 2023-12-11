@@ -1,8 +1,10 @@
 import 'dart:developer';
 
+import 'package:dataspin_academy/controller/bloc/create_account/check_tap/cubit/check_tap_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/create_account/create_account_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/create_account/empty_validation/validation_bloc.dart';
 import 'package:dataspin_academy/model/create_account/request/create_account_request.dart';
+import 'package:dataspin_academy/view/value/app_color.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
 import 'package:dataspin_academy/view/value/app_size.dart';
 import 'package:dataspin_academy/view/value/input_masks.dart';
@@ -66,9 +68,10 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                 SizedBox(
                   height: 12.h,
                 ),
-                const Text(
+                Text(
                   "Bizning dasturda ko’rib turganimizdan hursandmiz. Ushbu ma’lumotlarni to’ldirish orqali siz bizning servislarimizdan to’liq foydalanish huquqiga ega bo’lasiz",
-                  style: AppFonts.body18Regular,
+                  style:
+                      AppFonts.label.copyWith(color: AppColor.txtSecondColor),
                 ),
                 SizedBox(height: 18.h),
                 MainTextField(
@@ -99,6 +102,8 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                   controller: birthdayController,
                   maskTextInputFormatter: InputMasks.birthdayInputMask,
                   validationBloc: birthdayBloc,
+                  validationType: ValidationType.date,
+                  keyboardType: TextInputType.number,
                 ),
                 SizedBox(height: 14.h),
                 MainTextField(
@@ -108,50 +113,25 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                   controller: primaryNumberController,
                   maskTextInputFormatter: InputMasks.phoneInputMask,
                   validationBloc: numberBloc,
+                  validationType: ValidationType.phone,
+                  keyboardType: TextInputType.phone,
                 ),
                 SizedBox(height: 14.h),
                 MainTextField(
                   text: "Qo’shimcha telefon raqam",
                   hintText: "+998 (91)",
                   controller: secondaryNumberController,
+                  validationType: ValidationType.phone,
+                  keyboardType: TextInputType.phone,
                 ),
-                SizedBox(height: 14.h),
-                MainTextField(
-                  text: "Telegram username",
-                  hintText: "@username",
-                  controller: tgUsernameController,
-                ),
-                SizedBox(height: 64.h),
+                SizedBox(height: 50.h),
                 MainButton(
                   text: "Tasdiqlash",
                   onTap: () {
-                    if (firstnameController.text.isNotEmpty &&
-                        lastnameController.text.isNotEmpty &&
-                        primaryNumberController.text.isNotEmpty) {
-                      final createAccountRequest = CreateAccountRequest(
-                          firstname: firstnameController.text.trim(),
-                          lastname: lastnameController.text.trim(),
-                          tel1: primaryNumberController.text.trim(),
-                          birthday: birthdayController.text.trim(),
-                          middlename: middlenameController.text.trim(),
-                          tel2: secondaryNumberController.text.trim(),
-                          tg: tgUsernameController.text.trim());
-                      createAccountCubit
-                          .createAccount(createAccountRequest)
-                          .then((value) {
-                        if (value) {
-                          print("Boshqa oyna");
-                        }
-                      });
-                    } else {
-                      print("bo'sh");
-                      firstnameBloc.add(ValidationEvent.empty(
-                          firstnameController.text.trim()));
-                      lastnameBloc.add(ValidationEvent.empty(
-                          lastnameController.text.trim()));
-                      numberBloc.add(ValidationEvent.empty(
-                          primaryNumberController.text.trim()));
-                    }
+                    birthdayBloc.add(ValidationEvent.accept(
+                        ValidationType.date, birthdayController.text.trim()));
+                    numberBloc.add(ValidationEvent.accept(ValidationType.phone,
+                        primaryNumberController.text.trim()));
                   },
                 ),
                 SizedBox(height: 41.h),

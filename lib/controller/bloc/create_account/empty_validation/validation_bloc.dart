@@ -12,36 +12,61 @@ class ValidationBloc extends Bloc<ValidationEvent, ValidationState> {
   ValidationBloc() : super(const ValidationState.emptyState(false)) {
     on<ValidationEvent>((event, emit) {
       event.when(
+        accept: (validationType, text) {
+          if (validationType == ValidationType.date) {
+            if (text.length == 10) {
+              emit(const ValidationState.formatState(true));
+            } else if (text.isNotEmpty) {
+              emit(const ValidationState.formatState(false));
+            }
+          }
+          if (validationType == ValidationType.phone) {
+            if (text.length == 19) {
+              emit(const ValidationState.formatState(true));
+            } else if (text.isNotEmpty) {
+              emit(const ValidationState.formatState(false));
+            }
+          }
+        },
         empty: (text) {
           emit(ValidationState.emptyState(text.isEmpty));
         },
         format: (validationType, text) {
           if (validationType == ValidationType.date) {
-            List<String> list = text.split("-");
-            String day = list[0];
-            String month = list[1];
-            String year = list[2];
-
-            int dayI = int.parse(day);
-            int monthI = int.parse(day);
-            int yearI = int.parse(day);
-
-            if (!((dayI >= 1 && dayI <= 31) &&
-                (monthI >= 1 && monthI <= 12) &&
-                (yearI >= 1800 && monthI <= DateTime.now().year))) {
+            if (text.length != 10) {
               emit(const ValidationState.formatState(true));
-            } else {
-              emit(const ValidationState.formatState(false));
+              return;
+            } else if (text.length == 10) {
+              List<String> list = text.split("-");
+              String day = list[0];
+              String month = list[1];
+              String year = list[2];
+
+              int dayI = int.parse(day);
+              int monthI = int.parse(month);
+              int yearI = int.parse(year);
+              print("$dayI $monthI $yearI");
+
+              if (((dayI >= 1 && dayI <= 31) &&
+                  (monthI >= 1 && monthI <= 12) &&
+                  (yearI >= 1800 && monthI <= DateTime.now().year))) {
+                emit(const ValidationState.formatState(true));
+              } else {
+                emit(const ValidationState.formatState(false));
+              }
             }
           }
 
           if (validationType == ValidationType.phone) {
-            String code =
-                text.substring(text.indexOf("("), text.indexOf(")") + 1);
-            if (!PhoneCode.phoneCodes.contains(code)) {
+            if (text.length <= 10) {
               emit(const ValidationState.formatState(true));
-            } else {
-              emit(const ValidationState.formatState(false));
+            } else if (text.length >= 10) {
+              String code = text.substring(6, 8);
+              if (PhoneCode.phoneCodes.contains(code)) {
+                emit(const ValidationState.formatState(true));
+              } else {
+                emit(const ValidationState.formatState(false));
+              }
             }
           }
         },
