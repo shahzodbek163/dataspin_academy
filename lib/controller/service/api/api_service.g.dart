@@ -76,7 +76,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/auth/send-code',
+              '/auth/check-code',
               queryParameters: queryParameters,
               data: _data,
             )
