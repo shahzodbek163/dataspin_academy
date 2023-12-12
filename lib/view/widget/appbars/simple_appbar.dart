@@ -1,5 +1,3 @@
-
-
 import 'package:dataspin_academy/view/value/app_fonts.dart';
 import 'package:dataspin_academy/view/value/app_icons.dart';
 import 'package:flutter/material.dart';
@@ -12,29 +10,30 @@ class SimpleAppbar {
       {required String leadingIconPath,
       required String title,
       String? trailingIconPath,
-      required BuildContext context
-      }) {
+      required BuildContext context}) {
     return AppBar(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
       title: Text(
         title,
         style: AppFonts.h4,
       ),
       centerTitle: true,
-
       leading: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Material(
           color: Colors.transparent,
           child: InkWell(
               borderRadius: BorderRadius.circular(20),
-            onTap: (){
-              context.pop();
-            },
-            child: const Icon(Icons.arrow_back_ios_new)
-          ),
+              onTap: () {
+                context.pop();
+              },
+              child: const Icon(
+                Icons.arrow_back_ios_new,
+                color: Colors.black,
+              )),
         ),
       ),
-
     );
   }
 }

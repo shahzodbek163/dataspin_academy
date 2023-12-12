@@ -217,19 +217,19 @@ mixin _$Data {
   @JsonKey(name: "lastname")
   String get lastname => throw _privateConstructorUsedError;
   @JsonKey(name: "middlename")
-  String get middlename => throw _privateConstructorUsedError;
+  String? get middlename => throw _privateConstructorUsedError;
   @JsonKey(name: "birthday")
-  DateTime get birthday => throw _privateConstructorUsedError;
+  DateTime? get birthday => throw _privateConstructorUsedError;
   @JsonKey(name: "primaryPhone")
   String get primaryPhone => throw _privateConstructorUsedError;
   @JsonKey(name: "secondaryPhone")
-  String get secondaryPhone => throw _privateConstructorUsedError;
+  String? get secondaryPhone => throw _privateConstructorUsedError;
   @JsonKey(name: "telegramUsername")
-  String get telegramUsername => throw _privateConstructorUsedError;
+  String? get telegramUsername => throw _privateConstructorUsedError;
   @JsonKey(name: "userData")
-  UserData get userData => throw _privateConstructorUsedError;
+  UserData? get userData => throw _privateConstructorUsedError;
   @JsonKey(name: "date")
-  DateTime get date => throw _privateConstructorUsedError;
+  DateTime? get date => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -245,15 +245,15 @@ abstract class $DataCopyWith<$Res> {
       {@JsonKey(name: "id") int id,
       @JsonKey(name: "firstname") String firstname,
       @JsonKey(name: "lastname") String lastname,
-      @JsonKey(name: "middlename") String middlename,
-      @JsonKey(name: "birthday") DateTime birthday,
+      @JsonKey(name: "middlename") String? middlename,
+      @JsonKey(name: "birthday") DateTime? birthday,
       @JsonKey(name: "primaryPhone") String primaryPhone,
-      @JsonKey(name: "secondaryPhone") String secondaryPhone,
-      @JsonKey(name: "telegramUsername") String telegramUsername,
-      @JsonKey(name: "userData") UserData userData,
-      @JsonKey(name: "date") DateTime date});
+      @JsonKey(name: "secondaryPhone") String? secondaryPhone,
+      @JsonKey(name: "telegramUsername") String? telegramUsername,
+      @JsonKey(name: "userData") UserData? userData,
+      @JsonKey(name: "date") DateTime? date});
 
-  $UserDataCopyWith<$Res> get userData;
+  $UserDataCopyWith<$Res>? get userData;
 }
 
 /// @nodoc
@@ -272,13 +272,13 @@ class _$DataCopyWithImpl<$Res, $Val extends Data>
     Object? id = null,
     Object? firstname = null,
     Object? lastname = null,
-    Object? middlename = null,
-    Object? birthday = null,
+    Object? middlename = freezed,
+    Object? birthday = freezed,
     Object? primaryPhone = null,
-    Object? secondaryPhone = null,
-    Object? telegramUsername = null,
-    Object? userData = null,
-    Object? date = null,
+    Object? secondaryPhone = freezed,
+    Object? telegramUsername = freezed,
+    Object? userData = freezed,
+    Object? date = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -293,41 +293,45 @@ class _$DataCopyWithImpl<$Res, $Val extends Data>
           ? _value.lastname
           : lastname // ignore: cast_nullable_to_non_nullable
               as String,
-      middlename: null == middlename
+      middlename: freezed == middlename
           ? _value.middlename
           : middlename // ignore: cast_nullable_to_non_nullable
-              as String,
-      birthday: null == birthday
+              as String?,
+      birthday: freezed == birthday
           ? _value.birthday
           : birthday // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       primaryPhone: null == primaryPhone
           ? _value.primaryPhone
           : primaryPhone // ignore: cast_nullable_to_non_nullable
               as String,
-      secondaryPhone: null == secondaryPhone
+      secondaryPhone: freezed == secondaryPhone
           ? _value.secondaryPhone
           : secondaryPhone // ignore: cast_nullable_to_non_nullable
-              as String,
-      telegramUsername: null == telegramUsername
+              as String?,
+      telegramUsername: freezed == telegramUsername
           ? _value.telegramUsername
           : telegramUsername // ignore: cast_nullable_to_non_nullable
-              as String,
-      userData: null == userData
+              as String?,
+      userData: freezed == userData
           ? _value.userData
           : userData // ignore: cast_nullable_to_non_nullable
-              as UserData,
-      date: null == date
+              as UserData?,
+      date: freezed == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $UserDataCopyWith<$Res> get userData {
-    return $UserDataCopyWith<$Res>(_value.userData, (value) {
+  $UserDataCopyWith<$Res>? get userData {
+    if (_value.userData == null) {
+      return null;
+    }
+
+    return $UserDataCopyWith<$Res>(_value.userData!, (value) {
       return _then(_value.copyWith(userData: value) as $Val);
     });
   }
@@ -344,16 +348,16 @@ abstract class _$$DataImplCopyWith<$Res> implements $DataCopyWith<$Res> {
       {@JsonKey(name: "id") int id,
       @JsonKey(name: "firstname") String firstname,
       @JsonKey(name: "lastname") String lastname,
-      @JsonKey(name: "middlename") String middlename,
-      @JsonKey(name: "birthday") DateTime birthday,
+      @JsonKey(name: "middlename") String? middlename,
+      @JsonKey(name: "birthday") DateTime? birthday,
       @JsonKey(name: "primaryPhone") String primaryPhone,
-      @JsonKey(name: "secondaryPhone") String secondaryPhone,
-      @JsonKey(name: "telegramUsername") String telegramUsername,
-      @JsonKey(name: "userData") UserData userData,
-      @JsonKey(name: "date") DateTime date});
+      @JsonKey(name: "secondaryPhone") String? secondaryPhone,
+      @JsonKey(name: "telegramUsername") String? telegramUsername,
+      @JsonKey(name: "userData") UserData? userData,
+      @JsonKey(name: "date") DateTime? date});
 
   @override
-  $UserDataCopyWith<$Res> get userData;
+  $UserDataCopyWith<$Res>? get userData;
 }
 
 /// @nodoc
@@ -369,13 +373,13 @@ class __$$DataImplCopyWithImpl<$Res>
     Object? id = null,
     Object? firstname = null,
     Object? lastname = null,
-    Object? middlename = null,
-    Object? birthday = null,
+    Object? middlename = freezed,
+    Object? birthday = freezed,
     Object? primaryPhone = null,
-    Object? secondaryPhone = null,
-    Object? telegramUsername = null,
-    Object? userData = null,
-    Object? date = null,
+    Object? secondaryPhone = freezed,
+    Object? telegramUsername = freezed,
+    Object? userData = freezed,
+    Object? date = freezed,
   }) {
     return _then(_$DataImpl(
       id: null == id
@@ -390,34 +394,34 @@ class __$$DataImplCopyWithImpl<$Res>
           ? _value.lastname
           : lastname // ignore: cast_nullable_to_non_nullable
               as String,
-      middlename: null == middlename
+      middlename: freezed == middlename
           ? _value.middlename
           : middlename // ignore: cast_nullable_to_non_nullable
-              as String,
-      birthday: null == birthday
+              as String?,
+      birthday: freezed == birthday
           ? _value.birthday
           : birthday // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       primaryPhone: null == primaryPhone
           ? _value.primaryPhone
           : primaryPhone // ignore: cast_nullable_to_non_nullable
               as String,
-      secondaryPhone: null == secondaryPhone
+      secondaryPhone: freezed == secondaryPhone
           ? _value.secondaryPhone
           : secondaryPhone // ignore: cast_nullable_to_non_nullable
-              as String,
-      telegramUsername: null == telegramUsername
+              as String?,
+      telegramUsername: freezed == telegramUsername
           ? _value.telegramUsername
           : telegramUsername // ignore: cast_nullable_to_non_nullable
-              as String,
-      userData: null == userData
+              as String?,
+      userData: freezed == userData
           ? _value.userData
           : userData // ignore: cast_nullable_to_non_nullable
-              as UserData,
-      date: null == date
+              as UserData?,
+      date: freezed == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
     ));
   }
 }
@@ -429,13 +433,13 @@ class _$DataImpl implements _Data {
       {@JsonKey(name: "id") required this.id,
       @JsonKey(name: "firstname") required this.firstname,
       @JsonKey(name: "lastname") required this.lastname,
-      @JsonKey(name: "middlename") required this.middlename,
-      @JsonKey(name: "birthday") required this.birthday,
+      @JsonKey(name: "middlename") this.middlename,
+      @JsonKey(name: "birthday") this.birthday,
       @JsonKey(name: "primaryPhone") required this.primaryPhone,
-      @JsonKey(name: "secondaryPhone") required this.secondaryPhone,
-      @JsonKey(name: "telegramUsername") required this.telegramUsername,
-      @JsonKey(name: "userData") required this.userData,
-      @JsonKey(name: "date") required this.date});
+      @JsonKey(name: "secondaryPhone") this.secondaryPhone,
+      @JsonKey(name: "telegramUsername") this.telegramUsername,
+      @JsonKey(name: "userData") this.userData,
+      @JsonKey(name: "date") this.date});
 
   factory _$DataImpl.fromJson(Map<String, dynamic> json) =>
       _$$DataImplFromJson(json);
@@ -451,25 +455,25 @@ class _$DataImpl implements _Data {
   final String lastname;
   @override
   @JsonKey(name: "middlename")
-  final String middlename;
+  final String? middlename;
   @override
   @JsonKey(name: "birthday")
-  final DateTime birthday;
+  final DateTime? birthday;
   @override
   @JsonKey(name: "primaryPhone")
   final String primaryPhone;
   @override
   @JsonKey(name: "secondaryPhone")
-  final String secondaryPhone;
+  final String? secondaryPhone;
   @override
   @JsonKey(name: "telegramUsername")
-  final String telegramUsername;
+  final String? telegramUsername;
   @override
   @JsonKey(name: "userData")
-  final UserData userData;
+  final UserData? userData;
   @override
   @JsonKey(name: "date")
-  final DateTime date;
+  final DateTime? date;
 
   @override
   String toString() {
@@ -535,13 +539,13 @@ abstract class _Data implements Data {
       {@JsonKey(name: "id") required final int id,
       @JsonKey(name: "firstname") required final String firstname,
       @JsonKey(name: "lastname") required final String lastname,
-      @JsonKey(name: "middlename") required final String middlename,
-      @JsonKey(name: "birthday") required final DateTime birthday,
+      @JsonKey(name: "middlename") final String? middlename,
+      @JsonKey(name: "birthday") final DateTime? birthday,
       @JsonKey(name: "primaryPhone") required final String primaryPhone,
-      @JsonKey(name: "secondaryPhone") required final String secondaryPhone,
-      @JsonKey(name: "telegramUsername") required final String telegramUsername,
-      @JsonKey(name: "userData") required final UserData userData,
-      @JsonKey(name: "date") required final DateTime date}) = _$DataImpl;
+      @JsonKey(name: "secondaryPhone") final String? secondaryPhone,
+      @JsonKey(name: "telegramUsername") final String? telegramUsername,
+      @JsonKey(name: "userData") final UserData? userData,
+      @JsonKey(name: "date") final DateTime? date}) = _$DataImpl;
 
   factory _Data.fromJson(Map<String, dynamic> json) = _$DataImpl.fromJson;
 
@@ -556,25 +560,25 @@ abstract class _Data implements Data {
   String get lastname;
   @override
   @JsonKey(name: "middlename")
-  String get middlename;
+  String? get middlename;
   @override
   @JsonKey(name: "birthday")
-  DateTime get birthday;
+  DateTime? get birthday;
   @override
   @JsonKey(name: "primaryPhone")
   String get primaryPhone;
   @override
   @JsonKey(name: "secondaryPhone")
-  String get secondaryPhone;
+  String? get secondaryPhone;
   @override
   @JsonKey(name: "telegramUsername")
-  String get telegramUsername;
+  String? get telegramUsername;
   @override
   @JsonKey(name: "userData")
-  UserData get userData;
+  UserData? get userData;
   @override
   @JsonKey(name: "date")
-  DateTime get date;
+  DateTime? get date;
   @override
   @JsonKey(ignore: true)
   _$$DataImplCopyWith<_$DataImpl> get copyWith =>

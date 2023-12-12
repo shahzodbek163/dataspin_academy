@@ -4,6 +4,7 @@ import 'package:dataspin_academy/controller/bloc/create_account/check_tap/cubit/
 import 'package:dataspin_academy/controller/bloc/create_account/create_account_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/create_account/empty_validation/validation_bloc.dart';
 import 'package:dataspin_academy/model/create_account/request/create_account_request.dart';
+import 'package:dataspin_academy/view/screen/home/screen/home_screen.dart';
 import 'package:dataspin_academy/view/value/app_color.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
 import 'package:dataspin_academy/view/value/app_size.dart';
@@ -44,6 +45,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
   final firstnameBloc = ValidationBloc();
   final lastnameBloc = ValidationBloc();
   final numberBloc = ValidationBloc();
+  final numberAdditionBloc = ValidationBloc();
   final birthdayBloc = ValidationBloc();
 
   @override
@@ -121,17 +123,125 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                   text: "Qo’shimcha telefon raqam",
                   hintText: "+998 (91)",
                   controller: secondaryNumberController,
-                  validationType: ValidationType.phone,
                   keyboardType: TextInputType.phone,
+                  maskTextInputFormatter: InputMasks.phoneInputMask,
+                  validationBloc: numberAdditionBloc,
+                  validationType: ValidationType.phone,
                 ),
                 SizedBox(height: 50.h),
-                MainButton(
-                  text: "Tasdiqlash",
-                  onTap: () {
-                    birthdayBloc.add(ValidationEvent.accept(
-                        ValidationType.date, birthdayController.text.trim()));
-                    numberBloc.add(ValidationEvent.accept(ValidationType.phone,
-                        primaryNumberController.text.trim()));
+                BlocBuilder<CreateAccountCubit, CreateAccountState>(
+                  builder: (context, state) {
+                    return MainButton(
+                      text: "Tasdiqlash",
+                      isLoading: state.maybeWhen(
+                        orElse: () => false,
+                        sending: () => true,
+                      ),
+                      onTap: () {
+                        print("onTap ichi");
+                        context.read<CheckTapCubit>().change(true);
+
+                        firstnameBloc.add(ValidationEvent.empty(
+                            firstnameController.text.trim()));
+
+                        lastnameBloc.add(ValidationEvent.empty(
+                            lastnameController.text.trim()));
+                        numberBloc.add(ValidationEvent.empty(
+                            primaryNumberController.text.trim()));
+
+                        if (birthdayController.text.length == 10) {
+                          birthdayBloc.add(ValidationEvent.format(
+                              ValidationType.date, birthdayController.text));
+                        } else {
+                          birthdayBloc.add(ValidationEvent.accept(
+                              ValidationType.date,
+                              birthdayController.text.trim()));
+                        }
+
+                        numberBloc.add(ValidationEvent.accept(
+                            ValidationType.phone,
+                            primaryNumberController.text.trim()));
+                        numberAdditionBloc.add(ValidationEvent.accept(
+                            ValidationType.phone,
+                            secondaryNumberController.text.trim()));
+
+                        bool isEmptyFirstname = firstnameBloc.state.maybeWhen(
+                            orElse: () => false,
+                            emptyState: (isEmpty) => isEmpty);
+                        bool isEmptyLastname = lastnameBloc.state.maybeWhen(
+                          orElse: () => false,
+                          emptyState: (isEmpty) => isEmpty,
+                        );
+                        bool isEmptyNumber = numberBloc.state.maybeWhen(
+                          orElse: () => false,
+                          emptyState: (isEmpty) => isEmpty,
+                        );
+                        bool isValidNumber = numberBloc.state.maybeWhen(
+                          orElse: () => false,
+                          formatState: (isValid) => isValid,
+                        );
+
+                        bool isValidAdditionalNumber =
+                            numberAdditionBloc.state.maybeWhen(
+                          orElse: () => false,
+                          formatState: (isValid) => isValid,
+                        );
+
+                        bool isValidBirthday = birthdayBloc.state.maybeWhen(
+                          orElse: () => false,
+                          formatState: (isValid) => isValid,
+                        );
+
+                        print("JJJ");
+                        print(isEmptyFirstname);
+                        print(isEmptyLastname);
+                        print(isEmptyNumber);
+                        print(isValidNumber);
+
+                        if (!isEmptyFirstname &&
+                            !isEmptyLastname &&
+                            !isEmptyNumber &&
+                            isValidNumber) {
+                          print("if ichi");
+
+                          CreateAccountRequest createAccountRequest =
+                              CreateAccountRequest(
+                            firstname: firstnameController.text.trim(),
+                            lastname: lastnameController.text.trim(),
+                            tel1: primaryNumberController.text.trim(),
+                          );
+
+                          if (middlenameController.text.isNotEmpty) {
+                            createAccountRequest =
+                                createAccountRequest.copyWith(
+                                    middlename:
+                                        middlenameController.text.trim());
+                          }
+                          if (birthdayController.text.isNotEmpty &&
+                              isValidBirthday) {
+                            createAccountRequest =
+                                createAccountRequest.copyWith(
+                                    birthday: birthdayController.text.trim());
+                          }
+                          if (secondaryNumberController.text.isNotEmpty &&
+                              isValidAdditionalNumber) {
+                            createAccountRequest =
+                                createAccountRequest.copyWith(
+                                    tel2:
+                                        secondaryNumberController.text.trim());
+                          }
+
+                          context
+                              .read<CreateAccountCubit>()
+                              .createAccount(createAccountRequest)
+                              .then((value) {
+                            if (value) {
+                              context.pushReplacement(HomeScreen.routeName);
+                            }
+                          });
+                        }
+                      },
+                    );
                   },
                 ),
                 SizedBox(height: 41.h),

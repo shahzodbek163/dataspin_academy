@@ -42,7 +42,7 @@ class CustomDio {
       InterceptorsWrapper(
         onRequest: (options, handler) {
           options.headers["Authorization"] =
-              "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI5OTg5OTk5OTk5OTkiLCJpYXQiOjE3MDIxNDk0MzQsImV4cCI6MTcwNDc0MTQzNH0.x0kh54OOFRQNxV3oQauAi_cOCHUykanZZACC7CRu_oEWC4e7UotoqPZNOnx4Iwbt1Qo_No8DgCb84dI4jH-vFA";
+              "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI5OTg5OTk5OTk5OTkiLCJpYXQiOjE3MDIyMjQ4MjgsImV4cCI6MTcwNDgxNjgyOH0.Mbb-meU3jinRXA4uRTN2hzIsTeSOg5IaxxKjZqslqX6j8rTBJCk2oGq25j6cCQ6n7xm0sxX0j0ki8z-vEoclXw";
           return handler.next(options);
         },
         onResponse: (response, handler) {
@@ -56,7 +56,7 @@ class CustomDio {
           handler.next(response);
         },
         onError: (DioException e, handler) async {
-          if (e.response!.statusCode == 401) {}
+          if (e.response!.statusCode == 400) {}
           _snackBar.showError(e.response!.data["message"]);
           handler.next(e);
         },

@@ -34,13 +34,13 @@ class Data with _$Data {
     @JsonKey(name: "id") required int id,
     @JsonKey(name: "firstname") required String firstname,
     @JsonKey(name: "lastname") required String lastname,
-    @JsonKey(name: "middlename") required String middlename,
-    @JsonKey(name: "birthday") required DateTime birthday,
+    @JsonKey(name: "middlename") String? middlename,
+    @JsonKey(name: "birthday") DateTime? birthday,
     @JsonKey(name: "primaryPhone") required String primaryPhone,
-    @JsonKey(name: "secondaryPhone") required String secondaryPhone,
-    @JsonKey(name: "telegramUsername") required String telegramUsername,
-    @JsonKey(name: "userData") required UserData userData,
-    @JsonKey(name: "date") required DateTime date,
+    @JsonKey(name: "secondaryPhone") String? secondaryPhone,
+    @JsonKey(name: "telegramUsername") String? telegramUsername,
+    @JsonKey(name: "userData") UserData? userData,
+    @JsonKey(name: "date") DateTime? date,
   }) = _Data;
 
   factory Data.fromJson(Map<String, dynamic> json) => _$DataFromJson(json);

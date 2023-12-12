@@ -1,4 +1,4 @@
-class PhoneCode{
+class PhoneCode {
   PhoneCode._();
   static const phoneCodes = [
     "90",
@@ -12,7 +12,6 @@ class PhoneCode{
     "88",
     "73",
     "71",
-    "92",
     "50",
     "78",
     "99"

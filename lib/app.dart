@@ -1,5 +1,6 @@
 import 'package:dataspin_academy/controller/bloc/check_code/check_code_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/create_account/check_tap/cubit/check_tap_cubit.dart';
+import 'package:dataspin_academy/controller/bloc/create_account/create_account_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/send_code/send_code_cubit.dart';
 import 'package:dataspin_academy/controller/provider/phone_number_provider.dart';
 import 'package:dataspin_academy/controller/service/navigation/go_router.dart';
@@ -28,6 +29,7 @@ class _MyAppState extends State<MyApp> {
           create: (context) => PhoneNumberProvider(),
         ),
         BlocProvider(create: (context) => CheckTapCubit()),
+        BlocProvider(create: (context) => CreateAccountCubit()),
       ],
       child: ScreenUtilInit(
         minTextAdapt: true,

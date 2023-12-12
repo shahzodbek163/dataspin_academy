@@ -13,7 +13,7 @@ class _ApiService implements ApiService {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://192.168.113.66:8080/api';
+    baseUrl ??= 'http://192.168.243.66:8080/api';
   }
 
   final Dio _dio;
@@ -76,7 +76,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/auth/send-code',
+              '/auth/check-code',
               queryParameters: queryParameters,
               data: _data,
             )
