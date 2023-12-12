@@ -1,6 +1,8 @@
 import 'dart:developer';
 
+import 'package:dataspin_academy/controller/bloc/create_account/check_tap/cubit/check_tap_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/create_account/create_account_cubit.dart';
+import 'package:dataspin_academy/controller/bloc/create_account/empty_validation/validation_bloc.dart';
 import 'package:dataspin_academy/controller/bloc/send_code/send_code_cubit.dart';
 import 'package:dataspin_academy/controller/provider/phone_number_provider.dart';
 import 'package:dataspin_academy/model/auth/sendcode/send_code_result.dart';
@@ -8,6 +10,7 @@ import 'package:dataspin_academy/view/screen/check_code/screen/check_code_srceen
 import 'package:dataspin_academy/view/value/app_color.dart';
 import 'package:dataspin_academy/view/value/app_image.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
+import 'package:dataspin_academy/view/value/input_masks.dart';
 import 'package:dataspin_academy/view/widget/buttons/main_button.dart';
 import 'package:dataspin_academy/view/widget/textfields/main_textfield.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +29,7 @@ class SendCodeScreen extends StatefulWidget {
 
 class _SendCodeScreenState extends State<SendCodeScreen> {
   final phoneController = TextEditingController();
+  final validationBloc = ValidationBloc();
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +60,10 @@ class _SendCodeScreenState extends State<SendCodeScreen> {
                 controller: phoneController,
                 hintText: "+998 (90) 123-45-67",
                 text: "Telefon raqam",
+                keyboardType: TextInputType.phone,
+                maskTextInputFormatter: InputMasks.phoneInputMask,
+                validationBloc: validationBloc,
+                validationType: ValidationType.phone,
               ),
               SizedBox(height: 85.h),
               BlocBuilder<SendCodeCubit, SendCodeState>(
@@ -65,18 +73,39 @@ class _SendCodeScreenState extends State<SendCodeScreen> {
                         orElse: () => false, sending: () => true),
                     text: "Kodni olish",
                     onTap: () {
-                      context
-                          .read<PhoneNumberProvider>()
-                          .changePhoneNum(phoneController.text.trim());
-                      log("${phoneController.text.trim()} wdaudwbyw");
-                      context
-                          .read<SendCodeCubit>()
-                          .sendCode(phoneController.text.trim())
-                          .then((value) {
-                        if (value) {
-                          context.push(CheckCodeScreen.routeName);
-                        }
-                      });
+                      print("${phoneController.text} opp");
+                      context.read<CheckTapCubit>().change(true);
+                      validationBloc.add(
+                          ValidationEvent.empty(phoneController.text.trim()));
+                      validationBloc.add(ValidationEvent.accept(
+                          ValidationType.phone, phoneController.text.trim()));
+
+                      bool isEmptyNumber = validationBloc.state.maybeWhen(
+                        orElse: () => false,
+                        emptyState: (isEmpty) => isEmpty,
+                      );
+                      bool isValidNumber = validationBloc.state.maybeWhen(
+                        orElse: () => false,
+                        formatState: (isValid) => isValid,
+                      );
+                      print("$isEmptyNumber bool");
+                      print("$isValidNumber valid");
+
+                      if (!isEmptyNumber && isValidNumber) {
+                        print("if ni ichi");
+                        context
+                            .read<PhoneNumberProvider>()
+                            .changePhoneNum(phoneController.text.trim());
+                        log("${phoneController.text.trim()} wdaudwbyw");
+                        context
+                            .read<SendCodeCubit>()
+                            .sendCode(phoneController.text.trim())
+                            .then((value) {
+                          if (value) {
+                            context.push(CheckCodeScreen.routeName);
+                          }
+                        });
+                      }
                     },
                   );
                 },

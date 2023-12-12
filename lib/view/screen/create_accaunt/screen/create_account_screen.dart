@@ -195,7 +195,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                         print("JJJ");
                         print(isEmptyFirstname);
                         print(isEmptyLastname);
-                        print(isEmptyNumber);
+                        print("$isEmptyNumber number");
                         print(isValidNumber);
 
                         if (!isEmptyFirstname &&

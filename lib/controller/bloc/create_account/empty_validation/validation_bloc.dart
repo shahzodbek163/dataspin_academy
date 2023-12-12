@@ -37,7 +37,6 @@ class ValidationBloc extends Bloc<ValidationEvent, ValidationState> {
               emit(const ValidationState.formatState(true));
               return;
             } else if (text.length == 10) {
-              print("else if -------------");
               List<String> list = text.split("-");
               String day = list[0];
               String month = list[1];
@@ -60,10 +59,12 @@ class ValidationBloc extends Bloc<ValidationEvent, ValidationState> {
 
           if (validationType == ValidationType.phone) {
             if (text.length <= 9) {
-              emit(const ValidationState.formatState(true));
+              print("birinchi if");
+              emit(const ValidationState.formatState(false));
             } else if (text.length >= 9) {
-              String code = text.substring(6, 8);
+              String code = text.substring(6, 9);
               if (PhoneCode.phoneCodes.contains(code)) {
+                print("ikkinchi if");
                 emit(const ValidationState.formatState(true));
               } else {
                 emit(const ValidationState.formatState(false));

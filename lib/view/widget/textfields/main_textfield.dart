@@ -39,6 +39,7 @@ class MainTextField extends StatelessWidget {
               text,
               style: AppFonts.label,
             ),
+            SizedBox(width: 5.w),
             onReq
                 ? Text(
                     " *",

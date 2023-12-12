@@ -1,3 +1,4 @@
+import 'package:dataspin_academy/view/screen/home/widget/course_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -8,7 +9,11 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(child: Text("Home screen")),
+      body: Center(
+          child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 21),
+        child: CourseWidget(),
+      )),
     );
   }
 }

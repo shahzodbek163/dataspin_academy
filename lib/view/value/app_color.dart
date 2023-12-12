@@ -8,4 +8,5 @@ class AppColor {
   static const Color txtSecondColor = Color(0xFF8A90A2);
   static const Color primaryButtonColor = Color(0xFF292930);
   static const Color errorColor = Color(0xFFFF3B30);
+  static const Color divider = Color(0xFFF1F3F6);
 }
