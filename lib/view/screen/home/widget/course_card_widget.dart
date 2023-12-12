@@ -3,13 +3,14 @@ import 'package:dataspin_academy/view/value/app_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CourseWidget extends StatelessWidget {
-  const CourseWidget({super.key});
+class CourseCardWidget extends StatelessWidget {
+  const CourseCardWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 299.h,
+      width: 351.w,
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
           color: Colors.white,
@@ -18,13 +19,11 @@ class CourseWidget extends StatelessWidget {
       child: Column(
         children: [
           Image.asset("assets/image/Rectangle11.png"),
-          SizedBox(
-              width: double.infinity,
-              child: Text(
-                "Design",
-                textAlign: TextAlign.start,
-                style: AppFonts.label.copyWith(color: AppColor.txtSecondColor),
-              )),
+          Text(
+            "Design",
+            textAlign: TextAlign.start,
+            style: AppFonts.label.copyWith(color: AppColor.txtSecondColor),
+          ),
           SizedBox(height: 8.h),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
