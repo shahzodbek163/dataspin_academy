@@ -1,5 +1,10 @@
+import 'dart:ui';
+
 import 'package:dataspin_academy/controller/service/dialogs/custom_snack_bar.dart';
+import 'package:dataspin_academy/controller/service/navigation/navigation_service.dart';
+import 'package:dataspin_academy/view/screen/send_code/screen/send_code_screen.dart';
 import 'package:dio/dio.dart';
+import 'package:go_router/go_router.dart';
 
 class CustomDio {
   static Dio _dio = Dio();
@@ -42,14 +47,14 @@ class CustomDio {
       InterceptorsWrapper(
         onRequest: (options, handler) {
           options.headers["Authorization"] =
-              "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI5OTg5OTk5OTk5OTkiLCJpYXQiOjE3MDIyMjQ4MjgsImV4cCI6MTcwNDgxNjgyOH0.Mbb-meU3jinRXA4uRTN2hzIsTeSOg5IaxxKjZqslqX6j8rTBJCk2oGq25j6cCQ6n7xm0sxX0j0ki8z-vEoclXw";
+              "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIrOTk4OTExMTUyOTIyIiwiaWF0IjoxNzAyNDY1MzY2LCJleHAiOjE3MDUwNTczNjZ9.gIbAmGhMsDAi7JcxhY14deLC2iQBVyXFOxq9vO-H4a-0vPCmdlnkgA4EZ-PYeB-2zU4EgHpZxoNE9ks1_9cxKw";
           return handler.next(options);
         },
         onResponse: (response, handler) {
           switch (response.statusCode) {
             case 401:
               {
-                // NavigationService.navigatorKey.currentContext!.pushReplacement(SendCodeScreen.routeName);
+                NavigationService.navigatorKey.currentState!.context.pushReplacement(SendCodeScreen.routeName);
               }
               break;
           }

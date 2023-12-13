@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ChipsWidget extends StatelessWidget {
-  const ChipsWidget({super.key});
+  final String text;
+
+  const ChipsWidget({super.key, required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +16,12 @@ class ChipsWidget extends StatelessWidget {
       alignment: Alignment.center,
       decoration: BoxDecoration(
           color: AppColor.secondary, borderRadius: BorderRadius.circular(30)),
-      child: Text("Try for Free",
-          style: AppFonts.body12Regular.copyWith(color: AppColor.primary)),
+      child: Text(
+        text,
+        style: AppFonts.body12Regular.copyWith(
+          color: AppColor.primary,
+        ),
+      ),
     );
   }
 }

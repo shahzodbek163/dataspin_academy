@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CourseCardWidget extends StatelessWidget {
-  const CourseCardWidget({super.key});
+  final String courseName;
+
+  const CourseCardWidget({super.key, required this.courseName});
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +19,7 @@ class CourseCardWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
           border: Border.all(color: AppColor.divider)),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Image.asset("assets/image/Rectangle11.png"),
           Text(
@@ -55,8 +58,8 @@ class CourseCardWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
-                "Webflow course",
+              Text(
+                courseName,
                 style: AppFonts.h4,
               ),
               InkWell(
