@@ -1,17 +1,20 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dataspin_academy/model/course/course_for/course_for_result.dart';
+import 'package:dataspin_academy/model/course/course_price/response/course_with_price_response.dart';
 import 'package:dataspin_academy/view/value/app_color.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CourseCardWidget extends StatelessWidget {
-  final String courseName;
+  final CourseWithPriceData courseWithPriceData;
 
-  const CourseCardWidget({super.key, required this.courseName});
+  const CourseCardWidget({super.key, required this.courseWithPriceData});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 299.h,
+      height: 280.h,
       width: 351.w,
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
@@ -21,9 +24,15 @@ class CourseCardWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.asset("assets/image/Rectangle11.png"),
+          SizedBox(
+            height: 170.h,
+            child: CachedNetworkImage(
+                fit: BoxFit.contain,
+                imageUrl:
+                    "http://192.168.237.66:8080/api/image/?id=${courseWithPriceData.course!.id}"),
+          ),
           Text(
-            "Design",
+            courseWithPriceData.course!.name!,
             textAlign: TextAlign.start,
             style: AppFonts.label.copyWith(color: AppColor.txtSecondColor),
           ),
@@ -47,7 +56,7 @@ class CourseCardWidget extends StatelessWidget {
                 ],
               ),
               Text(
-                "\$139.00",
+                "\$${courseWithPriceData.price}",
                 style: AppFonts.body12Regular.copyWith(
                     color: AppColor.primary, fontWeight: FontWeight.w500),
               )
@@ -59,7 +68,7 @@ class CourseCardWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                courseName,
+                courseWithPriceData.course!.courseType!.name!,
                 style: AppFonts.h4,
               ),
               InkWell(
@@ -71,7 +80,7 @@ class CourseCardWidget extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: AppColor.secondary,
                       borderRadius: BorderRadius.circular(6)),
-                  child: Text("Try for Free",
+                  child: Text("Ro'yxatdan o'tish",
                       style: AppFonts.body12Regular
                           .copyWith(color: AppColor.primary)),
                 ),

@@ -1,15 +1,16 @@
 import 'package:dataspin_academy/model/auth/checkcode/check_code_result.dart';
 import 'package:dataspin_academy/model/auth/sendcode/send_code_result.dart';
-import 'package:dataspin_academy/model/category/course_for/course_for_result.dart';
+import 'package:dataspin_academy/model/course/course_for/course_for_result.dart';
+import 'package:dataspin_academy/model/course/course_price/response/course_with_price_response.dart';
+import 'package:dataspin_academy/model/course/course_type/course_type_result.dart';
 import 'package:dataspin_academy/model/create_account/request/create_account_request.dart';
 import 'package:dataspin_academy/model/create_account/response/create_account_response.dart';
-import 'package:dataspin_academy/model/category/course_type/course_type_result.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/http.dart';
 
 part 'api_service.g.dart';
 
-@RestApi(baseUrl: "http://192.168.254.66:8080/api")
+@RestApi(baseUrl: "http://192.168.237.66:8080/api")
 abstract class ApiService {
   factory ApiService(Dio dio) = _ApiService;
 
@@ -27,4 +28,8 @@ abstract class ApiService {
   Future<CourseTypeResult> getAllCourseType();
   @GET("/course-for/")
   Future<CourseForResult> getAllCourseFor();
+  @GET("/course/with-prices")
+  Future<CourseWithPriceResponse> getAllCourseWithPrice();
+  @GET("/mentors/")
+  Future<CourseWithPriceResponse> getAllMentor();
 }

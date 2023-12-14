@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:dataspin_academy/controller/service/api/api_service.dart';
 import 'package:dataspin_academy/controller/service/dio/cutom_dio.dart';
-import 'package:dataspin_academy/model/category/course_for/course_for_result.dart';
+import 'package:dataspin_academy/model/course/course_for/course_for_result.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'course_for_state.dart';

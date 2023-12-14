@@ -11,14 +11,14 @@ class ChipsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 32.h,
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      height: 34.h,
+      padding: EdgeInsets.symmetric(horizontal: 14.w),
       alignment: Alignment.center,
       decoration: BoxDecoration(
           color: AppColor.secondary, borderRadius: BorderRadius.circular(30)),
       child: Text(
         text,
-        style: AppFonts.body12Regular.copyWith(
+        style: AppFonts.body16Regular.copyWith(
           color: AppColor.primary,
         ),
       ),
