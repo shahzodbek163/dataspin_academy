@@ -5,6 +5,7 @@ import 'package:dataspin_academy/model/course/course_price/response/course_with_
 import 'package:dataspin_academy/model/course/course_type/course_type_result.dart';
 import 'package:dataspin_academy/model/create_account/request/create_account_request.dart';
 import 'package:dataspin_academy/model/create_account/response/create_account_response.dart';
+import 'package:dataspin_academy/model/mentor/mentor_result.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/http.dart';
 
@@ -31,5 +32,5 @@ abstract class ApiService {
   @GET("/course/with-prices")
   Future<CourseWithPriceResponse> getAllCourseWithPrice();
   @GET("/mentors/")
-  Future<CourseWithPriceResponse> getAllMentor();
+  Future<MentorResult> getAllMentor();
 }

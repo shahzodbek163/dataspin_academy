@@ -199,13 +199,13 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<CourseWithPriceResponse> getAllMentor() async {
+  Future<MentorResult> getAllMentor() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<CourseWithPriceResponse>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<MentorResult>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -221,7 +221,7 @@ class _ApiService implements ApiService {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = CourseWithPriceResponse.fromJson(_result.data!);
+    final value = MentorResult.fromJson(_result.data!);
     return value;
   }
 

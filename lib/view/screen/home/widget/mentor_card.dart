@@ -63,7 +63,7 @@ class _MentorCardState extends State<MentorCard> {
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           image: DecorationImage(
-                            image: AssetImage(widget.image),
+                            image: NetworkImage(widget.image),
                             fit: BoxFit.cover,
                           ),
                           border: Border.all(
