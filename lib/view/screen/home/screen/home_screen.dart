@@ -59,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
           SizedBox(height: 16.h),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.w),
-            child: const MentorPart(),
+            child: MentorPart(),
           )
         ],
       ),

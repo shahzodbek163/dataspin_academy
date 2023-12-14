@@ -28,7 +28,7 @@ class CategoryPart extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) => Padding(
                       padding: EdgeInsets.only(right: 12.w),
-                      child: ChipsWidget(text: result.data[index].name),
+                      child:  ChipsWidget(text: result.data[index].name),
                     ),
                   ),
                 );
