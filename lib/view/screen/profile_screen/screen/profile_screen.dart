@@ -3,6 +3,7 @@ import 'package:dataspin_academy/view/screen/profile_screen/widget/courses_card.
 import 'package:dataspin_academy/view/screen/profile_screen/widget/mentor.dart';
 import 'package:dataspin_academy/view/value/app_color.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
+import 'package:dataspin_academy/view/value/app_icons.dart';
 import 'package:dataspin_academy/view/widget/appbars/simple_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,7 +23,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: SimpleAppbar.simpleAppbar(leadingIconPath: leadingIconPath, title: title, context: context),
+      appBar: SimpleAppbar.simpleAppbar(
+        leadingIconPath: AppIcons.backArrow,
+        title: "Tasdiqlash",
+        context: context,
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -80,11 +85,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               mainAxisSpacing: 24,
                               childAspectRatio: 0.65,
                             ),
-                            itemBuilder: (context, index) =>  CourseCard(
+                            itemBuilder: (context, index) => CourseCard(
                               image:
                                   "https://71c2-92-63-204-75.ngrok-free.app/api/image/?id=${result.data[widget.id].courses[index].courseType.photo.id}",
-                              information: result.data[widget.id].courses[index].name,
-                              courseName: result.data[widget.id].courses[index].courseType.name,
+                              information:
+                                  result.data[widget.id].courses[index].name,
+                              courseName: result.data[widget.id].courses[index]
+                                  .courseType.name,
                               price: "300 000",
                             ),
                           ),
