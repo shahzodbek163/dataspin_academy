@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dataspin_academy/controller/service/api/app_ip.dart';
 import 'package:dataspin_academy/model/course/course_for/course_for_result.dart';
 import 'package:dataspin_academy/model/course/course_price/response/course_with_price_response.dart';
 import 'package:dataspin_academy/view/value/app_color.dart';
@@ -29,7 +30,7 @@ class CourseCardWidget extends StatelessWidget {
             child: CachedNetworkImage(
                 fit: BoxFit.contain,
                 imageUrl:
-                    "http://192.168.237.66:8080/api/image/?id=${courseWithPriceData.course!.id}"),
+                    "${AppIp.ip}/api/image/?id=${courseWithPriceData.course!.id}"),
           ),
           Text(
             courseWithPriceData.course!.name!,
