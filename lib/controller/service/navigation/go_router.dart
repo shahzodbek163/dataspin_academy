@@ -14,8 +14,7 @@ import 'package:go_router/go_router.dart';
 class AppGoRouter {
   final router = GoRouter(
     navigatorKey: NavigationService.navigatorKey,
-    initialLocation: CategoriesScreen.routName,
-
+    initialLocation: CourseInfoScreen.routeName,
     routes: [
       ///main
       GoRoute(
@@ -51,13 +50,6 @@ class AppGoRouter {
         pageBuilder: (context, state) => slideTransitionRight(
           state,
           const TestScreen(),
-        ),
-      ),
-      GoRoute(
-        path: CategoriesScreen.routName,
-        pageBuilder: (context, state) => slideTransitionRight(
-          state,
-          const CategoriesScreen(),
         ),
       ),
       GoRoute(

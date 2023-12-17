@@ -21,7 +21,6 @@ class MentorPart extends StatefulWidget {
 class _MentorPartState extends State<MentorPart> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     context.read<MentorsCubit>().getMentors();
   }

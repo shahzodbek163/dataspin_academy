@@ -73,7 +73,7 @@ class CourseCardWidget extends StatelessWidget {
                 style: AppFonts.h4,
               ),
               InkWell(
-                highlightColor: Colors.red,
+                borderRadius: BorderRadius.circular(6),
                 child: Container(
                   height: 32.h,
                   padding: const EdgeInsets.symmetric(horizontal: 10),
