@@ -63,7 +63,9 @@ class _MentorCardState extends State<MentorCard> {
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           image: DecorationImage(
-                            image: NetworkImage(widget.image),
+                            image: NetworkImage(widget.image, headers: {
+                              'ngrok-skip-browser-warning': "true",
+                            }),
                             fit: BoxFit.cover,
                           ),
                           border: Border.all(

@@ -33,6 +33,12 @@ class CustomDio {
         sendTimeout: const Duration(seconds: 30),
         receiveTimeout: const Duration(seconds: 30),
         contentType: 'application/json; charset=utf-8',
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
+        extra: {
+          'ngrok-skip-browser-warning': true,
+        },
       ),
     );
 
@@ -54,7 +60,8 @@ class CustomDio {
           switch (response.statusCode) {
             case 401:
               {
-                NavigationService.navigatorKey.currentState!.context.pushReplacement(SendCodeScreen.routeName);
+                NavigationService.navigatorKey.currentState!.context
+                    .pushReplacement(SendCodeScreen.routeName);
               }
               break;
           }

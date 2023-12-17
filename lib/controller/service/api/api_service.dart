@@ -11,7 +11,7 @@ import 'package:retrofit/http.dart';
 
 part 'api_service.g.dart';
 
-@RestApi(baseUrl: "http://192.168.237.66:8080/api")
+@RestApi(baseUrl: "https://71c2-92-63-204-75.ngrok-free.app/api")
 abstract class ApiService {
   factory ApiService(Dio dio) = _ApiService;
 
