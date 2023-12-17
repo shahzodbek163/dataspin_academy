@@ -29,18 +29,20 @@ class NewsWidget extends StatelessWidget {
                     colors: [Colors.black, Colors.black12])),
           ),
           Positioned(
-            left: 18.w,
-            bottom: 45.h,
-            child: Text("SPRING MVC",
-                style: AppFonts.h1.copyWith(color: Colors.white)),
-          ),
-          Positioned(
-            bottom: 8.h,
-            left: 18.w,
-            child: SizedBox(
-              width: 242,
-              child: Text("Professional dasturchilar uchun Yangi backend kursi",
-                  style: AppFonts.label.copyWith(color: Colors.white)),
+            bottom: 13,
+            left: 13,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(newsData.name,
+                    style: AppFonts.h1.copyWith(color: Colors.white)),
+                SizedBox(height: 6.h),
+                SizedBox(
+                  width: 242,
+                  child: Text(newsData.shortDesc,
+                      style: AppFonts.label.copyWith(color: Colors.white)),
+                ),
+              ],
             ),
           ),
         ],
