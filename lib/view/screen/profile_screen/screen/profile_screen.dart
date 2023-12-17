@@ -26,7 +26,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
       appBar: SimpleAppbar.simpleAppbar(
         leadingIconPath: AppIcons.backArrow,
-        title: "Tasdiqlash",
+        title: "Course Mentor",
         context: context,
       ),
       body: SafeArea(
