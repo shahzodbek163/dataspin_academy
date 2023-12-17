@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dataspin_academy/view/value/app_color.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ class MentorCard extends StatefulWidget {
   final String numStudents;
   final String courses;
   final String rating;
+  final bool? isVerified;
 
   const MentorCard({
     super.key,
@@ -19,6 +21,7 @@ class MentorCard extends StatefulWidget {
     required this.numStudents,
     required this.courses,
     required this.rating,
+    this.isVerified,
   });
 
   @override
@@ -63,9 +66,12 @@ class _MentorCardState extends State<MentorCard> {
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           image: DecorationImage(
-                            image: NetworkImage(widget.image, headers: {
-                              'ngrok-skip-browser-warning': "true",
-                            }),
+                            image: CachedNetworkImageProvider(
+                              widget.image,
+                              headers: const {
+                                'ngrok-skip-browser-warning': "true"
+                              },
+                            ),
                             fit: BoxFit.cover,
                           ),
                           border: Border.all(
@@ -75,14 +81,16 @@ class _MentorCardState extends State<MentorCard> {
                         ),
                       ),
                     ),
-                    Positioned(
-                      bottom: -8.h,
-                      child: Image.asset(
-                        "assets/icons/verif.png",
-                        width: 20.w,
-                        height: 20.h,
-                      ),
-                    )
+                    widget.isVerified == true
+                        ? Positioned(
+                            bottom: -8.h,
+                            child: Image.asset(
+                              "assets/icons/verif.png",
+                              width: 20.w,
+                              height: 20.h,
+                            ),
+                          )
+                        : const SizedBox(),
                   ],
                 ),
                 SizedBox(
