@@ -1,7 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dataspin_academy/controller/bloc/course/course_for/course_for_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/course/course_price/cubit/course_with_price_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/course/course_type/course_type_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/news/cubit/news_cubit.dart';
+import 'package:dataspin_academy/controller/service/api/app_ip.dart';
 import 'package:dataspin_academy/view/screen/home/part/category_part.dart';
 import 'package:dataspin_academy/view/screen/home/part/course_part.dart';
 import 'package:dataspin_academy/view/screen/home/part/mentor_part.dart';
@@ -39,45 +41,24 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           SizedBox(height: 12.h),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.w),
+            padding: EdgeInsets.symmetric(horizontal: 14.w),
             child: const TopSearchWidget(),
           ),
-          const SizedBox(height: 18),
-          BlocBuilder<NewsCubit, NewsState>(
-            builder: (context, state) {
-              return state.maybeWhen(
-                  orElse: () => const SizedBox(),
-                  getting: () => const Center(
-                        child: CircularProgressIndicator(),
-                      ),
-                  get: (result) {
-                    return Container(
-                      height: 192.h,
-                      color: Colors.red,
-                      padding: const EdgeInsets.all(10),
-                      child: CarouselSlider(
-                        items:
-                            result.data!.map((e) => const NewsPart()).toList(),
-                        options: CarouselOptions(
-                            autoPlay: true,
-                            autoPlayAnimationDuration:
-                                const Duration(seconds: 3),
-                            scrollDirection: Axis.vertical),
-                      ),
-                    );
-                  });
-            },
-          ),
-          SizedBox(height: 17.h),
+          SizedBox(height: 16.h),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.w),
+            padding: EdgeInsets.symmetric(horizontal: 14.w),
+            child: const NewsPart(),
+          ),
+          SizedBox(height: 16.h),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 14.w),
             child: const CategoryPart(),
           ),
           SizedBox(height: 16.h),
           const CoursePart(),
           SizedBox(height: 16.h),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.w),
+            padding: EdgeInsets.symmetric(horizontal: 14.w),
             child: const MentorPart(),
           )
         ],

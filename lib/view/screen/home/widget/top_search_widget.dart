@@ -10,33 +10,36 @@ class TopSearchWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Container(
-          height: 48.h,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              border: Border.all(color: AppColor.secondary)),
-          child: Row(
-            children: [
-              SizedBox(width: 12.w),
-              SvgPicture.asset("assets/icons/mdi_magnify.svg"),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 12.h),
-                child: SizedBox(
-                  width: 224,
-                  child: TextField(
-                    cursorColor: AppColor.primary,
-                    style: AppFonts.label,
-                    decoration: InputDecoration(
-                        contentPadding: const EdgeInsets.only(bottom: 7.5),
-                        border: InputBorder.none,
-                        hintText: "Search for a course",
-                        hintStyle: AppFonts.label
-                            .copyWith(color: AppColor.txtSecondColor)),
+        Expanded(
+          child: Container(
+            height: 48.h,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(color: AppColor.secondary)),
+            child: Row(
+              children: [
+                SizedBox(width: 12.w),
+                SvgPicture.asset("assets/icons/mdi_magnify.svg"),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 12.h),
+                  child: SizedBox(
+                    width: 231.w,
+                    child: TextField(
+                      cursorColor: AppColor.primary,
+                      style: AppFonts.label,
+                      decoration: InputDecoration(
+                          contentPadding: const EdgeInsets.only(bottom: 7.5),
+                          border: InputBorder.none,
+                          hintText: "Search for a course",
+                          hintStyle: AppFonts.label
+                              .copyWith(color: AppColor.txtSecondColor)),
+                    ),
                   ),
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           ),
         ),
         SizedBox(width: 16.w),

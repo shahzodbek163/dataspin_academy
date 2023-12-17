@@ -13,7 +13,7 @@ class CoursePart extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.w),
+          padding: EdgeInsets.symmetric(horizontal: 14.w),
           child: const RowTextWidget(leftText: "Kurslar"),
         ),
         SizedBox(height: 12.h),

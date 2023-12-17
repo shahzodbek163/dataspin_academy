@@ -12,7 +12,7 @@ class RowTextWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(leftText, style: AppFonts.h2),
+        Text(leftText, style: AppFonts.h2w600),
         Text("Barchasi",
             style: AppFonts.body16Regular
                 .copyWith(color: AppColor.txtSecondColor)),
