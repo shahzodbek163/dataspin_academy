@@ -1,3 +1,4 @@
+import 'package:dataspin_academy/controller/service/api/app_ip.dart';
 import 'package:dataspin_academy/model/auth/checkcode/check_code_result.dart';
 import 'package:dataspin_academy/model/auth/sendcode/send_code_result.dart';
 import 'package:dataspin_academy/model/course/course_for/course_for_result.dart';
@@ -12,7 +13,7 @@ import 'package:retrofit/http.dart';
 
 part 'api_service.g.dart';
 
-@RestApi(baseUrl: "http://192.168.43.66:8080/api")
+@RestApi(baseUrl: "${AppIp.ip}/api")
 abstract class ApiService {
   factory ApiService(Dio dio) = _ApiService;
 
