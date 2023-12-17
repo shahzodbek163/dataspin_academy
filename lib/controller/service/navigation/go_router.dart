@@ -1,6 +1,7 @@
 import 'package:dataspin_academy/controller/provider/profile_id_provider.dart';
 import 'package:dataspin_academy/controller/service/navigation/navigation_service.dart';
 import 'package:dataspin_academy/controller/service/transition/transitions.dart';
+import 'package:dataspin_academy/view/screen/categories/screen/categorie_screen.dart';
 import 'package:dataspin_academy/view/screen/check_code/screen/check_code_srceen.dart';
 import 'package:dataspin_academy/view/screen/home/screen/home_screen.dart';
 import 'package:dataspin_academy/view/screen/profile_screen/screen/profile_screen.dart';
@@ -13,7 +14,8 @@ import 'package:go_router/go_router.dart';
 class AppGoRouter {
   final router = GoRouter(
     navigatorKey: NavigationService.navigatorKey,
-    initialLocation: HomeScreen.routeName,
+    initialLocation: CategoriesScreen.routName,
+
     routes: [
       ///main
       GoRoute(
@@ -49,6 +51,13 @@ class AppGoRouter {
         pageBuilder: (context, state) => slideTransitionRight(
           state,
           const TestScreen(),
+        ),
+      ),
+      GoRoute(
+        path: CategoriesScreen.routName,
+        pageBuilder: (context, state) => slideTransitionRight(
+          state,
+          const CategoriesScreen(),
         ),
       ),
       GoRoute(
