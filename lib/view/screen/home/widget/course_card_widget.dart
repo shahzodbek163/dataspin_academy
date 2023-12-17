@@ -14,7 +14,7 @@ class CourseCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 280.h,
+      height: 285.h,
       width: 351.w,
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(

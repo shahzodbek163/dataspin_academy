@@ -24,7 +24,7 @@ class CoursePart extends StatelessWidget {
                 getting: () => const Center(child: CircularProgressIndicator()),
                 get: (result) {
                   return SizedBox(
-                    height: 280.h,
+                    height: 285.h,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       physics: const BouncingScrollPhysics(),

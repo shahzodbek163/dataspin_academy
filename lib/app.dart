@@ -4,6 +4,7 @@ import 'package:dataspin_academy/controller/bloc/course/course_price/cubit/cours
 import 'package:dataspin_academy/controller/bloc/course/course_type/course_type_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/create_account/check_tap/cubit/check_tap_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/create_account/create_account_cubit.dart';
+import 'package:dataspin_academy/controller/bloc/news/cubit/news_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/mentors/mentors_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/send_code/send_code_cubit.dart';
 import 'package:dataspin_academy/controller/provider/phone_number_provider.dart';
@@ -37,6 +38,7 @@ class _MyAppState extends State<MyApp> {
         BlocProvider(create: (context) => CourseTypeCubit()),
         BlocProvider(create: (context) => CourseForCubit()),
         BlocProvider(create: (context) => CourseWithPriceCubit()),
+        BlocProvider(create: (context) => NewsCubit()),
         BlocProvider(create: (context) => MentorsCubit()),
       ],
       child: ScreenUtilInit(
