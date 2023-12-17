@@ -33,12 +33,12 @@ class Datum with _$Datum {
     required int id,
     @JsonKey(name: "date")
     required DateTime date,
-    @JsonKey(name: "employee")
-    required Employee employee,
-    @JsonKey(name: "subMentors")
-    required List<Employee> subMentors,
     @JsonKey(name: "courses")
     required List<Course> courses,
+    @JsonKey(name: "subMentors")
+    required List<Employee> subMentors,
+    @JsonKey(name: "employee")
+    required Employee employee,
   }) = _Datum;
 
   factory Datum.fromJson(Map<String, dynamic> json) => _$DatumFromJson(json);
@@ -87,12 +87,12 @@ class CourseType with _$CourseType {
     required int id,
     @JsonKey(name: "date")
     required DateTime date,
-    @JsonKey(name: "courseTags")
-    required List<CourseForElement> courseTags,
-    @JsonKey(name: "description")
-    required String description,
     @JsonKey(name: "photo")
     required Photo photo,
+    @JsonKey(name: "description")
+    required String description,
+    @JsonKey(name: "courseTags")
+    required List<CourseForElement> courseTags,
   }) = _CourseType;
 
   factory CourseType.fromJson(Map<String, dynamic> json) => _$CourseTypeFromJson(json);
@@ -113,20 +113,22 @@ class Employee with _$Employee {
   const factory Employee({
     @JsonKey(name: "id")
     required int id,
+    @JsonKey(name: "face")
+    required Face face,
+    @JsonKey(name: "about")
+    required String about,
+    @JsonKey(name: "photo")
+    required Photo photo,
+    @JsonKey(name: "endDate")
+    required DateTime? endDate,
+    @JsonKey(name: "stuff")
+    required Stuff stuff,
     @JsonKey(name: "startDate")
     required DateTime startDate,
     @JsonKey(name: "practice")
     required int practice,
     @JsonKey(name: "isVerified")
     required bool? isVerified,
-    @JsonKey(name: "endDate")
-    required DateTime? endDate,
-    @JsonKey(name: "stuff")
-    required Stuff stuff,
-    @JsonKey(name: "photo")
-    required Photo photo,
-    @JsonKey(name: "face")
-    required Face face,
   }) = _Employee;
 
   factory Employee.fromJson(Map<String, dynamic> json) => _$EmployeeFromJson(json);
@@ -139,6 +141,10 @@ class Face with _$Face {
     required int id,
     @JsonKey(name: "date")
     required DateTime date,
+    @JsonKey(name: "tel1")
+    required String tel1,
+    @JsonKey(name: "tel2")
+    required String tel2,
     @JsonKey(name: "firstname")
     required String firstname,
     @JsonKey(name: "lastname")
@@ -149,10 +155,6 @@ class Face with _$Face {
     required String passport,
     @JsonKey(name: "birthday")
     required DateTime birthday,
-    @JsonKey(name: "tel1")
-    required String tel1,
-    @JsonKey(name: "tel2")
-    required String tel2,
   }) = _Face;
 
   factory Face.fromJson(Map<String, dynamic> json) => _$FaceFromJson(json);

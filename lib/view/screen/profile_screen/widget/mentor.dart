@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dataspin_academy/view/value/app_color.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ class Mentor extends StatefulWidget {
   final String numStudents;
   final String courses;
   final String rating;
+  final bool? isVerified;
 
   const Mentor({
     super.key,
@@ -19,6 +21,7 @@ class Mentor extends StatefulWidget {
     required this.numStudents,
     required this.courses,
     required this.rating,
+    required this.isVerified,
   });
 
   @override
@@ -48,9 +51,9 @@ class _MentorState extends State<Mentor> {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   image: DecorationImage(
-                    image: NetworkImage(
+                    image: CachedNetworkImageProvider(
                       widget.image,
-                      headers: {'ngrok-skip-browser-warning': "true"},
+                      headers: const {'ngrok-skip-browser-warning': "true"},
                     ),
                     fit: BoxFit.cover,
                   ),
@@ -61,14 +64,16 @@ class _MentorState extends State<Mentor> {
                 ),
               ),
             ),
-            Positioned(
-              bottom: -8.h,
-              child: Image.asset(
-                "assets/icons/verif.png",
-                width: 20.w,
-                height: 20.h,
-              ),
-            )
+            widget.isVerified == true
+                ? Positioned(
+                    bottom: -8.h,
+                    child: Image.asset(
+                      "assets/icons/verif.png",
+                      width: 20.w,
+                      height: 20.h,
+                    ),
+                  )
+                : const SizedBox(),
           ],
         ),
         Padding(

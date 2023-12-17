@@ -1,4 +1,5 @@
 import 'package:dataspin_academy/controller/bloc/mentors/mentors_cubit.dart';
+import 'package:dataspin_academy/controller/service/api/app_ip.dart';
 import 'package:dataspin_academy/view/screen/profile_screen/widget/courses_card.dart';
 import 'package:dataspin_academy/view/screen/profile_screen/widget/mentor.dart';
 import 'package:dataspin_academy/view/value/app_color.dart';
@@ -25,7 +26,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
       appBar: SimpleAppbar.simpleAppbar(
         leadingIconPath: AppIcons.backArrow,
-        title: "Tasdiqlash",
+        title: "Course Mentor",
         context: context,
       ),
       body: SafeArea(
@@ -43,7 +44,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       children: [
                         Mentor(
                           image:
-                              "https://71c2-92-63-204-75.ngrok-free.app/api/image/?id=${result.data[widget.id].courses[widget.id].previewPhoto.id}",
+                              "${AppIp.ip}/api/image/?id=${result.data[widget.id].courses[widget.id].previewPhoto.id}",
                           name:
                               "${result.data[widget.id].employee.face.firstname} ${result.data[widget.id].employee.face.lastname}",
                           information:
@@ -53,6 +54,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               "${result.data[widget.id].courses.length} ta kurslar",
                           rating:
                               "${result.data[widget.id].subMentors[widget.id].practice} yillik tajriba",
+                          isVerified: result
+                              .data[widget.id].subMentors[widget.id].isVerified,
                         ),
                         SizedBox(height: 24.h),
                         const Text(
@@ -61,7 +64,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         SizedBox(height: 14.h),
                         Text(
-                          "Congratulations! My name is Vladyslav, and I will tell and show you how to use Webflow. It's a cool tool for building fast and easy-to-scalable websites.",
+                          result.data[widget.id].subMentors[widget.id].about,
                           style: AppFonts.body18Regular.copyWith(
                             color: AppColor.txtSecondColor,
                           ),
@@ -87,7 +90,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                             itemBuilder: (context, index) => CourseCard(
                               image:
-                                  "https://71c2-92-63-204-75.ngrok-free.app/api/image/?id=${result.data[widget.id].courses[index].courseType.photo.id}",
+                                  "${AppIp.ip}/api/image/?id=${result.data[widget.id].courses[index].courseType.photo.id}",
                               information:
                                   result.data[widget.id].courses[index].name,
                               courseName: result.data[widget.id].courses[index]

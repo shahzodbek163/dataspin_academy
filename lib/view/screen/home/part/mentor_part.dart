@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:dataspin_academy/controller/bloc/mentors/mentors_cubit.dart';
 import 'package:dataspin_academy/controller/provider/profile_id_provider.dart';
+import 'package:dataspin_academy/controller/service/api/app_ip.dart';
 import 'package:dataspin_academy/view/screen/home/widget/mentor_card.dart';
 import 'package:dataspin_academy/view/screen/home/widget/row_text_widget.dart';
 import 'package:dataspin_academy/view/screen/profile_screen/screen/profile_screen.dart';
@@ -47,15 +48,13 @@ class _MentorPartState extends State<MentorPart> {
                       onTap: () {
                         log(context.read<ProfileIdProvider>().id);
 
-                        context
-                            .read<ProfileIdProvider>()
-                            .changeId(index);
+                        context.read<ProfileIdProvider>().changeId(index);
                         log(context.read<ProfileIdProvider>().id);
                         context.push(ProfileScreen.routeName);
                       },
                       child: MentorCard(
                         image:
-                            "https://71c2-92-63-204-75.ngrok-free.app/api/image/?id=${result.data[index].courses[index].previewPhoto.id}",
+                            "${AppIp.ip}/api/image/?id=${result.data[index].courses[index].previewPhoto.id}",
                         name:
                             "${result.data[index].employee.face.firstname} ${result.data[index].employee.face.lastname}",
                         information:
