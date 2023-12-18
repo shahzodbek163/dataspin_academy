@@ -33,6 +33,8 @@ class CourseWithPriceData with _$CourseWithPriceData {
   const factory CourseWithPriceData({
     @JsonKey(name: "course") required Course course,
     @JsonKey(name: "price") int? price,
+    @JsonKey(name: "reception_counter")
+    required ReceptionCounter receptionCounter,
   }) = _CourseWithPriceData;
 
   factory CourseWithPriceData.fromJson(Map<String, dynamic> json) =>
@@ -44,9 +46,9 @@ class Course with _$Course {
   const factory Course({
     @JsonKey(name: "name") required String name,
     @JsonKey(name: "id") required int id,
-    @JsonKey(name: "courseFor") CourseForElement? courseFor,
-    @JsonKey(name: "courseType") CourseType? courseType,
-    @JsonKey(name: "previewPhoto") Photo? previewPhoto,
+    @JsonKey(name: "courseFor") required CourseForElement courseFor,
+    @JsonKey(name: "courseType") required CourseType courseType,
+    @JsonKey(name: "previewPhoto") required Photo previewPhoto,
   }) = _Course;
 
   factory Course.fromJson(Map<String, dynamic> json) => _$CourseFromJson(json);
@@ -58,7 +60,7 @@ class CourseForElement with _$CourseForElement {
     @JsonKey(name: "name") required String name,
     @JsonKey(name: "id") required int id,
     @JsonKey(name: "date") required DateTime date,
-    @JsonKey(name: "description") required String description,
+    @JsonKey(name: "description") required String? description,
   }) = _CourseForElement;
 
   factory CourseForElement.fromJson(Map<String, dynamic> json) =>
@@ -71,9 +73,9 @@ class CourseType with _$CourseType {
     @JsonKey(name: "name") required String name,
     @JsonKey(name: "id") required int id,
     @JsonKey(name: "date") required DateTime date,
+    @JsonKey(name: "photo") required Photo photo,
     @JsonKey(name: "courseTags") List<CourseForElement>? courseTags,
     @JsonKey(name: "description") required String description,
-    @JsonKey(name: "photo") required Photo photo,
   }) = _CourseType;
 
   factory CourseType.fromJson(Map<String, dynamic> json) =>
@@ -87,4 +89,16 @@ class Photo with _$Photo {
   }) = _Photo;
 
   factory Photo.fromJson(Map<String, dynamic> json) => _$PhotoFromJson(json);
+}
+
+@freezed
+class ReceptionCounter with _$ReceptionCounter {
+  const factory ReceptionCounter({
+    @JsonKey(name: "totalCount") required int totalCount,
+    @JsonKey(name: "activeCount") required int activeCount,
+    @JsonKey(name: "inactiveCount") required int inactiveCount,
+  }) = _ReceptionCounter;
+
+  factory ReceptionCounter.fromJson(Map<String, dynamic> json) =>
+      _$ReceptionCounterFromJson(json);
 }

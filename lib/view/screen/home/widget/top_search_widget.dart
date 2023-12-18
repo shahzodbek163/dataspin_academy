@@ -25,7 +25,7 @@ class TopSearchWidget extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 12.h),
                   child: SizedBox(
-                    width: 231.w,
+                    width: 225.w,
                     child: TextField(
                       cursorColor: AppColor.primary,
                       style: AppFonts.label,

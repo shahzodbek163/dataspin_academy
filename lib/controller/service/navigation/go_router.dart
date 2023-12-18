@@ -46,7 +46,7 @@ class AppGoRouter {
         ),
       ),
       GoRoute(
-        path: TestScreen.routName,
+        path: TestScreen.routeName,
         pageBuilder: (context, state) => slideTransitionRight(
           state,
           const TestScreen(),
