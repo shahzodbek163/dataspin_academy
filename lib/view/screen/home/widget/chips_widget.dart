@@ -21,8 +21,7 @@ class ChipsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 34.h,
-      padding: EdgeInsets.symmetric(horizontal: 14.w),
+      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
       alignment: Alignment.center,
       decoration: BoxDecoration(
           color: backgroundColor, borderRadius: BorderRadius.circular(30)),
