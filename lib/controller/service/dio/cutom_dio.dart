@@ -53,7 +53,7 @@ class CustomDio {
       InterceptorsWrapper(
         onRequest: (options, handler) {
           options.headers["Authorization"] =
-              "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIrOTk4OTExMTUyOTIyIiwiaWF0IjoxNzAyNDY1MzY2LCJleHAiOjE3MDUwNTczNjZ9.gIbAmGhMsDAi7JcxhY14deLC2iQBVyXFOxq9vO-H4a-0vPCmdlnkgA4EZ-PYeB-2zU4EgHpZxoNE9ks1_9cxKw";
+              "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIrOTk4OTExMTUyOTIyIiwiaWF0IjoxNzAyODkxNTM4LCJleHAiOjE3MDU0ODM1Mzh9.318BPLfL4_35zfU7ezkKnvm45tzwG9C9YJRb9w4SA5gBhTmhZOoaAGDtypaFaS1nCCbNHtLWmQRvdF1JkZXjvQ";
           return handler.next(options);
         },
         onResponse: (response, handler) {

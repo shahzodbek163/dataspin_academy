@@ -1,6 +1,7 @@
 import 'package:dataspin_academy/controller/service/api/app_ip.dart';
 import 'package:dataspin_academy/model/auth/checkcode/check_code_result.dart';
 import 'package:dataspin_academy/model/auth/sendcode/send_code_result.dart';
+import 'package:dataspin_academy/model/course/course_by_id/course_by_id_result.dart';
 import 'package:dataspin_academy/model/course/course_for/course_for_result.dart';
 import 'package:dataspin_academy/model/course/course_price/response/course_with_price_response.dart';
 import 'package:dataspin_academy/model/course/course_type/course_type_result.dart';
@@ -27,14 +28,22 @@ abstract class ApiService {
   @POST("/user/create")
   Future<CreateAccountResponse> createAccount(
       @Body() CreateAccountRequest createAccountRequest);
+
   @GET("/course-type/")
   Future<CourseTypeResult> getAllCourseType();
+
   @GET("/course-for/")
   Future<CourseForResult> getAllCourseFor();
+
+  @GET("/course/by-type/")
+  Future<CourseWithPriceResponse> getCourseById(@Query("id") int id);
+
   @GET("/course/with-prices")
   Future<CourseWithPriceResponse> getAllCourseWithPrice();
+
   @GET("/mentors/")
   Future<MentorResult> getAllMentor();
+
   @GET("/news/")
   Future<NewsResponse> getAllNews();
 }
