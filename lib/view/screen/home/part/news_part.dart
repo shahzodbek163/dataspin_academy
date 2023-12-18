@@ -19,44 +19,49 @@ class NewsPart extends StatelessWidget {
           orElse: () => const SizedBox(),
           getting: () => const Center(child: CircularProgressIndicator()),
           get: (result) {
-            return Stack(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: CarouselSlider.builder(
-                      itemCount: result.data!.length,
-                      itemBuilder: (context, index, realIndex) {
-                        return NewsWidget(
-                          newsData: result.data![index],
-                        );
-                      },
-                      options: CarouselOptions(
-                        autoPlay: true,
-                        viewportFraction: 1,
-                        disableCenter: true,
-                        enlargeFactor: 1,
-                        scrollDirection: Axis.vertical,
-                        onPageChanged: (index, reason) {},
-                      )),
-                ),
-                Positioned(
-                  right: 0,
-                  child: Container(
-                    height: 20.h,
-                    padding: EdgeInsets.symmetric(horizontal: 6.w),
-                    decoration: const BoxDecoration(
-                        color: Color(0xFFFF5C00),
-                        borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(8),
-                            topRight: Radius.circular(8))),
-                    child: Text(
-                      "Yangiliklar",
-                      style: AppFonts.body12w700.copyWith(color: Colors.white),
+            if (result.data!.isEmpty) {
+              return const SizedBox();
+            } else {
+              return Stack(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: CarouselSlider.builder(
+                        itemCount: result.data!.length,
+                        itemBuilder: (context, index, realIndex) {
+                          return NewsWidget(
+                            newsData: result.data![index],
+                          );
+                        },
+                        options: CarouselOptions(
+                          autoPlay: true,
+                          viewportFraction: 1,
+                          disableCenter: true,
+                          enlargeFactor: 1,
+                          scrollDirection: Axis.vertical,
+                          onPageChanged: (index, reason) {},
+                        )),
+                  ),
+                  Positioned(
+                    right: 0,
+                    child: Container(
+                      height: 20.h,
+                      padding: EdgeInsets.symmetric(horizontal: 6.w),
+                      decoration: const BoxDecoration(
+                          color: Color(0xFFFF5C00),
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(8),
+                              topRight: Radius.circular(8))),
+                      child: Text(
+                        "Yangiliklar",
+                        style:
+                            AppFonts.body12w700.copyWith(color: Colors.white),
+                      ),
                     ),
                   ),
-                ),
-              ],
-            );
+                ],
+              );
+            }
           },
         );
       },

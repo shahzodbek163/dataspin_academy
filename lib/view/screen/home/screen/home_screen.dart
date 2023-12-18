@@ -9,6 +9,7 @@ import 'package:dataspin_academy/view/screen/home/part/course_part.dart';
 import 'package:dataspin_academy/view/screen/home/part/mentor_part.dart';
 import 'package:dataspin_academy/view/screen/home/part/news_part.dart';
 import 'package:dataspin_academy/view/screen/home/widget/top_search_widget.dart';
+import 'package:dataspin_academy/view/value/app_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -41,24 +42,28 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           SizedBox(height: 12.h),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 14.w),
+            padding:
+                EdgeInsets.symmetric(horizontal: AppSize.horizontalPadding.w),
             child: const TopSearchWidget(),
           ),
           SizedBox(height: 16.h),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 14.w),
+            padding:
+                EdgeInsets.symmetric(horizontal: AppSize.horizontalPadding.w),
             child: const NewsPart(),
           ),
           SizedBox(height: 16.h),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 14.w),
+            padding:
+                EdgeInsets.symmetric(horizontal: AppSize.horizontalPadding.w),
             child: const CategoryPart(),
           ),
           SizedBox(height: 16.h),
           const CoursePart(),
           SizedBox(height: 16.h),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 14.w),
+            padding:
+                EdgeInsets.symmetric(horizontal: AppSize.horizontalPadding.w),
             child: const MentorPart(),
           )
         ],

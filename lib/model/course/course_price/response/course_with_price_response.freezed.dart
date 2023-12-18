@@ -22,9 +22,9 @@ CourseWithPriceResponse _$CourseWithPriceResponseFromJson(
 /// @nodoc
 mixin _$CourseWithPriceResponse {
   @JsonKey(name: "status")
-  bool? get status => throw _privateConstructorUsedError;
+  bool get status => throw _privateConstructorUsedError;
   @JsonKey(name: "message")
-  String? get message => throw _privateConstructorUsedError;
+  String get message => throw _privateConstructorUsedError;
   @JsonKey(name: "data")
   List<CourseWithPriceData>? get data => throw _privateConstructorUsedError;
 
@@ -41,8 +41,8 @@ abstract class $CourseWithPriceResponseCopyWith<$Res> {
       _$CourseWithPriceResponseCopyWithImpl<$Res, CourseWithPriceResponse>;
   @useResult
   $Res call(
-      {@JsonKey(name: "status") bool? status,
-      @JsonKey(name: "message") String? message,
+      {@JsonKey(name: "status") bool status,
+      @JsonKey(name: "message") String message,
       @JsonKey(name: "data") List<CourseWithPriceData>? data});
 }
 
@@ -60,19 +60,19 @@ class _$CourseWithPriceResponseCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = freezed,
-    Object? message = freezed,
+    Object? status = null,
+    Object? message = null,
     Object? data = freezed,
   }) {
     return _then(_value.copyWith(
-      status: freezed == status
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      message: freezed == message
+              as bool,
+      message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -91,8 +91,8 @@ abstract class _$$CourseWithPriceResponseImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: "status") bool? status,
-      @JsonKey(name: "message") String? message,
+      {@JsonKey(name: "status") bool status,
+      @JsonKey(name: "message") String message,
       @JsonKey(name: "data") List<CourseWithPriceData>? data});
 }
 
@@ -109,19 +109,19 @@ class __$$CourseWithPriceResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = freezed,
-    Object? message = freezed,
+    Object? status = null,
+    Object? message = null,
     Object? data = freezed,
   }) {
     return _then(_$CourseWithPriceResponseImpl(
-      status: freezed == status
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      message: freezed == message
+              as bool,
+      message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       data: freezed == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -134,8 +134,8 @@ class __$$CourseWithPriceResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CourseWithPriceResponseImpl implements _CourseWithPriceResponse {
   const _$CourseWithPriceResponseImpl(
-      {@JsonKey(name: "status") this.status,
-      @JsonKey(name: "message") this.message,
+      {@JsonKey(name: "status") required this.status,
+      @JsonKey(name: "message") required this.message,
       @JsonKey(name: "data") final List<CourseWithPriceData>? data})
       : _data = data;
 
@@ -144,10 +144,10 @@ class _$CourseWithPriceResponseImpl implements _CourseWithPriceResponse {
 
   @override
   @JsonKey(name: "status")
-  final bool? status;
+  final bool status;
   @override
   @JsonKey(name: "message")
-  final String? message;
+  final String message;
   final List<CourseWithPriceData>? _data;
   @override
   @JsonKey(name: "data")
@@ -196,8 +196,8 @@ class _$CourseWithPriceResponseImpl implements _CourseWithPriceResponse {
 
 abstract class _CourseWithPriceResponse implements CourseWithPriceResponse {
   const factory _CourseWithPriceResponse(
-          {@JsonKey(name: "status") final bool? status,
-          @JsonKey(name: "message") final String? message,
+          {@JsonKey(name: "status") required final bool status,
+          @JsonKey(name: "message") required final String message,
           @JsonKey(name: "data") final List<CourseWithPriceData>? data}) =
       _$CourseWithPriceResponseImpl;
 
@@ -206,10 +206,10 @@ abstract class _CourseWithPriceResponse implements CourseWithPriceResponse {
 
   @override
   @JsonKey(name: "status")
-  bool? get status;
+  bool get status;
   @override
   @JsonKey(name: "message")
-  String? get message;
+  String get message;
   @override
   @JsonKey(name: "data")
   List<CourseWithPriceData>? get data;
@@ -226,9 +226,11 @@ CourseWithPriceData _$CourseWithPriceDataFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$CourseWithPriceData {
   @JsonKey(name: "course")
-  Course? get course => throw _privateConstructorUsedError;
+  Course get course => throw _privateConstructorUsedError;
   @JsonKey(name: "price")
   int? get price => throw _privateConstructorUsedError;
+  @JsonKey(name: "reception_counter")
+  ReceptionCounter get receptionCounter => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -243,10 +245,12 @@ abstract class $CourseWithPriceDataCopyWith<$Res> {
       _$CourseWithPriceDataCopyWithImpl<$Res, CourseWithPriceData>;
   @useResult
   $Res call(
-      {@JsonKey(name: "course") Course? course,
-      @JsonKey(name: "price") int? price});
+      {@JsonKey(name: "course") Course course,
+      @JsonKey(name: "price") int? price,
+      @JsonKey(name: "reception_counter") ReceptionCounter receptionCounter});
 
-  $CourseCopyWith<$Res>? get course;
+  $CourseCopyWith<$Res> get course;
+  $ReceptionCounterCopyWith<$Res> get receptionCounter;
 }
 
 /// @nodoc
@@ -262,30 +266,39 @@ class _$CourseWithPriceDataCopyWithImpl<$Res, $Val extends CourseWithPriceData>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? course = freezed,
+    Object? course = null,
     Object? price = freezed,
+    Object? receptionCounter = null,
   }) {
     return _then(_value.copyWith(
-      course: freezed == course
+      course: null == course
           ? _value.course
           : course // ignore: cast_nullable_to_non_nullable
-              as Course?,
+              as Course,
       price: freezed == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as int?,
+      receptionCounter: null == receptionCounter
+          ? _value.receptionCounter
+          : receptionCounter // ignore: cast_nullable_to_non_nullable
+              as ReceptionCounter,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $CourseCopyWith<$Res>? get course {
-    if (_value.course == null) {
-      return null;
-    }
-
-    return $CourseCopyWith<$Res>(_value.course!, (value) {
+  $CourseCopyWith<$Res> get course {
+    return $CourseCopyWith<$Res>(_value.course, (value) {
       return _then(_value.copyWith(course: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ReceptionCounterCopyWith<$Res> get receptionCounter {
+    return $ReceptionCounterCopyWith<$Res>(_value.receptionCounter, (value) {
+      return _then(_value.copyWith(receptionCounter: value) as $Val);
     });
   }
 }
@@ -299,11 +312,14 @@ abstract class _$$CourseWithPriceDataImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: "course") Course? course,
-      @JsonKey(name: "price") int? price});
+      {@JsonKey(name: "course") Course course,
+      @JsonKey(name: "price") int? price,
+      @JsonKey(name: "reception_counter") ReceptionCounter receptionCounter});
 
   @override
-  $CourseCopyWith<$Res>? get course;
+  $CourseCopyWith<$Res> get course;
+  @override
+  $ReceptionCounterCopyWith<$Res> get receptionCounter;
 }
 
 /// @nodoc
@@ -317,18 +333,23 @@ class __$$CourseWithPriceDataImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? course = freezed,
+    Object? course = null,
     Object? price = freezed,
+    Object? receptionCounter = null,
   }) {
     return _then(_$CourseWithPriceDataImpl(
-      course: freezed == course
+      course: null == course
           ? _value.course
           : course // ignore: cast_nullable_to_non_nullable
-              as Course?,
+              as Course,
       price: freezed == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as int?,
+      receptionCounter: null == receptionCounter
+          ? _value.receptionCounter
+          : receptionCounter // ignore: cast_nullable_to_non_nullable
+              as ReceptionCounter,
     ));
   }
 }
@@ -337,22 +358,26 @@ class __$$CourseWithPriceDataImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CourseWithPriceDataImpl implements _CourseWithPriceData {
   const _$CourseWithPriceDataImpl(
-      {@JsonKey(name: "course") this.course,
-      @JsonKey(name: "price") this.price});
+      {@JsonKey(name: "course") required this.course,
+      @JsonKey(name: "price") this.price,
+      @JsonKey(name: "reception_counter") required this.receptionCounter});
 
   factory _$CourseWithPriceDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$CourseWithPriceDataImplFromJson(json);
 
   @override
   @JsonKey(name: "course")
-  final Course? course;
+  final Course course;
   @override
   @JsonKey(name: "price")
   final int? price;
+  @override
+  @JsonKey(name: "reception_counter")
+  final ReceptionCounter receptionCounter;
 
   @override
   String toString() {
-    return 'CourseWithPriceData(course: $course, price: $price)';
+    return 'CourseWithPriceData(course: $course, price: $price, receptionCounter: $receptionCounter)';
   }
 
   @override
@@ -361,12 +386,14 @@ class _$CourseWithPriceDataImpl implements _CourseWithPriceData {
         (other.runtimeType == runtimeType &&
             other is _$CourseWithPriceDataImpl &&
             (identical(other.course, course) || other.course == course) &&
-            (identical(other.price, price) || other.price == price));
+            (identical(other.price, price) || other.price == price) &&
+            (identical(other.receptionCounter, receptionCounter) ||
+                other.receptionCounter == receptionCounter));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, course, price);
+  int get hashCode => Object.hash(runtimeType, course, price, receptionCounter);
 
   @JsonKey(ignore: true)
   @override
@@ -385,18 +412,24 @@ class _$CourseWithPriceDataImpl implements _CourseWithPriceData {
 
 abstract class _CourseWithPriceData implements CourseWithPriceData {
   const factory _CourseWithPriceData(
-      {@JsonKey(name: "course") final Course? course,
-      @JsonKey(name: "price") final int? price}) = _$CourseWithPriceDataImpl;
+          {@JsonKey(name: "course") required final Course course,
+          @JsonKey(name: "price") final int? price,
+          @JsonKey(name: "reception_counter")
+          required final ReceptionCounter receptionCounter}) =
+      _$CourseWithPriceDataImpl;
 
   factory _CourseWithPriceData.fromJson(Map<String, dynamic> json) =
       _$CourseWithPriceDataImpl.fromJson;
 
   @override
   @JsonKey(name: "course")
-  Course? get course;
+  Course get course;
   @override
   @JsonKey(name: "price")
   int? get price;
+  @override
+  @JsonKey(name: "reception_counter")
+  ReceptionCounter get receptionCounter;
   @override
   @JsonKey(ignore: true)
   _$$CourseWithPriceDataImplCopyWith<_$CourseWithPriceDataImpl> get copyWith =>
@@ -410,15 +443,15 @@ Course _$CourseFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Course {
   @JsonKey(name: "name")
-  String? get name => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   @JsonKey(name: "id")
-  int? get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   @JsonKey(name: "courseFor")
-  CourseForElement? get courseFor => throw _privateConstructorUsedError;
+  CourseForElement get courseFor => throw _privateConstructorUsedError;
   @JsonKey(name: "courseType")
-  CourseType? get courseType => throw _privateConstructorUsedError;
+  CourseType get courseType => throw _privateConstructorUsedError;
   @JsonKey(name: "previewPhoto")
-  Photo? get previewPhoto => throw _privateConstructorUsedError;
+  Photo get previewPhoto => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -431,15 +464,15 @@ abstract class $CourseCopyWith<$Res> {
       _$CourseCopyWithImpl<$Res, Course>;
   @useResult
   $Res call(
-      {@JsonKey(name: "name") String? name,
-      @JsonKey(name: "id") int? id,
-      @JsonKey(name: "courseFor") CourseForElement? courseFor,
-      @JsonKey(name: "courseType") CourseType? courseType,
-      @JsonKey(name: "previewPhoto") Photo? previewPhoto});
+      {@JsonKey(name: "name") String name,
+      @JsonKey(name: "id") int id,
+      @JsonKey(name: "courseFor") CourseForElement courseFor,
+      @JsonKey(name: "courseType") CourseType courseType,
+      @JsonKey(name: "previewPhoto") Photo previewPhoto});
 
-  $CourseForElementCopyWith<$Res>? get courseFor;
-  $CourseTypeCopyWith<$Res>? get courseType;
-  $PhotoCopyWith<$Res>? get previewPhoto;
+  $CourseForElementCopyWith<$Res> get courseFor;
+  $CourseTypeCopyWith<$Res> get courseType;
+  $PhotoCopyWith<$Res> get previewPhoto;
 }
 
 /// @nodoc
@@ -455,68 +488,56 @@ class _$CourseCopyWithImpl<$Res, $Val extends Course>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = freezed,
-    Object? id = freezed,
-    Object? courseFor = freezed,
-    Object? courseType = freezed,
-    Object? previewPhoto = freezed,
+    Object? name = null,
+    Object? id = null,
+    Object? courseFor = null,
+    Object? courseType = null,
+    Object? previewPhoto = null,
   }) {
     return _then(_value.copyWith(
-      name: freezed == name
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      id: freezed == id
+              as String,
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      courseFor: freezed == courseFor
+              as int,
+      courseFor: null == courseFor
           ? _value.courseFor
           : courseFor // ignore: cast_nullable_to_non_nullable
-              as CourseForElement?,
-      courseType: freezed == courseType
+              as CourseForElement,
+      courseType: null == courseType
           ? _value.courseType
           : courseType // ignore: cast_nullable_to_non_nullable
-              as CourseType?,
-      previewPhoto: freezed == previewPhoto
+              as CourseType,
+      previewPhoto: null == previewPhoto
           ? _value.previewPhoto
           : previewPhoto // ignore: cast_nullable_to_non_nullable
-              as Photo?,
+              as Photo,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $CourseForElementCopyWith<$Res>? get courseFor {
-    if (_value.courseFor == null) {
-      return null;
-    }
-
-    return $CourseForElementCopyWith<$Res>(_value.courseFor!, (value) {
+  $CourseForElementCopyWith<$Res> get courseFor {
+    return $CourseForElementCopyWith<$Res>(_value.courseFor, (value) {
       return _then(_value.copyWith(courseFor: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $CourseTypeCopyWith<$Res>? get courseType {
-    if (_value.courseType == null) {
-      return null;
-    }
-
-    return $CourseTypeCopyWith<$Res>(_value.courseType!, (value) {
+  $CourseTypeCopyWith<$Res> get courseType {
+    return $CourseTypeCopyWith<$Res>(_value.courseType, (value) {
       return _then(_value.copyWith(courseType: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $PhotoCopyWith<$Res>? get previewPhoto {
-    if (_value.previewPhoto == null) {
-      return null;
-    }
-
-    return $PhotoCopyWith<$Res>(_value.previewPhoto!, (value) {
+  $PhotoCopyWith<$Res> get previewPhoto {
+    return $PhotoCopyWith<$Res>(_value.previewPhoto, (value) {
       return _then(_value.copyWith(previewPhoto: value) as $Val);
     });
   }
@@ -530,18 +551,18 @@ abstract class _$$CourseImplCopyWith<$Res> implements $CourseCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: "name") String? name,
-      @JsonKey(name: "id") int? id,
-      @JsonKey(name: "courseFor") CourseForElement? courseFor,
-      @JsonKey(name: "courseType") CourseType? courseType,
-      @JsonKey(name: "previewPhoto") Photo? previewPhoto});
+      {@JsonKey(name: "name") String name,
+      @JsonKey(name: "id") int id,
+      @JsonKey(name: "courseFor") CourseForElement courseFor,
+      @JsonKey(name: "courseType") CourseType courseType,
+      @JsonKey(name: "previewPhoto") Photo previewPhoto});
 
   @override
-  $CourseForElementCopyWith<$Res>? get courseFor;
+  $CourseForElementCopyWith<$Res> get courseFor;
   @override
-  $CourseTypeCopyWith<$Res>? get courseType;
+  $CourseTypeCopyWith<$Res> get courseType;
   @override
-  $PhotoCopyWith<$Res>? get previewPhoto;
+  $PhotoCopyWith<$Res> get previewPhoto;
 }
 
 /// @nodoc
@@ -555,33 +576,33 @@ class __$$CourseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = freezed,
-    Object? id = freezed,
-    Object? courseFor = freezed,
-    Object? courseType = freezed,
-    Object? previewPhoto = freezed,
+    Object? name = null,
+    Object? id = null,
+    Object? courseFor = null,
+    Object? courseType = null,
+    Object? previewPhoto = null,
   }) {
     return _then(_$CourseImpl(
-      name: freezed == name
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      id: freezed == id
+              as String,
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      courseFor: freezed == courseFor
+              as int,
+      courseFor: null == courseFor
           ? _value.courseFor
           : courseFor // ignore: cast_nullable_to_non_nullable
-              as CourseForElement?,
-      courseType: freezed == courseType
+              as CourseForElement,
+      courseType: null == courseType
           ? _value.courseType
           : courseType // ignore: cast_nullable_to_non_nullable
-              as CourseType?,
-      previewPhoto: freezed == previewPhoto
+              as CourseType,
+      previewPhoto: null == previewPhoto
           ? _value.previewPhoto
           : previewPhoto // ignore: cast_nullable_to_non_nullable
-              as Photo?,
+              as Photo,
     ));
   }
 }
@@ -590,30 +611,30 @@ class __$$CourseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CourseImpl implements _Course {
   const _$CourseImpl(
-      {@JsonKey(name: "name") this.name,
-      @JsonKey(name: "id") this.id,
-      @JsonKey(name: "courseFor") this.courseFor,
-      @JsonKey(name: "courseType") this.courseType,
-      @JsonKey(name: "previewPhoto") this.previewPhoto});
+      {@JsonKey(name: "name") required this.name,
+      @JsonKey(name: "id") required this.id,
+      @JsonKey(name: "courseFor") required this.courseFor,
+      @JsonKey(name: "courseType") required this.courseType,
+      @JsonKey(name: "previewPhoto") required this.previewPhoto});
 
   factory _$CourseImpl.fromJson(Map<String, dynamic> json) =>
       _$$CourseImplFromJson(json);
 
   @override
   @JsonKey(name: "name")
-  final String? name;
+  final String name;
   @override
   @JsonKey(name: "id")
-  final int? id;
+  final int id;
   @override
   @JsonKey(name: "courseFor")
-  final CourseForElement? courseFor;
+  final CourseForElement courseFor;
   @override
   @JsonKey(name: "courseType")
-  final CourseType? courseType;
+  final CourseType courseType;
   @override
   @JsonKey(name: "previewPhoto")
-  final Photo? previewPhoto;
+  final Photo previewPhoto;
 
   @override
   String toString() {
@@ -656,29 +677,30 @@ class _$CourseImpl implements _Course {
 
 abstract class _Course implements Course {
   const factory _Course(
-      {@JsonKey(name: "name") final String? name,
-      @JsonKey(name: "id") final int? id,
-      @JsonKey(name: "courseFor") final CourseForElement? courseFor,
-      @JsonKey(name: "courseType") final CourseType? courseType,
-      @JsonKey(name: "previewPhoto") final Photo? previewPhoto}) = _$CourseImpl;
+          {@JsonKey(name: "name") required final String name,
+          @JsonKey(name: "id") required final int id,
+          @JsonKey(name: "courseFor") required final CourseForElement courseFor,
+          @JsonKey(name: "courseType") required final CourseType courseType,
+          @JsonKey(name: "previewPhoto") required final Photo previewPhoto}) =
+      _$CourseImpl;
 
   factory _Course.fromJson(Map<String, dynamic> json) = _$CourseImpl.fromJson;
 
   @override
   @JsonKey(name: "name")
-  String? get name;
+  String get name;
   @override
   @JsonKey(name: "id")
-  int? get id;
+  int get id;
   @override
   @JsonKey(name: "courseFor")
-  CourseForElement? get courseFor;
+  CourseForElement get courseFor;
   @override
   @JsonKey(name: "courseType")
-  CourseType? get courseType;
+  CourseType get courseType;
   @override
   @JsonKey(name: "previewPhoto")
-  Photo? get previewPhoto;
+  Photo get previewPhoto;
   @override
   @JsonKey(ignore: true)
   _$$CourseImplCopyWith<_$CourseImpl> get copyWith =>
@@ -692,11 +714,11 @@ CourseForElement _$CourseForElementFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$CourseForElement {
   @JsonKey(name: "name")
-  String? get name => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   @JsonKey(name: "id")
-  int? get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   @JsonKey(name: "date")
-  DateTime? get date => throw _privateConstructorUsedError;
+  DateTime get date => throw _privateConstructorUsedError;
   @JsonKey(name: "description")
   String? get description => throw _privateConstructorUsedError;
 
@@ -713,9 +735,9 @@ abstract class $CourseForElementCopyWith<$Res> {
       _$CourseForElementCopyWithImpl<$Res, CourseForElement>;
   @useResult
   $Res call(
-      {@JsonKey(name: "name") String? name,
-      @JsonKey(name: "id") int? id,
-      @JsonKey(name: "date") DateTime? date,
+      {@JsonKey(name: "name") String name,
+      @JsonKey(name: "id") int id,
+      @JsonKey(name: "date") DateTime date,
       @JsonKey(name: "description") String? description});
 }
 
@@ -732,24 +754,24 @@ class _$CourseForElementCopyWithImpl<$Res, $Val extends CourseForElement>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = freezed,
-    Object? id = freezed,
-    Object? date = freezed,
+    Object? name = null,
+    Object? id = null,
+    Object? date = null,
     Object? description = freezed,
   }) {
     return _then(_value.copyWith(
-      name: freezed == name
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      id: freezed == id
+              as String,
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      date: freezed == date
+              as int,
+      date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as DateTime,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -767,9 +789,9 @@ abstract class _$$CourseForElementImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: "name") String? name,
-      @JsonKey(name: "id") int? id,
-      @JsonKey(name: "date") DateTime? date,
+      {@JsonKey(name: "name") String name,
+      @JsonKey(name: "id") int id,
+      @JsonKey(name: "date") DateTime date,
       @JsonKey(name: "description") String? description});
 }
 
@@ -784,24 +806,24 @@ class __$$CourseForElementImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = freezed,
-    Object? id = freezed,
-    Object? date = freezed,
+    Object? name = null,
+    Object? id = null,
+    Object? date = null,
     Object? description = freezed,
   }) {
     return _then(_$CourseForElementImpl(
-      name: freezed == name
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      id: freezed == id
+              as String,
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      date: freezed == date
+              as int,
+      date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as DateTime,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -814,23 +836,23 @@ class __$$CourseForElementImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CourseForElementImpl implements _CourseForElement {
   const _$CourseForElementImpl(
-      {@JsonKey(name: "name") this.name,
-      @JsonKey(name: "id") this.id,
-      @JsonKey(name: "date") this.date,
-      @JsonKey(name: "description") this.description});
+      {@JsonKey(name: "name") required this.name,
+      @JsonKey(name: "id") required this.id,
+      @JsonKey(name: "date") required this.date,
+      @JsonKey(name: "description") required this.description});
 
   factory _$CourseForElementImpl.fromJson(Map<String, dynamic> json) =>
       _$$CourseForElementImplFromJson(json);
 
   @override
   @JsonKey(name: "name")
-  final String? name;
+  final String name;
   @override
   @JsonKey(name: "id")
-  final int? id;
+  final int id;
   @override
   @JsonKey(name: "date")
-  final DateTime? date;
+  final DateTime date;
   @override
   @JsonKey(name: "description")
   final String? description;
@@ -873,10 +895,10 @@ class _$CourseForElementImpl implements _CourseForElement {
 
 abstract class _CourseForElement implements CourseForElement {
   const factory _CourseForElement(
-          {@JsonKey(name: "name") final String? name,
-          @JsonKey(name: "id") final int? id,
-          @JsonKey(name: "date") final DateTime? date,
-          @JsonKey(name: "description") final String? description}) =
+          {@JsonKey(name: "name") required final String name,
+          @JsonKey(name: "id") required final int id,
+          @JsonKey(name: "date") required final DateTime date,
+          @JsonKey(name: "description") required final String? description}) =
       _$CourseForElementImpl;
 
   factory _CourseForElement.fromJson(Map<String, dynamic> json) =
@@ -884,13 +906,13 @@ abstract class _CourseForElement implements CourseForElement {
 
   @override
   @JsonKey(name: "name")
-  String? get name;
+  String get name;
   @override
   @JsonKey(name: "id")
-  int? get id;
+  int get id;
   @override
   @JsonKey(name: "date")
-  DateTime? get date;
+  DateTime get date;
   @override
   @JsonKey(name: "description")
   String? get description;
@@ -907,17 +929,17 @@ CourseType _$CourseTypeFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$CourseType {
   @JsonKey(name: "name")
-  String? get name => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   @JsonKey(name: "id")
-  int? get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   @JsonKey(name: "date")
-  DateTime? get date => throw _privateConstructorUsedError;
+  DateTime get date => throw _privateConstructorUsedError;
+  @JsonKey(name: "photo")
+  Photo get photo => throw _privateConstructorUsedError;
   @JsonKey(name: "courseTags")
   List<CourseForElement>? get courseTags => throw _privateConstructorUsedError;
   @JsonKey(name: "description")
-  String? get description => throw _privateConstructorUsedError;
-  @JsonKey(name: "photo")
-  Photo? get photo => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -932,14 +954,14 @@ abstract class $CourseTypeCopyWith<$Res> {
       _$CourseTypeCopyWithImpl<$Res, CourseType>;
   @useResult
   $Res call(
-      {@JsonKey(name: "name") String? name,
-      @JsonKey(name: "id") int? id,
-      @JsonKey(name: "date") DateTime? date,
+      {@JsonKey(name: "name") String name,
+      @JsonKey(name: "id") int id,
+      @JsonKey(name: "date") DateTime date,
+      @JsonKey(name: "photo") Photo photo,
       @JsonKey(name: "courseTags") List<CourseForElement>? courseTags,
-      @JsonKey(name: "description") String? description,
-      @JsonKey(name: "photo") Photo? photo});
+      @JsonKey(name: "description") String description});
 
-  $PhotoCopyWith<$Res>? get photo;
+  $PhotoCopyWith<$Res> get photo;
 }
 
 /// @nodoc
@@ -955,49 +977,45 @@ class _$CourseTypeCopyWithImpl<$Res, $Val extends CourseType>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = freezed,
-    Object? id = freezed,
-    Object? date = freezed,
+    Object? name = null,
+    Object? id = null,
+    Object? date = null,
+    Object? photo = null,
     Object? courseTags = freezed,
-    Object? description = freezed,
-    Object? photo = freezed,
+    Object? description = null,
   }) {
     return _then(_value.copyWith(
-      name: freezed == name
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      id: freezed == id
+              as String,
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      date: freezed == date
+              as int,
+      date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as DateTime,
+      photo: null == photo
+          ? _value.photo
+          : photo // ignore: cast_nullable_to_non_nullable
+              as Photo,
       courseTags: freezed == courseTags
           ? _value.courseTags
           : courseTags // ignore: cast_nullable_to_non_nullable
               as List<CourseForElement>?,
-      description: freezed == description
+      description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      photo: freezed == photo
-          ? _value.photo
-          : photo // ignore: cast_nullable_to_non_nullable
-              as Photo?,
+              as String,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $PhotoCopyWith<$Res>? get photo {
-    if (_value.photo == null) {
-      return null;
-    }
-
-    return $PhotoCopyWith<$Res>(_value.photo!, (value) {
+  $PhotoCopyWith<$Res> get photo {
+    return $PhotoCopyWith<$Res>(_value.photo, (value) {
       return _then(_value.copyWith(photo: value) as $Val);
     });
   }
@@ -1012,15 +1030,15 @@ abstract class _$$CourseTypeImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: "name") String? name,
-      @JsonKey(name: "id") int? id,
-      @JsonKey(name: "date") DateTime? date,
+      {@JsonKey(name: "name") String name,
+      @JsonKey(name: "id") int id,
+      @JsonKey(name: "date") DateTime date,
+      @JsonKey(name: "photo") Photo photo,
       @JsonKey(name: "courseTags") List<CourseForElement>? courseTags,
-      @JsonKey(name: "description") String? description,
-      @JsonKey(name: "photo") Photo? photo});
+      @JsonKey(name: "description") String description});
 
   @override
-  $PhotoCopyWith<$Res>? get photo;
+  $PhotoCopyWith<$Res> get photo;
 }
 
 /// @nodoc
@@ -1034,38 +1052,38 @@ class __$$CourseTypeImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = freezed,
-    Object? id = freezed,
-    Object? date = freezed,
+    Object? name = null,
+    Object? id = null,
+    Object? date = null,
+    Object? photo = null,
     Object? courseTags = freezed,
-    Object? description = freezed,
-    Object? photo = freezed,
+    Object? description = null,
   }) {
     return _then(_$CourseTypeImpl(
-      name: freezed == name
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      id: freezed == id
+              as String,
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      date: freezed == date
+              as int,
+      date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as DateTime,
+      photo: null == photo
+          ? _value.photo
+          : photo // ignore: cast_nullable_to_non_nullable
+              as Photo,
       courseTags: freezed == courseTags
           ? _value._courseTags
           : courseTags // ignore: cast_nullable_to_non_nullable
               as List<CourseForElement>?,
-      description: freezed == description
+      description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      photo: freezed == photo
-          ? _value.photo
-          : photo // ignore: cast_nullable_to_non_nullable
-              as Photo?,
+              as String,
     ));
   }
 }
@@ -1074,12 +1092,12 @@ class __$$CourseTypeImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CourseTypeImpl implements _CourseType {
   const _$CourseTypeImpl(
-      {@JsonKey(name: "name") this.name,
-      @JsonKey(name: "id") this.id,
-      @JsonKey(name: "date") this.date,
+      {@JsonKey(name: "name") required this.name,
+      @JsonKey(name: "id") required this.id,
+      @JsonKey(name: "date") required this.date,
+      @JsonKey(name: "photo") required this.photo,
       @JsonKey(name: "courseTags") final List<CourseForElement>? courseTags,
-      @JsonKey(name: "description") this.description,
-      @JsonKey(name: "photo") this.photo})
+      @JsonKey(name: "description") required this.description})
       : _courseTags = courseTags;
 
   factory _$CourseTypeImpl.fromJson(Map<String, dynamic> json) =>
@@ -1087,13 +1105,16 @@ class _$CourseTypeImpl implements _CourseType {
 
   @override
   @JsonKey(name: "name")
-  final String? name;
+  final String name;
   @override
   @JsonKey(name: "id")
-  final int? id;
+  final int id;
   @override
   @JsonKey(name: "date")
-  final DateTime? date;
+  final DateTime date;
+  @override
+  @JsonKey(name: "photo")
+  final Photo photo;
   final List<CourseForElement>? _courseTags;
   @override
   @JsonKey(name: "courseTags")
@@ -1107,14 +1128,11 @@ class _$CourseTypeImpl implements _CourseType {
 
   @override
   @JsonKey(name: "description")
-  final String? description;
-  @override
-  @JsonKey(name: "photo")
-  final Photo? photo;
+  final String description;
 
   @override
   String toString() {
-    return 'CourseType(name: $name, id: $id, date: $date, courseTags: $courseTags, description: $description, photo: $photo)';
+    return 'CourseType(name: $name, id: $id, date: $date, photo: $photo, courseTags: $courseTags, description: $description)';
   }
 
   @override
@@ -1125,17 +1143,17 @@ class _$CourseTypeImpl implements _CourseType {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.date, date) || other.date == date) &&
+            (identical(other.photo, photo) || other.photo == photo) &&
             const DeepCollectionEquality()
                 .equals(other._courseTags, _courseTags) &&
             (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.photo, photo) || other.photo == photo));
+                other.description == description));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, id, date,
-      const DeepCollectionEquality().hash(_courseTags), description, photo);
+  int get hashCode => Object.hash(runtimeType, name, id, date, photo,
+      const DeepCollectionEquality().hash(_courseTags), description);
 
   @JsonKey(ignore: true)
   @override
@@ -1153,34 +1171,35 @@ class _$CourseTypeImpl implements _CourseType {
 
 abstract class _CourseType implements CourseType {
   const factory _CourseType(
-      {@JsonKey(name: "name") final String? name,
-      @JsonKey(name: "id") final int? id,
-      @JsonKey(name: "date") final DateTime? date,
-      @JsonKey(name: "courseTags") final List<CourseForElement>? courseTags,
-      @JsonKey(name: "description") final String? description,
-      @JsonKey(name: "photo") final Photo? photo}) = _$CourseTypeImpl;
+          {@JsonKey(name: "name") required final String name,
+          @JsonKey(name: "id") required final int id,
+          @JsonKey(name: "date") required final DateTime date,
+          @JsonKey(name: "photo") required final Photo photo,
+          @JsonKey(name: "courseTags") final List<CourseForElement>? courseTags,
+          @JsonKey(name: "description") required final String description}) =
+      _$CourseTypeImpl;
 
   factory _CourseType.fromJson(Map<String, dynamic> json) =
       _$CourseTypeImpl.fromJson;
 
   @override
   @JsonKey(name: "name")
-  String? get name;
+  String get name;
   @override
   @JsonKey(name: "id")
-  int? get id;
+  int get id;
   @override
   @JsonKey(name: "date")
-  DateTime? get date;
+  DateTime get date;
+  @override
+  @JsonKey(name: "photo")
+  Photo get photo;
   @override
   @JsonKey(name: "courseTags")
   List<CourseForElement>? get courseTags;
   @override
   @JsonKey(name: "description")
-  String? get description;
-  @override
-  @JsonKey(name: "photo")
-  Photo? get photo;
+  String get description;
   @override
   @JsonKey(ignore: true)
   _$$CourseTypeImplCopyWith<_$CourseTypeImpl> get copyWith =>
@@ -1194,7 +1213,7 @@ Photo _$PhotoFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Photo {
   @JsonKey(name: "id")
-  int? get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1206,7 +1225,7 @@ abstract class $PhotoCopyWith<$Res> {
   factory $PhotoCopyWith(Photo value, $Res Function(Photo) then) =
       _$PhotoCopyWithImpl<$Res, Photo>;
   @useResult
-  $Res call({@JsonKey(name: "id") int? id});
+  $Res call({@JsonKey(name: "id") int id});
 }
 
 /// @nodoc
@@ -1222,13 +1241,13 @@ class _$PhotoCopyWithImpl<$Res, $Val extends Photo>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? id = null,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
     ) as $Val);
   }
 }
@@ -1240,7 +1259,7 @@ abstract class _$$PhotoImplCopyWith<$Res> implements $PhotoCopyWith<$Res> {
       __$$PhotoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({@JsonKey(name: "id") int? id});
+  $Res call({@JsonKey(name: "id") int id});
 }
 
 /// @nodoc
@@ -1254,13 +1273,13 @@ class __$$PhotoImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? id = null,
   }) {
     return _then(_$PhotoImpl(
-      id: freezed == id
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
     ));
   }
 }
@@ -1268,14 +1287,14 @@ class __$$PhotoImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$PhotoImpl implements _Photo {
-  const _$PhotoImpl({@JsonKey(name: "id") this.id});
+  const _$PhotoImpl({@JsonKey(name: "id") required this.id});
 
   factory _$PhotoImpl.fromJson(Map<String, dynamic> json) =>
       _$$PhotoImplFromJson(json);
 
   @override
   @JsonKey(name: "id")
-  final int? id;
+  final int id;
 
   @override
   String toString() {
@@ -1309,15 +1328,211 @@ class _$PhotoImpl implements _Photo {
 }
 
 abstract class _Photo implements Photo {
-  const factory _Photo({@JsonKey(name: "id") final int? id}) = _$PhotoImpl;
+  const factory _Photo({@JsonKey(name: "id") required final int id}) =
+      _$PhotoImpl;
 
   factory _Photo.fromJson(Map<String, dynamic> json) = _$PhotoImpl.fromJson;
 
   @override
   @JsonKey(name: "id")
-  int? get id;
+  int get id;
   @override
   @JsonKey(ignore: true)
   _$$PhotoImplCopyWith<_$PhotoImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ReceptionCounter _$ReceptionCounterFromJson(Map<String, dynamic> json) {
+  return _ReceptionCounter.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ReceptionCounter {
+  @JsonKey(name: "totalCount")
+  int get totalCount => throw _privateConstructorUsedError;
+  @JsonKey(name: "activeCount")
+  int get activeCount => throw _privateConstructorUsedError;
+  @JsonKey(name: "inactiveCount")
+  int get inactiveCount => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ReceptionCounterCopyWith<ReceptionCounter> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ReceptionCounterCopyWith<$Res> {
+  factory $ReceptionCounterCopyWith(
+          ReceptionCounter value, $Res Function(ReceptionCounter) then) =
+      _$ReceptionCounterCopyWithImpl<$Res, ReceptionCounter>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: "totalCount") int totalCount,
+      @JsonKey(name: "activeCount") int activeCount,
+      @JsonKey(name: "inactiveCount") int inactiveCount});
+}
+
+/// @nodoc
+class _$ReceptionCounterCopyWithImpl<$Res, $Val extends ReceptionCounter>
+    implements $ReceptionCounterCopyWith<$Res> {
+  _$ReceptionCounterCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? totalCount = null,
+    Object? activeCount = null,
+    Object? inactiveCount = null,
+  }) {
+    return _then(_value.copyWith(
+      totalCount: null == totalCount
+          ? _value.totalCount
+          : totalCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      activeCount: null == activeCount
+          ? _value.activeCount
+          : activeCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      inactiveCount: null == inactiveCount
+          ? _value.inactiveCount
+          : inactiveCount // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ReceptionCounterImplCopyWith<$Res>
+    implements $ReceptionCounterCopyWith<$Res> {
+  factory _$$ReceptionCounterImplCopyWith(_$ReceptionCounterImpl value,
+          $Res Function(_$ReceptionCounterImpl) then) =
+      __$$ReceptionCounterImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: "totalCount") int totalCount,
+      @JsonKey(name: "activeCount") int activeCount,
+      @JsonKey(name: "inactiveCount") int inactiveCount});
+}
+
+/// @nodoc
+class __$$ReceptionCounterImplCopyWithImpl<$Res>
+    extends _$ReceptionCounterCopyWithImpl<$Res, _$ReceptionCounterImpl>
+    implements _$$ReceptionCounterImplCopyWith<$Res> {
+  __$$ReceptionCounterImplCopyWithImpl(_$ReceptionCounterImpl _value,
+      $Res Function(_$ReceptionCounterImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? totalCount = null,
+    Object? activeCount = null,
+    Object? inactiveCount = null,
+  }) {
+    return _then(_$ReceptionCounterImpl(
+      totalCount: null == totalCount
+          ? _value.totalCount
+          : totalCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      activeCount: null == activeCount
+          ? _value.activeCount
+          : activeCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      inactiveCount: null == inactiveCount
+          ? _value.inactiveCount
+          : inactiveCount // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ReceptionCounterImpl implements _ReceptionCounter {
+  const _$ReceptionCounterImpl(
+      {@JsonKey(name: "totalCount") required this.totalCount,
+      @JsonKey(name: "activeCount") required this.activeCount,
+      @JsonKey(name: "inactiveCount") required this.inactiveCount});
+
+  factory _$ReceptionCounterImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ReceptionCounterImplFromJson(json);
+
+  @override
+  @JsonKey(name: "totalCount")
+  final int totalCount;
+  @override
+  @JsonKey(name: "activeCount")
+  final int activeCount;
+  @override
+  @JsonKey(name: "inactiveCount")
+  final int inactiveCount;
+
+  @override
+  String toString() {
+    return 'ReceptionCounter(totalCount: $totalCount, activeCount: $activeCount, inactiveCount: $inactiveCount)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ReceptionCounterImpl &&
+            (identical(other.totalCount, totalCount) ||
+                other.totalCount == totalCount) &&
+            (identical(other.activeCount, activeCount) ||
+                other.activeCount == activeCount) &&
+            (identical(other.inactiveCount, inactiveCount) ||
+                other.inactiveCount == inactiveCount));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, totalCount, activeCount, inactiveCount);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ReceptionCounterImplCopyWith<_$ReceptionCounterImpl> get copyWith =>
+      __$$ReceptionCounterImplCopyWithImpl<_$ReceptionCounterImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ReceptionCounterImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ReceptionCounter implements ReceptionCounter {
+  const factory _ReceptionCounter(
+          {@JsonKey(name: "totalCount") required final int totalCount,
+          @JsonKey(name: "activeCount") required final int activeCount,
+          @JsonKey(name: "inactiveCount") required final int inactiveCount}) =
+      _$ReceptionCounterImpl;
+
+  factory _ReceptionCounter.fromJson(Map<String, dynamic> json) =
+      _$ReceptionCounterImpl.fromJson;
+
+  @override
+  @JsonKey(name: "totalCount")
+  int get totalCount;
+  @override
+  @JsonKey(name: "activeCount")
+  int get activeCount;
+  @override
+  @JsonKey(name: "inactiveCount")
+  int get inactiveCount;
+  @override
+  @JsonKey(ignore: true)
+  _$$ReceptionCounterImplCopyWith<_$ReceptionCounterImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -1,9 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dataspin_academy/controller/provider/course_info_provider.dart';
+import 'package:dataspin_academy/controller/service/api/app_ip.dart';
 import 'package:dataspin_academy/view/screen/home/widget/chips_widget.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
 import 'package:dataspin_academy/view/widget/buttons/main_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CourseInfoScreen extends StatefulWidget {
@@ -26,7 +29,10 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> {
               SliverAppBar(
                 pinned: true,
                 backgroundColor: Colors.white,
-                leading: const Icon(Icons.arrow_back_ios),
+                leading: Container(
+                    decoration: const BoxDecoration(
+                        shape: BoxShape.circle, color: Colors.grey),
+                    child: const Icon(Icons.arrow_back_ios)),
                 leadingWidth: 60.w,
                 expandedHeight: 300.h,
                 stretch: true,
@@ -35,8 +41,8 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> {
                 flexibleSpace: FlexibleSpaceBar(
                   background: CachedNetworkImage(
                     imageUrl:
-                        "https://avatars.mds.yandex.net/get-verba/937147/2a000001835ae3e7bf064a9b8961918d4575/cattouch",
-                    fit: BoxFit.cover,
+                        "${AppIp.ip}/api/image/?id=${context.read<CourseInfoProvider>().courseWithPriceData!.course!.previewPhoto!.id}",
+                    fit: BoxFit.contain,
                   ),
                   stretchModes: const [
                     StretchMode.zoomBackground,
@@ -64,37 +70,53 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> {
                     )),
               ),
               SliverToBoxAdapter(
-                child: Container(
-                    height: 800.h,
-                    decoration: const BoxDecoration(),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  "Assalomu alaykum qadrli mehmon nima gapla olamda",
-                                  style: AppFonts.h3,
-                                ),
-                              ),
-                              Icon(Icons.share_outlined)
-                            ],
+                          Expanded(
+                            child: Text(
+                                context
+                                    .read<CourseInfoProvider>()
+                                    .courseWithPriceData!
+                                    .course!
+                                    .name!,
+                                style: AppFonts.h3),
                           ),
-                          SizedBox(
-                            width: 150,
-                            child: ChipsWidget(
-                              text: "349.000 so'm",
-                              backgroundColor: Colors.green,
-                              textColor: Colors.white,
-                            ),
+                          const Icon(Icons.share_outlined)
+                        ],
+                      ),
+                      SizedBox(height: 10.h),
+                      Row(
+                        children: [
+                          ChipsWidget(
+                            text:
+                                "${context.read<CourseInfoProvider>().courseWithPriceData!.price!} so'm" ??
+                                    "Nomalum",
+                            backgroundColor: Colors.green,
+                            textColor: Colors.white,
+                            textStyle: AppFonts.body12w700,
                           ),
                         ],
                       ),
-                    )),
+                      SizedBox(height: 10.h),
+                      Text(
+                        context
+                            .read<CourseInfoProvider>()
+                            .courseWithPriceData!
+                            .course!
+                            .courseType!
+                            .description!,
+                        style: AppFonts.body18Regular,
+                      ),
+                      SizedBox(height: 100.h),
+                    ],
+                  ),
+                ),
               )
             ],
           ),
