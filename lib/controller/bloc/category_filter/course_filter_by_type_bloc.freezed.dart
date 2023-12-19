@@ -16,22 +16,24 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$CourseFilterByTypeEvent {
+  CourseWithPriceResponse get courses => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() all,
-    required TResult Function() byId,
+    required TResult Function(CourseWithPriceResponse courses) all,
+    required TResult Function(CourseWithPriceResponse courses, int courseTypeId)
+        byId,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? all,
-    TResult? Function()? byId,
+    TResult? Function(CourseWithPriceResponse courses)? all,
+    TResult? Function(CourseWithPriceResponse courses, int courseTypeId)? byId,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? all,
-    TResult Function()? byId,
+    TResult Function(CourseWithPriceResponse courses)? all,
+    TResult Function(CourseWithPriceResponse courses, int courseTypeId)? byId,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -54,6 +56,10 @@ mixin _$CourseFilterByTypeEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $CourseFilterByTypeEventCopyWith<CourseFilterByTypeEvent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -61,6 +67,10 @@ abstract class $CourseFilterByTypeEventCopyWith<$Res> {
   factory $CourseFilterByTypeEventCopyWith(CourseFilterByTypeEvent value,
           $Res Function(CourseFilterByTypeEvent) then) =
       _$CourseFilterByTypeEventCopyWithImpl<$Res, CourseFilterByTypeEvent>;
+  @useResult
+  $Res call({CourseWithPriceResponse courses});
+
+  $CourseWithPriceResponseCopyWith<$Res> get courses;
 }
 
 /// @nodoc
@@ -73,12 +83,40 @@ class _$CourseFilterByTypeEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? courses = null,
+  }) {
+    return _then(_value.copyWith(
+      courses: null == courses
+          ? _value.courses
+          : courses // ignore: cast_nullable_to_non_nullable
+              as CourseWithPriceResponse,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CourseWithPriceResponseCopyWith<$Res> get courses {
+    return $CourseWithPriceResponseCopyWith<$Res>(_value.courses, (value) {
+      return _then(_value.copyWith(courses: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
-abstract class _$$AllImplCopyWith<$Res> {
+abstract class _$$AllImplCopyWith<$Res>
+    implements $CourseFilterByTypeEventCopyWith<$Res> {
   factory _$$AllImplCopyWith(_$AllImpl value, $Res Function(_$AllImpl) then) =
       __$$AllImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({CourseWithPriceResponse courses});
+
+  @override
+  $CourseWithPriceResponseCopyWith<$Res> get courses;
 }
 
 /// @nodoc
@@ -87,54 +125,79 @@ class __$$AllImplCopyWithImpl<$Res>
     implements _$$AllImplCopyWith<$Res> {
   __$$AllImplCopyWithImpl(_$AllImpl _value, $Res Function(_$AllImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? courses = null,
+  }) {
+    return _then(_$AllImpl(
+      null == courses
+          ? _value.courses
+          : courses // ignore: cast_nullable_to_non_nullable
+              as CourseWithPriceResponse,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$AllImpl implements _All {
-  const _$AllImpl();
+  const _$AllImpl(this.courses);
+
+  @override
+  final CourseWithPriceResponse courses;
 
   @override
   String toString() {
-    return 'CourseFilterByTypeEvent.all()';
+    return 'CourseFilterByTypeEvent.all(courses: $courses)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$AllImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$AllImpl &&
+            (identical(other.courses, courses) || other.courses == courses));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, courses);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AllImplCopyWith<_$AllImpl> get copyWith =>
+      __$$AllImplCopyWithImpl<_$AllImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() all,
-    required TResult Function() byId,
+    required TResult Function(CourseWithPriceResponse courses) all,
+    required TResult Function(CourseWithPriceResponse courses, int courseTypeId)
+        byId,
   }) {
-    return all();
+    return all(courses);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? all,
-    TResult? Function()? byId,
+    TResult? Function(CourseWithPriceResponse courses)? all,
+    TResult? Function(CourseWithPriceResponse courses, int courseTypeId)? byId,
   }) {
-    return all?.call();
+    return all?.call(courses);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? all,
-    TResult Function()? byId,
+    TResult Function(CourseWithPriceResponse courses)? all,
+    TResult Function(CourseWithPriceResponse courses, int courseTypeId)? byId,
     required TResult orElse(),
   }) {
     if (all != null) {
-      return all();
+      return all(courses);
     }
     return orElse();
   }
@@ -172,14 +235,28 @@ class _$AllImpl implements _All {
 }
 
 abstract class _All implements CourseFilterByTypeEvent {
-  const factory _All() = _$AllImpl;
+  const factory _All(final CourseWithPriceResponse courses) = _$AllImpl;
+
+  @override
+  CourseWithPriceResponse get courses;
+  @override
+  @JsonKey(ignore: true)
+  _$$AllImplCopyWith<_$AllImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ByIdImplCopyWith<$Res> {
+abstract class _$$ByIdImplCopyWith<$Res>
+    implements $CourseFilterByTypeEventCopyWith<$Res> {
   factory _$$ByIdImplCopyWith(
           _$ByIdImpl value, $Res Function(_$ByIdImpl) then) =
       __$$ByIdImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({CourseWithPriceResponse courses, int courseTypeId});
+
+  @override
+  $CourseWithPriceResponseCopyWith<$Res> get courses;
 }
 
 /// @nodoc
@@ -188,54 +265,88 @@ class __$$ByIdImplCopyWithImpl<$Res>
     implements _$$ByIdImplCopyWith<$Res> {
   __$$ByIdImplCopyWithImpl(_$ByIdImpl _value, $Res Function(_$ByIdImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? courses = null,
+    Object? courseTypeId = null,
+  }) {
+    return _then(_$ByIdImpl(
+      null == courses
+          ? _value.courses
+          : courses // ignore: cast_nullable_to_non_nullable
+              as CourseWithPriceResponse,
+      null == courseTypeId
+          ? _value.courseTypeId
+          : courseTypeId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$ByIdImpl implements _ById {
-  const _$ByIdImpl();
+  const _$ByIdImpl(this.courses, this.courseTypeId);
+
+  @override
+  final CourseWithPriceResponse courses;
+  @override
+  final int courseTypeId;
 
   @override
   String toString() {
-    return 'CourseFilterByTypeEvent.byId()';
+    return 'CourseFilterByTypeEvent.byId(courses: $courses, courseTypeId: $courseTypeId)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ByIdImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$ByIdImpl &&
+            (identical(other.courses, courses) || other.courses == courses) &&
+            (identical(other.courseTypeId, courseTypeId) ||
+                other.courseTypeId == courseTypeId));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, courses, courseTypeId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ByIdImplCopyWith<_$ByIdImpl> get copyWith =>
+      __$$ByIdImplCopyWithImpl<_$ByIdImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() all,
-    required TResult Function() byId,
+    required TResult Function(CourseWithPriceResponse courses) all,
+    required TResult Function(CourseWithPriceResponse courses, int courseTypeId)
+        byId,
   }) {
-    return byId();
+    return byId(courses, courseTypeId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? all,
-    TResult? Function()? byId,
+    TResult? Function(CourseWithPriceResponse courses)? all,
+    TResult? Function(CourseWithPriceResponse courses, int courseTypeId)? byId,
   }) {
-    return byId?.call();
+    return byId?.call(courses, courseTypeId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? all,
-    TResult Function()? byId,
+    TResult Function(CourseWithPriceResponse courses)? all,
+    TResult Function(CourseWithPriceResponse courses, int courseTypeId)? byId,
     required TResult orElse(),
   }) {
     if (byId != null) {
-      return byId();
+      return byId(courses, courseTypeId);
     }
     return orElse();
   }
@@ -273,7 +384,17 @@ class _$ByIdImpl implements _ById {
 }
 
 abstract class _ById implements CourseFilterByTypeEvent {
-  const factory _ById() = _$ByIdImpl;
+  const factory _ById(
+          final CourseWithPriceResponse courses, final int courseTypeId) =
+      _$ByIdImpl;
+
+  @override
+  CourseWithPriceResponse get courses;
+  int get courseTypeId;
+  @override
+  @JsonKey(ignore: true)
+  _$$ByIdImplCopyWith<_$ByIdImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -281,19 +402,19 @@ mixin _$CourseFilterByTypeState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() data,
+    required TResult Function(CourseWithPriceResponse courses) data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? data,
+    TResult? Function(CourseWithPriceResponse courses)? data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? data,
+    TResult Function(CourseWithPriceResponse courses)? data,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -376,7 +497,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() data,
+    required TResult Function(CourseWithPriceResponse courses) data,
   }) {
     return initial();
   }
@@ -385,7 +506,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? data,
+    TResult? Function(CourseWithPriceResponse courses)? data,
   }) {
     return initial?.call();
   }
@@ -394,7 +515,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? data,
+    TResult Function(CourseWithPriceResponse courses)? data,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -444,6 +565,10 @@ abstract class _$$DataImplCopyWith<$Res> {
   factory _$$DataImplCopyWith(
           _$DataImpl value, $Res Function(_$DataImpl) then) =
       __$$DataImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({CourseWithPriceResponse courses});
+
+  $CourseWithPriceResponseCopyWith<$Res> get courses;
 }
 
 /// @nodoc
@@ -452,54 +577,86 @@ class __$$DataImplCopyWithImpl<$Res>
     implements _$$DataImplCopyWith<$Res> {
   __$$DataImplCopyWithImpl(_$DataImpl _value, $Res Function(_$DataImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? courses = null,
+  }) {
+    return _then(_$DataImpl(
+      null == courses
+          ? _value.courses
+          : courses // ignore: cast_nullable_to_non_nullable
+              as CourseWithPriceResponse,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CourseWithPriceResponseCopyWith<$Res> get courses {
+    return $CourseWithPriceResponseCopyWith<$Res>(_value.courses, (value) {
+      return _then(_value.copyWith(courses: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$DataImpl implements _Data {
-  const _$DataImpl();
+  const _$DataImpl(this.courses);
+
+  @override
+  final CourseWithPriceResponse courses;
 
   @override
   String toString() {
-    return 'CourseFilterByTypeState.data()';
+    return 'CourseFilterByTypeState.data(courses: $courses)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$DataImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$DataImpl &&
+            (identical(other.courses, courses) || other.courses == courses));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, courses);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DataImplCopyWith<_$DataImpl> get copyWith =>
+      __$$DataImplCopyWithImpl<_$DataImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() data,
+    required TResult Function(CourseWithPriceResponse courses) data,
   }) {
-    return data();
+    return data(courses);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? data,
+    TResult? Function(CourseWithPriceResponse courses)? data,
   }) {
-    return data?.call();
+    return data?.call(courses);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? data,
+    TResult Function(CourseWithPriceResponse courses)? data,
     required TResult orElse(),
   }) {
     if (data != null) {
-      return data();
+      return data(courses);
     }
     return orElse();
   }
@@ -537,5 +694,10 @@ class _$DataImpl implements _Data {
 }
 
 abstract class _Data implements CourseFilterByTypeState {
-  const factory _Data() = _$DataImpl;
+  const factory _Data(final CourseWithPriceResponse courses) = _$DataImpl;
+
+  CourseWithPriceResponse get courses;
+  @JsonKey(ignore: true)
+  _$$DataImplCopyWith<_$DataImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

@@ -22,7 +22,6 @@ class _MentorPartState extends State<MentorPart> {
   @override
   void initState() {
     super.initState();
-    context.read<MentorsCubit>().getMentors();
   }
 
   @override

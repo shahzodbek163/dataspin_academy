@@ -22,7 +22,7 @@ class CourseWithPriceResponse with _$CourseWithPriceResponse {
     @JsonKey(name: "message")
     required String message,
     @JsonKey(name: "data")
-    required List<CourseWithPriceData> data,
+    required List<CourseWithPriceData?>? data,
   }) = _CourseWithPriceResponse;
 
   factory CourseWithPriceResponse.fromJson(Map<String, dynamic> json) => _$CourseWithPriceResponseFromJson(json);

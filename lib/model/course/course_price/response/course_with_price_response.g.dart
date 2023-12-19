@@ -11,8 +11,10 @@ _$CourseWithPriceResponseImpl _$$CourseWithPriceResponseImplFromJson(
     _$CourseWithPriceResponseImpl(
       status: json['status'] as bool,
       message: json['message'] as String,
-      data: (json['data'] as List<dynamic>)
-          .map((e) => CourseWithPriceData.fromJson(e as Map<String, dynamic>))
+      data: (json['data'] as List<dynamic>?)
+          ?.map((e) => e == null
+              ? null
+              : CourseWithPriceData.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

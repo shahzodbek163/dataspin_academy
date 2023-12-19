@@ -26,7 +26,7 @@ mixin _$CourseWithPriceResponse {
   @JsonKey(name: "message")
   String get message => throw _privateConstructorUsedError;
   @JsonKey(name: "data")
-  List<CourseWithPriceData> get data => throw _privateConstructorUsedError;
+  List<CourseWithPriceData?>? get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,7 +43,7 @@ abstract class $CourseWithPriceResponseCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: "status") bool status,
       @JsonKey(name: "message") String message,
-      @JsonKey(name: "data") List<CourseWithPriceData> data});
+      @JsonKey(name: "data") List<CourseWithPriceData?>? data});
 }
 
 /// @nodoc
@@ -62,7 +62,7 @@ class _$CourseWithPriceResponseCopyWithImpl<$Res,
   $Res call({
     Object? status = null,
     Object? message = null,
-    Object? data = null,
+    Object? data = freezed,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -73,10 +73,10 @@ class _$CourseWithPriceResponseCopyWithImpl<$Res,
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      data: null == data
+      data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as List<CourseWithPriceData>,
+              as List<CourseWithPriceData?>?,
     ) as $Val);
   }
 }
@@ -93,7 +93,7 @@ abstract class _$$CourseWithPriceResponseImplCopyWith<$Res>
   $Res call(
       {@JsonKey(name: "status") bool status,
       @JsonKey(name: "message") String message,
-      @JsonKey(name: "data") List<CourseWithPriceData> data});
+      @JsonKey(name: "data") List<CourseWithPriceData?>? data});
 }
 
 /// @nodoc
@@ -111,7 +111,7 @@ class __$$CourseWithPriceResponseImplCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? message = null,
-    Object? data = null,
+    Object? data = freezed,
   }) {
     return _then(_$CourseWithPriceResponseImpl(
       status: null == status
@@ -122,10 +122,10 @@ class __$$CourseWithPriceResponseImplCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      data: null == data
+      data: freezed == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
-              as List<CourseWithPriceData>,
+              as List<CourseWithPriceData?>?,
     ));
   }
 }
@@ -136,7 +136,7 @@ class _$CourseWithPriceResponseImpl implements _CourseWithPriceResponse {
   const _$CourseWithPriceResponseImpl(
       {@JsonKey(name: "status") required this.status,
       @JsonKey(name: "message") required this.message,
-      @JsonKey(name: "data") required final List<CourseWithPriceData> data})
+      @JsonKey(name: "data") required final List<CourseWithPriceData?>? data})
       : _data = data;
 
   factory _$CourseWithPriceResponseImpl.fromJson(Map<String, dynamic> json) =>
@@ -148,13 +148,15 @@ class _$CourseWithPriceResponseImpl implements _CourseWithPriceResponse {
   @override
   @JsonKey(name: "message")
   final String message;
-  final List<CourseWithPriceData> _data;
+  final List<CourseWithPriceData?>? _data;
   @override
   @JsonKey(name: "data")
-  List<CourseWithPriceData> get data {
+  List<CourseWithPriceData?>? get data {
+    final value = _data;
+    if (value == null) return null;
     if (_data is EqualUnmodifiableListView) return _data;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_data);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
@@ -197,7 +199,7 @@ abstract class _CourseWithPriceResponse implements CourseWithPriceResponse {
           {@JsonKey(name: "status") required final bool status,
           @JsonKey(name: "message") required final String message,
           @JsonKey(name: "data")
-          required final List<CourseWithPriceData> data}) =
+          required final List<CourseWithPriceData?>? data}) =
       _$CourseWithPriceResponseImpl;
 
   factory _CourseWithPriceResponse.fromJson(Map<String, dynamic> json) =
@@ -211,7 +213,7 @@ abstract class _CourseWithPriceResponse implements CourseWithPriceResponse {
   String get message;
   @override
   @JsonKey(name: "data")
-  List<CourseWithPriceData> get data;
+  List<CourseWithPriceData?>? get data;
   @override
   @JsonKey(ignore: true)
   _$$CourseWithPriceResponseImplCopyWith<_$CourseWithPriceResponseImpl>
