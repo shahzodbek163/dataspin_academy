@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dataspin_academy/view/value/app_color.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
 import 'package:dataspin_academy/view/value/app_image.dart';
@@ -5,7 +6,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CategoriesChips extends StatelessWidget {
-  const CategoriesChips({super.key});
+  final String image;
+  final String type;
+  final String courseName;
+  final String personImage;
+  final String personName;
+
+  const CategoriesChips({
+    super.key,
+    required this.image,
+    required this.type,
+    required this.courseName,
+    required this.personImage,
+    required this.personName,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +39,8 @@ class CategoriesChips extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(4),
-              child: Image.asset(
-                "assets/image/Rectangle11.png",
+              child: CachedNetworkImage(
+                imageUrl: image,
                 width: 156.w,
                 height: double.infinity,
                 fit: BoxFit.cover,
@@ -37,14 +51,14 @@ class CategoriesChips extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Fronted",
+                  type,
                   style: AppFonts.body12Regular.copyWith(
                     color: AppColor.txtSecondColor,
                   ),
                 ),
                 SizedBox(height: 4.h),
-                const Text(
-                  "React",
+                Text(
+                  courseName,
                   style: AppFonts.h4,
                 ),
                 SizedBox(height: 9.h),
@@ -53,19 +67,19 @@ class CategoriesChips extends StatelessWidget {
                     Container(
                       width: 24.w,
                       height: 24.h,
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: AssetImage(
-                            "assets/image/thor.png",
+                          image: CachedNetworkImageProvider(
+                            personImage,
                           ),
                         ),
                       ),
                     ),
                     SizedBox(width: 6.w),
                     Text(
-                      "Muhammadali Anvarov",
+                      personName,
                       style: AppFonts.body12Regular.copyWith(
                         fontWeight: FontWeight.w500,
                       ),

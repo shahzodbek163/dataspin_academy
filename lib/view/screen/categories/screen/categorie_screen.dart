@@ -1,6 +1,9 @@
 import 'dart:developer';
 
+import 'package:dataspin_academy/controller/bloc/course/course_price/cubit/course_with_price_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/course/course_type/course_type_cubit.dart';
+import 'package:dataspin_academy/controller/service/api/app_ip.dart';
+import 'package:dataspin_academy/model/course/course_price/response/course_with_price_response.dart';
 import 'package:dataspin_academy/view/screen/categories/widget/categorie_chips.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
 import 'package:dataspin_academy/view/value/app_icons.dart';
@@ -22,12 +25,12 @@ class CategoriesScreen extends StatefulWidget {
 class _CategoriesScreenState extends State<CategoriesScreen> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    context.read<CourseTypeCubit>().getCourseType();
+    context.read<CourseTypeCubit>().state.maybeWhen(
+          orElse: () {},
+          get: (result) {},
+        );
   }
-
-  int selectIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -49,11 +52,9 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                   orElse: () => const SizedBox(),
                   getting: () => const CircularProgressIndicator(),
                   get: (result) => SelectbleRow(
-                    listRes: result.data.map((e) => e.name).toList(),
-                    onChangedIndex: (index) {
-                      log(index.toString());
-                      selectIndex = index;
-                    },
+                    listRes:
+                        ["Barchasi"] + result.data.map((e) => e.name).toList(),
+                    onChangedIndex: (index) {},
                   ),
                 );
               },
@@ -71,16 +72,32 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
               ),
             ),
             SizedBox(height: 8.h),
-            Expanded(
-              child: ListView.builder(
-                physics: const BouncingScrollPhysics(),
-                itemCount: 10,
-                itemBuilder: (context, index) => const Padding(
-                  padding: EdgeInsets.only(bottom: 24),
-                  child: CategoriesChips(),
-                ),
-              ),
-            ),
+            BlocBuilder<CourseWithPriceCubit, CourseWithPriceState>(
+              builder: (context, state) => state.maybeWhen(
+                  orElse: () => const SizedBox(),
+                  get: (result) {
+                    return Expanded(
+                      child: ListView.builder(
+                        physics: const BouncingScrollPhysics(),
+                        itemCount: result.data!.length,
+                        itemBuilder: (context, index) => Padding(
+                          padding: const EdgeInsets.only(bottom: 24),
+                          child: CategoriesChips(
+                            image:
+                                "${AppIp.ip}/api/image/?id=${result.data![index].course.previewPhoto.id}",
+                            courseName: result.data![index].course.name,
+                            personImage:
+                                "${AppIp.ip}/api/image/?id=${result.data![index].course.courseType.photo.id}",
+                            type: result.data![index].course.courseType.name,
+                            personName: result.data![index].mentor == null
+                                ? "Ism ma'lum emas"
+                                : "${result.data![index].mentor!.employee.face.firstname} ${result.data![index].mentor!.employee.face.lastname}",
+                          ),
+                        ),
+                      ),
+                    );
+                  }),
+            )
           ],
         ),
       )),

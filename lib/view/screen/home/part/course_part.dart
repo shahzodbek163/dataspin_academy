@@ -37,7 +37,7 @@ class CoursePart extends StatelessWidget {
                       itemBuilder: (context, index) => Padding(
                         padding: EdgeInsets.only(right: 6.w),
                         child: CourseCardWidget(
-                          courseWithPriceData: result.data![index],
+                          courseWithPriceData: result.data[index],
                           onTap: () {
                             context
                                 .read<CourseInfoProvider>()

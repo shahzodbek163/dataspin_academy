@@ -45,6 +45,7 @@ class _SelectbleRowState extends State<SelectbleRow> {
                 selectIndex = index;
                 widget.onChangedIndex.call(selectIndex);
                 print(selectIndex);
+
                 setState(() {});
               },
               borderRadius: BorderRadius.circular(30),
