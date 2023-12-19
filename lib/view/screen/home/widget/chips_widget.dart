@@ -9,6 +9,9 @@ class ChipsWidget extends StatelessWidget {
   Color backgroundColor;
   Color textColor;
   TextStyle textStyle;
+  double horizontalP;
+  double verticalP;
+  
 
   ChipsWidget({
     super.key,
@@ -16,12 +19,14 @@ class ChipsWidget extends StatelessWidget {
     this.backgroundColor = AppColor.secondary,
     this.textColor = AppColor.primary,
     this.textStyle = AppFonts.body16Regular,
+    this.horizontalP = 12 ,
+    this.verticalP = 8
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
+      padding: EdgeInsets.symmetric(horizontal: horizontalP.w, vertical: verticalP.h),
       alignment: Alignment.center,
       decoration: BoxDecoration(
           color: backgroundColor, borderRadius: BorderRadius.circular(30)),

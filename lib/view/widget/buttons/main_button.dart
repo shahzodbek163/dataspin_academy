@@ -7,14 +7,20 @@ class MainButton extends StatelessWidget {
   final String text;
   final bool isLoading;
   final VoidCallback onTap;
+  double height;
 
-  const MainButton({super.key, this.text = "Button", required this.onTap, this.isLoading = false});
+  MainButton(
+      {super.key,
+      required this.text,
+      required this.onTap,
+      this.isLoading = false,
+      this.height = 58});
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ButtonStyle(
-        minimumSize: MaterialStateProperty.all(const  Size(double.infinity, 58)),
+        minimumSize: MaterialStateProperty.all(Size(double.infinity, height)),
         backgroundColor: MaterialStateProperty.all(AppColor.primaryButtonColor),
         elevation: MaterialStateProperty.all(0),
         shape: MaterialStateProperty.all(
@@ -24,10 +30,12 @@ class MainButton extends StatelessWidget {
         ),
       ),
       onPressed: onTap,
-      child: !isLoading?  Text(
-        text,
-        style: AppFonts.h4.copyWith(color: Colors.white),
-      ): const CircularProgressIndicator(),
+      child: !isLoading
+          ? Text(
+              text,
+              style: AppFonts.h4.copyWith(color: Colors.white),
+            )
+          : const CircularProgressIndicator(),
     );
   }
 }

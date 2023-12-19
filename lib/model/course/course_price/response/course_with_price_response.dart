@@ -46,6 +46,7 @@ class Course with _$Course {
   const factory Course({
     @JsonKey(name: "name") required String name,
     @JsonKey(name: "id") required int id,
+    @JsonKey(name: "description") required String description,
     @JsonKey(name: "courseFor") required CourseForElement courseFor,
     @JsonKey(name: "courseType") required CourseType courseType,
     @JsonKey(name: "previewPhoto") required Photo previewPhoto,

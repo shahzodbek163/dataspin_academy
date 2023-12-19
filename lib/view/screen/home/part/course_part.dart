@@ -31,6 +31,8 @@ class CoursePart extends StatelessWidget {
                   return SizedBox(
                     height: 360.h,
                     child: ListView.builder(
+                      padding: const EdgeInsets.only(left: 8),
+                      addAutomaticKeepAlives: true,
                       scrollDirection: Axis.horizontal,
                       physics: const BouncingScrollPhysics(),
                       itemCount: result.data!.length,

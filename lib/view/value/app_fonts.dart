@@ -29,10 +29,23 @@ class AppFonts {
       fontWeight: FontWeight.w700,
       fontFamily: "Ubuntu",
       color: Colors.black);
+  static const h3w400 = TextStyle(
+      fontSize: 20,
+      height: 24 / 20,
+      fontWeight: FontWeight.w400,
+      fontFamily: "Ubuntu",
+      color: Colors.black);
   static const h4 = TextStyle(
     fontSize: 18,
     height: 20 / 18,
     fontWeight: FontWeight.w700,
+    fontFamily: "Ubuntu",
+    color: Colors.black,
+  );
+  static const h4w400 = TextStyle(
+    fontSize: 18,
+    height: 20 / 18,
+    fontWeight: FontWeight.w400,
     fontFamily: "Ubuntu",
     color: Colors.black,
   );

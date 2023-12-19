@@ -26,12 +26,12 @@ class AuthDio {
         sendTimeout: const Duration(seconds: 30),
         receiveTimeout: const Duration(seconds: 30),
         contentType: 'application/json; charset=utf-8',
-        headers: {
+       /*  headers: {
           'Access-Control-Allow-Origin': '*',
         },
         extra: {
           'ngrok-skip-browser-warning': true,
-        },
+        }, */
       ),
     );
     _dio.interceptors.add(
