@@ -48,10 +48,6 @@ Map<String, dynamic> _$$CourseWithPriceDataImplToJson(
 _$CourseImpl _$$CourseImplFromJson(Map<String, dynamic> json) => _$CourseImpl(
       name: json['name'] as String,
       id: json['id'] as int,
-<<<<<<< HEAD
-=======
-      status: json['status'] as bool,
->>>>>>> 34e68bf652839bdede3f7236c412bc26779659df
       description: json['description'] as String,
       courseFor:
           CourseForElement.fromJson(json['courseFor'] as Map<String, dynamic>),
@@ -65,10 +61,6 @@ Map<String, dynamic> _$$CourseImplToJson(_$CourseImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
       'id': instance.id,
-<<<<<<< HEAD
-=======
-      'status': instance.status,
->>>>>>> 34e68bf652839bdede3f7236c412bc26779659df
       'description': instance.description,
       'courseFor': instance.courseFor,
       'courseType': instance.courseType,

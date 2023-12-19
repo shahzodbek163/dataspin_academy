@@ -52,7 +52,7 @@ class Course with _$Course {
     @JsonKey(name: "description") required String description,
     @JsonKey(name: "courseFor") required CourseForElement courseFor,
     @JsonKey(name: "courseType") required CourseType courseType,
-    @JsonKey(name: "previewPhoto") required Photo previewPhoto,
+    @JsonKey(name: "previewPhoto") required PreviewPhoto previewPhoto,
   }) = _Course;
 
   factory Course.fromJson(Map<String, dynamic> json) => _$CourseFromJson(json);

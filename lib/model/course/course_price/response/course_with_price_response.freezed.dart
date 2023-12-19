@@ -484,11 +484,6 @@ mixin _$Course {
   String get name => throw _privateConstructorUsedError;
   @JsonKey(name: "id")
   int get id => throw _privateConstructorUsedError;
-<<<<<<< HEAD
-=======
-  @JsonKey(name: "status")
-  bool get status => throw _privateConstructorUsedError;
->>>>>>> 34e68bf652839bdede3f7236c412bc26779659df
   @JsonKey(name: "description")
   String get description => throw _privateConstructorUsedError;
   @JsonKey(name: "courseFor")
@@ -511,7 +506,6 @@ abstract class $CourseCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: "name") String name,
       @JsonKey(name: "id") int id,
-      @JsonKey(name: "status") bool status,
       @JsonKey(name: "description") String description,
       @JsonKey(name: "courseFor") CourseForElement courseFor,
       @JsonKey(name: "courseType") CourseType courseType,
@@ -537,7 +531,6 @@ class _$CourseCopyWithImpl<$Res, $Val extends Course>
   $Res call({
     Object? name = null,
     Object? id = null,
-    Object? status = null,
     Object? description = null,
     Object? courseFor = null,
     Object? courseType = null,
@@ -552,10 +545,6 @@ class _$CourseCopyWithImpl<$Res, $Val extends Course>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as bool,
       description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -610,7 +599,6 @@ abstract class _$$CourseImplCopyWith<$Res> implements $CourseCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: "name") String name,
       @JsonKey(name: "id") int id,
-      @JsonKey(name: "status") bool status,
       @JsonKey(name: "description") String description,
       @JsonKey(name: "courseFor") CourseForElement courseFor,
       @JsonKey(name: "courseType") CourseType courseType,
@@ -637,7 +625,6 @@ class __$$CourseImplCopyWithImpl<$Res>
   $Res call({
     Object? name = null,
     Object? id = null,
-    Object? status = null,
     Object? description = null,
     Object? courseFor = null,
     Object? courseType = null,
@@ -652,10 +639,6 @@ class __$$CourseImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as bool,
       description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -682,7 +665,6 @@ class _$CourseImpl implements _Course {
   const _$CourseImpl(
       {@JsonKey(name: "name") required this.name,
       @JsonKey(name: "id") required this.id,
-      @JsonKey(name: "status") required this.status,
       @JsonKey(name: "description") required this.description,
       @JsonKey(name: "courseFor") required this.courseFor,
       @JsonKey(name: "courseType") required this.courseType,
@@ -698,9 +680,6 @@ class _$CourseImpl implements _Course {
   @JsonKey(name: "id")
   final int id;
   @override
-  @JsonKey(name: "status")
-  final bool status;
-  @override
   @JsonKey(name: "description")
   final String description;
   @override
@@ -715,7 +694,7 @@ class _$CourseImpl implements _Course {
 
   @override
   String toString() {
-    return 'Course(name: $name, id: $id, status: $status, description: $description, courseFor: $courseFor, courseType: $courseType, previewPhoto: $previewPhoto)';
+    return 'Course(name: $name, id: $id, description: $description, courseFor: $courseFor, courseType: $courseType, previewPhoto: $previewPhoto)';
   }
 
   @override
@@ -725,7 +704,6 @@ class _$CourseImpl implements _Course {
             other is _$CourseImpl &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.status, status) || other.status == status) &&
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.courseFor, courseFor) ||
@@ -738,8 +716,8 @@ class _$CourseImpl implements _Course {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, id, status, description,
-      courseFor, courseType, previewPhoto);
+  int get hashCode => Object.hash(
+      runtimeType, name, id, description, courseFor, courseType, previewPhoto);
 
   @JsonKey(ignore: true)
   @override
@@ -759,7 +737,6 @@ abstract class _Course implements Course {
   const factory _Course(
       {@JsonKey(name: "name") required final String name,
       @JsonKey(name: "id") required final int id,
-      @JsonKey(name: "status") required final bool status,
       @JsonKey(name: "description") required final String description,
       @JsonKey(name: "courseFor") required final CourseForElement courseFor,
       @JsonKey(name: "courseType") required final CourseType courseType,
@@ -774,9 +751,6 @@ abstract class _Course implements Course {
   @override
   @JsonKey(name: "id")
   int get id;
-  @override
-  @JsonKey(name: "status")
-  bool get status;
   @override
   @JsonKey(name: "description")
   String get description;
