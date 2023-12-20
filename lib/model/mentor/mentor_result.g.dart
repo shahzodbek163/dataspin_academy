@@ -116,7 +116,7 @@ _$EmployeeImpl _$$EmployeeImplFromJson(Map<String, dynamic> json) =>
     _$EmployeeImpl(
       id: json['id'] as int,
       face: Face.fromJson(json['face'] as Map<String, dynamic>),
-      about: json['about'] as String,
+      about: json['about'] as String?,
       photo: Photo.fromJson(json['photo'] as Map<String, dynamic>),
       endDate: json['endDate'] == null
           ? null

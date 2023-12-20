@@ -99,6 +99,7 @@ flutter:
     - assets/font/Ubuntu/
     - assets/image/
     - assets/icons/
+    - assets/lottie/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

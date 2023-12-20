@@ -64,7 +64,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         SizedBox(height: 14.h),
                         Text(
-                          result.data[widget.id].subMentors[widget.id].about,
+                          result.data[widget.id].subMentors[widget.id].about!,
                           style: AppFonts.body18Regular.copyWith(
                             color: AppColor.txtSecondColor,
                           ),

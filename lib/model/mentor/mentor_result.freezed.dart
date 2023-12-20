@@ -1393,7 +1393,7 @@ mixin _$Employee {
   @JsonKey(name: "face")
   Face get face => throw _privateConstructorUsedError;
   @JsonKey(name: "about")
-  String get about => throw _privateConstructorUsedError;
+  String? get about => throw _privateConstructorUsedError;
   @JsonKey(name: "photo")
   Photo get photo => throw _privateConstructorUsedError;
   @JsonKey(name: "endDate")
@@ -1421,7 +1421,7 @@ abstract class $EmployeeCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: "id") int id,
       @JsonKey(name: "face") Face face,
-      @JsonKey(name: "about") String about,
+      @JsonKey(name: "about") String? about,
       @JsonKey(name: "photo") Photo photo,
       @JsonKey(name: "endDate") DateTime? endDate,
       @JsonKey(name: "stuff") Stuff stuff,
@@ -1449,7 +1449,7 @@ class _$EmployeeCopyWithImpl<$Res, $Val extends Employee>
   $Res call({
     Object? id = null,
     Object? face = null,
-    Object? about = null,
+    Object? about = freezed,
     Object? photo = null,
     Object? endDate = freezed,
     Object? stuff = null,
@@ -1466,10 +1466,10 @@ class _$EmployeeCopyWithImpl<$Res, $Val extends Employee>
           ? _value.face
           : face // ignore: cast_nullable_to_non_nullable
               as Face,
-      about: null == about
+      about: freezed == about
           ? _value.about
           : about // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       photo: null == photo
           ? _value.photo
           : photo // ignore: cast_nullable_to_non_nullable
@@ -1533,7 +1533,7 @@ abstract class _$$EmployeeImplCopyWith<$Res>
   $Res call(
       {@JsonKey(name: "id") int id,
       @JsonKey(name: "face") Face face,
-      @JsonKey(name: "about") String about,
+      @JsonKey(name: "about") String? about,
       @JsonKey(name: "photo") Photo photo,
       @JsonKey(name: "endDate") DateTime? endDate,
       @JsonKey(name: "stuff") Stuff stuff,
@@ -1562,7 +1562,7 @@ class __$$EmployeeImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? face = null,
-    Object? about = null,
+    Object? about = freezed,
     Object? photo = null,
     Object? endDate = freezed,
     Object? stuff = null,
@@ -1579,10 +1579,10 @@ class __$$EmployeeImplCopyWithImpl<$Res>
           ? _value.face
           : face // ignore: cast_nullable_to_non_nullable
               as Face,
-      about: null == about
+      about: freezed == about
           ? _value.about
           : about // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       photo: null == photo
           ? _value.photo
           : photo // ignore: cast_nullable_to_non_nullable
@@ -1617,7 +1617,7 @@ class _$EmployeeImpl implements _Employee {
   const _$EmployeeImpl(
       {@JsonKey(name: "id") required this.id,
       @JsonKey(name: "face") required this.face,
-      @JsonKey(name: "about") required this.about,
+      @JsonKey(name: "about") this.about,
       @JsonKey(name: "photo") required this.photo,
       @JsonKey(name: "endDate") required this.endDate,
       @JsonKey(name: "stuff") required this.stuff,
@@ -1636,7 +1636,7 @@ class _$EmployeeImpl implements _Employee {
   final Face face;
   @override
   @JsonKey(name: "about")
-  final String about;
+  final String? about;
   @override
   @JsonKey(name: "photo")
   final Photo photo;
@@ -1703,7 +1703,7 @@ abstract class _Employee implements Employee {
   const factory _Employee(
           {@JsonKey(name: "id") required final int id,
           @JsonKey(name: "face") required final Face face,
-          @JsonKey(name: "about") required final String about,
+          @JsonKey(name: "about") final String? about,
           @JsonKey(name: "photo") required final Photo photo,
           @JsonKey(name: "endDate") required final DateTime? endDate,
           @JsonKey(name: "stuff") required final Stuff stuff,
@@ -1723,7 +1723,7 @@ abstract class _Employee implements Employee {
   Face get face;
   @override
   @JsonKey(name: "about")
-  String get about;
+  String? get about;
   @override
   @JsonKey(name: "photo")
   Photo get photo;

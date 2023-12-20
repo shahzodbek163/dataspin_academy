@@ -2,6 +2,8 @@
 //
 //     final mentorResult = mentorResultFromJson(jsonString);
 
+// ignore_for_file: invalid_annotation_target
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'dart:convert';
 
@@ -116,7 +118,7 @@ class Employee with _$Employee {
     @JsonKey(name: "face")
     required Face face,
     @JsonKey(name: "about")
-    required String about,
+     String? about,
     @JsonKey(name: "photo")
     required Photo photo,
     @JsonKey(name: "endDate")

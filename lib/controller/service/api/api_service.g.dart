@@ -13,7 +13,7 @@ class _ApiService implements ApiService {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://192.168.151.66:8080/api';
+    baseUrl ??= 'http://192.168.43.66:8080/api';
   }
 
   final Dio _dio;
@@ -276,6 +276,34 @@ class _ApiService implements ApiService {
               baseUrl,
             ))));
     final value = NewsResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<NewReceptionResponse> newReception(
+      NewReceptionRequest newReceptionRequest) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = newReceptionRequest;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<NewReceptionResponse>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/reception/new',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = NewReceptionResponse.fromJson(_result.data!);
     return value;
   }
 

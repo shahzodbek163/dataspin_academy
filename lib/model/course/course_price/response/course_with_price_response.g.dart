@@ -31,7 +31,7 @@ _$CourseWithPriceDataImpl _$$CourseWithPriceDataImplFromJson(
       mentor: json['mentor'] == null
           ? null
           : Mentor.fromJson(json['mentor'] as Map<String, dynamic>),
-      price: json['price'],
+      price: (json['price'] as num?)?.toDouble(),
       receptionCounter: ReceptionCounter.fromJson(
           json['reception_counter'] as Map<String, dynamic>),
     );
@@ -55,6 +55,7 @@ _$CourseImpl _$$CourseImplFromJson(Map<String, dynamic> json) => _$CourseImpl(
           CourseType.fromJson(json['courseType'] as Map<String, dynamic>),
       previewPhoto:
           PreviewPhoto.fromJson(json['previewPhoto'] as Map<String, dynamic>),
+      status: json['status'] as bool,
     );
 
 Map<String, dynamic> _$$CourseImplToJson(_$CourseImpl instance) =>
@@ -65,6 +66,7 @@ Map<String, dynamic> _$$CourseImplToJson(_$CourseImpl instance) =>
       'courseFor': instance.courseFor,
       'courseType': instance.courseType,
       'previewPhoto': instance.previewPhoto,
+      'status': instance.status,
     };
 
 _$CourseForElementImpl _$$CourseForElementImplFromJson(
@@ -137,10 +139,10 @@ _$EmployeeImpl _$$EmployeeImplFromJson(Map<String, dynamic> json) =>
       endDate: DateTime.parse(json['endDate'] as String),
       stuff: Stuff.fromJson(json['stuff'] as Map<String, dynamic>),
       face: Face.fromJson(json['face'] as Map<String, dynamic>),
-      about: json['about'],
+      about: json['about'] as String?,
       startDate: DateTime.parse(json['startDate'] as String),
       practice: json['practice'] as int,
-      isVerified: json['isVerified'],
+      isVerified: json['isVerified'] as String?,
     );
 
 Map<String, dynamic> _$$EmployeeImplToJson(_$EmployeeImpl instance) =>
