@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:dataspin_academy/controller/bloc/category_filter/course_filter_by_type_bloc.dart';
 import 'package:dataspin_academy/controller/bloc/course/course_price/cubit/course_with_price_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/course/course_type/course_type_cubit.dart';
 import 'package:dataspin_academy/controller/service/api/app_ip.dart';
@@ -26,11 +27,9 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   @override
   void initState() {
     super.initState();
-    context.read<CourseTypeCubit>().state.maybeWhen(
-          orElse: () {},
-          get: (result) {},
-        );
   }
+
+  int selectIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -51,10 +50,31 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                 return state.maybeWhen(
                   orElse: () => const SizedBox(),
                   getting: () => const CircularProgressIndicator(),
-                  get: (result) => SelectbleRow(
+                  get: (item) => SelectbleRow(
                     listRes:
-                        ["Barchasi"] + result.data.map((e) => e.name).toList(),
-                    onChangedIndex: (index) {},
+                        ["Barchasi"] + item.data.map((e) => e.name).toList(),
+                    onChangedIndex: (index) {
+                      if (index == 0) {
+                        context.read<CourseWithPriceCubit>().state.maybeWhen(
+                            orElse: () {},
+                            get: (result) {
+                              context
+                                  .read<CourseFilterByTypeBloc>()
+                                  .add(CourseFilterByTypeEvent.all(result));
+                            });
+                      } else {
+                        context.read<CourseWithPriceCubit>().state.maybeWhen(
+                            orElse: () {},
+                            get: (result) {
+                              context
+                                  .read<CourseFilterByTypeBloc>()
+                                  .add(CourseFilterByTypeEvent.byId(
+                                    result,
+                                    item.data![index - 1]!.id,
+                                  ));
+                            });
+                      }
+                    },
                   ),
                 );
               },
@@ -72,30 +92,36 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
               ),
             ),
             SizedBox(height: 8.h),
-            BlocBuilder<CourseWithPriceCubit, CourseWithPriceState>(
+            BlocBuilder<CourseFilterByTypeBloc, CourseFilterByTypeState>(
               builder: (context, state) => state.maybeWhen(
                   orElse: () => const SizedBox(),
-                  get: (result) {
-                    return Expanded(
-                      child: ListView.builder(
-                        physics: const BouncingScrollPhysics(),
-                        itemCount: result.data!.length,
-                        itemBuilder: (context, index) => Padding(
-                          padding: const EdgeInsets.only(bottom: 24),
-                          child: CategoriesChips(
-                            image:
-                                "${AppIp.ip}/api/image/?id=${result.data![index].course.previewPhoto.id}",
-                            courseName: result.data![index].course.name,
-                            personImage:
-                                "${AppIp.ip}/api/image/?id=${result.data![index].course.courseType.photo.id}",
-                            type: result.data![index].course.courseType.name,
-                            personName: result.data![index].mentor == null
-                                ? "Ism ma'lum emas"
-                                : "${result.data![index].mentor!.employee.face.firstname} ${result.data![index].mentor!.employee.face.lastname}",
-                          ),
-                        ),
-                      ),
-                    );
+                  data: (result) {
+                    return result.data!.isEmpty
+                        ? const Center(
+                            child: Text("Malumot yo'q"),
+                          )
+                        : Expanded(
+                            child: ListView.builder(
+                              physics: const BouncingScrollPhysics(),
+                              itemCount: result.data!.length,
+                              itemBuilder: (context, index) => Padding(
+                                padding: const EdgeInsets.only(bottom: 24),
+                                child: CategoriesChips(
+                                  image:
+                                      "${AppIp.ip}/api/image/?id=${result.data![index]!.course.previewPhoto.id}",
+                                  courseName: result.data![index]!.course.name,
+                                  personImage:
+                                      "${AppIp.ip}/api/image/?id=${result.data![index]!.course.courseType.photo.id}",
+                                  type: result
+                                      .data![index]!.course.courseType.name,
+                                  personName: result.data![index]!.mentor ==
+                                          null
+                                      ? "Ism ma'lum emas"
+                                      : "${result.data![index]!.mentor!.employee.face.firstname} ${result.data![index]!.mentor!.employee.face.lastname}",
+                                ),
+                              ),
+                            ),
+                          );
                   }),
             )
           ],

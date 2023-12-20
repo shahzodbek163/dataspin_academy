@@ -35,16 +35,16 @@ class CoursePart extends StatelessWidget {
                       addAutomaticKeepAlives: true,
                       scrollDirection: Axis.horizontal,
                       physics: const BouncingScrollPhysics(),
-                      itemCount: result.data.length,
+                      itemCount: result.data!.length,
                       itemBuilder: (context, index) => Padding(
                         padding: EdgeInsets.only(right: 6.w),
-                        child: result.data[index].course.status
+                        child: result.data![index]!.course.status
                             ? CourseCardWidget(
-                                courseWithPriceData: result.data[index],
+                                courseWithPriceData: result.data![index]!,
                                 onTap: () {
                                   context
                                       .read<CourseInfoProvider>()
-                                      .change(result.data[index]);
+                                      .change(result.data![index]!);
 
                                   context.push(CourseInfoScreen.routeName);
                                 },

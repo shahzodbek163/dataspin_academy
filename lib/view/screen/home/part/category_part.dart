@@ -1,5 +1,8 @@
+import 'package:dataspin_academy/controller/bloc/category_filter/course_filter_by_type_bloc.dart';
+import 'package:dataspin_academy/controller/bloc/course/course_price/cubit/course_with_price_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/course/course_type/course_type_cubit.dart';
 import 'package:dataspin_academy/controller/provider/category_info_provider.dart';
+import 'package:dataspin_academy/model/course/course_price/response/course_with_price_response.dart';
 import 'package:dataspin_academy/view/screen/categories/screen/categorie_screen.dart';
 import 'package:dataspin_academy/view/screen/home/widget/chips_widget.dart';
 import 'package:dataspin_academy/view/screen/home/widget/row_text_widget.dart';
@@ -26,7 +29,16 @@ class CategoryPart extends StatelessWidget {
             InkWell(
               borderRadius: BorderRadius.circular(20),
               onTap: () {
-                context.push(CategoriesScreen.routeName);
+                context.read<CourseWithPriceCubit>().state.maybeWhen(
+                      orElse: () {},
+                      get: (result) {
+                        context
+                            .read<CourseFilterByTypeBloc>()
+                            .add(CourseFilterByTypeEvent.all(result));
+
+                        context.push(CategoriesScreen.routeName);
+                      },
+                    );
               },
               child: Text(
                 "Barchasi",

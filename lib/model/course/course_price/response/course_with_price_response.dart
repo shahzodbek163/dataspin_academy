@@ -19,9 +19,12 @@ String courseWithPriceResponseToJson(CourseWithPriceResponse data) =>
 @freezed
 class CourseWithPriceResponse with _$CourseWithPriceResponse {
   const factory CourseWithPriceResponse({
-    @JsonKey(name: "status") required bool status,
-    @JsonKey(name: "message") required String message,
-    @JsonKey(name: "data") required List<CourseWithPriceData> data,
+    @JsonKey(name: "status")
+    required bool status,
+    @JsonKey(name: "message")
+    required String message,
+    @JsonKey(name: "data")
+    required List<CourseWithPriceData?>? data,
   }) = _CourseWithPriceResponse;
 
   factory CourseWithPriceResponse.fromJson(Map<String, dynamic> json) =>

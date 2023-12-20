@@ -44,7 +44,6 @@ class _SelectbleRowState extends State<SelectbleRow> {
               onTap: () {
                 selectIndex = index;
                 widget.onChangedIndex.call(selectIndex);
-                print(selectIndex);
 
                 setState(() {});
               },
