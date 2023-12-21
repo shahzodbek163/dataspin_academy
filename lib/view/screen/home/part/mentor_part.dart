@@ -38,35 +38,31 @@ class _MentorPartState extends State<MentorPart> {
               get: (result) => SizedBox(
                 height: ((155 + 40) * result.data.length).h,
                 child: ListView.builder(
-                  itemCount: result.data.length,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemBuilder: (context, index) => Padding(
-                    padding: const EdgeInsets.only(bottom: 16),
-                    child: InkWell(
-                      borderRadius: BorderRadius.circular(8),
-                      onTap: () {
-                        log(context.read<ProfileIdProvider>().id);
+                    itemCount: result.data.length,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      if (result.data.isNotEmpty) {
+                        result.data;
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: 16),
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(8),
+                            onTap: () {
+                              log(context.read<ProfileIdProvider>().id);
 
-                        context.read<ProfileIdProvider>().changeId(index);
-                        log(context.read<ProfileIdProvider>().id);
-                        context.push(ProfileScreen.routeName);
-                      },
-                      child: MentorCard(
-                        image:
-                            "${AppIp.ip}/api/image/?id=${result.data[index].courses[index].previewPhoto.id}",
-                        name:
-                            "${result.data[index].employee.face.firstname} ${result.data[index].employee.face.lastname}",
-                        information:
-                            "${result.data[index].courses.map((e) => e.courseType.name).join(", ")} developer",
-                        numStudents: "+12 400",
-                        courses:
-                            "${result.data[index].courses.length} ta kurslar",
-                        rating:
-                            "${result.data[index].subMentors[index].practice} yillik tajriba",
-                      ),
-                    ),
-                  ),
-                ),
+                              context.read<ProfileIdProvider>().changeId(index);
+                              log(context.read<ProfileIdProvider>().id);
+                              context.push(ProfileScreen.routeName);
+                            },
+                            child: MentorCard(
+                              mentorResultData: result.data[index],
+                            ),
+                          ),
+                        );
+                      } else {
+                        return const SizedBox();
+                      }
+                    }),
               ),
             );
           },

@@ -45,7 +45,6 @@ class ValidationBloc extends Bloc<ValidationEvent, ValidationState> {
               int dayI = int.parse(day);
               int monthI = int.parse(month);
               int yearI = int.parse(year);
-              print("$dayI $monthI $yearI");
 
               if (((dayI >= 1 && dayI <= 31) &&
                   (monthI >= 1 && monthI <= 12) &&
@@ -58,17 +57,18 @@ class ValidationBloc extends Bloc<ValidationEvent, ValidationState> {
           }
 
           if (validationType == ValidationType.phone) {
-            if (text.length <= 9) {
-              print("birinchi if");
-              emit(const ValidationState.formatState(false));
-            } else if (text.length >= 9) {
-              String code = text.substring(6, 9);
+            if (text.length >= 10) {
+              String code = text.substring(6, 8);
               if (PhoneCode.phoneCodes.contains(code)) {
-                print("ikkinchi if");
-                emit(const ValidationState.formatState(true));
+                if (text.length == 19) {
+                  emit(const ValidationState.formatState(true));
+                }
+
               } else {
                 emit(const ValidationState.formatState(false));
               }
+            } else {
+              emit(const ValidationState.emptyState(false));
             }
           }
         },

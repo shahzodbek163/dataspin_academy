@@ -94,19 +94,27 @@ class _CourseCardWidgetState extends State<CourseCardWidget> {
                       widget.courseWithPriceData.course.courseType.name,
                       style: AppFonts.h2w600,
                     ),
-                    InkWell(
-                      borderRadius: BorderRadius.circular(6),
-                      onTap: widget.onTap,
-                      child: Container(
-                        height: 32.h,
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            color: AppColor.secondary,
-                            borderRadius: BorderRadius.circular(6)),
-                        child: Text("Ro'yxatdan o'tish",
-                            style: AppFonts.label
-                                .copyWith(color: AppColor.primary)),
+                    Container(
+                      decoration: BoxDecoration(
+                          color: AppColor.secondary,
+                          borderRadius: BorderRadius.circular(6)),
+                      child: Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          onTap: widget.onTap,
+                          borderRadius: BorderRadius.circular(6),
+                          child: Container(
+                            height: 32.h,
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                            child: Text("Ro'yxatdan o'tish",
+                                style: AppFonts.label
+                                    .copyWith(color: AppColor.primary)),
+                          ),
+                        ),
                       ),
                     )
                   ],

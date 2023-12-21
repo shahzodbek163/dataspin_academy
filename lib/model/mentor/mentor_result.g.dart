@@ -11,7 +11,7 @@ _$MentorResultImpl _$$MentorResultImplFromJson(Map<String, dynamic> json) =>
       status: json['status'] as bool,
       message: json['message'] as String,
       data: (json['data'] as List<dynamic>)
-          .map((e) => Datum.fromJson(e as Map<String, dynamic>))
+          .map((e) => MentorResultData.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -22,7 +22,9 @@ Map<String, dynamic> _$$MentorResultImplToJson(_$MentorResultImpl instance) =>
       'data': instance.data,
     };
 
-_$DatumImpl _$$DatumImplFromJson(Map<String, dynamic> json) => _$DatumImpl(
+_$MentorResultDataImpl _$$MentorResultDataImplFromJson(
+        Map<String, dynamic> json) =>
+    _$MentorResultDataImpl(
       id: json['id'] as int,
       date: DateTime.parse(json['date'] as String),
       courses: (json['courses'] as List<dynamic>)
@@ -34,7 +36,8 @@ _$DatumImpl _$$DatumImplFromJson(Map<String, dynamic> json) => _$DatumImpl(
       employee: Employee.fromJson(json['employee'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$DatumImplToJson(_$DatumImpl instance) =>
+Map<String, dynamic> _$$MentorResultDataImplToJson(
+        _$MentorResultDataImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'date': instance.date.toIso8601String(),

@@ -53,20 +53,23 @@ class MainTextField extends StatelessWidget {
                     bloc: validationBloc,
                     builder: (context, state) {
                       return state.when(
-                          emptyState: (isEmpty) => isEmpty
-                              ? Text(
-                                  "(Ma'lumot kiritilishi zarur)",
-                                  style: AppFonts.label.copyWith(
-                                      color: AppColor.errorColor, fontSize: 12),
-                                )
-                              : const SizedBox(),
-                          formatState: (isValid) => !isValid
+                        emptyState: (isEmpty) => isEmpty
+                            ? Text(
+                                "(Ma'lumot kiritilishi zarur)",
+                                style: AppFonts.label.copyWith(
+                                    color: AppColor.errorColor, fontSize: 12),
+                              )
+                            : const SizedBox(),
+                        formatState: (isValid) {
+                          return !isValid
                               ? Text(
                                   "(Noto'g'ri ma'lumot kiritildi)",
                                   style: AppFonts.label.copyWith(
                                       color: AppColor.errorColor, fontSize: 12),
                                 )
-                              : const SizedBox());
+                              : const SizedBox();
+                        },
+                      );
                     })
                 : const SizedBox()
           ],
@@ -90,6 +93,7 @@ class MainTextField extends StatelessWidget {
                 validationBloc!
                     .add(ValidationEvent.format(validationType!, value));
               }
+
               if (context.read<CheckTapCubit>().state) {
                 if (onReq) {
                   validationBloc!.add(ValidationEvent.empty(value));

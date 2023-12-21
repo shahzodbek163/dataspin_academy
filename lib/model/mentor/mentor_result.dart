@@ -22,15 +22,15 @@ class MentorResult with _$MentorResult {
     @JsonKey(name: "message")
     required String message,
     @JsonKey(name: "data")
-    required List<Datum> data,
+    required List<MentorResultData> data,
   }) = _MentorResult;
 
   factory MentorResult.fromJson(Map<String, dynamic> json) => _$MentorResultFromJson(json);
 }
 
 @freezed
-class Datum with _$Datum {
-  const factory Datum({
+class MentorResultData with _$MentorResultData {
+  const factory MentorResultData({
     @JsonKey(name: "id")
     required int id,
     @JsonKey(name: "date")
@@ -41,9 +41,9 @@ class Datum with _$Datum {
     required List<Employee> subMentors,
     @JsonKey(name: "employee")
     required Employee employee,
-  }) = _Datum;
+  }) = _MentorResultData;
 
-  factory Datum.fromJson(Map<String, dynamic> json) => _$DatumFromJson(json);
+  factory MentorResultData.fromJson(Map<String, dynamic> json) => _$MentorResultDataFromJson(json);
 }
 
 @freezed

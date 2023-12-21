@@ -9,9 +9,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-class CoursePart extends StatelessWidget {
+class CoursePart extends StatefulWidget {
   const CoursePart({super.key});
 
+  @override
+  State<CoursePart> createState() => _CoursePartState();
+}
+
+class _CoursePartState extends State<CoursePart> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -45,6 +50,7 @@ class CoursePart extends StatelessWidget {
                                   context
                                       .read<CourseInfoProvider>()
                                       .change(result.data![index]!);
+
 
                                   context.push(CourseInfoScreen.routeName);
                                 },

@@ -192,18 +192,13 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                           formatState: (isValid) => isValid,
                         );
 
-                        print("JJJ");
-                        print(isEmptyFirstname);
-                        print(isEmptyLastname);
-                        print("$isEmptyNumber number");
-                        print(isValidNumber);
+                        print("$isEmptyNumber empty");
+                        print("$isValidNumber valid");
 
                         if (!isEmptyFirstname &&
                             !isEmptyLastname &&
                             !isEmptyNumber &&
                             isValidNumber) {
-                          print("if ichi");
-
                           CreateAccountRequest createAccountRequest =
                               CreateAccountRequest(
                             firstname: firstnameController.text.trim(),

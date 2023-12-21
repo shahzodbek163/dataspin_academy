@@ -73,30 +73,29 @@ class _SendCodeScreenState extends State<SendCodeScreen> {
                         orElse: () => false, sending: () => true),
                     text: "Kodni olish",
                     onTap: () {
-                      print("${phoneController.text} opp");
                       context.read<CheckTapCubit>().change(true);
+
                       validationBloc.add(
                           ValidationEvent.empty(phoneController.text.trim()));
                       validationBloc.add(ValidationEvent.accept(
                           ValidationType.phone, phoneController.text.trim()));
-
+                      bool isValid = validationBloc.state.maybeWhen(
+                        orElse: () => false,
+                        formatState: (isValid) => isValid,
+                      );
                       bool isEmptyNumber = validationBloc.state.maybeWhen(
                         orElse: () => false,
                         emptyState: (isEmpty) => isEmpty,
                       );
-                      bool isValidNumber = validationBloc.state.maybeWhen(
-                        orElse: () => false,
-                        formatState: (isValid) => isValid,
-                      );
-                      print("$isEmptyNumber bool");
-                      print("$isValidNumber valid");
 
-                      if (!isEmptyNumber && isValidNumber) {
+                      print("$isEmptyNumber bool");
+                      print("$isValid valid");
+
+                      if (!isEmptyNumber && isValid) {
                         print("if ni ichi");
                         context
                             .read<PhoneNumberProvider>()
                             .changePhoneNum(phoneController.text.trim());
-                        log("${phoneController.text.trim()} wdaudwbyw");
                         context
                             .read<SendCodeCubit>()
                             .sendCode(phoneController.text.trim())

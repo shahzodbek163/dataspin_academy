@@ -65,6 +65,7 @@ dependencies:
   html: ^0.15.4
   animated_flip_counter: ^0.2.6
   gap: ^3.0.1
+  marquee: ^2.2.3
 
 dev_dependencies:
   flutter_test:

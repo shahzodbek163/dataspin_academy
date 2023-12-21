@@ -25,7 +25,7 @@ mixin _$MentorResult {
   @JsonKey(name: "message")
   String get message => throw _privateConstructorUsedError;
   @JsonKey(name: "data")
-  List<Datum> get data => throw _privateConstructorUsedError;
+  List<MentorResultData> get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,7 +42,7 @@ abstract class $MentorResultCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: "status") bool status,
       @JsonKey(name: "message") String message,
-      @JsonKey(name: "data") List<Datum> data});
+      @JsonKey(name: "data") List<MentorResultData> data});
 }
 
 /// @nodoc
@@ -74,7 +74,7 @@ class _$MentorResultCopyWithImpl<$Res, $Val extends MentorResult>
       data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as List<Datum>,
+              as List<MentorResultData>,
     ) as $Val);
   }
 }
@@ -90,7 +90,7 @@ abstract class _$$MentorResultImplCopyWith<$Res>
   $Res call(
       {@JsonKey(name: "status") bool status,
       @JsonKey(name: "message") String message,
-      @JsonKey(name: "data") List<Datum> data});
+      @JsonKey(name: "data") List<MentorResultData> data});
 }
 
 /// @nodoc
@@ -120,7 +120,7 @@ class __$$MentorResultImplCopyWithImpl<$Res>
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
-              as List<Datum>,
+              as List<MentorResultData>,
     ));
   }
 }
@@ -131,7 +131,7 @@ class _$MentorResultImpl implements _MentorResult {
   const _$MentorResultImpl(
       {@JsonKey(name: "status") required this.status,
       @JsonKey(name: "message") required this.message,
-      @JsonKey(name: "data") required final List<Datum> data})
+      @JsonKey(name: "data") required final List<MentorResultData> data})
       : _data = data;
 
   factory _$MentorResultImpl.fromJson(Map<String, dynamic> json) =>
@@ -143,10 +143,10 @@ class _$MentorResultImpl implements _MentorResult {
   @override
   @JsonKey(name: "message")
   final String message;
-  final List<Datum> _data;
+  final List<MentorResultData> _data;
   @override
   @JsonKey(name: "data")
-  List<Datum> get data {
+  List<MentorResultData> get data {
     if (_data is EqualUnmodifiableListView) return _data;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_data);
@@ -190,7 +190,7 @@ abstract class _MentorResult implements MentorResult {
   const factory _MentorResult(
           {@JsonKey(name: "status") required final bool status,
           @JsonKey(name: "message") required final String message,
-          @JsonKey(name: "data") required final List<Datum> data}) =
+          @JsonKey(name: "data") required final List<MentorResultData> data}) =
       _$MentorResultImpl;
 
   factory _MentorResult.fromJson(Map<String, dynamic> json) =
@@ -204,19 +204,19 @@ abstract class _MentorResult implements MentorResult {
   String get message;
   @override
   @JsonKey(name: "data")
-  List<Datum> get data;
+  List<MentorResultData> get data;
   @override
   @JsonKey(ignore: true)
   _$$MentorResultImplCopyWith<_$MentorResultImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-Datum _$DatumFromJson(Map<String, dynamic> json) {
-  return _Datum.fromJson(json);
+MentorResultData _$MentorResultDataFromJson(Map<String, dynamic> json) {
+  return _MentorResultData.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Datum {
+mixin _$MentorResultData {
   @JsonKey(name: "id")
   int get id => throw _privateConstructorUsedError;
   @JsonKey(name: "date")
@@ -230,13 +230,15 @@ mixin _$Datum {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $DatumCopyWith<Datum> get copyWith => throw _privateConstructorUsedError;
+  $MentorResultDataCopyWith<MentorResultData> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DatumCopyWith<$Res> {
-  factory $DatumCopyWith(Datum value, $Res Function(Datum) then) =
-      _$DatumCopyWithImpl<$Res, Datum>;
+abstract class $MentorResultDataCopyWith<$Res> {
+  factory $MentorResultDataCopyWith(
+          MentorResultData value, $Res Function(MentorResultData) then) =
+      _$MentorResultDataCopyWithImpl<$Res, MentorResultData>;
   @useResult
   $Res call(
       {@JsonKey(name: "id") int id,
@@ -249,9 +251,9 @@ abstract class $DatumCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$DatumCopyWithImpl<$Res, $Val extends Datum>
-    implements $DatumCopyWith<$Res> {
-  _$DatumCopyWithImpl(this._value, this._then);
+class _$MentorResultDataCopyWithImpl<$Res, $Val extends MentorResultData>
+    implements $MentorResultDataCopyWith<$Res> {
+  _$MentorResultDataCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -301,10 +303,11 @@ class _$DatumCopyWithImpl<$Res, $Val extends Datum>
 }
 
 /// @nodoc
-abstract class _$$DatumImplCopyWith<$Res> implements $DatumCopyWith<$Res> {
-  factory _$$DatumImplCopyWith(
-          _$DatumImpl value, $Res Function(_$DatumImpl) then) =
-      __$$DatumImplCopyWithImpl<$Res>;
+abstract class _$$MentorResultDataImplCopyWith<$Res>
+    implements $MentorResultDataCopyWith<$Res> {
+  factory _$$MentorResultDataImplCopyWith(_$MentorResultDataImpl value,
+          $Res Function(_$MentorResultDataImpl) then) =
+      __$$MentorResultDataImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -319,11 +322,11 @@ abstract class _$$DatumImplCopyWith<$Res> implements $DatumCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$DatumImplCopyWithImpl<$Res>
-    extends _$DatumCopyWithImpl<$Res, _$DatumImpl>
-    implements _$$DatumImplCopyWith<$Res> {
-  __$$DatumImplCopyWithImpl(
-      _$DatumImpl _value, $Res Function(_$DatumImpl) _then)
+class __$$MentorResultDataImplCopyWithImpl<$Res>
+    extends _$MentorResultDataCopyWithImpl<$Res, _$MentorResultDataImpl>
+    implements _$$MentorResultDataImplCopyWith<$Res> {
+  __$$MentorResultDataImplCopyWithImpl(_$MentorResultDataImpl _value,
+      $Res Function(_$MentorResultDataImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -335,7 +338,7 @@ class __$$DatumImplCopyWithImpl<$Res>
     Object? subMentors = null,
     Object? employee = null,
   }) {
-    return _then(_$DatumImpl(
+    return _then(_$MentorResultDataImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -362,8 +365,8 @@ class __$$DatumImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$DatumImpl implements _Datum {
-  const _$DatumImpl(
+class _$MentorResultDataImpl implements _MentorResultData {
+  const _$MentorResultDataImpl(
       {@JsonKey(name: "id") required this.id,
       @JsonKey(name: "date") required this.date,
       @JsonKey(name: "courses") required final List<Course> courses,
@@ -372,8 +375,8 @@ class _$DatumImpl implements _Datum {
       : _courses = courses,
         _subMentors = subMentors;
 
-  factory _$DatumImpl.fromJson(Map<String, dynamic> json) =>
-      _$$DatumImplFromJson(json);
+  factory _$MentorResultDataImpl.fromJson(Map<String, dynamic> json) =>
+      _$$MentorResultDataImplFromJson(json);
 
   @override
   @JsonKey(name: "id")
@@ -405,14 +408,14 @@ class _$DatumImpl implements _Datum {
 
   @override
   String toString() {
-    return 'Datum(id: $id, date: $date, courses: $courses, subMentors: $subMentors, employee: $employee)';
+    return 'MentorResultData(id: $id, date: $date, courses: $courses, subMentors: $subMentors, employee: $employee)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DatumImpl &&
+            other is _$MentorResultDataImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.date, date) || other.date == date) &&
             const DeepCollectionEquality().equals(other._courses, _courses) &&
@@ -435,27 +438,29 @@ class _$DatumImpl implements _Datum {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$DatumImplCopyWith<_$DatumImpl> get copyWith =>
-      __$$DatumImplCopyWithImpl<_$DatumImpl>(this, _$identity);
+  _$$MentorResultDataImplCopyWith<_$MentorResultDataImpl> get copyWith =>
+      __$$MentorResultDataImplCopyWithImpl<_$MentorResultDataImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$DatumImplToJson(
+    return _$$MentorResultDataImplToJson(
       this,
     );
   }
 }
 
-abstract class _Datum implements Datum {
-  const factory _Datum(
+abstract class _MentorResultData implements MentorResultData {
+  const factory _MentorResultData(
           {@JsonKey(name: "id") required final int id,
           @JsonKey(name: "date") required final DateTime date,
           @JsonKey(name: "courses") required final List<Course> courses,
           @JsonKey(name: "subMentors") required final List<Employee> subMentors,
           @JsonKey(name: "employee") required final Employee employee}) =
-      _$DatumImpl;
+      _$MentorResultDataImpl;
 
-  factory _Datum.fromJson(Map<String, dynamic> json) = _$DatumImpl.fromJson;
+  factory _MentorResultData.fromJson(Map<String, dynamic> json) =
+      _$MentorResultDataImpl.fromJson;
 
   @override
   @JsonKey(name: "id")
@@ -474,7 +479,7 @@ abstract class _Datum implements Datum {
   Employee get employee;
   @override
   @JsonKey(ignore: true)
-  _$$DatumImplCopyWith<_$DatumImpl> get copyWith =>
+  _$$MentorResultDataImplCopyWith<_$MentorResultDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

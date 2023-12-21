@@ -1,28 +1,16 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dataspin_academy/controller/service/api/app_ip.dart';
+import 'package:dataspin_academy/model/mentor/mentor_result.dart';
 import 'package:dataspin_academy/view/value/app_color.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:marquee/marquee.dart';
 
 class MentorCard extends StatefulWidget {
-  final String image;
-  final String name;
-  final String information;
-  final String numStudents;
-  final String courses;
-  final String rating;
-  final bool? isVerified;
+  final MentorResultData mentorResultData;
 
-  const MentorCard({
-    super.key,
-    required this.image,
-    required this.name,
-    required this.information,
-    required this.numStudents,
-    required this.courses,
-    required this.rating,
-    this.isVerified,
-  });
+  const MentorCard({super.key, required this.mentorResultData});
 
   @override
   State<MentorCard> createState() => _MentorCardState();
@@ -67,7 +55,7 @@ class _MentorCardState extends State<MentorCard> {
                           shape: BoxShape.circle,
                           image: DecorationImage(
                             image: CachedNetworkImageProvider(
-                              widget.image,
+                              "${AppIp.ip}/api/image/?id=${widget.mentorResultData.employee.photo.id}",
                               headers: const {
                                 'ngrok-skip-browser-warning': "true"
                               },
@@ -81,7 +69,7 @@ class _MentorCardState extends State<MentorCard> {
                         ),
                       ),
                     ),
-                    widget.isVerified == true
+                    widget.mentorResultData.employee.isVerified == true
                         ? Positioned(
                             bottom: -8.h,
                             child: Image.asset(
@@ -100,15 +88,24 @@ class _MentorCardState extends State<MentorCard> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget.name,
+                      "${widget.mentorResultData.employee.face.firstname} ${widget.mentorResultData.employee.face.lastname}",
                       style: AppFonts.h4,
                     ),
                     SizedBox(height: 6.h),
-                    Text(
-                      widget.information,
-                      style: AppFonts.label.copyWith(
-                        color: AppColor.txtSecondColor,
-                      ),
+                    SizedBox(
+                      height: 30.h,
+                      width: 251.w,
+                      child: widget.mentorResultData.courses.length > 1 ? Marquee(
+
+                        numberOfRounds: 1,
+                        accelerationDuration: const Duration(seconds: 1),
+                        text: widget.mentorResultData.courses
+                            .map((e) => e.name)
+                            .toString(),
+                        style: AppFonts.label.copyWith(
+                          color: AppColor.txtSecondColor,
+                        ),
+                      ) : Text(widget.mentorResultData.courses.first.name, ),
                     )
                   ],
                 ),
@@ -129,35 +126,13 @@ class _MentorCardState extends State<MentorCard> {
                     child: Row(
                       children: [
                         Image.asset(
-                          "assets/icons/profile2user.png",
-                          width: 16.w,
-                          height: 16.w,
-                        ),
-                        SizedBox(width: 8.w),
-                        Text(
-                          widget.numStudents,
-                          style: AppFonts.body12Regular,
-                        )
-                      ],
-                    ),
-                  ),
-                  Container(
-                    height: 20.h,
-                    width: 1.w,
-                    color: AppColor.secondary,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: Row(
-                      children: [
-                        Image.asset(
                           "assets/icons/book.png",
                           width: 16.w,
                           height: 16.w,
                         ),
                         SizedBox(width: 8.w),
                         Text(
-                          widget.courses,
+                          widget.mentorResultData.courses.length.toString(),
                           style: AppFonts.body12Regular,
                         )
                       ],
@@ -179,7 +154,7 @@ class _MentorCardState extends State<MentorCard> {
                         ),
                         SizedBox(width: 8.w),
                         Text(
-                          widget.rating,
+                          "${widget.mentorResultData.employee.practice} yillik tajriba",
                           style: AppFonts.body12Regular,
                         )
                       ],
