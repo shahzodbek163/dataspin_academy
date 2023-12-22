@@ -77,8 +77,9 @@ class _SendCodeScreenState extends State<SendCodeScreen> {
 
                       validationBloc.add(
                           ValidationEvent.empty(phoneController.text.trim()));
-                      validationBloc.add(ValidationEvent.accept(
+                      validationBloc.add(ValidationEvent.format(
                           ValidationType.phone, phoneController.text.trim()));
+
                       bool isValid = validationBloc.state.maybeWhen(
                         orElse: () => false,
                         formatState: (isValid) => isValid,
@@ -92,7 +93,6 @@ class _SendCodeScreenState extends State<SendCodeScreen> {
                       print("$isValid valid");
 
                       if (!isEmptyNumber && isValid) {
-                        print("if ni ichi");
                         context
                             .read<PhoneNumberProvider>()
                             .changePhoneNum(phoneController.text.trim());
