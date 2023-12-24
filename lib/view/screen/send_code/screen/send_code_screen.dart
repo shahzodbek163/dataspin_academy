@@ -1,11 +1,9 @@
-import 'dart:developer';
-
 import 'package:dataspin_academy/controller/bloc/create_account/check_tap/cubit/check_tap_cubit.dart';
-import 'package:dataspin_academy/controller/bloc/create_account/create_account_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/create_account/empty_validation/validation_bloc.dart';
+import 'package:dataspin_academy/controller/bloc/create_account/validation/cubit/validation_auth_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/send_code/send_code_cubit.dart';
 import 'package:dataspin_academy/controller/provider/phone_number_provider.dart';
-import 'package:dataspin_academy/model/auth/sendcode/send_code_result.dart';
+import 'package:dataspin_academy/model/enum/screen_type.dart';
 import 'package:dataspin_academy/view/screen/check_code/screen/check_code_srceen.dart';
 import 'package:dataspin_academy/view/value/app_color.dart';
 import 'package:dataspin_academy/view/value/app_image.dart';
@@ -29,7 +27,7 @@ class SendCodeScreen extends StatefulWidget {
 
 class _SendCodeScreenState extends State<SendCodeScreen> {
   final phoneController = TextEditingController();
-  final validationBloc = ValidationBloc();
+  final validationAuthCubit = ValidationAuthCubit();
 
   @override
   Widget build(BuildContext context) {
@@ -62,8 +60,9 @@ class _SendCodeScreenState extends State<SendCodeScreen> {
                 text: "Telefon raqam",
                 keyboardType: TextInputType.phone,
                 maskTextInputFormatter: InputMasks.phoneInputMask,
-                validationBloc: validationBloc,
                 validationType: ValidationType.phone,
+                screenType: ScreenType.sendCode,
+                validationAuthCubit: validationAuthCubit,
               ),
               SizedBox(height: 85.h),
               BlocBuilder<SendCodeCubit, SendCodeState>(
@@ -75,16 +74,14 @@ class _SendCodeScreenState extends State<SendCodeScreen> {
                     onTap: () {
                       context.read<CheckTapCubit>().change(true);
 
-                      validationBloc.add(
-                          ValidationEvent.empty(phoneController.text.trim()));
-                      validationBloc.add(ValidationEvent.format(
-                          ValidationType.phone, phoneController.text.trim()));
+                      validationAuthCubit.validation(ValidationAuthType.phone,
+                          phoneController.text.trim());
 
-                      bool isValid = validationBloc.state.maybeWhen(
+                      bool isValid = validationAuthCubit.state.maybeWhen(
                         orElse: () => false,
                         formatState: (isValid) => isValid,
                       );
-                      bool isEmptyNumber = validationBloc.state.maybeWhen(
+                      bool isEmptyNumber = validationAuthCubit.state.maybeWhen(
                         orElse: () => false,
                         emptyState: (isEmpty) => isEmpty,
                       );

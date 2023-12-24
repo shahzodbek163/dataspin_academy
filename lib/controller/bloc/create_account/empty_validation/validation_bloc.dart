@@ -61,9 +61,9 @@ class ValidationBloc extends Bloc<ValidationEvent, ValidationState> {
               String code = text.substring(6, 8);
               if (PhoneCode.phoneCodes.contains(code)) {
                 if (text.length == 19) {
+                  print("19");
                   emit(const ValidationState.formatState(true));
                 }
-
               } else {
                 emit(const ValidationState.formatState(false));
               }

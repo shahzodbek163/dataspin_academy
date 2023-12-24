@@ -23,7 +23,7 @@ CreateAccountResponse _$CreateAccountResponseFromJson(
 mixin _$CreateAccountResponse {
   bool get status => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
-  Data get data => throw _privateConstructorUsedError;
+  Data? get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,9 +37,9 @@ abstract class $CreateAccountResponseCopyWith<$Res> {
           $Res Function(CreateAccountResponse) then) =
       _$CreateAccountResponseCopyWithImpl<$Res, CreateAccountResponse>;
   @useResult
-  $Res call({bool status, String message, Data data});
+  $Res call({bool status, String message, Data? data});
 
-  $DataCopyWith<$Res> get data;
+  $DataCopyWith<$Res>? get data;
 }
 
 /// @nodoc
@@ -58,7 +58,7 @@ class _$CreateAccountResponseCopyWithImpl<$Res,
   $Res call({
     Object? status = null,
     Object? message = null,
-    Object? data = null,
+    Object? data = freezed,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -69,17 +69,21 @@ class _$CreateAccountResponseCopyWithImpl<$Res,
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      data: null == data
+      data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as Data,
+              as Data?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $DataCopyWith<$Res> get data {
-    return $DataCopyWith<$Res>(_value.data, (value) {
+  $DataCopyWith<$Res>? get data {
+    if (_value.data == null) {
+      return null;
+    }
+
+    return $DataCopyWith<$Res>(_value.data!, (value) {
       return _then(_value.copyWith(data: value) as $Val);
     });
   }
@@ -94,10 +98,10 @@ abstract class _$$CreateAccountResponseImplCopyWith<$Res>
       __$$CreateAccountResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool status, String message, Data data});
+  $Res call({bool status, String message, Data? data});
 
   @override
-  $DataCopyWith<$Res> get data;
+  $DataCopyWith<$Res>? get data;
 }
 
 /// @nodoc
@@ -114,7 +118,7 @@ class __$$CreateAccountResponseImplCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? message = null,
-    Object? data = null,
+    Object? data = freezed,
   }) {
     return _then(_$CreateAccountResponseImpl(
       status: null == status
@@ -125,10 +129,10 @@ class __$$CreateAccountResponseImplCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      data: null == data
+      data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as Data,
+              as Data?,
     ));
   }
 }
@@ -147,7 +151,7 @@ class _$CreateAccountResponseImpl implements _CreateAccountResponse {
   @override
   final String message;
   @override
-  final Data data;
+  final Data? data;
 
   @override
   String toString() {
@@ -187,7 +191,7 @@ abstract class _CreateAccountResponse implements CreateAccountResponse {
   const factory _CreateAccountResponse(
       {required final bool status,
       required final String message,
-      required final Data data}) = _$CreateAccountResponseImpl;
+      required final Data? data}) = _$CreateAccountResponseImpl;
 
   factory _CreateAccountResponse.fromJson(Map<String, dynamic> json) =
       _$CreateAccountResponseImpl.fromJson;
@@ -197,7 +201,7 @@ abstract class _CreateAccountResponse implements CreateAccountResponse {
   @override
   String get message;
   @override
-  Data get data;
+  Data? get data;
   @override
   @JsonKey(ignore: true)
   _$$CreateAccountResponseImplCopyWith<_$CreateAccountResponseImpl>

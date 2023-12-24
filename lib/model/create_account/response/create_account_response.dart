@@ -21,7 +21,7 @@ class CreateAccountResponse with _$CreateAccountResponse {
   const factory CreateAccountResponse({
     required bool status,
     required String message,
-    required Data data,
+    required Data? data,
   }) = _CreateAccountResponse;
 
   factory CreateAccountResponse.fromJson(Map<String, dynamic> json) =>

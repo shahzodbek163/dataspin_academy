@@ -1,6 +1,6 @@
 part of 'validation_bloc.dart';
 
-enum ValidationType { date, phone }
+enum ValidationType { text, date, phone }
 
 @freezed
 class ValidationEvent with _$ValidationEvent {

@@ -48,7 +48,8 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (context) => CourseInfoProvider()),
         BlocProvider(create: (context) => NewReceptionCubit()),
         BlocProvider(create: (context) => CourseFilterByTypeBloc()),
-        Provider(create: (context) => CourseInfoProvider())
+        Provider(create: (context) => CourseInfoProvider()),
+
       ],
       child: ScreenUtilInit(
         minTextAdapt: true,

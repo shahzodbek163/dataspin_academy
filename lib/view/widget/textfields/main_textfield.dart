@@ -1,5 +1,6 @@
-import 'package:dataspin_academy/controller/bloc/create_account/check_tap/cubit/check_tap_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/create_account/empty_validation/validation_bloc.dart';
+import 'package:dataspin_academy/controller/bloc/create_account/validation/cubit/validation_auth_cubit.dart';
+import 'package:dataspin_academy/model/enum/screen_type.dart';
 import 'package:dataspin_academy/view/value/app_color.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
 import 'package:flutter/material.dart';
@@ -13,23 +14,31 @@ class MainTextField extends StatelessWidget {
   final String hintText;
   final TextEditingController? controller;
   final MaskTextInputFormatter? maskTextInputFormatter;
-  final ValidationBloc? validationBloc;
+  final ValidationAuthCubit? validationAuthCubit;
   final ValidationType? validationType;
   final TextInputType? keyboardType;
+  final bool isEmpty;
+  final bool isValid;
+  final ScreenType screenType;
 
-  const MainTextField(
-      {super.key,
-      this.onReq = false,
-      required this.text,
-      required this.hintText,
-      this.controller,
-      this.maskTextInputFormatter,
-      this.validationBloc,
-      this.validationType,
-      this.keyboardType});
+  const MainTextField({
+    super.key,
+    this.onReq = false,
+    required this.text,
+    required this.hintText,
+    this.controller,
+    this.maskTextInputFormatter,
+    this.validationAuthCubit,
+    this.validationType,
+    this.keyboardType,
+    this.isEmpty = false,
+    this.isValid = true,
+    this.screenType = ScreenType.createAccount,
+  });
 
   @override
   Widget build(BuildContext context) {
+    
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -48,30 +57,38 @@ class MainTextField extends StatelessWidget {
                     ),
                   )
                 : const SizedBox(),
-            validationBloc != null
-                ? BlocBuilder<ValidationBloc, ValidationState>(
-                    bloc: validationBloc,
+            screenType == ScreenType.sendCode
+                ? BlocBuilder<ValidationAuthCubit, ValidationAuthState>(
+                    bloc: validationAuthCubit,
                     builder: (context, state) {
-                      return state.when(
+                      return state.maybeWhen(
+                        orElse: () => const SizedBox(),
                         emptyState: (isEmpty) => isEmpty
                             ? Text(
-                                "(Ma'lumot kiritilishi zarur)",
+                                "Ma'lumot kiritilishi zarur",
                                 style: AppFonts.label.copyWith(
                                     color: AppColor.errorColor, fontSize: 12),
                               )
                             : const SizedBox(),
-                        formatState: (isValid) {
-                          return !isValid
-                              ? Text(
-                                  "(Noto'g'ri ma'lumot kiritildi)",
-                                  style: AppFonts.label.copyWith(
-                                      color: AppColor.errorColor, fontSize: 12),
-                                )
-                              : const SizedBox();
-                        },
+                        formatState: (isValid) => !isValid
+                            ? Text(
+                                "Noto'g'ri ma'lumot kiritildi",
+                                style: AppFonts.label.copyWith(
+                                    color: AppColor.errorColor, fontSize: 12),
+                              )
+                            : const SizedBox(),
                       );
-                    })
-                : const SizedBox()
+                    },
+                  )
+                : Text(
+                    isEmpty
+                        ? "(Ma'lumot kiritilishi zarur)"
+                        : !isValid
+                            ? "Noto'g'ri ma'lumot kiritildi"
+                            : "",
+                    style: AppFonts.label
+                        .copyWith(color: AppColor.errorColor, fontSize: 12),
+                  ),
           ],
         ),
         SizedBox(height: 6.h),
@@ -88,7 +105,7 @@ class MainTextField extends StatelessWidget {
           child: TextField(
             controller: controller,
             keyboardType: keyboardType,
-            onChanged: (value) {
+            /*     onChanged: (value) {
               if (validationType != null) {
                 validationBloc!
                     .add(ValidationEvent.format(validationType!, value));
@@ -99,7 +116,7 @@ class MainTextField extends StatelessWidget {
                   validationBloc!.add(ValidationEvent.empty(value));
                 }
               }
-            },
+            }, */
             inputFormatters: maskTextInputFormatter == null
                 ? null
                 : [maskTextInputFormatter!],

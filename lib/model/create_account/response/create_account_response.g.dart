@@ -11,7 +11,9 @@ _$CreateAccountResponseImpl _$$CreateAccountResponseImplFromJson(
     _$CreateAccountResponseImpl(
       status: json['status'] as bool,
       message: json['message'] as String,
-      data: Data.fromJson(json['data'] as Map<String, dynamic>),
+      data: json['data'] == null
+          ? null
+          : Data.fromJson(json['data'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$CreateAccountResponseImplToJson(

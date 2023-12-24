@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:dataspin_academy/controller/bloc/create_account/check_tap/cubit/check_tap_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/create_account/create_account_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/create_account/empty_validation/validation_bloc.dart';
+import 'package:dataspin_academy/controller/bloc/create_account/register_validation/cubit/register_validation_cubit.dart';
 import 'package:dataspin_academy/model/create_account/request/create_account_request.dart';
 import 'package:dataspin_academy/view/screen/home/screen/home_screen.dart';
 import 'package:dataspin_academy/view/value/app_color.dart';
@@ -42,207 +43,153 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
 
   final tgUsernameController = TextEditingController();
 
-  final firstnameBloc = ValidationBloc();
-  final lastnameBloc = ValidationBloc();
-  final numberBloc = ValidationBloc();
-  final numberAdditionBloc = ValidationBloc();
-  final birthdayBloc = ValidationBloc();
+  final registerValidationCubit = RegisterValidationCubit();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          physics: const BouncingScrollPhysics(),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppSize.horizontalPadding,
-              vertical: 10,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  "Account yaratish",
-                  style: AppFonts.h1,
+        child: BlocBuilder<RegisterValidationCubit, RegisterValidationState>(
+          bloc: registerValidationCubit,
+          builder: (context, state) {
+            return SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              physics: const BouncingScrollPhysics(),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppSize.horizontalPadding,
+                  vertical: 10,
                 ),
-                SizedBox(
-                  height: 12.h,
-                ),
-                Text(
-                  "Bizning dasturda ko’rib turganimizdan hursandmiz. Ushbu ma’lumotlarni to’ldirish orqali siz bizning servislarimizdan to’liq foydalanish huquqiga ega bo’lasiz",
-                  style:
-                      AppFonts.label.copyWith(color: AppColor.txtSecondColor),
-                ),
-                SizedBox(height: 18.h),
-                MainTextField(
-                  text: "Ismingiz",
-                  hintText: "Ismingizni kiriting",
-                  onReq: true,
-                  controller: firstnameController,
-                  validationBloc: firstnameBloc,
-                ),
-                SizedBox(height: 14.h),
-                MainTextField(
-                  text: "Familiyangiz",
-                  hintText: "Familiyangizni kiriting",
-                  onReq: true,
-                  controller: lastnameController,
-                  validationBloc: lastnameBloc,
-                ),
-                SizedBox(height: 14.h),
-                MainTextField(
-                  text: "Sharfingiz",
-                  hintText: "Sharfingizni kiriting",
-                  controller: middlenameController,
-                ),
-                SizedBox(height: 14.h),
-                MainTextField(
-                  text: "Tug’ilgan kuningiz",
-                  hintText: "28-09-2023",
-                  controller: birthdayController,
-                  maskTextInputFormatter: InputMasks.birthdayInputMask,
-                  validationBloc: birthdayBloc,
-                  validationType: ValidationType.date,
-                  keyboardType: TextInputType.number,
-                ),
-                SizedBox(height: 14.h),
-                MainTextField(
-                  text: "Asosiy telefon raqam",
-                  hintText: "+998 (91)",
-                  onReq: true,
-                  controller: primaryNumberController,
-                  maskTextInputFormatter: InputMasks.phoneInputMask,
-                  validationBloc: numberBloc,
-                  validationType: ValidationType.phone,
-                  keyboardType: TextInputType.phone,
-                ),
-                SizedBox(height: 14.h),
-                MainTextField(
-                  text: "Qo’shimcha telefon raqam",
-                  hintText: "+998 (91)",
-                  controller: secondaryNumberController,
-                  keyboardType: TextInputType.phone,
-                  maskTextInputFormatter: InputMasks.phoneInputMask,
-                  validationBloc: numberAdditionBloc,
-                  validationType: ValidationType.phone,
-                ),
-                SizedBox(height: 50.h),
-                BlocBuilder<CreateAccountCubit, CreateAccountState>(
-                  builder: (context, state) {
-                    return MainButton(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "Account yaratish",
+                      style: AppFonts.h1,
+                    ),
+                    SizedBox(
+                      height: 12.h,
+                    ),
+                    Text(
+                      "Bizning dasturda ko’rib turganimizdan hursandmiz. Ushbu ma’lumotlarni to’ldirish orqali siz bizning servislarimizdan to’liq foydalanish huquqiga ega bo’lasiz",
+                      style: AppFonts.label
+                          .copyWith(color: AppColor.txtSecondColor),
+                    ),
+                    SizedBox(height: 18.h),
+                    MainTextField(
+                      text: "Ismingiz",
+                      hintText: "Ismingizni kiriting",
+                      onReq: true,
+                      controller: firstnameController,
+                      isEmpty: state.maybeWhen(
+                        orElse: () => false,
+                        data: (validationStateData) =>
+                            validationStateData.firstnameEmpty,
+                      ),
+                    ),
+                    SizedBox(height: 14.h),
+                    MainTextField(
+                      text: "Familiyangiz",
+                      hintText: "Familiyangizni kiriting",
+                      onReq: true,
+                      controller: lastnameController,
+                      isEmpty: state.maybeWhen(
+                        orElse: () => false,
+                        data: (validationStateData) =>
+                            validationStateData.lastnameEmpty,
+                      ),
+                    ),
+                    SizedBox(height: 14.h),
+                    MainTextField(
+                      text: "Sharfingiz",
+                      hintText: "Sharfingizni kiriting",
+                      controller: middlenameController,
+                    ),
+                    SizedBox(height: 14.h),
+                    MainTextField(
+                      text: "Tug’ilgan kuningiz",
+                      hintText: "28-09-2023",
+                      controller: birthdayController,
+                      maskTextInputFormatter: InputMasks.birthdayInputMask,
+                      validationType: ValidationType.date,
+                      keyboardType: TextInputType.number,
+                      isValid: state.maybeWhen(
+                        orElse: () => true,
+                        data: (validationStateData) =>
+                            validationStateData.birhtdayValid,
+                      ),
+                    ),
+                    SizedBox(height: 14.h),
+                    MainTextField(
+                      text: "Asosiy telefon raqam",
+                      hintText: "+998 (91)",
+                      onReq: true,
+                      controller: primaryNumberController,
+                      maskTextInputFormatter: InputMasks.phoneInputMask,
+                      validationType: ValidationType.phone,
+                      keyboardType: TextInputType.phone,
+                      isEmpty: state.maybeWhen(
+                        orElse: () => false,
+                        data: (validationStateData) =>
+                            validationStateData.phone.isEmpty,
+                      ),
+                      isValid: state.maybeWhen(
+                        orElse: () => true,
+                        data: (validationStateData) =>
+                            validationStateData.phone.isValid,
+                      ),
+                    ),
+                    SizedBox(height: 14.h),
+                    MainTextField(
+                      text: "Qo’shimcha telefon raqam",
+                      hintText: "+998 (91)",
+                      controller: secondaryNumberController,
+                      keyboardType: TextInputType.phone,
+                      maskTextInputFormatter: InputMasks.phoneInputMask,
+                      validationType: ValidationType.phone,
+                      isValid: state.maybeWhen(
+                        orElse: () => true,
+                        data: (validationStateData) =>
+                            validationStateData.additionalPhoneValid,
+                      ),
+                    ),
+                    SizedBox(height: 50.h),
+                    MainButton(
                       text: "Tasdiqlash",
                       isLoading: state.maybeWhen(
                         orElse: () => false,
                         sending: () => true,
                       ),
                       onTap: () {
-                        print("onTap ichi");
-                        context.read<CheckTapCubit>().change(true);
-
-                        firstnameBloc.add(ValidationEvent.empty(
-                            firstnameController.text.trim()));
-
-                        lastnameBloc.add(ValidationEvent.empty(
-                            lastnameController.text.trim()));
-                        numberBloc.add(ValidationEvent.empty(
-                            primaryNumberController.text.trim()));
-
-                        if (birthdayController.text.length == 10) {
-                          birthdayBloc.add(ValidationEvent.format(
-                              ValidationType.date, birthdayController.text));
-                        } else {
-                          birthdayBloc.add(ValidationEvent.accept(
-                              ValidationType.date,
-                              birthdayController.text.trim()));
-                        }
-
-                        numberBloc.add(ValidationEvent.accept(
-                            ValidationType.phone,
-                            primaryNumberController.text.trim()));
-                        numberAdditionBloc.add(ValidationEvent.accept(
-                            ValidationType.phone,
-                            secondaryNumberController.text.trim()));
-
-                        bool isEmptyFirstname = firstnameBloc.state.maybeWhen(
-                            orElse: () => false,
-                            emptyState: (isEmpty) => isEmpty);
-                        bool isEmptyLastname = lastnameBloc.state.maybeWhen(
-                          orElse: () => false,
-                          emptyState: (isEmpty) => isEmpty,
+                        CreateAccountRequest createAccountRequest =
+                            CreateAccountRequest(
+                          firstname: firstnameController.text.trim(),
+                          lastname: lastnameController.text.trim(),
+                          tel1: primaryNumberController.text.trim(),
+                          birthday: birthdayController.text.isEmpty
+                              ? null
+                              : birthdayController.text.trim(),
+                          middlename: birthdayController.text.isEmpty
+                              ? null
+                              : middlenameController.text.trim(),
+                          tel2: birthdayController.text.isEmpty
+                              ? null
+                              : secondaryNumberController.text.trim(),
+                          tg: birthdayController.text.isEmpty
+                              ? null
+                              : tgUsernameController.text.trim(),
                         );
-                        bool isEmptyNumber = numberBloc.state.maybeWhen(
-                          orElse: () => false,
-                          emptyState: (isEmpty) => isEmpty,
-                        );
-                        bool isValidNumber = numberBloc.state.maybeWhen(
-                          orElse: () => false,
-                          formatState: (isValid) => isValid,
-                        );
+                        print(primaryNumberController.text);
 
-                        bool isValidAdditionalNumber =
-                            numberAdditionBloc.state.maybeWhen(
-                          orElse: () => false,
-                          formatState: (isValid) => isValid,
-                        );
-
-                        bool isValidBirthday = birthdayBloc.state.maybeWhen(
-                          orElse: () => false,
-                          formatState: (isValid) => isValid,
-                        );
-
-                        print("$isEmptyNumber empty");
-                        print("$isValidNumber valid");
-
-                        if (!isEmptyFirstname &&
-                            !isEmptyLastname &&
-                            !isEmptyNumber &&
-                            isValidNumber) {
-                          CreateAccountRequest createAccountRequest =
-                              CreateAccountRequest(
-                            firstname: firstnameController.text.trim(),
-                            lastname: lastnameController.text.trim(),
-                            tel1: primaryNumberController.text.trim(),
-                          );
-
-                          if (middlenameController.text.isNotEmpty) {
-                            createAccountRequest =
-                                createAccountRequest.copyWith(
-                                    middlename:
-                                        middlenameController.text.trim());
-                          }
-                          if (birthdayController.text.isNotEmpty &&
-                              isValidBirthday) {
-                            createAccountRequest =
-                                createAccountRequest.copyWith(
-                                    birthday: birthdayController.text.trim());
-                          }
-                          if (secondaryNumberController.text.isNotEmpty &&
-                              isValidAdditionalNumber) {
-                            createAccountRequest =
-                                createAccountRequest.copyWith(
-                                    tel2:
-                                        secondaryNumberController.text.trim());
-                          }
-
-                          context
-                              .read<CreateAccountCubit>()
-                              .createAccount(createAccountRequest)
-                              .then((value) {
-                            if (value) {
-                              context.pushReplacement(HomeScreen.routeName);
-                            }
-                          });
-                        }
+                        registerValidationCubit.validate(createAccountRequest);
                       },
-                    );
-                  },
+                    ),
+                    SizedBox(height: 41.h),
+                  ],
                 ),
-                SizedBox(height: 41.h),
-              ],
-            ),
-          ),
+              ),
+            );
+          },
         ),
       ),
     );
