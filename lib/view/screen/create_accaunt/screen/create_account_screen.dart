@@ -1,11 +1,7 @@
-import 'dart:developer';
 
-import 'package:dataspin_academy/controller/bloc/create_account/check_tap/cubit/check_tap_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/create_account/create_account_cubit.dart';
-import 'package:dataspin_academy/controller/bloc/create_account/empty_validation/validation_bloc.dart';
 import 'package:dataspin_academy/controller/bloc/create_account/register_validation/cubit/register_validation_cubit.dart';
 import 'package:dataspin_academy/model/create_account/request/create_account_request.dart';
-import 'package:dataspin_academy/view/screen/home/screen/home_screen.dart';
 import 'package:dataspin_academy/view/value/app_color.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
 import 'package:dataspin_academy/view/value/app_size.dart';
@@ -15,7 +11,6 @@ import 'package:dataspin_academy/view/widget/textfields/main_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 
 class CreateAccountScreen extends StatefulWidget {
   static const String routeName = "/create_account_screen";
@@ -111,7 +106,6 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                       hintText: "28-09-2023",
                       controller: birthdayController,
                       maskTextInputFormatter: InputMasks.birthdayInputMask,
-                      validationType: ValidationType.date,
                       keyboardType: TextInputType.number,
                       isValid: state.maybeWhen(
                         orElse: () => true,
@@ -126,7 +120,6 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                       onReq: true,
                       controller: primaryNumberController,
                       maskTextInputFormatter: InputMasks.phoneInputMask,
-                      validationType: ValidationType.phone,
                       keyboardType: TextInputType.phone,
                       isEmpty: state.maybeWhen(
                         orElse: () => false,
@@ -146,7 +139,6 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                       controller: secondaryNumberController,
                       keyboardType: TextInputType.phone,
                       maskTextInputFormatter: InputMasks.phoneInputMask,
-                      validationType: ValidationType.phone,
                       isValid: state.maybeWhen(
                         orElse: () => true,
                         data: (validationStateData) =>

@@ -1,5 +1,4 @@
 import 'package:dataspin_academy/controller/bloc/create_account/check_tap/cubit/check_tap_cubit.dart';
-import 'package:dataspin_academy/controller/bloc/create_account/empty_validation/validation_bloc.dart';
 import 'package:dataspin_academy/controller/bloc/create_account/validation/cubit/validation_auth_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/send_code/send_code_cubit.dart';
 import 'package:dataspin_academy/controller/provider/phone_number_provider.dart';
@@ -60,7 +59,6 @@ class _SendCodeScreenState extends State<SendCodeScreen> {
                 text: "Telefon raqam",
                 keyboardType: TextInputType.phone,
                 maskTextInputFormatter: InputMasks.phoneInputMask,
-                validationType: ValidationType.phone,
                 screenType: ScreenType.sendCode,
                 validationAuthCubit: validationAuthCubit,
               ),
@@ -74,8 +72,8 @@ class _SendCodeScreenState extends State<SendCodeScreen> {
                     onTap: () {
                       context.read<CheckTapCubit>().change(true);
 
-                      validationAuthCubit.validation(ValidationAuthType.phone,
-                          phoneController.text.trim());
+                      validationAuthCubit
+                          .validation(phoneController.text.trim());
 
                       bool isValid = validationAuthCubit.state.maybeWhen(
                         orElse: () => false,

@@ -1,4 +1,3 @@
-import 'package:dataspin_academy/controller/bloc/create_account/empty_validation/validation_bloc.dart';
 import 'package:dataspin_academy/controller/bloc/create_account/validation/cubit/validation_auth_cubit.dart';
 import 'package:dataspin_academy/model/enum/screen_type.dart';
 import 'package:dataspin_academy/view/value/app_color.dart';
@@ -15,7 +14,6 @@ class MainTextField extends StatelessWidget {
   final TextEditingController? controller;
   final MaskTextInputFormatter? maskTextInputFormatter;
   final ValidationAuthCubit? validationAuthCubit;
-  final ValidationType? validationType;
   final TextInputType? keyboardType;
   final bool isEmpty;
   final bool isValid;
@@ -29,7 +27,6 @@ class MainTextField extends StatelessWidget {
     this.controller,
     this.maskTextInputFormatter,
     this.validationAuthCubit,
-    this.validationType,
     this.keyboardType,
     this.isEmpty = false,
     this.isValid = true,
