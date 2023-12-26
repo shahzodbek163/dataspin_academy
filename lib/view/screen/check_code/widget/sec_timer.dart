@@ -14,14 +14,14 @@ class SecTimer extends StatefulWidget {
 }
 
 class _SecTimerState extends State<SecTimer> {
-  int secondsRemaining = 20;
-  bool timerActive = true;
-
   @override
   void initState() {
     super.initState();
     startTimer();
   }
+
+  int secondsRemaining = 20;
+  bool timerActive = true;
 
   void startTimer() {
     Timer.periodic(const Duration(seconds: 1), (Timer timer) {
