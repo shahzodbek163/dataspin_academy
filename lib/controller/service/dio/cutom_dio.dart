@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:dataspin_academy/controller/service/dialogs/custom_snack_bar.dart';
+import 'package:dataspin_academy/controller/service/dio/secure_storage.dart';
 import 'package:dataspin_academy/controller/service/navigation/navigation_service.dart';
 import 'package:dataspin_academy/view/screen/send_code/screen/send_code_screen.dart';
 import 'package:dio/dio.dart';
@@ -53,7 +54,7 @@ class CustomDio {
       InterceptorsWrapper(
         onRequest: (options, handler) {
           options.headers["Authorization"] =
-              "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI5OTg5MDAwMDAwMDAiLCJpYXQiOjE3MDI5NzUyMDksImV4cCI6MTcwNTU2NzIwOX0.kT4RJWv22e2Yj8fmN2nj9sO6XxQL_kl4LDDPN40pD8WJ7edaxfN_9ExId2Q4O26pKB33xHOyKSMVfMMag37QBQ";
+              "Bearer ${SecureStorage().getAccess()}";
           return handler.next(options);
         },
         onResponse: (response, handler) {

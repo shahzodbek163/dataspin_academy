@@ -96,7 +96,7 @@ class _SendCodeScreenState extends State<SendCodeScreen> {
                             .sendCode(phoneController.text.trim())
                             .then((value) {
                           if (value) {
-                            context.push(CheckCodeScreen.routeName);
+                            context.pushReplacement(CheckCodeScreen.routeName);
                           }
                         });
                       }

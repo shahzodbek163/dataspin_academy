@@ -233,7 +233,7 @@ mixin _$CourseWithPriceData {
   @JsonKey(name: "price")
   double? get price => throw _privateConstructorUsedError;
   @JsonKey(name: "reception_counter")
-  ReceptionCounter get receptionCounter => throw _privateConstructorUsedError;
+  ReceptionCounter? get receptionCounter => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -251,11 +251,11 @@ abstract class $CourseWithPriceDataCopyWith<$Res> {
       {@JsonKey(name: "course") Course course,
       @JsonKey(name: "mentor") Mentor? mentor,
       @JsonKey(name: "price") double? price,
-      @JsonKey(name: "reception_counter") ReceptionCounter receptionCounter});
+      @JsonKey(name: "reception_counter") ReceptionCounter? receptionCounter});
 
   $CourseCopyWith<$Res> get course;
   $MentorCopyWith<$Res>? get mentor;
-  $ReceptionCounterCopyWith<$Res> get receptionCounter;
+  $ReceptionCounterCopyWith<$Res>? get receptionCounter;
 }
 
 /// @nodoc
@@ -274,7 +274,7 @@ class _$CourseWithPriceDataCopyWithImpl<$Res, $Val extends CourseWithPriceData>
     Object? course = null,
     Object? mentor = freezed,
     Object? price = freezed,
-    Object? receptionCounter = null,
+    Object? receptionCounter = freezed,
   }) {
     return _then(_value.copyWith(
       course: null == course
@@ -289,10 +289,10 @@ class _$CourseWithPriceDataCopyWithImpl<$Res, $Val extends CourseWithPriceData>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as double?,
-      receptionCounter: null == receptionCounter
+      receptionCounter: freezed == receptionCounter
           ? _value.receptionCounter
           : receptionCounter // ignore: cast_nullable_to_non_nullable
-              as ReceptionCounter,
+              as ReceptionCounter?,
     ) as $Val);
   }
 
@@ -318,8 +318,12 @@ class _$CourseWithPriceDataCopyWithImpl<$Res, $Val extends CourseWithPriceData>
 
   @override
   @pragma('vm:prefer-inline')
-  $ReceptionCounterCopyWith<$Res> get receptionCounter {
-    return $ReceptionCounterCopyWith<$Res>(_value.receptionCounter, (value) {
+  $ReceptionCounterCopyWith<$Res>? get receptionCounter {
+    if (_value.receptionCounter == null) {
+      return null;
+    }
+
+    return $ReceptionCounterCopyWith<$Res>(_value.receptionCounter!, (value) {
       return _then(_value.copyWith(receptionCounter: value) as $Val);
     });
   }
@@ -337,14 +341,14 @@ abstract class _$$CourseWithPriceDataImplCopyWith<$Res>
       {@JsonKey(name: "course") Course course,
       @JsonKey(name: "mentor") Mentor? mentor,
       @JsonKey(name: "price") double? price,
-      @JsonKey(name: "reception_counter") ReceptionCounter receptionCounter});
+      @JsonKey(name: "reception_counter") ReceptionCounter? receptionCounter});
 
   @override
   $CourseCopyWith<$Res> get course;
   @override
   $MentorCopyWith<$Res>? get mentor;
   @override
-  $ReceptionCounterCopyWith<$Res> get receptionCounter;
+  $ReceptionCounterCopyWith<$Res>? get receptionCounter;
 }
 
 /// @nodoc
@@ -361,7 +365,7 @@ class __$$CourseWithPriceDataImplCopyWithImpl<$Res>
     Object? course = null,
     Object? mentor = freezed,
     Object? price = freezed,
-    Object? receptionCounter = null,
+    Object? receptionCounter = freezed,
   }) {
     return _then(_$CourseWithPriceDataImpl(
       course: null == course
@@ -376,10 +380,10 @@ class __$$CourseWithPriceDataImplCopyWithImpl<$Res>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as double?,
-      receptionCounter: null == receptionCounter
+      receptionCounter: freezed == receptionCounter
           ? _value.receptionCounter
           : receptionCounter // ignore: cast_nullable_to_non_nullable
-              as ReceptionCounter,
+              as ReceptionCounter?,
     ));
   }
 }
@@ -407,7 +411,7 @@ class _$CourseWithPriceDataImpl implements _CourseWithPriceData {
   final double? price;
   @override
   @JsonKey(name: "reception_counter")
-  final ReceptionCounter receptionCounter;
+  final ReceptionCounter? receptionCounter;
 
   @override
   String toString() {
@@ -452,7 +456,7 @@ abstract class _CourseWithPriceData implements CourseWithPriceData {
           @JsonKey(name: "mentor") final Mentor? mentor,
           @JsonKey(name: "price") final double? price,
           @JsonKey(name: "reception_counter")
-          required final ReceptionCounter receptionCounter}) =
+          required final ReceptionCounter? receptionCounter}) =
       _$CourseWithPriceDataImpl;
 
   factory _CourseWithPriceData.fromJson(Map<String, dynamic> json) =
@@ -469,7 +473,7 @@ abstract class _CourseWithPriceData implements CourseWithPriceData {
   double? get price;
   @override
   @JsonKey(name: "reception_counter")
-  ReceptionCounter get receptionCounter;
+  ReceptionCounter? get receptionCounter;
   @override
   @JsonKey(ignore: true)
   _$$CourseWithPriceDataImplCopyWith<_$CourseWithPriceDataImpl> get copyWith =>

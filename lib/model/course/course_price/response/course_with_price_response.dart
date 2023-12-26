@@ -38,7 +38,7 @@ class CourseWithPriceData with _$CourseWithPriceData {
     @JsonKey(name: "mentor")  Mentor? mentor,
     @JsonKey(name: "price")  double? price,
     @JsonKey(name: "reception_counter")
-    required ReceptionCounter receptionCounter,
+    required ReceptionCounter? receptionCounter,
   }) = _CourseWithPriceData;
 
   factory CourseWithPriceData.fromJson(Map<String, dynamic> json) =>

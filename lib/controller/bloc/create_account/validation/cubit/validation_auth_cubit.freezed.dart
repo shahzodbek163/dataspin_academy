@@ -21,8 +21,6 @@ mixin _$ValidationAuthState {
     required TResult Function() initial,
     required TResult Function(bool isEmpty) emptyState,
     required TResult Function(bool isValid) formatState,
-    required TResult Function() sending,
-    required TResult Function(SendCodeResult sendCodeResult) send,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,8 +28,6 @@ mixin _$ValidationAuthState {
     TResult? Function()? initial,
     TResult? Function(bool isEmpty)? emptyState,
     TResult? Function(bool isValid)? formatState,
-    TResult? Function()? sending,
-    TResult? Function(SendCodeResult sendCodeResult)? send,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -39,8 +35,6 @@ mixin _$ValidationAuthState {
     TResult Function()? initial,
     TResult Function(bool isEmpty)? emptyState,
     TResult Function(bool isValid)? formatState,
-    TResult Function()? sending,
-    TResult Function(SendCodeResult sendCodeResult)? send,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -49,8 +43,6 @@ mixin _$ValidationAuthState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_EmptyState value) emptyState,
     required TResult Function(_FormatState value) formatState,
-    required TResult Function(_Sending value) sending,
-    required TResult Function(_Send value) send,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -58,8 +50,6 @@ mixin _$ValidationAuthState {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_EmptyState value)? emptyState,
     TResult? Function(_FormatState value)? formatState,
-    TResult? Function(_Sending value)? sending,
-    TResult? Function(_Send value)? send,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -67,8 +57,6 @@ mixin _$ValidationAuthState {
     TResult Function(_Initial value)? initial,
     TResult Function(_EmptyState value)? emptyState,
     TResult Function(_FormatState value)? formatState,
-    TResult Function(_Sending value)? sending,
-    TResult Function(_Send value)? send,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -133,8 +121,6 @@ class _$InitialImpl implements _Initial {
     required TResult Function() initial,
     required TResult Function(bool isEmpty) emptyState,
     required TResult Function(bool isValid) formatState,
-    required TResult Function() sending,
-    required TResult Function(SendCodeResult sendCodeResult) send,
   }) {
     return initial();
   }
@@ -145,8 +131,6 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? initial,
     TResult? Function(bool isEmpty)? emptyState,
     TResult? Function(bool isValid)? formatState,
-    TResult? Function()? sending,
-    TResult? Function(SendCodeResult sendCodeResult)? send,
   }) {
     return initial?.call();
   }
@@ -157,8 +141,6 @@ class _$InitialImpl implements _Initial {
     TResult Function()? initial,
     TResult Function(bool isEmpty)? emptyState,
     TResult Function(bool isValid)? formatState,
-    TResult Function()? sending,
-    TResult Function(SendCodeResult sendCodeResult)? send,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -173,8 +155,6 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_EmptyState value) emptyState,
     required TResult Function(_FormatState value) formatState,
-    required TResult Function(_Sending value) sending,
-    required TResult Function(_Send value) send,
   }) {
     return initial(this);
   }
@@ -185,8 +165,6 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_EmptyState value)? emptyState,
     TResult? Function(_FormatState value)? formatState,
-    TResult? Function(_Sending value)? sending,
-    TResult? Function(_Send value)? send,
   }) {
     return initial?.call(this);
   }
@@ -197,8 +175,6 @@ class _$InitialImpl implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_EmptyState value)? emptyState,
     TResult Function(_FormatState value)? formatState,
-    TResult Function(_Sending value)? sending,
-    TResult Function(_Send value)? send,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -279,8 +255,6 @@ class _$EmptyStateImpl implements _EmptyState {
     required TResult Function() initial,
     required TResult Function(bool isEmpty) emptyState,
     required TResult Function(bool isValid) formatState,
-    required TResult Function() sending,
-    required TResult Function(SendCodeResult sendCodeResult) send,
   }) {
     return emptyState(isEmpty);
   }
@@ -291,8 +265,6 @@ class _$EmptyStateImpl implements _EmptyState {
     TResult? Function()? initial,
     TResult? Function(bool isEmpty)? emptyState,
     TResult? Function(bool isValid)? formatState,
-    TResult? Function()? sending,
-    TResult? Function(SendCodeResult sendCodeResult)? send,
   }) {
     return emptyState?.call(isEmpty);
   }
@@ -303,8 +275,6 @@ class _$EmptyStateImpl implements _EmptyState {
     TResult Function()? initial,
     TResult Function(bool isEmpty)? emptyState,
     TResult Function(bool isValid)? formatState,
-    TResult Function()? sending,
-    TResult Function(SendCodeResult sendCodeResult)? send,
     required TResult orElse(),
   }) {
     if (emptyState != null) {
@@ -319,8 +289,6 @@ class _$EmptyStateImpl implements _EmptyState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_EmptyState value) emptyState,
     required TResult Function(_FormatState value) formatState,
-    required TResult Function(_Sending value) sending,
-    required TResult Function(_Send value) send,
   }) {
     return emptyState(this);
   }
@@ -331,8 +299,6 @@ class _$EmptyStateImpl implements _EmptyState {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_EmptyState value)? emptyState,
     TResult? Function(_FormatState value)? formatState,
-    TResult? Function(_Sending value)? sending,
-    TResult? Function(_Send value)? send,
   }) {
     return emptyState?.call(this);
   }
@@ -343,8 +309,6 @@ class _$EmptyStateImpl implements _EmptyState {
     TResult Function(_Initial value)? initial,
     TResult Function(_EmptyState value)? emptyState,
     TResult Function(_FormatState value)? formatState,
-    TResult Function(_Sending value)? sending,
-    TResult Function(_Send value)? send,
     required TResult orElse(),
   }) {
     if (emptyState != null) {
@@ -430,8 +394,6 @@ class _$FormatStateImpl implements _FormatState {
     required TResult Function() initial,
     required TResult Function(bool isEmpty) emptyState,
     required TResult Function(bool isValid) formatState,
-    required TResult Function() sending,
-    required TResult Function(SendCodeResult sendCodeResult) send,
   }) {
     return formatState(isValid);
   }
@@ -442,8 +404,6 @@ class _$FormatStateImpl implements _FormatState {
     TResult? Function()? initial,
     TResult? Function(bool isEmpty)? emptyState,
     TResult? Function(bool isValid)? formatState,
-    TResult? Function()? sending,
-    TResult? Function(SendCodeResult sendCodeResult)? send,
   }) {
     return formatState?.call(isValid);
   }
@@ -454,8 +414,6 @@ class _$FormatStateImpl implements _FormatState {
     TResult Function()? initial,
     TResult Function(bool isEmpty)? emptyState,
     TResult Function(bool isValid)? formatState,
-    TResult Function()? sending,
-    TResult Function(SendCodeResult sendCodeResult)? send,
     required TResult orElse(),
   }) {
     if (formatState != null) {
@@ -470,8 +428,6 @@ class _$FormatStateImpl implements _FormatState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_EmptyState value) emptyState,
     required TResult Function(_FormatState value) formatState,
-    required TResult Function(_Sending value) sending,
-    required TResult Function(_Send value) send,
   }) {
     return formatState(this);
   }
@@ -482,8 +438,6 @@ class _$FormatStateImpl implements _FormatState {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_EmptyState value)? emptyState,
     TResult? Function(_FormatState value)? formatState,
-    TResult? Function(_Sending value)? sending,
-    TResult? Function(_Send value)? send,
   }) {
     return formatState?.call(this);
   }
@@ -494,8 +448,6 @@ class _$FormatStateImpl implements _FormatState {
     TResult Function(_Initial value)? initial,
     TResult Function(_EmptyState value)? emptyState,
     TResult Function(_FormatState value)? formatState,
-    TResult Function(_Sending value)? sending,
-    TResult Function(_Send value)? send,
     required TResult orElse(),
   }) {
     if (formatState != null) {
@@ -511,286 +463,5 @@ abstract class _FormatState implements ValidationAuthState {
   bool get isValid;
   @JsonKey(ignore: true)
   _$$FormatStateImplCopyWith<_$FormatStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$SendingImplCopyWith<$Res> {
-  factory _$$SendingImplCopyWith(
-          _$SendingImpl value, $Res Function(_$SendingImpl) then) =
-      __$$SendingImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$SendingImplCopyWithImpl<$Res>
-    extends _$ValidationAuthStateCopyWithImpl<$Res, _$SendingImpl>
-    implements _$$SendingImplCopyWith<$Res> {
-  __$$SendingImplCopyWithImpl(
-      _$SendingImpl _value, $Res Function(_$SendingImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$SendingImpl implements _Sending {
-  const _$SendingImpl();
-
-  @override
-  String toString() {
-    return 'ValidationAuthState.sending()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SendingImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(bool isEmpty) emptyState,
-    required TResult Function(bool isValid) formatState,
-    required TResult Function() sending,
-    required TResult Function(SendCodeResult sendCodeResult) send,
-  }) {
-    return sending();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function(bool isEmpty)? emptyState,
-    TResult? Function(bool isValid)? formatState,
-    TResult? Function()? sending,
-    TResult? Function(SendCodeResult sendCodeResult)? send,
-  }) {
-    return sending?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(bool isEmpty)? emptyState,
-    TResult Function(bool isValid)? formatState,
-    TResult Function()? sending,
-    TResult Function(SendCodeResult sendCodeResult)? send,
-    required TResult orElse(),
-  }) {
-    if (sending != null) {
-      return sending();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_EmptyState value) emptyState,
-    required TResult Function(_FormatState value) formatState,
-    required TResult Function(_Sending value) sending,
-    required TResult Function(_Send value) send,
-  }) {
-    return sending(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_EmptyState value)? emptyState,
-    TResult? Function(_FormatState value)? formatState,
-    TResult? Function(_Sending value)? sending,
-    TResult? Function(_Send value)? send,
-  }) {
-    return sending?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_EmptyState value)? emptyState,
-    TResult Function(_FormatState value)? formatState,
-    TResult Function(_Sending value)? sending,
-    TResult Function(_Send value)? send,
-    required TResult orElse(),
-  }) {
-    if (sending != null) {
-      return sending(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Sending implements ValidationAuthState {
-  const factory _Sending() = _$SendingImpl;
-}
-
-/// @nodoc
-abstract class _$$SendImplCopyWith<$Res> {
-  factory _$$SendImplCopyWith(
-          _$SendImpl value, $Res Function(_$SendImpl) then) =
-      __$$SendImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({SendCodeResult sendCodeResult});
-
-  $SendCodeResultCopyWith<$Res> get sendCodeResult;
-}
-
-/// @nodoc
-class __$$SendImplCopyWithImpl<$Res>
-    extends _$ValidationAuthStateCopyWithImpl<$Res, _$SendImpl>
-    implements _$$SendImplCopyWith<$Res> {
-  __$$SendImplCopyWithImpl(_$SendImpl _value, $Res Function(_$SendImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? sendCodeResult = null,
-  }) {
-    return _then(_$SendImpl(
-      null == sendCodeResult
-          ? _value.sendCodeResult
-          : sendCodeResult // ignore: cast_nullable_to_non_nullable
-              as SendCodeResult,
-    ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $SendCodeResultCopyWith<$Res> get sendCodeResult {
-    return $SendCodeResultCopyWith<$Res>(_value.sendCodeResult, (value) {
-      return _then(_value.copyWith(sendCodeResult: value));
-    });
-  }
-}
-
-/// @nodoc
-
-class _$SendImpl implements _Send {
-  const _$SendImpl(this.sendCodeResult);
-
-  @override
-  final SendCodeResult sendCodeResult;
-
-  @override
-  String toString() {
-    return 'ValidationAuthState.send(sendCodeResult: $sendCodeResult)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SendImpl &&
-            (identical(other.sendCodeResult, sendCodeResult) ||
-                other.sendCodeResult == sendCodeResult));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, sendCodeResult);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SendImplCopyWith<_$SendImpl> get copyWith =>
-      __$$SendImplCopyWithImpl<_$SendImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(bool isEmpty) emptyState,
-    required TResult Function(bool isValid) formatState,
-    required TResult Function() sending,
-    required TResult Function(SendCodeResult sendCodeResult) send,
-  }) {
-    return send(sendCodeResult);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function(bool isEmpty)? emptyState,
-    TResult? Function(bool isValid)? formatState,
-    TResult? Function()? sending,
-    TResult? Function(SendCodeResult sendCodeResult)? send,
-  }) {
-    return send?.call(sendCodeResult);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(bool isEmpty)? emptyState,
-    TResult Function(bool isValid)? formatState,
-    TResult Function()? sending,
-    TResult Function(SendCodeResult sendCodeResult)? send,
-    required TResult orElse(),
-  }) {
-    if (send != null) {
-      return send(sendCodeResult);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_EmptyState value) emptyState,
-    required TResult Function(_FormatState value) formatState,
-    required TResult Function(_Sending value) sending,
-    required TResult Function(_Send value) send,
-  }) {
-    return send(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_EmptyState value)? emptyState,
-    TResult? Function(_FormatState value)? formatState,
-    TResult? Function(_Sending value)? sending,
-    TResult? Function(_Send value)? send,
-  }) {
-    return send?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_EmptyState value)? emptyState,
-    TResult Function(_FormatState value)? formatState,
-    TResult Function(_Sending value)? sending,
-    TResult Function(_Send value)? send,
-    required TResult orElse(),
-  }) {
-    if (send != null) {
-      return send(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Send implements ValidationAuthState {
-  const factory _Send(final SendCodeResult sendCodeResult) = _$SendImpl;
-
-  SendCodeResult get sendCodeResult;
-  @JsonKey(ignore: true)
-  _$$SendImplCopyWith<_$SendImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

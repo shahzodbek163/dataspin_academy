@@ -34,8 +34,10 @@ _$CourseWithPriceDataImpl _$$CourseWithPriceDataImplFromJson(
           ? null
           : Mentor.fromJson(json['mentor'] as Map<String, dynamic>),
       price: (json['price'] as num?)?.toDouble(),
-      receptionCounter: ReceptionCounter.fromJson(
-          json['reception_counter'] as Map<String, dynamic>),
+      receptionCounter: json['reception_counter'] == null
+          ? null
+          : ReceptionCounter.fromJson(
+              json['reception_counter'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$CourseWithPriceDataImplToJson(
