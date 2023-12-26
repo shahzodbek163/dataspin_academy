@@ -108,19 +108,10 @@ class _PinInputState extends State<PinInput> {
                   ),
                   text: "Confirm",
                   onTap: () {
-                    context
-                        .read<CheckCodeCubit>()
-                        .checkCode(
+                    context.read<CheckCodeCubit>().checkCode(
                           codeControll.text.trim(),
                           context.read<PhoneNumberProvider>().phoneNum,
-                        )
-                        .then((value) {
-                      if (value == "Inactive") {
-                        context.pushReplacement(CreateAccountScreen.routeName);
-                      } else if (value == "Active") {
-                        context.pushReplacement(HomeScreen.routeName);
-                      }
-                    });
+                        );
                   },
                 )
               : const SizedBox(),

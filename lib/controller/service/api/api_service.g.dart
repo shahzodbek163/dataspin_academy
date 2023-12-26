@@ -52,7 +52,7 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<CheckCodeResult> checkCode(
+  Future<CheckCodeResponse> checkCode(
     String code,
     String phone,
   ) async {
@@ -69,14 +69,14 @@ class _ApiService implements ApiService {
       phone,
     ));
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<CheckCodeResult>(Options(
+        .fetch<Map<String, dynamic>>(_setStreamType<CheckCodeResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/auth/check-code',
+              '/auth/check-code/user-check',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -85,7 +85,45 @@ class _ApiService implements ApiService {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = CheckCodeResult.fromJson(_result.data!);
+    final value = CheckCodeResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<TokenSessionResponse> tokenSession(
+    String code,
+    String phone,
+  ) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = FormData();
+    _data.fields.add(MapEntry(
+      'code',
+      code,
+    ));
+    _data.fields.add(MapEntry(
+      'phone',
+      phone,
+    ));
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<TokenSessionResponse>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/auth/token-session',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = TokenSessionResponse.fromJson(_result.data!);
     return value;
   }
 
