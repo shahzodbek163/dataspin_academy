@@ -1,21 +1,21 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'check_code_result.dart';
+part of 'token_session_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$CheckCodeResultImpl _$$CheckCodeResultImplFromJson(
+_$TokenSessionResponseImpl _$$TokenSessionResponseImplFromJson(
         Map<String, dynamic> json) =>
-    _$CheckCodeResultImpl(
+    _$TokenSessionResponseImpl(
       status: json['status'] as bool,
       message: json['message'] as String,
       data: Data.fromJson(json['data'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$CheckCodeResultImplToJson(
-        _$CheckCodeResultImpl instance) =>
+Map<String, dynamic> _$$TokenSessionResponseImplToJson(
+        _$TokenSessionResponseImpl instance) =>
     <String, dynamic>{
       'status': instance.status,
       'message': instance.message,

@@ -20,7 +20,7 @@ mixin _$CheckCodeState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() checking,
-    required TResult Function(CheckCodeResult checkCodeResult) checked,
+    required TResult Function() checked,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ mixin _$CheckCodeState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? checking,
-    TResult? Function(CheckCodeResult checkCodeResult)? checked,
+    TResult? Function()? checked,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ mixin _$CheckCodeState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? checking,
-    TResult Function(CheckCodeResult checkCodeResult)? checked,
+    TResult Function()? checked,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -126,7 +126,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() checking,
-    required TResult Function(CheckCodeResult checkCodeResult) checked,
+    required TResult Function() checked,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -137,7 +137,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? checking,
-    TResult? Function(CheckCodeResult checkCodeResult)? checked,
+    TResult? Function()? checked,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -148,7 +148,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? checking,
-    TResult Function(CheckCodeResult checkCodeResult)? checked,
+    TResult Function()? checked,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -240,7 +240,7 @@ class _$CheckingImpl implements _Checking {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() checking,
-    required TResult Function(CheckCodeResult checkCodeResult) checked,
+    required TResult Function() checked,
     required TResult Function(String message) error,
   }) {
     return checking();
@@ -251,7 +251,7 @@ class _$CheckingImpl implements _Checking {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? checking,
-    TResult? Function(CheckCodeResult checkCodeResult)? checked,
+    TResult? Function()? checked,
     TResult? Function(String message)? error,
   }) {
     return checking?.call();
@@ -262,7 +262,7 @@ class _$CheckingImpl implements _Checking {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? checking,
-    TResult Function(CheckCodeResult checkCodeResult)? checked,
+    TResult Function()? checked,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -319,10 +319,6 @@ abstract class _$$CheckedImplCopyWith<$Res> {
   factory _$$CheckedImplCopyWith(
           _$CheckedImpl value, $Res Function(_$CheckedImpl) then) =
       __$$CheckedImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({CheckCodeResult checkCodeResult});
-
-  $CheckCodeResultCopyWith<$Res> get checkCodeResult;
 }
 
 /// @nodoc
@@ -332,69 +328,36 @@ class __$$CheckedImplCopyWithImpl<$Res>
   __$$CheckedImplCopyWithImpl(
       _$CheckedImpl _value, $Res Function(_$CheckedImpl) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? checkCodeResult = null,
-  }) {
-    return _then(_$CheckedImpl(
-      null == checkCodeResult
-          ? _value.checkCodeResult
-          : checkCodeResult // ignore: cast_nullable_to_non_nullable
-              as CheckCodeResult,
-    ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $CheckCodeResultCopyWith<$Res> get checkCodeResult {
-    return $CheckCodeResultCopyWith<$Res>(_value.checkCodeResult, (value) {
-      return _then(_value.copyWith(checkCodeResult: value));
-    });
-  }
 }
 
 /// @nodoc
 
 class _$CheckedImpl implements _Checked {
-  const _$CheckedImpl(this.checkCodeResult);
-
-  @override
-  final CheckCodeResult checkCodeResult;
+  const _$CheckedImpl();
 
   @override
   String toString() {
-    return 'CheckCodeState.checked(checkCodeResult: $checkCodeResult)';
+    return 'CheckCodeState.checked()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$CheckedImpl &&
-            (identical(other.checkCodeResult, checkCodeResult) ||
-                other.checkCodeResult == checkCodeResult));
+        (other.runtimeType == runtimeType && other is _$CheckedImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, checkCodeResult);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$CheckedImplCopyWith<_$CheckedImpl> get copyWith =>
-      __$$CheckedImplCopyWithImpl<_$CheckedImpl>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() checking,
-    required TResult Function(CheckCodeResult checkCodeResult) checked,
+    required TResult Function() checked,
     required TResult Function(String message) error,
   }) {
-    return checked(checkCodeResult);
+    return checked();
   }
 
   @override
@@ -402,10 +365,10 @@ class _$CheckedImpl implements _Checked {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? checking,
-    TResult? Function(CheckCodeResult checkCodeResult)? checked,
+    TResult? Function()? checked,
     TResult? Function(String message)? error,
   }) {
-    return checked?.call(checkCodeResult);
+    return checked?.call();
   }
 
   @override
@@ -413,12 +376,12 @@ class _$CheckedImpl implements _Checked {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? checking,
-    TResult Function(CheckCodeResult checkCodeResult)? checked,
+    TResult Function()? checked,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (checked != null) {
-      return checked(checkCodeResult);
+      return checked();
     }
     return orElse();
   }
@@ -462,12 +425,7 @@ class _$CheckedImpl implements _Checked {
 }
 
 abstract class _Checked implements CheckCodeState {
-  const factory _Checked(final CheckCodeResult checkCodeResult) = _$CheckedImpl;
-
-  CheckCodeResult get checkCodeResult;
-  @JsonKey(ignore: true)
-  _$$CheckedImplCopyWith<_$CheckedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory _Checked() = _$CheckedImpl;
 }
 
 /// @nodoc
@@ -536,7 +494,7 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() checking,
-    required TResult Function(CheckCodeResult checkCodeResult) checked,
+    required TResult Function() checked,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -547,7 +505,7 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? checking,
-    TResult? Function(CheckCodeResult checkCodeResult)? checked,
+    TResult? Function()? checked,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -558,7 +516,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? checking,
-    TResult Function(CheckCodeResult checkCodeResult)? checked,
+    TResult Function()? checked,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
