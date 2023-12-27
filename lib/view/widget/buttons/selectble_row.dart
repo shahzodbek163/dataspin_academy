@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:dataspin_academy/view/value/app_color.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
 import 'package:flutter/material.dart';
@@ -37,14 +35,14 @@ class _SelectbleRowState extends State<SelectbleRow> {
       child: ListView.builder(
         itemCount: widget.listRes.length,
         scrollDirection: Axis.horizontal,
+        padding: EdgeInsets.only(left: 14.w),
         itemBuilder: (context, index) {
           return Padding(
-            padding: const EdgeInsets.only(right: 16),
+            padding: EdgeInsets.only(right: 12.w),
             child: InkWell(
               onTap: () {
                 selectIndex = index;
                 widget.onChangedIndex.call(selectIndex);
-
                 setState(() {});
               },
               borderRadius: BorderRadius.circular(30),
@@ -71,7 +69,6 @@ class _SelectbleRowState extends State<SelectbleRow> {
           );
         },
       ),
-      
     );
   }
 }
