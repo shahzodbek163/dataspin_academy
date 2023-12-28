@@ -1,4 +1,4 @@
-package com.example.dataspin_academy
+package com.dataspin.academy
 
 import io.flutter.embedding.android.FlutterActivity
 

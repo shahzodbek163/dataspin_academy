@@ -1,10 +1,7 @@
-import 'dart:developer';
-
 import 'package:dataspin_academy/controller/bloc/category_filter/course_filter_by_type_bloc.dart';
 import 'package:dataspin_academy/controller/bloc/course/course_price/cubit/course_with_price_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/course/course_type/course_type_cubit.dart';
 import 'package:dataspin_academy/controller/service/api/app_ip.dart';
-import 'package:dataspin_academy/model/course/course_price/response/course_with_price_response.dart';
 import 'package:dataspin_academy/view/screen/categories/widget/categorie_chips.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
 import 'package:dataspin_academy/view/value/app_icons.dart';
@@ -70,7 +67,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                   .read<CourseFilterByTypeBloc>()
                                   .add(CourseFilterByTypeEvent.byId(
                                     result,
-                                    item.data![index - 1]!.id,
+                                    item.data[index - 1].id,
                                   ));
                             });
                       }
@@ -111,7 +108,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                       "${AppIp.ip}/api/image/?id=${result.data![index]!.course.previewPhoto.id}",
                                   courseName: result.data![index]!.course.name,
                                   personImage:
-                                      "${AppIp.ip}/api/image/?id=${result.data![index]!.course.courseType.photo.id}",
+                                      "${AppIp.ip}/api/image/?id=${result.data![index]!.mentor!.employee.photo.id}",
                                   type: result
                                       .data![index]!.course.courseType.name,
                                   personName: result.data![index]!.mentor ==
