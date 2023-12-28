@@ -35,35 +35,33 @@ class _MentorPartState extends State<MentorPart> {
             return state.maybeWhen(
               orElse: () => const SizedBox(),
               getting: () => const CircularProgressIndicator(),
-              get: (result) => SizedBox(
-                height: ((155 + 40) * result.data.length).h,
-                child: ListView.builder(
-                    itemCount: result.data.length,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemBuilder: (context, index) {
-                      if (result.data.isNotEmpty) {
-                        result.data;
-                        return Padding(
-                          padding: const EdgeInsets.only(bottom: 16),
-                          child: InkWell(
-                            borderRadius: BorderRadius.circular(8),
-                            onTap: () {
-                              log(context.read<ProfileIdProvider>().id);
+              get: (result) => ListView.builder(
+                  itemCount: result.data.length,
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    if (result.data.isNotEmpty) {
+                      result.data;
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 16),
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(8),
+                          onTap: () {
+                            log(context.read<ProfileIdProvider>().id);
 
-                              context.read<ProfileIdProvider>().changeId(index);
-                              log(context.read<ProfileIdProvider>().id);
-                              context.push(ProfileScreen.routeName);
-                            },
-                            child: MentorCard(
-                              mentorResultData: result.data[index],
-                            ),
+                            context.read<ProfileIdProvider>().changeId(index);
+                            log(context.read<ProfileIdProvider>().id);
+                            context.push(ProfileScreen.routeName);
+                          },
+                          child: MentorCard(
+                            mentorResultData: result.data[index],
                           ),
-                        );
-                      } else {
-                        return const SizedBox();
-                      }
-                    }),
-              ),
+                        ),
+                      );
+                    } else {
+                      return const SizedBox();
+                    }
+                  }),
             );
           },
         ),

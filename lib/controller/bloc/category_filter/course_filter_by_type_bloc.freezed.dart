@@ -20,20 +20,25 @@ mixin _$CourseFilterByTypeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(CourseWithPriceResponse courses) all,
-    required TResult Function(CourseWithPriceResponse courses, int courseTypeId)
+    required TResult Function(
+            CourseWithPriceResponse courses, int courseTypeId, String name)
         byId,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(CourseWithPriceResponse courses)? all,
-    TResult? Function(CourseWithPriceResponse courses, int courseTypeId)? byId,
+    TResult? Function(
+            CourseWithPriceResponse courses, int courseTypeId, String name)?
+        byId,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(CourseWithPriceResponse courses)? all,
-    TResult Function(CourseWithPriceResponse courses, int courseTypeId)? byId,
+    TResult Function(
+            CourseWithPriceResponse courses, int courseTypeId, String name)?
+        byId,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -174,7 +179,8 @@ class _$AllImpl implements _All {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(CourseWithPriceResponse courses) all,
-    required TResult Function(CourseWithPriceResponse courses, int courseTypeId)
+    required TResult Function(
+            CourseWithPriceResponse courses, int courseTypeId, String name)
         byId,
   }) {
     return all(courses);
@@ -184,7 +190,9 @@ class _$AllImpl implements _All {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(CourseWithPriceResponse courses)? all,
-    TResult? Function(CourseWithPriceResponse courses, int courseTypeId)? byId,
+    TResult? Function(
+            CourseWithPriceResponse courses, int courseTypeId, String name)?
+        byId,
   }) {
     return all?.call(courses);
   }
@@ -193,7 +201,9 @@ class _$AllImpl implements _All {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(CourseWithPriceResponse courses)? all,
-    TResult Function(CourseWithPriceResponse courses, int courseTypeId)? byId,
+    TResult Function(
+            CourseWithPriceResponse courses, int courseTypeId, String name)?
+        byId,
     required TResult orElse(),
   }) {
     if (all != null) {
@@ -253,7 +263,7 @@ abstract class _$$ByIdImplCopyWith<$Res>
       __$$ByIdImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({CourseWithPriceResponse courses, int courseTypeId});
+  $Res call({CourseWithPriceResponse courses, int courseTypeId, String name});
 
   @override
   $CourseWithPriceResponseCopyWith<$Res> get courses;
@@ -271,6 +281,7 @@ class __$$ByIdImplCopyWithImpl<$Res>
   $Res call({
     Object? courses = null,
     Object? courseTypeId = null,
+    Object? name = null,
   }) {
     return _then(_$ByIdImpl(
       null == courses
@@ -281,6 +292,10 @@ class __$$ByIdImplCopyWithImpl<$Res>
           ? _value.courseTypeId
           : courseTypeId // ignore: cast_nullable_to_non_nullable
               as int,
+      null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -288,16 +303,18 @@ class __$$ByIdImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ByIdImpl implements _ById {
-  const _$ByIdImpl(this.courses, this.courseTypeId);
+  const _$ByIdImpl(this.courses, this.courseTypeId, this.name);
 
   @override
   final CourseWithPriceResponse courses;
   @override
   final int courseTypeId;
+  @override
+  final String name;
 
   @override
   String toString() {
-    return 'CourseFilterByTypeEvent.byId(courses: $courses, courseTypeId: $courseTypeId)';
+    return 'CourseFilterByTypeEvent.byId(courses: $courses, courseTypeId: $courseTypeId, name: $name)';
   }
 
   @override
@@ -307,11 +324,12 @@ class _$ByIdImpl implements _ById {
             other is _$ByIdImpl &&
             (identical(other.courses, courses) || other.courses == courses) &&
             (identical(other.courseTypeId, courseTypeId) ||
-                other.courseTypeId == courseTypeId));
+                other.courseTypeId == courseTypeId) &&
+            (identical(other.name, name) || other.name == name));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, courses, courseTypeId);
+  int get hashCode => Object.hash(runtimeType, courses, courseTypeId, name);
 
   @JsonKey(ignore: true)
   @override
@@ -323,30 +341,35 @@ class _$ByIdImpl implements _ById {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(CourseWithPriceResponse courses) all,
-    required TResult Function(CourseWithPriceResponse courses, int courseTypeId)
+    required TResult Function(
+            CourseWithPriceResponse courses, int courseTypeId, String name)
         byId,
   }) {
-    return byId(courses, courseTypeId);
+    return byId(courses, courseTypeId, name);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(CourseWithPriceResponse courses)? all,
-    TResult? Function(CourseWithPriceResponse courses, int courseTypeId)? byId,
+    TResult? Function(
+            CourseWithPriceResponse courses, int courseTypeId, String name)?
+        byId,
   }) {
-    return byId?.call(courses, courseTypeId);
+    return byId?.call(courses, courseTypeId, name);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(CourseWithPriceResponse courses)? all,
-    TResult Function(CourseWithPriceResponse courses, int courseTypeId)? byId,
+    TResult Function(
+            CourseWithPriceResponse courses, int courseTypeId, String name)?
+        byId,
     required TResult orElse(),
   }) {
     if (byId != null) {
-      return byId(courses, courseTypeId);
+      return byId(courses, courseTypeId, name);
     }
     return orElse();
   }
@@ -384,13 +407,13 @@ class _$ByIdImpl implements _ById {
 }
 
 abstract class _ById implements CourseFilterByTypeEvent {
-  const factory _ById(
-          final CourseWithPriceResponse courses, final int courseTypeId) =
-      _$ByIdImpl;
+  const factory _ById(final CourseWithPriceResponse courses,
+      final int courseTypeId, final String name) = _$ByIdImpl;
 
   @override
   CourseWithPriceResponse get courses;
   int get courseTypeId;
+  String get name;
   @override
   @JsonKey(ignore: true)
   _$$ByIdImplCopyWith<_$ByIdImpl> get copyWith =>
@@ -402,19 +425,20 @@ mixin _$CourseFilterByTypeState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(CourseWithPriceResponse courses) data,
+    required TResult Function(CourseWithPriceResponse courses, String name)
+        data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(CourseWithPriceResponse courses)? data,
+    TResult? Function(CourseWithPriceResponse courses, String name)? data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(CourseWithPriceResponse courses)? data,
+    TResult Function(CourseWithPriceResponse courses, String name)? data,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -497,7 +521,8 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(CourseWithPriceResponse courses) data,
+    required TResult Function(CourseWithPriceResponse courses, String name)
+        data,
   }) {
     return initial();
   }
@@ -506,7 +531,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(CourseWithPriceResponse courses)? data,
+    TResult? Function(CourseWithPriceResponse courses, String name)? data,
   }) {
     return initial?.call();
   }
@@ -515,7 +540,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(CourseWithPriceResponse courses)? data,
+    TResult Function(CourseWithPriceResponse courses, String name)? data,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -566,7 +591,7 @@ abstract class _$$DataImplCopyWith<$Res> {
           _$DataImpl value, $Res Function(_$DataImpl) then) =
       __$$DataImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({CourseWithPriceResponse courses});
+  $Res call({CourseWithPriceResponse courses, String name});
 
   $CourseWithPriceResponseCopyWith<$Res> get courses;
 }
@@ -582,12 +607,17 @@ class __$$DataImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? courses = null,
+    Object? name = null,
   }) {
     return _then(_$DataImpl(
       null == courses
           ? _value.courses
           : courses // ignore: cast_nullable_to_non_nullable
               as CourseWithPriceResponse,
+      null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 
@@ -603,14 +633,16 @@ class __$$DataImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$DataImpl implements _Data {
-  const _$DataImpl(this.courses);
+  const _$DataImpl(this.courses, this.name);
 
   @override
   final CourseWithPriceResponse courses;
+  @override
+  final String name;
 
   @override
   String toString() {
-    return 'CourseFilterByTypeState.data(courses: $courses)';
+    return 'CourseFilterByTypeState.data(courses: $courses, name: $name)';
   }
 
   @override
@@ -618,11 +650,12 @@ class _$DataImpl implements _Data {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DataImpl &&
-            (identical(other.courses, courses) || other.courses == courses));
+            (identical(other.courses, courses) || other.courses == courses) &&
+            (identical(other.name, name) || other.name == name));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, courses);
+  int get hashCode => Object.hash(runtimeType, courses, name);
 
   @JsonKey(ignore: true)
   @override
@@ -634,29 +667,30 @@ class _$DataImpl implements _Data {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(CourseWithPriceResponse courses) data,
+    required TResult Function(CourseWithPriceResponse courses, String name)
+        data,
   }) {
-    return data(courses);
+    return data(courses, name);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(CourseWithPriceResponse courses)? data,
+    TResult? Function(CourseWithPriceResponse courses, String name)? data,
   }) {
-    return data?.call(courses);
+    return data?.call(courses, name);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(CourseWithPriceResponse courses)? data,
+    TResult Function(CourseWithPriceResponse courses, String name)? data,
     required TResult orElse(),
   }) {
     if (data != null) {
-      return data(courses);
+      return data(courses, name);
     }
     return orElse();
   }
@@ -694,9 +728,11 @@ class _$DataImpl implements _Data {
 }
 
 abstract class _Data implements CourseFilterByTypeState {
-  const factory _Data(final CourseWithPriceResponse courses) = _$DataImpl;
+  const factory _Data(
+      final CourseWithPriceResponse courses, final String name) = _$DataImpl;
 
   CourseWithPriceResponse get courses;
+  String get name;
   @JsonKey(ignore: true)
   _$$DataImplCopyWith<_$DataImpl> get copyWith =>
       throw _privateConstructorUsedError;

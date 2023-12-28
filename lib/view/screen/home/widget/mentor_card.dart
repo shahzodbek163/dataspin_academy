@@ -20,7 +20,7 @@ class _MentorCardState extends State<MentorCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 155.h,
+      height: 222.h,
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
@@ -30,86 +30,78 @@ class _MentorCardState extends State<MentorCard> {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(14),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Row(
+            Stack(
+              alignment: Alignment.center,
+              clipBehavior: Clip.none,
               children: [
-                Stack(
+                Container(
+                  width: 100.w,
+                  height: 100.h,
                   alignment: Alignment.center,
-                  clipBehavior: Clip.none,
-                  children: [
-                    Container(
-                      width: 50.w,
-                      height: 50.h,
-                      alignment: Alignment.center,
-                      decoration: const BoxDecoration(
-                        color: Color(0xFF5956E9),
-                        shape: BoxShape.circle,
-                      ),
-                      child: Container(
-                        width: 46.w,
-                        height: 46.h,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                            image: CachedNetworkImageProvider(
-                              "${AppIp.ip}/api/image/?id=${widget.mentorResultData.employee.photo.id}",
-                              headers: const {
-                                'ngrok-skip-browser-warning': "true"
-                              },
-                            ),
-                            fit: BoxFit.cover,
-                          ),
-                          border: Border.all(
-                            color: Colors.white,
-                            width: 1,
-                          ),
+                  decoration: const BoxDecoration(
+                    color: Color(0xFF5956E9),
+                    shape: BoxShape.circle,
+                  ),
+                  child: Container(
+                    width: 96.w,
+                    height: 96.h,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: CachedNetworkImageProvider(
+                          "${AppIp.ip}/api/image/?id=${widget.mentorResultData.employee.photo.id}",
+                          headers: const {'ngrok-skip-browser-warning': "true"},
                         ),
+                        fit: BoxFit.cover,
+                      ),
+                      border: Border.all(
+                        color: Colors.white,
+                        width: 1,
                       ),
                     ),
-                    widget.mentorResultData.employee.isVerified == true
-                        ? Positioned(
-                            bottom: -8.h,
-                            child: Image.asset(
-                              "assets/icons/verif.png",
-                              width: 20.w,
-                              height: 20.h,
-                            ),
-                          )
-                        : const SizedBox(),
-                  ],
+                  ),
                 ),
-                SizedBox(
-                  width: 10.h,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "${widget.mentorResultData.employee.face.firstname} ${widget.mentorResultData.employee.face.lastname}",
-                      style: AppFonts.h4,
-                    ),
-                    SizedBox(height: 6.h),
-                    SizedBox(
-                      height: 30.h,
-                      width: 251.w,
-                      child: widget.mentorResultData.courses.length > 1 ? Marquee(
-
-                        numberOfRounds: 1,
-                        accelerationDuration: const Duration(seconds: 1),
-                        text: widget.mentorResultData.courses
-                            .map((e) => e.name)
-                            .toString(),
-                        style: AppFonts.label.copyWith(
-                          color: AppColor.txtSecondColor,
+                widget.mentorResultData.employee.isVerified == true
+                    ? Positioned(
+                        bottom: -8.h,
+                        child: Image.asset(
+                          "assets/icons/verif.png",
+                          width: 20.w,
+                          height: 20.h,
                         ),
-                      ) : Text(widget.mentorResultData.courses.first.name, ),
-                    )
-                  ],
-                ),
+                      )
+                    : const SizedBox(),
               ],
+            ),
+            SizedBox(height: 5.h),
+            Text(
+              "${widget.mentorResultData.employee.face.firstname} ${widget.mentorResultData.employee.face.lastname}",
+              style: AppFonts.h4,
+            ),
+            SizedBox(height: 5.h),
+            SizedBox(
+              height: 20.h,
+              width: 251.w,
+              child: widget.mentorResultData.courses.length > 1
+                  ? Marquee(
+                      numberOfRounds: 1,
+                      accelerationDuration: const Duration(seconds: 1),
+                      text: widget.mentorResultData.courses
+                          .map((e) => e.name)
+                          .toString(),
+                      style: AppFonts.label.copyWith(
+                        color: AppColor.txtSecondColor,
+                      ),
+                    )
+                  : Center(
+                      child: Text(
+                        widget.mentorResultData.courses.first.name,
+                      ),
+                    ),
             ),
             Container(
               height: 44,

@@ -54,12 +54,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 EdgeInsets.symmetric(horizontal: AppSize.horizontalPadding.w),
             child: const NewsPart(),
           ),
-          SizedBox(height: 16.h),
-          Padding(
-            padding:
-                EdgeInsets.symmetric(horizontal: AppSize.horizontalPadding.w),
-            child: const CategoryPart(),
-          ),
+          SizedBox(height: 14.h),
+          const CategoryPart(),
           SizedBox(height: 16.h),
           const CoursePart(),
           SizedBox(height: 16.h),

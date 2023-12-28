@@ -17,10 +17,10 @@ class CourseFilterByTypeBloc
     on<CourseFilterByTypeEvent>((event, emit) {
       event.when(
         all: (courses) {
-          print("BArchasi");
-          emit(CourseFilterByTypeState.data(courses));
+          print("Barchasi");
+          emit(CourseFilterByTypeState.data(courses, "Barchasi"));
         },
-        byId: (courses, courseTypeId) {
+        byId: (courses, courseTypeId, name) {
           print(courseTypeId);
           List<CourseWithPriceData?> filteredCourses =
               courses.data!.map((courseWithPrice) {
@@ -34,7 +34,7 @@ class CourseFilterByTypeBloc
           print(filteredCourses);
           CourseWithPriceResponse courseWithPriceResponse =
               courses.copyWith(data: filteredCourses);
-          emit(CourseFilterByTypeState.data(courseWithPriceResponse));
+          emit(CourseFilterByTypeState.data(courseWithPriceResponse, name));
         },
       );
     });
