@@ -2,8 +2,6 @@
 //
 //     final mentorResult = mentorResultFromJson(jsonString);
 
-// ignore_for_file: invalid_annotation_target
-
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'dart:convert';
 
@@ -35,10 +33,10 @@ class MentorResultData with _$MentorResultData {
     required int id,
     @JsonKey(name: "date")
     required DateTime date,
-    @JsonKey(name: "courses")
-    required List<Course> courses,
     @JsonKey(name: "subMentors")
     required List<Employee> subMentors,
+    @JsonKey(name: "courses")
+    required List<Course> courses,
     @JsonKey(name: "employee")
     required Employee employee,
   }) = _MentorResultData;
@@ -53,6 +51,10 @@ class Course with _$Course {
     required String name,
     @JsonKey(name: "id")
     required int id,
+    @JsonKey(name: "description")
+    required String description,
+    @JsonKey(name: "status")
+    required bool status,
     @JsonKey(name: "courseFor")
     required CourseForElement courseFor,
     @JsonKey(name: "courseType")
@@ -89,10 +91,10 @@ class CourseType with _$CourseType {
     required int id,
     @JsonKey(name: "date")
     required DateTime date,
-    @JsonKey(name: "photo")
-    required Photo photo,
     @JsonKey(name: "description")
     required String description,
+    @JsonKey(name: "photo")
+    required Photo photo,
     @JsonKey(name: "courseTags")
     required List<CourseForElement> courseTags,
   }) = _CourseType;
@@ -115,22 +117,22 @@ class Employee with _$Employee {
   const factory Employee({
     @JsonKey(name: "id")
     required int id,
-    @JsonKey(name: "face")
-    required Face face,
-    @JsonKey(name: "about")
-     String? about,
-    @JsonKey(name: "photo")
-    required Photo photo,
-    @JsonKey(name: "endDate")
-    required DateTime? endDate,
     @JsonKey(name: "stuff")
     required Stuff stuff,
     @JsonKey(name: "startDate")
     required DateTime startDate,
+    @JsonKey(name: "photo")
+    required Photo photo,
     @JsonKey(name: "practice")
     required int practice,
     @JsonKey(name: "isVerified")
-    required bool? isVerified,
+    required dynamic isVerified,
+    @JsonKey(name: "endDate")
+    required DateTime endDate,
+    @JsonKey(name: "face")
+    required Face face,
+    @JsonKey(name: "about")
+    required dynamic about,
   }) = _Employee;
 
   factory Employee.fromJson(Map<String, dynamic> json) => _$EmployeeFromJson(json);
@@ -143,6 +145,10 @@ class Face with _$Face {
     required int id,
     @JsonKey(name: "date")
     required DateTime date,
+    @JsonKey(name: "passport")
+    required String passport,
+    @JsonKey(name: "birthday")
+    required DateTime birthday,
     @JsonKey(name: "tel1")
     required String tel1,
     @JsonKey(name: "tel2")
@@ -152,24 +158,56 @@ class Face with _$Face {
     @JsonKey(name: "lastname")
     required String lastname,
     @JsonKey(name: "middlename")
-    required String middlename,
-    @JsonKey(name: "passport")
-    required String passport,
-    @JsonKey(name: "birthday")
-    required DateTime birthday,
+    required Middlename middlename,
   }) = _Face;
 
   factory Face.fromJson(Map<String, dynamic> json) => _$FaceFromJson(json);
 }
 
+enum Middlename {
+  @JsonValue("Jahongir o'g'li")
+  JAHONGIR_O_G_LI,
+  @JsonValue("Nematjon o'g'li")
+  NEMATJON_O_G_LI,
+  @JsonValue("Xaydarali o'g'li")
+  XAYDARALI_O_G_LI
+}
+
+final middlenameValues = EnumValues({
+  "Jahongir o'g'li": Middlename.JAHONGIR_O_G_LI,
+  "Nematjon o'g'li": Middlename.NEMATJON_O_G_LI,
+  "Xaydarali o'g'li": Middlename.XAYDARALI_O_G_LI
+});
+
 @freezed
 class Stuff with _$Stuff {
   const factory Stuff({
     @JsonKey(name: "name")
-    required String name,
+    required Name name,
     @JsonKey(name: "id")
     required int id,
   }) = _Stuff;
 
   factory Stuff.fromJson(Map<String, dynamic> json) => _$StuffFromJson(json);
+}
+
+enum Name {
+  @JsonValue("O'qituvchi")
+  O_QITUVCHI
+}
+
+final nameValues = EnumValues({
+  "O'qituvchi": Name.O_QITUVCHI
+});
+
+class EnumValues<T> {
+  Map<String, T> map;
+  late Map<T, String> reverseMap;
+
+  EnumValues(this.map);
+
+  Map<T, String> get reverse {
+    reverseMap = map.map((k, v) => MapEntry(v, k));
+    return reverseMap;
+  }
 }

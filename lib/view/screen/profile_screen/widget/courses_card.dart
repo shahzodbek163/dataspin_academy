@@ -3,12 +3,14 @@ import 'package:dataspin_academy/view/value/app_color.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:marquee/marquee.dart';
 
 class CourseCard extends StatelessWidget {
   final String image;
   final String information;
   final String courseName;
   final String price;
+
   const CourseCard({
     super.key,
     required this.image,
@@ -58,9 +60,12 @@ class CourseCard extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 6.h),
-                  child: Text(
-                    courseName,
-                    style: AppFonts.h4,
+                  child: SizedBox(
+                    height: 20,
+                    child: Text(
+                      courseName,
+                      style: AppFonts.h4,
+                    ),
                   ),
                 ),
                 Row(

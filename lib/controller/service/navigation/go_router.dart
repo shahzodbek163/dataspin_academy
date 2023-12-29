@@ -57,7 +57,7 @@ class AppGoRouter {
         path: ProfileScreen.routeName,
         pageBuilder: (context, state) => slideTransitionRight(
           state,
-          ProfileScreen(id: context.read<ProfileIdProvider>().id),
+          ProfileScreen(),
         ),
       ),
       GoRoute(

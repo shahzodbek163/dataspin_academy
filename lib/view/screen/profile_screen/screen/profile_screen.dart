@@ -1,4 +1,5 @@
 import 'package:dataspin_academy/controller/bloc/mentors/mentors_cubit.dart';
+import 'package:dataspin_academy/controller/provider/profile_data_provider.dart';
 import 'package:dataspin_academy/controller/service/api/app_ip.dart';
 import 'package:dataspin_academy/view/screen/profile_screen/widget/courses_card.dart';
 import 'package:dataspin_academy/view/screen/profile_screen/widget/mentor.dart';
@@ -12,9 +13,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProfileScreen extends StatefulWidget {
   static const String routeName = "/profile_screen";
-  final int id;
 
-  const ProfileScreen({super.key, required this.id});
+  const ProfileScreen({super.key});
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -23,6 +23,7 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
+    final mentorData = context.read<ProfileDataProvider>().mentorResultData;
     return Scaffold(
       appBar: SimpleAppbar.simpleAppbar(
         leadingIconPath: AppIcons.backArrow,
@@ -44,18 +45,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       children: [
                         Mentor(
                           image:
-                              "${AppIp.ip}/api/image/?id=${result.data[widget.id].courses[widget.id].previewPhoto.id}",
+                              "${AppIp.ip}/api/image/?id=${mentorData!.employee.photo.id}",
                           name:
-                              "${result.data[widget.id].employee.face.firstname} ${result.data[widget.id].employee.face.lastname}",
+                              "${mentorData!.employee.face.firstname} ${mentorData!.employee.face.lastname}",
                           information:
-                              "${result.data[widget.id].courses.map((e) => e.courseType.name).join(", ")} developer",
+                              "${mentorData.courses.map((e) => e.courseType.name).join(", ")} developer",
                           numStudents: "+12 400",
                           courses:
-                              "${result.data[widget.id].courses.length} ta kurslar",
+                              "${mentorData.courses.length} ta kurslar",
                           rating:
-                              "${result.data[widget.id].subMentors[widget.id].practice} yillik tajriba",
-                          isVerified: result
-                              .data[widget.id].subMentors[widget.id].isVerified,
+                              "${mentorData.employee.practice} yillik tajriba",
+                          //
+                          isVerified: mentorData.employee.isVerified,
                         ),
                         SizedBox(height: 24.h),
                         const Text(
@@ -64,7 +65,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         SizedBox(height: 14.h),
                         Text(
-                          result.data[widget.id].subMentors[widget.id].about!,
+                          mentorData.employee.about ?? "Ma'limot yo'q",
                           style: AppFonts.body18Regular.copyWith(
                             color: AppColor.txtSecondColor,
                           ),
@@ -77,9 +78,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         SizedBox(height: 16.h),
                         SizedBox(
                           height:
-                              (250 * result.data[widget.id].courses.length).h,
+                              (250 * mentorData.courses.length).h,
                           child: GridView.builder(
-                            itemCount: result.data[widget.id].courses.length,
+                            itemCount: mentorData.courses.length,
                             physics: const NeverScrollableScrollPhysics(),
                             gridDelegate:
                                 const SliverGridDelegateWithFixedCrossAxisCount(
@@ -90,12 +91,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                             itemBuilder: (context, index) => CourseCard(
                               image:
-                                  "${AppIp.ip}/api/image/?id=${result.data[widget.id].courses[index].courseType.photo.id}",
+                                  "${AppIp.ip}/api/image/?id=${mentorData.courses[index].courseType.photo.id}",
                               information:
-                                  result.data[widget.id].courses[index].name,
-                              courseName: result.data[widget.id].courses[index]
+                                  mentorData.courses[index].name,
+                              courseName: mentorData.courses[index]
                                   .courseType.name,
-                              price: "300 000",
+                              price: "400 000",
                             ),
                           ),
                         ),

@@ -47,10 +47,10 @@ class _MentorPartState extends State<MentorPart> {
                         child: InkWell(
                           borderRadius: BorderRadius.circular(8),
                           onTap: () {
-                            log(context.read<ProfileIdProvider>().id);
+                            context.read<ProfileIdProvider>().change(result.data[index]);
 
-                            context.read<ProfileIdProvider>().changeId(index);
-                            log(context.read<ProfileIdProvider>().id);
+                            print(
+                                "${context.read<ProfileIdProvider>().mentorResultData} ioiooiioioio");
                             context.push(ProfileScreen.routeName);
                           },
                           child: MentorCard(
