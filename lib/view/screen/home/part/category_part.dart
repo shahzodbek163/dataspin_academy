@@ -1,11 +1,8 @@
 import 'package:dataspin_academy/controller/bloc/category_filter/course_filter_by_type_bloc.dart';
 import 'package:dataspin_academy/controller/bloc/course/course_price/cubit/course_with_price_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/course/course_type/course_type_cubit.dart';
-import 'package:dataspin_academy/controller/provider/category_info_provider.dart';
-import 'package:dataspin_academy/model/course/course_price/response/course_with_price_response.dart';
+import 'package:dataspin_academy/controller/provider/selectble_index_provider.dart';
 import 'package:dataspin_academy/view/screen/categories/screen/categorie_screen.dart';
-import 'package:dataspin_academy/view/screen/home/widget/chips_widget.dart';
-import 'package:dataspin_academy/view/screen/home/widget/row_text_widget.dart';
 import 'package:dataspin_academy/view/value/app_color.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
 import 'package:dataspin_academy/view/value/app_size.dart';
@@ -39,7 +36,6 @@ class CategoryPart extends StatelessWidget {
                           context
                               .read<CourseFilterByTypeBloc>()
                               .add(CourseFilterByTypeEvent.all(result));
-
                           context.push(CategoriesScreen.routeName);
                         },
                       );
@@ -60,9 +56,25 @@ class CategoryPart extends StatelessWidget {
             return state.maybeWhen(
               orElse: () => const SizedBox(),
               getting: () => const CircularProgressIndicator(),
-              get: (result) => SelectbleRow(
-                listRes: result.data.map((e) => e.name).toList(),
-                onChangedIndex: (index) {},
+              get: (item) => SelectableRow(
+                forMainScreen: true,
+                listRes: [""] + item.data.map((e) => e.name).toList(),
+                onChangedIndex: (index) {
+                  context.read<SelectableIndexProvider>().change(index);
+                  context.read<CourseWithPriceCubit>().state.maybeWhen(
+                        orElse: () {},
+                        get: (result) {
+                          return context.read<CourseFilterByTypeBloc>().add(
+                                CourseFilterByTypeEvent.byId(
+                                  result,
+                                  item.data[index - 1].id,
+                                  item.data[index - 1].name,
+                                ),
+                              );
+                        },
+                      );
+                  context.push(CategoriesScreen.routeName);
+                },
               ),
             );
           },

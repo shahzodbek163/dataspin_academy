@@ -1,8 +1,5 @@
-import 'dart:math';
-
 import 'package:dataspin_academy/controller/bloc/mentors/mentors_cubit.dart';
 import 'package:dataspin_academy/controller/provider/profile_data_provider.dart';
-import 'package:dataspin_academy/controller/service/api/app_ip.dart';
 import 'package:dataspin_academy/view/screen/home/widget/mentor_card.dart';
 import 'package:dataspin_academy/view/screen/home/widget/row_text_widget.dart';
 import 'package:dataspin_academy/view/screen/profile_screen/screen/profile_screen.dart';
@@ -32,33 +29,37 @@ class _MentorPartState extends State<MentorPart> {
         SizedBox(height: 18.h),
         BlocBuilder<MentorsCubit, MentorsState>(
           builder: (context, state) {
+
             return state.maybeWhen(
               orElse: () => const SizedBox(),
               getting: () => const CircularProgressIndicator(),
               get: (result) => ListView.builder(
-                  itemCount: result.data.length,
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    if (result.data.isNotEmpty) {
-                      result.data;
-                      return Padding(
-                        padding: const EdgeInsets.only(bottom: 16),
-                        child: InkWell(
-                          borderRadius: BorderRadius.circular(8),
-                          onTap: () {
-                            context.read<ProfileDataProvider>().change(result.data[index]);
-                            context.push(ProfileScreen.routeName);
-                          },
-                          child: MentorCard(
-                            mentorResultData: result.data[index],
-                          ),
+                itemCount: result.data.length,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) {
+                  if (result.data.isNotEmpty) {
+                    result.data;
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 16),
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(8),
+                        onTap: () {
+                          context
+                              .read<ProfileDataProvider>()
+                              .change(result.data[index]);
+                          context.push(ProfileScreen.routeName);
+                        },
+                        child: MentorCard(
+                          mentorResultData: result.data[index],
                         ),
-                      );
-                    } else {
-                      return const SizedBox();
-                    }
-                  }),
+                      ),
+                    );
+                  } else {
+                    return const SizedBox();
+                  }
+                },
+              ),
             );
           },
         ),

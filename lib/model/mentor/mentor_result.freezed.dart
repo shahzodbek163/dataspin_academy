@@ -220,13 +220,13 @@ mixin _$MentorResultData {
   @JsonKey(name: "id")
   int get id => throw _privateConstructorUsedError;
   @JsonKey(name: "date")
-  DateTime get date => throw _privateConstructorUsedError;
+  DateTime? get date => throw _privateConstructorUsedError;
   @JsonKey(name: "subMentors")
   List<Employee> get subMentors => throw _privateConstructorUsedError;
-  @JsonKey(name: "courses")
-  List<Course> get courses => throw _privateConstructorUsedError;
   @JsonKey(name: "employee")
   Employee get employee => throw _privateConstructorUsedError;
+  @JsonKey(name: "courses")
+  List<Course> get courses => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -242,10 +242,10 @@ abstract class $MentorResultDataCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: "id") int id,
-      @JsonKey(name: "date") DateTime date,
+      @JsonKey(name: "date") DateTime? date,
       @JsonKey(name: "subMentors") List<Employee> subMentors,
-      @JsonKey(name: "courses") List<Course> courses,
-      @JsonKey(name: "employee") Employee employee});
+      @JsonKey(name: "employee") Employee employee,
+      @JsonKey(name: "courses") List<Course> courses});
 
   $EmployeeCopyWith<$Res> get employee;
 }
@@ -264,32 +264,32 @@ class _$MentorResultDataCopyWithImpl<$Res, $Val extends MentorResultData>
   @override
   $Res call({
     Object? id = null,
-    Object? date = null,
+    Object? date = freezed,
     Object? subMentors = null,
-    Object? courses = null,
     Object? employee = null,
+    Object? courses = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      date: null == date
+      date: freezed == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       subMentors: null == subMentors
           ? _value.subMentors
           : subMentors // ignore: cast_nullable_to_non_nullable
               as List<Employee>,
-      courses: null == courses
-          ? _value.courses
-          : courses // ignore: cast_nullable_to_non_nullable
-              as List<Course>,
       employee: null == employee
           ? _value.employee
           : employee // ignore: cast_nullable_to_non_nullable
               as Employee,
+      courses: null == courses
+          ? _value.courses
+          : courses // ignore: cast_nullable_to_non_nullable
+              as List<Course>,
     ) as $Val);
   }
 
@@ -312,10 +312,10 @@ abstract class _$$MentorResultDataImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: "id") int id,
-      @JsonKey(name: "date") DateTime date,
+      @JsonKey(name: "date") DateTime? date,
       @JsonKey(name: "subMentors") List<Employee> subMentors,
-      @JsonKey(name: "courses") List<Course> courses,
-      @JsonKey(name: "employee") Employee employee});
+      @JsonKey(name: "employee") Employee employee,
+      @JsonKey(name: "courses") List<Course> courses});
 
   @override
   $EmployeeCopyWith<$Res> get employee;
@@ -333,32 +333,32 @@ class __$$MentorResultDataImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? date = null,
+    Object? date = freezed,
     Object? subMentors = null,
-    Object? courses = null,
     Object? employee = null,
+    Object? courses = null,
   }) {
     return _then(_$MentorResultDataImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      date: null == date
+      date: freezed == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       subMentors: null == subMentors
           ? _value._subMentors
           : subMentors // ignore: cast_nullable_to_non_nullable
               as List<Employee>,
-      courses: null == courses
-          ? _value._courses
-          : courses // ignore: cast_nullable_to_non_nullable
-              as List<Course>,
       employee: null == employee
           ? _value.employee
           : employee // ignore: cast_nullable_to_non_nullable
               as Employee,
+      courses: null == courses
+          ? _value._courses
+          : courses // ignore: cast_nullable_to_non_nullable
+              as List<Course>,
     ));
   }
 }
@@ -370,8 +370,8 @@ class _$MentorResultDataImpl implements _MentorResultData {
       {@JsonKey(name: "id") required this.id,
       @JsonKey(name: "date") required this.date,
       @JsonKey(name: "subMentors") required final List<Employee> subMentors,
-      @JsonKey(name: "courses") required final List<Course> courses,
-      @JsonKey(name: "employee") required this.employee})
+      @JsonKey(name: "employee") required this.employee,
+      @JsonKey(name: "courses") required final List<Course> courses})
       : _subMentors = subMentors,
         _courses = courses;
 
@@ -383,7 +383,7 @@ class _$MentorResultDataImpl implements _MentorResultData {
   final int id;
   @override
   @JsonKey(name: "date")
-  final DateTime date;
+  final DateTime? date;
   final List<Employee> _subMentors;
   @override
   @JsonKey(name: "subMentors")
@@ -393,6 +393,9 @@ class _$MentorResultDataImpl implements _MentorResultData {
     return EqualUnmodifiableListView(_subMentors);
   }
 
+  @override
+  @JsonKey(name: "employee")
+  final Employee employee;
   final List<Course> _courses;
   @override
   @JsonKey(name: "courses")
@@ -403,12 +406,8 @@ class _$MentorResultDataImpl implements _MentorResultData {
   }
 
   @override
-  @JsonKey(name: "employee")
-  final Employee employee;
-
-  @override
   String toString() {
-    return 'MentorResultData(id: $id, date: $date, subMentors: $subMentors, courses: $courses, employee: $employee)';
+    return 'MentorResultData(id: $id, date: $date, subMentors: $subMentors, employee: $employee, courses: $courses)';
   }
 
   @override
@@ -420,9 +419,9 @@ class _$MentorResultDataImpl implements _MentorResultData {
             (identical(other.date, date) || other.date == date) &&
             const DeepCollectionEquality()
                 .equals(other._subMentors, _subMentors) &&
-            const DeepCollectionEquality().equals(other._courses, _courses) &&
             (identical(other.employee, employee) ||
-                other.employee == employee));
+                other.employee == employee) &&
+            const DeepCollectionEquality().equals(other._courses, _courses));
   }
 
   @JsonKey(ignore: true)
@@ -432,8 +431,8 @@ class _$MentorResultDataImpl implements _MentorResultData {
       id,
       date,
       const DeepCollectionEquality().hash(_subMentors),
-      const DeepCollectionEquality().hash(_courses),
-      employee);
+      employee,
+      const DeepCollectionEquality().hash(_courses));
 
   @JsonKey(ignore: true)
   @override
@@ -453,10 +452,10 @@ class _$MentorResultDataImpl implements _MentorResultData {
 abstract class _MentorResultData implements MentorResultData {
   const factory _MentorResultData(
           {@JsonKey(name: "id") required final int id,
-          @JsonKey(name: "date") required final DateTime date,
+          @JsonKey(name: "date") required final DateTime? date,
           @JsonKey(name: "subMentors") required final List<Employee> subMentors,
-          @JsonKey(name: "courses") required final List<Course> courses,
-          @JsonKey(name: "employee") required final Employee employee}) =
+          @JsonKey(name: "employee") required final Employee employee,
+          @JsonKey(name: "courses") required final List<Course> courses}) =
       _$MentorResultDataImpl;
 
   factory _MentorResultData.fromJson(Map<String, dynamic> json) =
@@ -467,16 +466,16 @@ abstract class _MentorResultData implements MentorResultData {
   int get id;
   @override
   @JsonKey(name: "date")
-  DateTime get date;
+  DateTime? get date;
   @override
   @JsonKey(name: "subMentors")
   List<Employee> get subMentors;
   @override
-  @JsonKey(name: "courses")
-  List<Course> get courses;
-  @override
   @JsonKey(name: "employee")
   Employee get employee;
+  @override
+  @JsonKey(name: "courses")
+  List<Course> get courses;
   @override
   @JsonKey(ignore: true)
   _$$MentorResultDataImplCopyWith<_$MentorResultDataImpl> get copyWith =>
@@ -1442,22 +1441,22 @@ Employee _$EmployeeFromJson(Map<String, dynamic> json) {
 mixin _$Employee {
   @JsonKey(name: "id")
   int get id => throw _privateConstructorUsedError;
-  @JsonKey(name: "stuff")
-  Stuff get stuff => throw _privateConstructorUsedError;
   @JsonKey(name: "startDate")
   DateTime get startDate => throw _privateConstructorUsedError;
   @JsonKey(name: "photo")
   Photo get photo => throw _privateConstructorUsedError;
+  @JsonKey(name: "face")
+  Face get face => throw _privateConstructorUsedError;
+  @JsonKey(name: "about")
+  dynamic get about => throw _privateConstructorUsedError;
+  @JsonKey(name: "stuff")
+  Stuff get stuff => throw _privateConstructorUsedError;
   @JsonKey(name: "practice")
   int get practice => throw _privateConstructorUsedError;
   @JsonKey(name: "isVerified")
   dynamic get isVerified => throw _privateConstructorUsedError;
   @JsonKey(name: "endDate")
   DateTime get endDate => throw _privateConstructorUsedError;
-  @JsonKey(name: "face")
-  Face get face => throw _privateConstructorUsedError;
-  @JsonKey(name: "about")
-  dynamic get about => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1472,18 +1471,18 @@ abstract class $EmployeeCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: "id") int id,
-      @JsonKey(name: "stuff") Stuff stuff,
       @JsonKey(name: "startDate") DateTime startDate,
       @JsonKey(name: "photo") Photo photo,
+      @JsonKey(name: "face") Face face,
+      @JsonKey(name: "about") dynamic about,
+      @JsonKey(name: "stuff") Stuff stuff,
       @JsonKey(name: "practice") int practice,
       @JsonKey(name: "isVerified") dynamic isVerified,
-      @JsonKey(name: "endDate") DateTime endDate,
-      @JsonKey(name: "face") Face face,
-      @JsonKey(name: "about") dynamic about});
+      @JsonKey(name: "endDate") DateTime endDate});
 
-  $StuffCopyWith<$Res> get stuff;
   $PhotoCopyWith<$Res> get photo;
   $FaceCopyWith<$Res> get face;
+  $StuffCopyWith<$Res> get stuff;
 }
 
 /// @nodoc
@@ -1500,24 +1499,20 @@ class _$EmployeeCopyWithImpl<$Res, $Val extends Employee>
   @override
   $Res call({
     Object? id = null,
-    Object? stuff = null,
     Object? startDate = null,
     Object? photo = null,
+    Object? face = null,
+    Object? about = freezed,
+    Object? stuff = null,
     Object? practice = null,
     Object? isVerified = freezed,
     Object? endDate = null,
-    Object? face = null,
-    Object? about = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      stuff: null == stuff
-          ? _value.stuff
-          : stuff // ignore: cast_nullable_to_non_nullable
-              as Stuff,
       startDate: null == startDate
           ? _value.startDate
           : startDate // ignore: cast_nullable_to_non_nullable
@@ -1526,6 +1521,18 @@ class _$EmployeeCopyWithImpl<$Res, $Val extends Employee>
           ? _value.photo
           : photo // ignore: cast_nullable_to_non_nullable
               as Photo,
+      face: null == face
+          ? _value.face
+          : face // ignore: cast_nullable_to_non_nullable
+              as Face,
+      about: freezed == about
+          ? _value.about
+          : about // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      stuff: null == stuff
+          ? _value.stuff
+          : stuff // ignore: cast_nullable_to_non_nullable
+              as Stuff,
       practice: null == practice
           ? _value.practice
           : practice // ignore: cast_nullable_to_non_nullable
@@ -1538,23 +1545,7 @@ class _$EmployeeCopyWithImpl<$Res, $Val extends Employee>
           ? _value.endDate
           : endDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      face: null == face
-          ? _value.face
-          : face // ignore: cast_nullable_to_non_nullable
-              as Face,
-      about: freezed == about
-          ? _value.about
-          : about // ignore: cast_nullable_to_non_nullable
-              as dynamic,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $StuffCopyWith<$Res> get stuff {
-    return $StuffCopyWith<$Res>(_value.stuff, (value) {
-      return _then(_value.copyWith(stuff: value) as $Val);
-    });
   }
 
   @override
@@ -1572,6 +1563,14 @@ class _$EmployeeCopyWithImpl<$Res, $Val extends Employee>
       return _then(_value.copyWith(face: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $StuffCopyWith<$Res> get stuff {
+    return $StuffCopyWith<$Res>(_value.stuff, (value) {
+      return _then(_value.copyWith(stuff: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -1584,21 +1583,21 @@ abstract class _$$EmployeeImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: "id") int id,
-      @JsonKey(name: "stuff") Stuff stuff,
       @JsonKey(name: "startDate") DateTime startDate,
       @JsonKey(name: "photo") Photo photo,
+      @JsonKey(name: "face") Face face,
+      @JsonKey(name: "about") dynamic about,
+      @JsonKey(name: "stuff") Stuff stuff,
       @JsonKey(name: "practice") int practice,
       @JsonKey(name: "isVerified") dynamic isVerified,
-      @JsonKey(name: "endDate") DateTime endDate,
-      @JsonKey(name: "face") Face face,
-      @JsonKey(name: "about") dynamic about});
+      @JsonKey(name: "endDate") DateTime endDate});
 
-  @override
-  $StuffCopyWith<$Res> get stuff;
   @override
   $PhotoCopyWith<$Res> get photo;
   @override
   $FaceCopyWith<$Res> get face;
+  @override
+  $StuffCopyWith<$Res> get stuff;
 }
 
 /// @nodoc
@@ -1613,24 +1612,20 @@ class __$$EmployeeImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? stuff = null,
     Object? startDate = null,
     Object? photo = null,
+    Object? face = null,
+    Object? about = freezed,
+    Object? stuff = null,
     Object? practice = null,
     Object? isVerified = freezed,
     Object? endDate = null,
-    Object? face = null,
-    Object? about = freezed,
   }) {
     return _then(_$EmployeeImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      stuff: null == stuff
-          ? _value.stuff
-          : stuff // ignore: cast_nullable_to_non_nullable
-              as Stuff,
       startDate: null == startDate
           ? _value.startDate
           : startDate // ignore: cast_nullable_to_non_nullable
@@ -1639,6 +1634,18 @@ class __$$EmployeeImplCopyWithImpl<$Res>
           ? _value.photo
           : photo // ignore: cast_nullable_to_non_nullable
               as Photo,
+      face: null == face
+          ? _value.face
+          : face // ignore: cast_nullable_to_non_nullable
+              as Face,
+      about: freezed == about
+          ? _value.about
+          : about // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      stuff: null == stuff
+          ? _value.stuff
+          : stuff // ignore: cast_nullable_to_non_nullable
+              as Stuff,
       practice: null == practice
           ? _value.practice
           : practice // ignore: cast_nullable_to_non_nullable
@@ -1651,14 +1658,6 @@ class __$$EmployeeImplCopyWithImpl<$Res>
           ? _value.endDate
           : endDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      face: null == face
-          ? _value.face
-          : face // ignore: cast_nullable_to_non_nullable
-              as Face,
-      about: freezed == about
-          ? _value.about
-          : about // ignore: cast_nullable_to_non_nullable
-              as dynamic,
     ));
   }
 }
@@ -1668,14 +1667,14 @@ class __$$EmployeeImplCopyWithImpl<$Res>
 class _$EmployeeImpl implements _Employee {
   const _$EmployeeImpl(
       {@JsonKey(name: "id") required this.id,
-      @JsonKey(name: "stuff") required this.stuff,
       @JsonKey(name: "startDate") required this.startDate,
       @JsonKey(name: "photo") required this.photo,
+      @JsonKey(name: "face") required this.face,
+      @JsonKey(name: "about") required this.about,
+      @JsonKey(name: "stuff") required this.stuff,
       @JsonKey(name: "practice") required this.practice,
       @JsonKey(name: "isVerified") required this.isVerified,
-      @JsonKey(name: "endDate") required this.endDate,
-      @JsonKey(name: "face") required this.face,
-      @JsonKey(name: "about") required this.about});
+      @JsonKey(name: "endDate") required this.endDate});
 
   factory _$EmployeeImpl.fromJson(Map<String, dynamic> json) =>
       _$$EmployeeImplFromJson(json);
@@ -1684,14 +1683,20 @@ class _$EmployeeImpl implements _Employee {
   @JsonKey(name: "id")
   final int id;
   @override
-  @JsonKey(name: "stuff")
-  final Stuff stuff;
-  @override
   @JsonKey(name: "startDate")
   final DateTime startDate;
   @override
   @JsonKey(name: "photo")
   final Photo photo;
+  @override
+  @JsonKey(name: "face")
+  final Face face;
+  @override
+  @JsonKey(name: "about")
+  final dynamic about;
+  @override
+  @JsonKey(name: "stuff")
+  final Stuff stuff;
   @override
   @JsonKey(name: "practice")
   final int practice;
@@ -1701,16 +1706,10 @@ class _$EmployeeImpl implements _Employee {
   @override
   @JsonKey(name: "endDate")
   final DateTime endDate;
-  @override
-  @JsonKey(name: "face")
-  final Face face;
-  @override
-  @JsonKey(name: "about")
-  final dynamic about;
 
   @override
   String toString() {
-    return 'Employee(id: $id, stuff: $stuff, startDate: $startDate, photo: $photo, practice: $practice, isVerified: $isVerified, endDate: $endDate, face: $face, about: $about)';
+    return 'Employee(id: $id, startDate: $startDate, photo: $photo, face: $face, about: $about, stuff: $stuff, practice: $practice, isVerified: $isVerified, endDate: $endDate)';
   }
 
   @override
@@ -1719,17 +1718,17 @@ class _$EmployeeImpl implements _Employee {
         (other.runtimeType == runtimeType &&
             other is _$EmployeeImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.stuff, stuff) || other.stuff == stuff) &&
             (identical(other.startDate, startDate) ||
                 other.startDate == startDate) &&
             (identical(other.photo, photo) || other.photo == photo) &&
+            (identical(other.face, face) || other.face == face) &&
+            const DeepCollectionEquality().equals(other.about, about) &&
+            (identical(other.stuff, stuff) || other.stuff == stuff) &&
             (identical(other.practice, practice) ||
                 other.practice == practice) &&
             const DeepCollectionEquality()
                 .equals(other.isVerified, isVerified) &&
-            (identical(other.endDate, endDate) || other.endDate == endDate) &&
-            (identical(other.face, face) || other.face == face) &&
-            const DeepCollectionEquality().equals(other.about, about));
+            (identical(other.endDate, endDate) || other.endDate == endDate));
   }
 
   @JsonKey(ignore: true)
@@ -1737,14 +1736,14 @@ class _$EmployeeImpl implements _Employee {
   int get hashCode => Object.hash(
       runtimeType,
       id,
-      stuff,
       startDate,
       photo,
+      face,
+      const DeepCollectionEquality().hash(about),
+      stuff,
       practice,
       const DeepCollectionEquality().hash(isVerified),
-      endDate,
-      face,
-      const DeepCollectionEquality().hash(about));
+      endDate);
 
   @JsonKey(ignore: true)
   @override
@@ -1762,15 +1761,16 @@ class _$EmployeeImpl implements _Employee {
 
 abstract class _Employee implements Employee {
   const factory _Employee(
-      {@JsonKey(name: "id") required final int id,
-      @JsonKey(name: "stuff") required final Stuff stuff,
-      @JsonKey(name: "startDate") required final DateTime startDate,
-      @JsonKey(name: "photo") required final Photo photo,
-      @JsonKey(name: "practice") required final int practice,
-      @JsonKey(name: "isVerified") required final dynamic isVerified,
-      @JsonKey(name: "endDate") required final DateTime endDate,
-      @JsonKey(name: "face") required final Face face,
-      @JsonKey(name: "about") required final dynamic about}) = _$EmployeeImpl;
+          {@JsonKey(name: "id") required final int id,
+          @JsonKey(name: "startDate") required final DateTime startDate,
+          @JsonKey(name: "photo") required final Photo photo,
+          @JsonKey(name: "face") required final Face face,
+          @JsonKey(name: "about") required final dynamic about,
+          @JsonKey(name: "stuff") required final Stuff stuff,
+          @JsonKey(name: "practice") required final int practice,
+          @JsonKey(name: "isVerified") required final dynamic isVerified,
+          @JsonKey(name: "endDate") required final DateTime endDate}) =
+      _$EmployeeImpl;
 
   factory _Employee.fromJson(Map<String, dynamic> json) =
       _$EmployeeImpl.fromJson;
@@ -1779,14 +1779,20 @@ abstract class _Employee implements Employee {
   @JsonKey(name: "id")
   int get id;
   @override
-  @JsonKey(name: "stuff")
-  Stuff get stuff;
-  @override
   @JsonKey(name: "startDate")
   DateTime get startDate;
   @override
   @JsonKey(name: "photo")
   Photo get photo;
+  @override
+  @JsonKey(name: "face")
+  Face get face;
+  @override
+  @JsonKey(name: "about")
+  dynamic get about;
+  @override
+  @JsonKey(name: "stuff")
+  Stuff get stuff;
   @override
   @JsonKey(name: "practice")
   int get practice;
@@ -1796,12 +1802,6 @@ abstract class _Employee implements Employee {
   @override
   @JsonKey(name: "endDate")
   DateTime get endDate;
-  @override
-  @JsonKey(name: "face")
-  Face get face;
-  @override
-  @JsonKey(name: "about")
-  dynamic get about;
   @override
   @JsonKey(ignore: true)
   _$$EmployeeImplCopyWith<_$EmployeeImpl> get copyWith =>
@@ -1818,6 +1818,12 @@ mixin _$Face {
   int get id => throw _privateConstructorUsedError;
   @JsonKey(name: "date")
   DateTime get date => throw _privateConstructorUsedError;
+  @JsonKey(name: "firstname")
+  String get firstname => throw _privateConstructorUsedError;
+  @JsonKey(name: "lastname")
+  String get lastname => throw _privateConstructorUsedError;
+  @JsonKey(name: "middlename")
+  String get middlename => throw _privateConstructorUsedError;
   @JsonKey(name: "passport")
   String get passport => throw _privateConstructorUsedError;
   @JsonKey(name: "birthday")
@@ -1826,12 +1832,6 @@ mixin _$Face {
   String get tel1 => throw _privateConstructorUsedError;
   @JsonKey(name: "tel2")
   String get tel2 => throw _privateConstructorUsedError;
-  @JsonKey(name: "firstname")
-  String get firstname => throw _privateConstructorUsedError;
-  @JsonKey(name: "lastname")
-  String get lastname => throw _privateConstructorUsedError;
-  @JsonKey(name: "middlename")
-  Middlename get middlename => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1846,13 +1846,13 @@ abstract class $FaceCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: "id") int id,
       @JsonKey(name: "date") DateTime date,
+      @JsonKey(name: "firstname") String firstname,
+      @JsonKey(name: "lastname") String lastname,
+      @JsonKey(name: "middlename") String middlename,
       @JsonKey(name: "passport") String passport,
       @JsonKey(name: "birthday") DateTime birthday,
       @JsonKey(name: "tel1") String tel1,
-      @JsonKey(name: "tel2") String tel2,
-      @JsonKey(name: "firstname") String firstname,
-      @JsonKey(name: "lastname") String lastname,
-      @JsonKey(name: "middlename") Middlename middlename});
+      @JsonKey(name: "tel2") String tel2});
 }
 
 /// @nodoc
@@ -1870,13 +1870,13 @@ class _$FaceCopyWithImpl<$Res, $Val extends Face>
   $Res call({
     Object? id = null,
     Object? date = null,
+    Object? firstname = null,
+    Object? lastname = null,
+    Object? middlename = null,
     Object? passport = null,
     Object? birthday = null,
     Object? tel1 = null,
     Object? tel2 = null,
-    Object? firstname = null,
-    Object? lastname = null,
-    Object? middlename = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -1887,6 +1887,18 @@ class _$FaceCopyWithImpl<$Res, $Val extends Face>
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      firstname: null == firstname
+          ? _value.firstname
+          : firstname // ignore: cast_nullable_to_non_nullable
+              as String,
+      lastname: null == lastname
+          ? _value.lastname
+          : lastname // ignore: cast_nullable_to_non_nullable
+              as String,
+      middlename: null == middlename
+          ? _value.middlename
+          : middlename // ignore: cast_nullable_to_non_nullable
+              as String,
       passport: null == passport
           ? _value.passport
           : passport // ignore: cast_nullable_to_non_nullable
@@ -1903,18 +1915,6 @@ class _$FaceCopyWithImpl<$Res, $Val extends Face>
           ? _value.tel2
           : tel2 // ignore: cast_nullable_to_non_nullable
               as String,
-      firstname: null == firstname
-          ? _value.firstname
-          : firstname // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastname: null == lastname
-          ? _value.lastname
-          : lastname // ignore: cast_nullable_to_non_nullable
-              as String,
-      middlename: null == middlename
-          ? _value.middlename
-          : middlename // ignore: cast_nullable_to_non_nullable
-              as Middlename,
     ) as $Val);
   }
 }
@@ -1929,13 +1929,13 @@ abstract class _$$FaceImplCopyWith<$Res> implements $FaceCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: "id") int id,
       @JsonKey(name: "date") DateTime date,
+      @JsonKey(name: "firstname") String firstname,
+      @JsonKey(name: "lastname") String lastname,
+      @JsonKey(name: "middlename") String middlename,
       @JsonKey(name: "passport") String passport,
       @JsonKey(name: "birthday") DateTime birthday,
       @JsonKey(name: "tel1") String tel1,
-      @JsonKey(name: "tel2") String tel2,
-      @JsonKey(name: "firstname") String firstname,
-      @JsonKey(name: "lastname") String lastname,
-      @JsonKey(name: "middlename") Middlename middlename});
+      @JsonKey(name: "tel2") String tel2});
 }
 
 /// @nodoc
@@ -1950,13 +1950,13 @@ class __$$FaceImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? date = null,
+    Object? firstname = null,
+    Object? lastname = null,
+    Object? middlename = null,
     Object? passport = null,
     Object? birthday = null,
     Object? tel1 = null,
     Object? tel2 = null,
-    Object? firstname = null,
-    Object? lastname = null,
-    Object? middlename = null,
   }) {
     return _then(_$FaceImpl(
       id: null == id
@@ -1967,6 +1967,18 @@ class __$$FaceImplCopyWithImpl<$Res>
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      firstname: null == firstname
+          ? _value.firstname
+          : firstname // ignore: cast_nullable_to_non_nullable
+              as String,
+      lastname: null == lastname
+          ? _value.lastname
+          : lastname // ignore: cast_nullable_to_non_nullable
+              as String,
+      middlename: null == middlename
+          ? _value.middlename
+          : middlename // ignore: cast_nullable_to_non_nullable
+              as String,
       passport: null == passport
           ? _value.passport
           : passport // ignore: cast_nullable_to_non_nullable
@@ -1983,18 +1995,6 @@ class __$$FaceImplCopyWithImpl<$Res>
           ? _value.tel2
           : tel2 // ignore: cast_nullable_to_non_nullable
               as String,
-      firstname: null == firstname
-          ? _value.firstname
-          : firstname // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastname: null == lastname
-          ? _value.lastname
-          : lastname // ignore: cast_nullable_to_non_nullable
-              as String,
-      middlename: null == middlename
-          ? _value.middlename
-          : middlename // ignore: cast_nullable_to_non_nullable
-              as Middlename,
     ));
   }
 }
@@ -2005,13 +2005,13 @@ class _$FaceImpl implements _Face {
   const _$FaceImpl(
       {@JsonKey(name: "id") required this.id,
       @JsonKey(name: "date") required this.date,
+      @JsonKey(name: "firstname") required this.firstname,
+      @JsonKey(name: "lastname") required this.lastname,
+      @JsonKey(name: "middlename") required this.middlename,
       @JsonKey(name: "passport") required this.passport,
       @JsonKey(name: "birthday") required this.birthday,
       @JsonKey(name: "tel1") required this.tel1,
-      @JsonKey(name: "tel2") required this.tel2,
-      @JsonKey(name: "firstname") required this.firstname,
-      @JsonKey(name: "lastname") required this.lastname,
-      @JsonKey(name: "middlename") required this.middlename});
+      @JsonKey(name: "tel2") required this.tel2});
 
   factory _$FaceImpl.fromJson(Map<String, dynamic> json) =>
       _$$FaceImplFromJson(json);
@@ -2022,6 +2022,15 @@ class _$FaceImpl implements _Face {
   @override
   @JsonKey(name: "date")
   final DateTime date;
+  @override
+  @JsonKey(name: "firstname")
+  final String firstname;
+  @override
+  @JsonKey(name: "lastname")
+  final String lastname;
+  @override
+  @JsonKey(name: "middlename")
+  final String middlename;
   @override
   @JsonKey(name: "passport")
   final String passport;
@@ -2034,19 +2043,10 @@ class _$FaceImpl implements _Face {
   @override
   @JsonKey(name: "tel2")
   final String tel2;
-  @override
-  @JsonKey(name: "firstname")
-  final String firstname;
-  @override
-  @JsonKey(name: "lastname")
-  final String lastname;
-  @override
-  @JsonKey(name: "middlename")
-  final Middlename middlename;
 
   @override
   String toString() {
-    return 'Face(id: $id, date: $date, passport: $passport, birthday: $birthday, tel1: $tel1, tel2: $tel2, firstname: $firstname, lastname: $lastname, middlename: $middlename)';
+    return 'Face(id: $id, date: $date, firstname: $firstname, lastname: $lastname, middlename: $middlename, passport: $passport, birthday: $birthday, tel1: $tel1, tel2: $tel2)';
   }
 
   @override
@@ -2056,24 +2056,24 @@ class _$FaceImpl implements _Face {
             other is _$FaceImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.date, date) || other.date == date) &&
-            (identical(other.passport, passport) ||
-                other.passport == passport) &&
-            (identical(other.birthday, birthday) ||
-                other.birthday == birthday) &&
-            (identical(other.tel1, tel1) || other.tel1 == tel1) &&
-            (identical(other.tel2, tel2) || other.tel2 == tel2) &&
             (identical(other.firstname, firstname) ||
                 other.firstname == firstname) &&
             (identical(other.lastname, lastname) ||
                 other.lastname == lastname) &&
             (identical(other.middlename, middlename) ||
-                other.middlename == middlename));
+                other.middlename == middlename) &&
+            (identical(other.passport, passport) ||
+                other.passport == passport) &&
+            (identical(other.birthday, birthday) ||
+                other.birthday == birthday) &&
+            (identical(other.tel1, tel1) || other.tel1 == tel1) &&
+            (identical(other.tel2, tel2) || other.tel2 == tel2));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, date, passport, birthday,
-      tel1, tel2, firstname, lastname, middlename);
+  int get hashCode => Object.hash(runtimeType, id, date, firstname, lastname,
+      middlename, passport, birthday, tel1, tel2);
 
   @JsonKey(ignore: true)
   @override
@@ -2091,16 +2091,15 @@ class _$FaceImpl implements _Face {
 
 abstract class _Face implements Face {
   const factory _Face(
-          {@JsonKey(name: "id") required final int id,
-          @JsonKey(name: "date") required final DateTime date,
-          @JsonKey(name: "passport") required final String passport,
-          @JsonKey(name: "birthday") required final DateTime birthday,
-          @JsonKey(name: "tel1") required final String tel1,
-          @JsonKey(name: "tel2") required final String tel2,
-          @JsonKey(name: "firstname") required final String firstname,
-          @JsonKey(name: "lastname") required final String lastname,
-          @JsonKey(name: "middlename") required final Middlename middlename}) =
-      _$FaceImpl;
+      {@JsonKey(name: "id") required final int id,
+      @JsonKey(name: "date") required final DateTime date,
+      @JsonKey(name: "firstname") required final String firstname,
+      @JsonKey(name: "lastname") required final String lastname,
+      @JsonKey(name: "middlename") required final String middlename,
+      @JsonKey(name: "passport") required final String passport,
+      @JsonKey(name: "birthday") required final DateTime birthday,
+      @JsonKey(name: "tel1") required final String tel1,
+      @JsonKey(name: "tel2") required final String tel2}) = _$FaceImpl;
 
   factory _Face.fromJson(Map<String, dynamic> json) = _$FaceImpl.fromJson;
 
@@ -2110,6 +2109,15 @@ abstract class _Face implements Face {
   @override
   @JsonKey(name: "date")
   DateTime get date;
+  @override
+  @JsonKey(name: "firstname")
+  String get firstname;
+  @override
+  @JsonKey(name: "lastname")
+  String get lastname;
+  @override
+  @JsonKey(name: "middlename")
+  String get middlename;
   @override
   @JsonKey(name: "passport")
   String get passport;
@@ -2123,15 +2131,6 @@ abstract class _Face implements Face {
   @JsonKey(name: "tel2")
   String get tel2;
   @override
-  @JsonKey(name: "firstname")
-  String get firstname;
-  @override
-  @JsonKey(name: "lastname")
-  String get lastname;
-  @override
-  @JsonKey(name: "middlename")
-  Middlename get middlename;
-  @override
   @JsonKey(ignore: true)
   _$$FaceImplCopyWith<_$FaceImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -2144,7 +2143,7 @@ Stuff _$StuffFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Stuff {
   @JsonKey(name: "name")
-  Name get name => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   @JsonKey(name: "id")
   int get id => throw _privateConstructorUsedError;
 
@@ -2158,7 +2157,7 @@ abstract class $StuffCopyWith<$Res> {
   factory $StuffCopyWith(Stuff value, $Res Function(Stuff) then) =
       _$StuffCopyWithImpl<$Res, Stuff>;
   @useResult
-  $Res call({@JsonKey(name: "name") Name name, @JsonKey(name: "id") int id});
+  $Res call({@JsonKey(name: "name") String name, @JsonKey(name: "id") int id});
 }
 
 /// @nodoc
@@ -2181,7 +2180,7 @@ class _$StuffCopyWithImpl<$Res, $Val extends Stuff>
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as Name,
+              as String,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -2197,7 +2196,7 @@ abstract class _$$StuffImplCopyWith<$Res> implements $StuffCopyWith<$Res> {
       __$$StuffImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({@JsonKey(name: "name") Name name, @JsonKey(name: "id") int id});
+  $Res call({@JsonKey(name: "name") String name, @JsonKey(name: "id") int id});
 }
 
 /// @nodoc
@@ -2218,7 +2217,7 @@ class __$$StuffImplCopyWithImpl<$Res>
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as Name,
+              as String,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -2239,7 +2238,7 @@ class _$StuffImpl implements _Stuff {
 
   @override
   @JsonKey(name: "name")
-  final Name name;
+  final String name;
   @override
   @JsonKey(name: "id")
   final int id;
@@ -2278,14 +2277,14 @@ class _$StuffImpl implements _Stuff {
 
 abstract class _Stuff implements Stuff {
   const factory _Stuff(
-      {@JsonKey(name: "name") required final Name name,
+      {@JsonKey(name: "name") required final String name,
       @JsonKey(name: "id") required final int id}) = _$StuffImpl;
 
   factory _Stuff.fromJson(Map<String, dynamic> json) = _$StuffImpl.fromJson;
 
   @override
   @JsonKey(name: "name")
-  Name get name;
+  String get name;
   @override
   @JsonKey(name: "id")
   int get id;

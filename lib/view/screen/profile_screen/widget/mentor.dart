@@ -8,7 +8,6 @@ class Mentor extends StatefulWidget {
   final String image;
   final String name;
   final String information;
-  final String numStudents;
   final String courses;
   final String rating;
   final bool? isVerified;
@@ -18,7 +17,6 @@ class Mentor extends StatefulWidget {
     required this.image,
     required this.name,
     required this.information,
-    required this.numStudents,
     required this.courses,
     required this.rating,
     required this.isVerified,
@@ -105,28 +103,6 @@ class _MentorState extends State<Mentor> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: Row(
-                  children: [
-                    Image.asset(
-                      "assets/icons/profile2user.png",
-                      width: 16.w,
-                      height: 16.w,
-                    ),
-                    SizedBox(width: 8.w),
-                    Text(
-                      widget.numStudents,
-                      style: AppFonts.body12Regular,
-                    )
-                  ],
-                ),
-              ),
-              Container(
-                height: 20.h,
-                width: 1.w,
-                color: AppColor.secondary,
-              ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8.h),
                 child: Row(

@@ -9,14 +9,12 @@ class CourseCard extends StatelessWidget {
   final String image;
   final String information;
   final String courseName;
-  final String price;
 
   const CourseCard({
     super.key,
     required this.image,
     required this.information,
     required this.courseName,
-    required this.price,
   });
 
   @override
@@ -32,6 +30,7 @@ class CourseCard extends StatelessWidget {
         ),
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             width: double.infinity,
@@ -68,33 +67,7 @@ class CourseCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                Row(
-                  children: [
-                    const Text(
-                      "5/5",
-                      style: AppFonts.body12Regular,
-                    ),
-                    Image.asset(
-                      "assets/icons/rating.png",
-                      width: 16.w,
-                      height: 16.h,
-                    ),
-                    Text(
-                      "98",
-                      style: AppFonts.body12Regular.copyWith(
-                        color: AppColor.txtSecondColor,
-                      ),
-                    ),
-                  ],
-                ),
                 SizedBox(height: 6.h),
-                Text(
-                  "$price so'm",
-                  style: AppFonts.body18Regular.copyWith(
-                    color: AppColor.primary,
-                    fontSize: 14,
-                  ),
-                ),
               ],
             ),
           ),

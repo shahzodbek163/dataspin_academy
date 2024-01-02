@@ -1,8 +1,9 @@
-import 'dart:math';
+import 'dart:developer';
 
 import 'package:dataspin_academy/controller/bloc/category_filter/course_filter_by_type_bloc.dart';
 import 'package:dataspin_academy/controller/bloc/course/course_price/cubit/course_with_price_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/course/course_type/course_type_cubit.dart';
+import 'package:dataspin_academy/controller/provider/selectble_index_provider.dart';
 import 'package:dataspin_academy/controller/service/api/app_ip.dart';
 import 'package:dataspin_academy/view/screen/categories/widget/categorie_chips.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
@@ -28,16 +29,15 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     super.initState();
   }
 
-  int selectIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: SimpleAppbar.simpleAppbar(
-          leadingIconPath: AppIcons.backArrow,
-          title: "Kategories",
-          context: context),
+        leadingIconPath: AppIcons.backArrow,
+        title: "Kategories",
+        context: context,
+      ),
       body: SafeArea(
           child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,11 +50,12 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                 get: (item) => Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SelectbleRow(
+                    SelectableRow(
+                      forMainScreen: false,
                       listRes:
-                              ["Barchasi"] + item.data.map((e) => e.name).toList(),
+                          ["Barchasi"] + item.data.map((e) => e.name).toList(),
                       onChangedIndex: (index) {
-                        selectIndex = index;
+                        context.read<SelectableIndexProvider>().change(index);
                         if (index == 0) {
                           context.read<CourseWithPriceCubit>().state.maybeWhen(
                                 orElse: () {},

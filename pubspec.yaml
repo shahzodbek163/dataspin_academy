@@ -68,6 +68,7 @@ dependencies:
   gap: ^3.0.1
   marquee: ^2.2.3
   flutter_launcher_icons: ^0.13.1
+  youtube_player_flutter: ^8.1.2
 
 dev_dependencies:
   flutter_test:

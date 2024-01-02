@@ -127,7 +127,7 @@ class _MentorCardState extends State<MentorCard> {
                         ),
                         SizedBox(width: 8.w),
                         Text(
-                          widget.mentorResultData.courses.length.toString(),
+                          "${widget.mentorResultData.courses.length.toString()} ta kurslar",
                           style: AppFonts.body12Regular,
                         )
                       ],

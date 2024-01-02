@@ -32,13 +32,13 @@ class MentorResultData with _$MentorResultData {
     @JsonKey(name: "id")
     required int id,
     @JsonKey(name: "date")
-    required DateTime date,
+    required DateTime? date,
     @JsonKey(name: "subMentors")
     required List<Employee> subMentors,
-    @JsonKey(name: "courses")
-    required List<Course> courses,
     @JsonKey(name: "employee")
     required Employee employee,
+    @JsonKey(name: "courses")
+    required List<Course> courses,
   }) = _MentorResultData;
 
   factory MentorResultData.fromJson(Map<String, dynamic> json) => _$MentorResultDataFromJson(json);
@@ -117,22 +117,22 @@ class Employee with _$Employee {
   const factory Employee({
     @JsonKey(name: "id")
     required int id,
-    @JsonKey(name: "stuff")
-    required Stuff stuff,
     @JsonKey(name: "startDate")
     required DateTime startDate,
     @JsonKey(name: "photo")
     required Photo photo,
+    @JsonKey(name: "face")
+    required Face face,
+    @JsonKey(name: "about")
+    required dynamic about,
+    @JsonKey(name: "stuff")
+    required Stuff stuff,
     @JsonKey(name: "practice")
     required int practice,
     @JsonKey(name: "isVerified")
     required dynamic isVerified,
     @JsonKey(name: "endDate")
     required DateTime endDate,
-    @JsonKey(name: "face")
-    required Face face,
-    @JsonKey(name: "about")
-    required dynamic about,
   }) = _Employee;
 
   factory Employee.fromJson(Map<String, dynamic> json) => _$EmployeeFromJson(json);
@@ -145,6 +145,12 @@ class Face with _$Face {
     required int id,
     @JsonKey(name: "date")
     required DateTime date,
+    @JsonKey(name: "firstname")
+    required String firstname,
+    @JsonKey(name: "lastname")
+    required String lastname,
+    @JsonKey(name: "middlename")
+    required String middlename,
     @JsonKey(name: "passport")
     required String passport,
     @JsonKey(name: "birthday")
@@ -153,61 +159,19 @@ class Face with _$Face {
     required String tel1,
     @JsonKey(name: "tel2")
     required String tel2,
-    @JsonKey(name: "firstname")
-    required String firstname,
-    @JsonKey(name: "lastname")
-    required String lastname,
-    @JsonKey(name: "middlename")
-    required Middlename middlename,
   }) = _Face;
 
   factory Face.fromJson(Map<String, dynamic> json) => _$FaceFromJson(json);
 }
 
-enum Middlename {
-  @JsonValue("Jahongir o'g'li")
-  JAHONGIR_O_G_LI,
-  @JsonValue("Nematjon o'g'li")
-  NEMATJON_O_G_LI,
-  @JsonValue("Xaydarali o'g'li")
-  XAYDARALI_O_G_LI
-}
-
-final middlenameValues = EnumValues({
-  "Jahongir o'g'li": Middlename.JAHONGIR_O_G_LI,
-  "Nematjon o'g'li": Middlename.NEMATJON_O_G_LI,
-  "Xaydarali o'g'li": Middlename.XAYDARALI_O_G_LI
-});
-
 @freezed
 class Stuff with _$Stuff {
   const factory Stuff({
     @JsonKey(name: "name")
-    required Name name,
+    required String name,
     @JsonKey(name: "id")
     required int id,
   }) = _Stuff;
 
   factory Stuff.fromJson(Map<String, dynamic> json) => _$StuffFromJson(json);
-}
-
-enum Name {
-  @JsonValue("O'qituvchi")
-  O_QITUVCHI
-}
-
-final nameValues = EnumValues({
-  "O'qituvchi": Name.O_QITUVCHI
-});
-
-class EnumValues<T> {
-  Map<String, T> map;
-  late Map<T, String> reverseMap;
-
-  EnumValues(this.map);
-
-  Map<T, String> get reverse {
-    reverseMap = map.map((k, v) => MapEntry(v, k));
-    return reverseMap;
-  }
 }

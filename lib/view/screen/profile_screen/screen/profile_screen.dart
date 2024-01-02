@@ -1,6 +1,7 @@
 import 'package:dataspin_academy/controller/bloc/mentors/mentors_cubit.dart';
 import 'package:dataspin_academy/controller/provider/profile_data_provider.dart';
 import 'package:dataspin_academy/controller/service/api/app_ip.dart';
+import 'package:dataspin_academy/view/screen/profile_screen/part/youtube_test.dart';
 import 'package:dataspin_academy/view/screen/profile_screen/widget/courses_card.dart';
 import 'package:dataspin_academy/view/screen/profile_screen/widget/mentor.dart';
 import 'package:dataspin_academy/view/value/app_color.dart';
@@ -27,7 +28,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
       appBar: SimpleAppbar.simpleAppbar(
         leadingIconPath: AppIcons.backArrow,
-        title: "Course Mentor",
+        title: "Mentor",
         context: context,
       ),
       body: SafeArea(
@@ -50,9 +51,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               "${mentorData!.employee.face.firstname} ${mentorData!.employee.face.lastname}",
                           information:
                               "${mentorData.courses.map((e) => e.courseType.name).join(", ")} developer",
-                          numStudents: "+12 400",
-                          courses:
-                              "${mentorData.courses.length} ta kurslar",
+
+                          courses: "${mentorData.courses.length} ta kurslar",
                           rating:
                               "${mentorData.employee.practice} yillik tajriba",
                           //
@@ -60,7 +60,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         SizedBox(height: 24.h),
                         const Text(
-                          "About",
+                          "Men haqimda",
                           style: AppFonts.h3,
                         ),
                         SizedBox(height: 14.h),
@@ -72,32 +72,34 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         SizedBox(height: 35.h),
                         const Text(
+                          "Youtube",
+                          style: AppFonts.h3,
+                        ),
+                        SizedBox(height: 16.h),
+                        const YoutubeTest(),
+                        SizedBox(height: 16.h),
+                        const Text(
                           "Kurslar",
                           style: AppFonts.h3,
                         ),
                         SizedBox(height: 16.h),
-                        SizedBox(
-                          height:
-                              (250 * mentorData.courses.length).h,
-                          child: GridView.builder(
-                            itemCount: mentorData.courses.length,
-                            physics: const NeverScrollableScrollPhysics(),
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              crossAxisSpacing: 16,
-                              mainAxisSpacing: 24,
-                              childAspectRatio: 0.65,
-                            ),
-                            itemBuilder: (context, index) => CourseCard(
-                              image:
-                                  "${AppIp.ip}/api/image/?id=${mentorData.courses[index].courseType.photo.id}",
-                              information:
-                                  mentorData.courses[index].name,
-                              courseName: mentorData.courses[index]
-                                  .courseType.name,
-                              price: "400 000",
-                            ),
+                        GridView.builder(
+                          shrinkWrap: true,
+                          itemCount: mentorData.courses.length,
+                          physics: const NeverScrollableScrollPhysics(),
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 16,
+                            mainAxisSpacing: 24,
+                            childAspectRatio: 0.65,
+                          ),
+                          itemBuilder: (context, index) => CourseCard(
+                            image:
+                                "${AppIp.ip}/api/image/?id=${mentorData.courses[index].courseType.photo.id}",
+                            information: mentorData.courses[index].name,
+                            courseName:
+                                mentorData.courses[index].courseType.name,
                           ),
                         ),
                       ],
