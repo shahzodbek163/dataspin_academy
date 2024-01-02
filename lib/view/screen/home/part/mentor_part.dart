@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:dataspin_academy/controller/bloc/mentors/mentors_cubit.dart';
-import 'package:dataspin_academy/controller/provider/profile_id_provider.dart';
+import 'package:dataspin_academy/controller/provider/profile_data_provider.dart';
 import 'package:dataspin_academy/controller/service/api/app_ip.dart';
 import 'package:dataspin_academy/view/screen/home/widget/mentor_card.dart';
 import 'package:dataspin_academy/view/screen/home/widget/row_text_widget.dart';
@@ -47,10 +47,7 @@ class _MentorPartState extends State<MentorPart> {
                         child: InkWell(
                           borderRadius: BorderRadius.circular(8),
                           onTap: () {
-                            context.read<ProfileIdProvider>().change(result.data[index]);
-
-                            print(
-                                "${context.read<ProfileIdProvider>().mentorResultData} ioiooiioioio");
+                            context.read<ProfileDataProvider>().change(result.data[index]);
                             context.push(ProfileScreen.routeName);
                           },
                           child: MentorCard(

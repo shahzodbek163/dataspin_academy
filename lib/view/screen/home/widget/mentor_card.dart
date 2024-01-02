@@ -91,8 +91,8 @@ class _MentorCardState extends State<MentorCard> {
                       numberOfRounds: 1,
                       accelerationDuration: const Duration(seconds: 1),
                       text: widget.mentorResultData.courses
-                          .map((e) => e.name)
-                          .toString(),
+                          .map((e) => e.courseType.name)
+                          .join(", "),
                       style: AppFonts.label.copyWith(
                         color: AppColor.txtSecondColor,
                       ),
@@ -100,6 +100,9 @@ class _MentorCardState extends State<MentorCard> {
                   : Center(
                       child: Text(
                         widget.mentorResultData.courses.first.name,
+                        style: AppFonts.label.copyWith(
+                          color: AppColor.txtSecondColor,
+                        ),
                       ),
                     ),
             ),

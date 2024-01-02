@@ -12,7 +12,7 @@ import 'package:dataspin_academy/controller/bloc/send_code/send_code_cubit.dart'
 import 'package:dataspin_academy/controller/provider/category_info_provider.dart';
 import 'package:dataspin_academy/controller/provider/course_info_provider.dart';
 import 'package:dataspin_academy/controller/provider/phone_number_provider.dart';
-import 'package:dataspin_academy/controller/provider/profile_id_provider.dart';
+import 'package:dataspin_academy/controller/provider/profile_data_provider.dart';
 import 'package:dataspin_academy/controller/service/navigation/go_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -36,7 +36,7 @@ class _MyAppState extends State<MyApp> {
         BlocProvider(create: (context) => SendCodeCubit()),
         BlocProvider(create: (context) => CheckCodeCubit()),
         ChangeNotifierProvider(create: (context) => PhoneNumberProvider()),
-        ChangeNotifierProvider(create: (context) => ProfileIdProvider()),
+        ChangeNotifierProvider(create: (context) => ProfileDataProvider()),
         ChangeNotifierProvider(create: (context) =>  CategoryInfoProvider()),
         BlocProvider(create: (context) => CheckTapCubit()),
         BlocProvider(create: (context) => CreateAccountCubit()),

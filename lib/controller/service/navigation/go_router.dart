@@ -1,4 +1,3 @@
-import 'package:dataspin_academy/controller/provider/profile_id_provider.dart';
 import 'package:dataspin_academy/controller/service/navigation/navigation_service.dart';
 import 'package:dataspin_academy/controller/service/transition/transitions.dart';
 import 'package:dataspin_academy/view/screen/categories/screen/categorie_screen.dart';
@@ -9,13 +8,12 @@ import 'package:dataspin_academy/view/screen/profile_screen/screen/profile_scree
 import 'package:dataspin_academy/view/screen/send_code/screen/send_code_screen.dart';
 import 'package:dataspin_academy/view/screen/create_accaunt/screen/create_account_screen.dart';
 import 'package:dataspin_academy/view/screen/test_screen.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class AppGoRouter {
   final router = GoRouter(
     navigatorKey: NavigationService.navigatorKey,
-    initialLocation:   SendCodeScreen.routeName,
+    initialLocation: SendCodeScreen.routeName,
     routes: [
       ///main
       GoRoute(
@@ -57,7 +55,7 @@ class AppGoRouter {
         path: ProfileScreen.routeName,
         pageBuilder: (context, state) => slideTransitionRight(
           state,
-          ProfileScreen(),
+          const ProfileScreen(),
         ),
       ),
       GoRoute(
