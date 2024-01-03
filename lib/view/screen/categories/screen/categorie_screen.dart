@@ -1,10 +1,7 @@
-import 'dart:developer';
-
 import 'package:dataspin_academy/controller/bloc/category_filter/course_filter_by_type_bloc.dart';
 import 'package:dataspin_academy/controller/bloc/course/course_price/cubit/course_with_price_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/course/course_type/course_type_cubit.dart';
 import 'package:dataspin_academy/controller/provider/selectble_index_provider.dart';
-import 'package:dataspin_academy/controller/service/api/app_ip.dart';
 import 'package:dataspin_academy/view/screen/categories/widget/categorie_chips.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
 import 'package:dataspin_academy/view/value/app_icons.dart';
@@ -108,44 +105,33 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                       : Padding(
                           padding: EdgeInsets.symmetric(horizontal: 16.w),
                           child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  name,
-                                  style: AppFonts.h4.copyWith(
-                                    color: const Color(0xFF6941C6),
-                                  ),
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                name,
+                                style: AppFonts.h4.copyWith(
+                                  color: const Color(0xFF6941C6),
                                 ),
-                                SizedBox(height: 8.h),
-                                SizedBox(
-                                  height:
-                                      (MediaQuery.of(context).size.height - 212)
-                                          .h,
-                                  child: ListView.builder(
-                                    physics: const BouncingScrollPhysics(),
-                                    itemCount: result.data!.length,
-                                    itemBuilder: (context, index) => Padding(
-                                      padding:
-                                          const EdgeInsets.only(bottom: 24),
-                                      child: CategoriesChips(
-                                        image:
-                                            "${AppIp.ip}/api/image/?id=${result.data![index]!.course.previewPhoto.id}",
-                                        courseName:
-                                            result.data![index]!.course.name,
-                                        type: result.data![index]!.course
-                                            .courseType.name,
-                                        personImage:
-                                            "",
-                                        personName: result
-                                                    .data![index]!.mentor ==
-                                                null
-                                            ? "null"
-                                            : "${result.data![index]!.mentor!.employee.face.firstname} ${result.data![index]!.mentor!.employee.face.lastname}",
-                                      ),
+                              ),
+                              SizedBox(height: 8.h),
+                              SizedBox(
+                                height:
+                                    (MediaQuery.of(context).size.height - 212)
+                                        .h,
+                                child: ListView.builder(
+                                  physics: const BouncingScrollPhysics(),
+                                  itemCount: result.data!.length,
+                                  itemBuilder: (context, index) => Padding(
+                                    padding: const EdgeInsets.only(bottom: 24),
+                                    child: CategoriesChips(
+                                      courseData: result.data![index]!,
                                     ),
                                   ),
-                                )
-                              ]));
+                                ),
+                              )
+                            ],
+                          ),
+                        );
                 }),
           )
         ],

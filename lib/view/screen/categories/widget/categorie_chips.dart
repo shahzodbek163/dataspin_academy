@@ -1,23 +1,17 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dataspin_academy/controller/service/api/app_ip.dart';
+import 'package:dataspin_academy/model/course/course_price/response/course_with_price_response.dart';
 import 'package:dataspin_academy/view/value/app_color.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CategoriesChips extends StatelessWidget {
-  final String image;
-  final String type;
-  final String courseName;
-  final String personImage;
-  final String personName;
+  final CourseWithPriceData courseData;
 
   const CategoriesChips({
     super.key,
-    required this.image,
-    required this.type,
-    required this.courseName,
-    required this.personImage,
-    required this.personName,
+    required this.courseData,
   });
 
   @override
@@ -49,7 +43,8 @@ class CategoriesChips extends StatelessWidget {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(4),
                     child: CachedNetworkImage(
-                      imageUrl: image,
+                      imageUrl:
+                          "${AppIp.ip}/api/image/?id=${courseData.course.previewPhoto.id}",
                       width: 156.w,
                       height: 120.h,
                       fit: BoxFit.cover,
@@ -64,7 +59,7 @@ class CategoriesChips extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            type,
+                            courseData.course.courseType.name,
                             style: AppFonts.body12Regular.copyWith(
                               color: AppColor.txtSecondColor,
                               fontSize: 14,
@@ -72,7 +67,7 @@ class CategoriesChips extends StatelessWidget {
                           ),
                           SizedBox(height: 4.h),
                           Text(
-                            courseName,
+                            courseData.course.name,
                             style: AppFonts.h4.copyWith(
                               fontSize: 20,
                             ),
@@ -94,17 +89,19 @@ class CategoriesChips extends StatelessWidget {
                             color: AppColor.primary,
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ],
               ),
             ),
-            personName == "null"
+            courseData.mentor == null
                 ? const SizedBox()
                 : Column(
                     children: [
-                      SizedBox(height: 10,),
+                      const SizedBox(
+                        height: 10,
+                      ),
                       Container(
                         height: 1,
                         width: double.infinity,
@@ -122,14 +119,14 @@ class CategoriesChips extends StatelessWidget {
                                 image: DecorationImage(
                                   fit: BoxFit.cover,
                                   image: CachedNetworkImageProvider(
-                                    personImage,
+                                    "${AppIp.ip}/api/image/?id=${courseData.mentor!.employee.photo.id}",
                                   ),
                                 ),
                               ),
                             ),
                             SizedBox(width: 10.w),
                             Text(
-                              personName,
+                              "${courseData.mentor!.employee.face.firstname} ${courseData.mentor!.employee.face.lastname}",
                               style: AppFonts.body12Regular.copyWith(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 16,
