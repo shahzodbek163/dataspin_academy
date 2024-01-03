@@ -7,13 +7,14 @@ import 'package:dataspin_academy/view/screen/home/screen/home_screen.dart';
 import 'package:dataspin_academy/view/screen/profile_screen/screen/profile_screen.dart';
 import 'package:dataspin_academy/view/screen/send_code/screen/send_code_screen.dart';
 import 'package:dataspin_academy/view/screen/create_accaunt/screen/create_account_screen.dart';
+import 'package:dataspin_academy/view/screen/splash/splash_screen.dart';
 import 'package:dataspin_academy/view/screen/test_screen.dart';
 import 'package:go_router/go_router.dart';
 
 class AppGoRouter {
   final router = GoRouter(
     navigatorKey: NavigationService.navigatorKey,
-    initialLocation: SendCodeScreen.routeName,
+    initialLocation: SplashScreen.routeName,
     routes: [
       ///main
       GoRoute(
@@ -21,6 +22,13 @@ class AppGoRouter {
         pageBuilder: (context, state) => slideTransitionRight(
           state,
           const CheckCodeScreen(),
+        ),
+      ),
+      GoRoute(
+        path: SplashScreen.routeName,
+        pageBuilder: (context, state) => slideTransitionRight(
+          state,
+          const SplashScreen(),
         ),
       ),
       GoRoute(

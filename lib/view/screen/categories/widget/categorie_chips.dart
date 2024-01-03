@@ -23,7 +23,6 @@ class CategoriesChips extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200.h,
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
@@ -101,39 +100,46 @@ class CategoriesChips extends StatelessWidget {
                 ],
               ),
             ),
-            Container(
-              height: 1,
-              width: double.infinity,
-              color: AppColor.divider,
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 10.w),
-              child: Row(
-                children: [
-                  Container(
-                    width: 35.w,
-                    height: 35.h,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: CachedNetworkImageProvider(
-                          personImage,
+            personName == "null"
+                ? const SizedBox()
+                : Column(
+                    children: [
+                      SizedBox(height: 10,),
+                      Container(
+                        height: 1,
+                        width: double.infinity,
+                        color: AppColor.divider,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 10.w, top: 5),
+                        child: Row(
+                          children: [
+                            Container(
+                              width: 35.w,
+                              height: 35.h,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: CachedNetworkImageProvider(
+                                    personImage,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(width: 10.w),
+                            Text(
+                              personName,
+                              style: AppFonts.body12Regular.copyWith(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                    ),
+                    ],
                   ),
-                  SizedBox(width: 10.w),
-                  Text(
-                    personName,
-                    style: AppFonts.body12Regular.copyWith(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 16,
-                    ),
-                  ),
-                ],
-              ),
-            ),
           ],
         ),
       ),

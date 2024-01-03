@@ -132,14 +132,14 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                             "${AppIp.ip}/api/image/?id=${result.data![index]!.course.previewPhoto.id}",
                                         courseName:
                                             result.data![index]!.course.name,
-                                        personImage:
-                                            "${AppIp.ip}/api/image/?id=${result.data![index]!.mentor!.employee.photo.id}",
                                         type: result.data![index]!.course
                                             .courseType.name,
+                                        personImage:
+                                            "",
                                         personName: result
                                                     .data![index]!.mentor ==
                                                 null
-                                            ? "Ism ma'lum emas"
+                                            ? "null"
                                             : "${result.data![index]!.mentor!.employee.face.firstname} ${result.data![index]!.mentor!.employee.face.lastname}",
                                       ),
                                     ),
