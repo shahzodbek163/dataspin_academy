@@ -17,11 +17,6 @@ class MentorPart extends StatefulWidget {
 
 class _MentorPartState extends State<MentorPart> {
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
@@ -29,7 +24,6 @@ class _MentorPartState extends State<MentorPart> {
         SizedBox(height: 18.h),
         BlocBuilder<MentorsCubit, MentorsState>(
           builder: (context, state) {
-
             return state.maybeWhen(
               orElse: () => const SizedBox(),
               getting: () => const CircularProgressIndicator(),

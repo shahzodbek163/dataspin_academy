@@ -31,83 +31,83 @@ class _ProfileScreenState extends State<ProfileScreen> {
         title: "Mentor",
         context: context,
       ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 22.h, vertical: 24.h),
-            child: BlocBuilder<MentorsCubit, MentorsState>(
-              builder: (context, state) {
-                return state.maybeWhen(
-                  orElse: () => const SizedBox(),
-                  getting: () => const CircularProgressIndicator(),
-                  get: (result) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Mentor(
-                          image:
-                              "${AppIp.ip}/api/image/?id=${mentorData!.employee.photo.id}",
-                          name:
-                              "${mentorData!.employee.face.firstname} ${mentorData!.employee.face.lastname}",
-                          information:
-                              "${mentorData.courses.map((e) => e.courseType.name).join(", ")} developer",
+      backgroundColor: Colors.white,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 22.h, vertical: 24.h),
 
-                          courses: "${mentorData.courses.length} ta kurslar",
-                          rating:
-                              "${mentorData.employee.practice} yillik tajriba",
-                          //
-                          isVerified: mentorData.employee.isVerified,
+          child: BlocBuilder<MentorsCubit, MentorsState>(
+            builder: (context, state) {
+              return state.maybeWhen(
+                orElse: () => const SizedBox(),
+                getting: () => const CircularProgressIndicator(),
+                get: (result) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Mentor(
+                        image:
+                            "${AppIp.ip}/api/image/?id=${mentorData!.employee.photo.id}",
+                        name:
+                            "${mentorData.employee.face.firstname} ${mentorData.employee.face.lastname}",
+                        information:
+                            "${mentorData.courses.map((e) => e.courseType.name).join(", ")} developer",
+
+                        courses: "${mentorData.courses.length} ta kurslar",
+                        rating:
+                            "${mentorData.employee.practice} yillik tajriba",
+                        //
+                        isVerified: mentorData.employee.isVerified,
+                      ),
+                      SizedBox(height: 24.h),
+                      const Text(
+                        "Men haqimda",
+                        style: AppFonts.h3,
+                      ),
+                      SizedBox(height: 14.h),
+                      Text(
+                        mentorData.employee.about ?? "Ma'limot yo'q",
+                        style: AppFonts.body18Regular.copyWith(
+                          color: AppColor.txtSecondColor,
                         ),
-                        SizedBox(height: 24.h),
-                        const Text(
-                          "Men haqimda",
-                          style: AppFonts.h3,
+                      ),
+                      SizedBox(height: 35.h),
+                      const Text(
+                        "Maxsus video",
+                        style: AppFonts.h3,
+                      ),
+                      SizedBox(height: 16.h),
+                      const YoutubeTest(),
+                      SizedBox(height: 16.h),
+                      const Text(
+                        "Kurslar",
+                        style: AppFonts.h3,
+                      ),
+                      SizedBox(height: 16.h),
+                      GridView.builder(
+                        shrinkWrap: true,
+                        itemCount: mentorData.courses.length,
+                        physics: const NeverScrollableScrollPhysics(),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 16,
+                          mainAxisSpacing: 24,
+                          childAspectRatio: 0.65,
                         ),
-                        SizedBox(height: 14.h),
-                        Text(
-                          mentorData.employee.about ?? "Ma'limot yo'q",
-                          style: AppFonts.body18Regular.copyWith(
-                            color: AppColor.txtSecondColor,
-                          ),
+                        itemBuilder: (context, index) => CourseCard(
+                          image:
+                              "${AppIp.ip}/api/image/?id=${mentorData.courses[index].courseType.photo.id}",
+                          information: mentorData.courses[index].name,
+                          courseName:
+                              mentorData.courses[index].courseType.name,
                         ),
-                        SizedBox(height: 35.h),
-                        const Text(
-                          "Youtube",
-                          style: AppFonts.h3,
-                        ),
-                        SizedBox(height: 16.h),
-                        const YoutubeTest(),
-                        SizedBox(height: 16.h),
-                        const Text(
-                          "Kurslar",
-                          style: AppFonts.h3,
-                        ),
-                        SizedBox(height: 16.h),
-                        GridView.builder(
-                          shrinkWrap: true,
-                          itemCount: mentorData.courses.length,
-                          physics: const NeverScrollableScrollPhysics(),
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 16,
-                            mainAxisSpacing: 24,
-                            childAspectRatio: 0.65,
-                          ),
-                          itemBuilder: (context, index) => CourseCard(
-                            image:
-                                "${AppIp.ip}/api/image/?id=${mentorData.courses[index].courseType.photo.id}",
-                            information: mentorData.courses[index].name,
-                            courseName:
-                                mentorData.courses[index].courseType.name,
-                          ),
-                        ),
-                      ],
-                    );
-                  },
-                );
-              },
-            ),
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
           ),
         ),
       ),

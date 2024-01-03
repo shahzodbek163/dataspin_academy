@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dataspin_academy/controller/service/api/app_ip.dart';
 import 'package:dataspin_academy/model/mentor/mentor_result.dart';
@@ -5,7 +6,6 @@ import 'package:dataspin_academy/view/value/app_color.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:marquee/marquee.dart';
 
 class MentorCard extends StatefulWidget {
   final MentorResultData mentorResultData;
@@ -20,7 +20,6 @@ class _MentorCardState extends State<MentorCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 222.h,
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
@@ -84,28 +83,26 @@ class _MentorCardState extends State<MentorCard> {
             ),
             SizedBox(height: 5.h),
             SizedBox(
-              height: 20.h,
-              width: 251.w,
-              child: widget.mentorResultData.courses.length > 1
-                  ? Marquee(
-                      numberOfRounds: 1,
-                      accelerationDuration: const Duration(seconds: 1),
-                      text: widget.mentorResultData.courses
-                          .map((e) => e.courseType.name)
-                          .join(", "),
-                      style: AppFonts.label.copyWith(
+              width: 250.w,
+              child: Center(
+                child: AnimatedTextKit(
+                  animatedTexts: [
+                    TypewriterAnimatedText(
+                      "${widget.mentorResultData.courses.map((e) => e.courseType.name).join(", ")} developer",
+                      textStyle: AppFonts.label.copyWith(
                         color: AppColor.txtSecondColor,
                       ),
-                    )
-                  : Center(
-                      child: Text(
-                        widget.mentorResultData.courses.first.name,
-                        style: AppFonts.label.copyWith(
-                          color: AppColor.txtSecondColor,
-                        ),
-                      ),
+                      speed: const Duration(milliseconds: 200),
                     ),
+                  ],
+                  totalRepeatCount: 4,
+                  pause: const Duration(milliseconds: 200),
+                  displayFullTextOnTap: true,
+                  stopPauseOnTap: true,
+                ),
+              ),
             ),
+            SizedBox(height: 5.h),
             Container(
               height: 44,
               width: double.infinity,

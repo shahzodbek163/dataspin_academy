@@ -36,15 +36,11 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: ListView(
         physics: const BouncingScrollPhysics(),
         children: [
           SizedBox(height: 12.h),
-          Padding(
-            padding:
-                EdgeInsets.symmetric(horizontal: AppSize.horizontalPadding.w),
-            child: const TopSearchWidget(),
-          ),
           SizedBox(height: 16.h),
           Padding(
             padding:
