@@ -16,4 +16,5 @@ class CourseWithPriceCubit extends Cubit<CourseWithPriceState> {
     CourseWithPriceResponse result = await apiService.getAllCourseWithPrice();
     emit(CourseWithPriceState.get(result));
   }
+  
 }

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class MainButton extends StatelessWidget {
   final String text;
   final bool isLoading;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
   double height;
 
   MainButton(
@@ -14,7 +14,9 @@ class MainButton extends StatelessWidget {
       required this.text,
       required this.onTap,
       this.isLoading = false,
-      this.height = 58});
+      this.height = 58, 
+
+      });
 
   @override
   Widget build(BuildContext context) {

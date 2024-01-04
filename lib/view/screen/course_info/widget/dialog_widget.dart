@@ -1,3 +1,4 @@
+import 'package:dataspin_academy/controller/bloc/course/course_price/cubit/course_with_price_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/reception/cubit/new_reception_cubit.dart';
 import 'package:dataspin_academy/controller/provider/course_info_provider.dart';
 import 'package:dataspin_academy/model/reception/request/new_reception_request.dart';
@@ -28,7 +29,7 @@ class _DialogWidgetState extends State<DialogWidget> {
       surfaceTintColor: Colors.white,
       contentPadding: const EdgeInsets.symmetric(
         horizontal: 20,
-        vertical: 20  ,
+        vertical: 20,
       ),
       content: Column(
         mainAxisSize: MainAxisSize.min,
@@ -53,38 +54,49 @@ class _DialogWidgetState extends State<DialogWidget> {
             ),
           ),
           SizedBox(height: 18.h),
-          MainButton(
-            text: "Tasdiqlash",
-            onTap: () {
-              String year = DateTime.now().year.toString();
-              String month = DateTime.now().month.toString();
-              String day = DateTime.now().day.toString();
-              String hour = DateTime.now().hour.toString();
-              String minute = DateTime.now().minute.toString();
-              String second = DateTime.now().second.toString();
-              String milliSecond = DateTime.now().millisecond.toString();
-              String recNumber =
-                  day + month + year + hour + minute + second + milliSecond;
-              NewReceptionRequest newReceptionRequest = NewReceptionRequest(
-                  courseId: context
-                      .read<CourseInfoProvider>()
-                      .courseWithPriceData!
-                      .course
-                      .id,
-                  receptionNumber: recNumber,
-                  description: textEditingController.text.isNotEmpty
-                      ? textEditingController.text.trim()
-                      : null);
+          BlocBuilder<NewReceptionCubit, NewReceptionState>(
+            builder: (context, state) {
+              return MainButton(
+                text: "Tasdiqlash",
+                isLoading: state.maybeWhen(
+                  orElse: () => false,
+                  sending: () => true,
+                ),
+                onTap: () {
+                  String year = DateTime.now().year.toString();
+                  String month = DateTime.now().month.toString();
+                  String day = DateTime.now().day.toString();
+                  String hour = DateTime.now().hour.toString();
+                  String minute = DateTime.now().minute.toString();
+                  String second = DateTime.now().second.toString();
+                  String milliSecond = DateTime.now().millisecond.toString();
+                  String recNumber =
+                      day + month + year + hour + minute + second + milliSecond;
+                  NewReceptionRequest newReceptionRequest = NewReceptionRequest(
+                      courseId: context
+                          .read<CourseInfoProvider>()
+                          .courseWithPriceData!
+                          .course
+                          .id,
+                      receptionNumber: recNumber,
+                      description: textEditingController.text.isNotEmpty
+                          ? textEditingController.text.trim()
+                          : null);
 
-              context
-                  .read<NewReceptionCubit>()
-                  .newReception(newReceptionRequest)
-                  .then((value) {
-                if (value) {
-                  textEditingController.clear();
-                  context.pop();
-                }
-              });
+                  context
+                      .read<NewReceptionCubit>()
+                      .newReception(newReceptionRequest)
+                      .then((value) {
+                    if (value) {
+                      textEditingController.clear();
+                      context
+                          .read<CourseWithPriceCubit>()
+                          .getAllCourseWithPrice();
+                      context.pop();
+                    }
+                  });
+                },
+              );
             },
           )
         ],

@@ -5,6 +5,7 @@ import 'package:dataspin_academy/controller/bloc/reception/cubit/new_reception_c
 import 'package:dataspin_academy/controller/provider/course_info_provider.dart';
 import 'package:dataspin_academy/controller/service/api/app_ip.dart';
 import 'package:dataspin_academy/view/screen/course_info/widget/dialog_widget.dart';
+import 'package:dataspin_academy/view/screen/course_info/widget/succes_widget.dart';
 import 'package:dataspin_academy/view/screen/home/widget/chips_widget.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
 import 'package:dataspin_academy/view/widget/buttons/main_button.dart';
@@ -43,7 +44,17 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> {
                     pinned: true,
                     backgroundColor: Colors.white,
                     leading: GestureDetector(
-                      onTap: () => context.pop(),
+                      onTap: () {
+                        context.read<NewReceptionCubit>().state.maybeWhen(
+                              orElse: () => () {},
+                              initial: () {
+                                context.pop();
+                                context
+                                    .read<NewReceptionCubit>()
+                                    .backInitialState();
+                              },
+                            );
+                      },
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Container(
@@ -65,7 +76,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> {
                       background: CachedNetworkImage(
                         imageUrl:
                             "${AppIp.ip}/api/image/?id=${context.read<CourseInfoProvider>().courseWithPriceData!.course.previewPhoto.id}",
-                        fit: BoxFit.contain,
+                        fit: BoxFit.cover,
                       ),
                       stretchModes: const [
                         StretchMode.zoomBackground,
@@ -197,9 +208,15 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> {
               alignment: Alignment.bottomCenter,
               child: MainButton(
                 onTap: () {
-                  showDialog(
-                      context: context,
-                      builder: (context) => const DialogWidget());
+                  context.read<NewReceptionCubit>().state.maybeWhen(
+                        orElse: () {},
+                        initial: () {
+                          showDialog(
+                            context: context,
+                            builder: (context) => const DialogWidget(),
+                          );
+                        },
+                      );
                 },
                 text: "Ro'yxatdan o'tish",
                 height: 62.h,
@@ -209,54 +226,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> {
               builder: (context, state) {
                 return state.maybeWhen(
                   orElse: () => const SizedBox(),
-                  send: (newReceptionResponse) => BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Lottie.asset(
-                          "assets/lottie/Animation1702976632892.json",
-                          repeat: false,
-                          height: 300.h,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: Container(
-                            padding: const EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(10),
-                                boxShadow: [
-                                  BoxShadow(
-                                      spreadRadius: 5,
-                                      color: Colors.grey.withOpacity(0.5),
-                                      //blurStyle: BlurStyle.outer,
-                                      blurRadius: 7,
-                                      offset: const Offset(0, 3))
-                                ]),
-                            child: const Text(
-                              "Ro'yxatdan o'tganligingiz uchun tashakkur. Operator javobini kuting",
-                              style: AppFonts.h4w400,
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 10.h),
-                        MaterialButton(
-                          onPressed: () {
-                            context
-                                .read<NewReceptionCubit>()
-                                .backInitialState();
-                          },
-                          color: Colors.green,
-                          child: Text(
-                            "OK",
-                            style: AppFonts.label.copyWith(color: Colors.white),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
+                  send: (newReceptionResponse) => const SuccesWidget(),
                 );
               },
             )
