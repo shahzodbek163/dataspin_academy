@@ -21,9 +21,14 @@ class _DialogWidgetState extends State<DialogWidget> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+      ),
+      backgroundColor: Colors.white,
+      surfaceTintColor: Colors.white,
       contentPadding: const EdgeInsets.symmetric(
-        horizontal: 15,
-        vertical: 15,
+        horizontal: 20,
+        vertical: 20  ,
       ),
       content: Column(
         mainAxisSize: MainAxisSize.min,
