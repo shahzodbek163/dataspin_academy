@@ -1,4 +1,3 @@
-import 'package:dataspin_academy/controller/bloc/bottom_bar/cubit/bottom_bar_index_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/category_filter/course_filter_by_type_bloc.dart';
 import 'package:dataspin_academy/controller/bloc/check_code/check_code_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/course/course_for/course_for_cubit.dart';
@@ -6,15 +5,14 @@ import 'package:dataspin_academy/controller/bloc/course/course_price/cubit/cours
 import 'package:dataspin_academy/controller/bloc/course/course_type/course_type_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/create_account/check_tap/cubit/check_tap_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/create_account/create_account_cubit.dart';
-import 'package:dataspin_academy/controller/bloc/news/cubit/news_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/mentors/mentors_cubit.dart';
+import 'package:dataspin_academy/controller/bloc/news/cubit/news_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/reception/cubit/new_reception_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/send_code/send_code_cubit.dart';
 import 'package:dataspin_academy/controller/provider/category_info_provider.dart';
 import 'package:dataspin_academy/controller/provider/course_info_provider.dart';
 import 'package:dataspin_academy/controller/provider/phone_number_provider.dart';
 import 'package:dataspin_academy/controller/provider/profile_data_provider.dart';
-import 'package:dataspin_academy/controller/provider/selectble_index_provider.dart';
 import 'package:dataspin_academy/controller/service/navigation/go_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -39,8 +37,7 @@ class _MyAppState extends State<MyApp> {
         BlocProvider(create: (context) => CheckCodeCubit()),
         ChangeNotifierProvider(create: (context) => PhoneNumberProvider()),
         ChangeNotifierProvider(create: (context) => ProfileDataProvider()),
-        ChangeNotifierProvider(create: (context) =>  CategoryInfoProvider()),
-        ChangeNotifierProvider(create: (context) =>  SelectableIndexProvider()),
+        ChangeNotifierProvider(create: (context) => CategoryInfoProvider()),
         BlocProvider(create: (context) => CheckTapCubit()),
         BlocProvider(create: (context) => CreateAccountCubit()),
         BlocProvider(create: (context) => CourseTypeCubit()),
@@ -51,8 +48,7 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (context) => CourseInfoProvider()),
         BlocProvider(create: (context) => NewReceptionCubit()),
         BlocProvider(create: (context) => CourseFilterByTypeBloc()),
-        BlocProvider(create: (context) => BottomBarIndexCubit()),
-
+        Provider(create: (context) => CourseInfoProvider()),
       ],
       child: ScreenUtilInit(
         minTextAdapt: true,

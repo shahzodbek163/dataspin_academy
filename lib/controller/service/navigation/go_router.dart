@@ -1,20 +1,15 @@
+import 'package:dataspin_academy/controller/provider/profile_id_provider.dart';
 import 'package:dataspin_academy/controller/service/navigation/navigation_service.dart';
 import 'package:dataspin_academy/controller/service/transition/transitions.dart';
 import 'package:dataspin_academy/view/screen/categories/screen/categorie_screen.dart';
 import 'package:dataspin_academy/view/screen/check_code/screen/check_code_srceen.dart';
 import 'package:dataspin_academy/view/screen/course_info/screen/course_info_screen.dart';
+import 'package:dataspin_academy/view/screen/create_accaunt/screen/create_account_screen.dart';
 import 'package:dataspin_academy/view/screen/home/screen/home_screen.dart';
 import 'package:dataspin_academy/view/screen/profile_screen/screen/profile_screen.dart';
 import 'package:dataspin_academy/view/screen/send_code/screen/send_code_screen.dart';
-import 'package:dataspin_academy/view/screen/create_accaunt/screen/create_account_screen.dart';
-import 'package:dataspin_academy/view/screen/splash/splash_screen.dart';
-import 'package:dataspin_academy/view/screen/test_screen.dart';
-import 'package:go_router/go_router.dart';
-
-class AppGoRouter {
-  final router = GoRouter(
-    navigatorKey: NavigationService.navigatorKey,
-    initialLocation: HomeScreen.routeName,
+import 'package:dataspin_academy/view/screen/test_screenrvice.navigatorKey,
+    initialLocation: SendCodeScreen.routeName,
     routes: [
       ///main
       GoRoute(
@@ -22,13 +17,6 @@ class AppGoRouter {
         pageBuilder: (context, state) => slideTransitionRight(
           state,
           const CheckCodeScreen(),
-        ),
-      ),
-      GoRoute(
-        path: SplashScreen.routeName,
-        pageBuilder: (context, state) => slideTransitionRight(
-          state,
-          const SplashScreen(),
         ),
       ),
       GoRoute(
@@ -63,7 +51,7 @@ class AppGoRouter {
         path: ProfileScreen.routeName,
         pageBuilder: (context, state) => slideTransitionRight(
           state,
-          const ProfileScreen(),
+          ProfileScreen(),
         ),
       ),
       GoRoute(
