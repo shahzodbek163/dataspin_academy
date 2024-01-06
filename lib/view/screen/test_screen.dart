@@ -13,14 +13,17 @@ class _TestScreenState extends State<TestScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-          child: InkWell(
-        borderRadius: BorderRadius.circular(10),
-        hoverColor: Colors.transparent,
-        onTap: () => print("salom"),
-        child: Container(
-          height: 50,
-          width: 50,
-          decoration: const BoxDecoration(color: Colors.transparent),
+          child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(10),
+          hoverColor: Colors.transparent,
+          onTap: () => print("salom"),
+          child: Container(
+            height: 50,
+            width: 50,
+            decoration: const BoxDecoration(color: Colors.transparent),
+          ),
         ),
       )),
     );
