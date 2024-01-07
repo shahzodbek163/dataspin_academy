@@ -1,4 +1,3 @@
-import 'package:dataspin_academy/controller/provider/profile_id_provider.dart';
 import 'package:dataspin_academy/controller/service/navigation/navigation_service.dart';
 import 'package:dataspin_academy/controller/service/transition/transitions.dart';
 import 'package:dataspin_academy/view/screen/categories/screen/categorie_screen.dart';
@@ -8,7 +7,13 @@ import 'package:dataspin_academy/view/screen/create_accaunt/screen/create_accoun
 import 'package:dataspin_academy/view/screen/home/screen/home_screen.dart';
 import 'package:dataspin_academy/view/screen/profile_screen/screen/profile_screen.dart';
 import 'package:dataspin_academy/view/screen/send_code/screen/send_code_screen.dart';
-import 'package:dataspin_academy/view/screen/test_screenrvice.navigatorKey,
+import 'package:dataspin_academy/view/screen/splash/splash_screen.dart';
+import 'package:dataspin_academy/view/screen/test_screen.dart';
+import 'package:go_router/go_router.dart';
+
+class AppGoRouter {
+  final router = GoRouter(
+    navigatorKey: NavigationService.navigatorKey,
     initialLocation: SendCodeScreen.routeName,
     routes: [
       ///main
@@ -17,6 +22,13 @@ import 'package:dataspin_academy/view/screen/test_screenrvice.navigatorKey,
         pageBuilder: (context, state) => slideTransitionRight(
           state,
           const CheckCodeScreen(),
+        ),
+      ),
+      GoRoute(
+        path: SplashScreen.routeName,
+        pageBuilder: (context, state) => slideTransitionRight(
+          state,
+          const SplashScreen(),
         ),
       ),
       GoRoute(
@@ -51,7 +63,7 @@ import 'package:dataspin_academy/view/screen/test_screenrvice.navigatorKey,
         path: ProfileScreen.routeName,
         pageBuilder: (context, state) => slideTransitionRight(
           state,
-          ProfileScreen(),
+          const ProfileScreen(),
         ),
       ),
       GoRoute(
