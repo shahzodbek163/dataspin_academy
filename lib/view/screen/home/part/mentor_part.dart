@@ -17,6 +17,11 @@ class MentorPart extends StatefulWidget {
 
 class _MentorPartState extends State<MentorPart> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
@@ -28,32 +33,34 @@ class _MentorPartState extends State<MentorPart> {
               orElse: () => const SizedBox(),
               getting: () => const CircularProgressIndicator(),
               get: (result) => ListView.builder(
-                itemCount: result.data.length,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index) {
-                  if (result.data.isNotEmpty) {
-                    result.data;
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 16),
-                      child: InkWell(
-                        borderRadius: BorderRadius.circular(8),
-                        onTap: () {
-                          context
-                              .read<ProfileDataProvider>()
-                              .change(result.data[index]);
-                          context.push(ProfileScreen.routeName);
-                        },
-                        child: MentorCard(
-                          mentorResultData: result.data[index],
+                  itemCount: result.data.length,
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    if (result.data.isNotEmpty) {
+                      result.data;
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 16),
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(8),
+                          onTap: () {
+                            context
+                                .read<ProfileDataProvider>()
+                                .change(result.data[index]);
+
+                            print(
+                                "${context.read<ProfileDataProvider>().mentorResultData} ioiooiioioio");
+                            context.push(ProfileScreen.routeName);
+                          },
+                          child: MentorCard(
+                            mentorResultData: result.data[index],
+                          ),
                         ),
-                      ),
-                    );
-                  } else {
-                    return const SizedBox();
-                  }
-                },
-              ),
+                      );
+                    } else {
+                      return const SizedBox();
+                    }
+                  }),
             );
           },
         ),

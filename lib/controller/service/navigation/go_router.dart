@@ -3,10 +3,10 @@ import 'package:dataspin_academy/controller/service/transition/transitions.dart'
 import 'package:dataspin_academy/view/screen/categories/screen/categorie_screen.dart';
 import 'package:dataspin_academy/view/screen/check_code/screen/check_code_srceen.dart';
 import 'package:dataspin_academy/view/screen/course_info/screen/course_info_screen.dart';
+import 'package:dataspin_academy/view/screen/create_accaunt/screen/create_account_screen.dart';
 import 'package:dataspin_academy/view/screen/home/screen/home_screen.dart';
 import 'package:dataspin_academy/view/screen/profile_screen/screen/profile_screen.dart';
 import 'package:dataspin_academy/view/screen/send_code/screen/send_code_screen.dart';
-import 'package:dataspin_academy/view/screen/create_accaunt/screen/create_account_screen.dart';
 import 'package:dataspin_academy/view/screen/splash/splash_screen.dart';
 import 'package:dataspin_academy/view/screen/test_screen.dart';
 import 'package:go_router/go_router.dart';
@@ -14,7 +14,7 @@ import 'package:go_router/go_router.dart';
 class AppGoRouter {
   final router = GoRouter(
     navigatorKey: NavigationService.navigatorKey,
-    initialLocation: HomeScreen.routeName,
+    initialLocation: SendCodeScreen.routeName,
     routes: [
       ///main
       GoRoute(
