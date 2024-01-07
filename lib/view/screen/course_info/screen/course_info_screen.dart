@@ -1,18 +1,24 @@
 import 'dart:ui';
 
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dataspin_academy/controller/bloc/reception/cubit/new_reception_cubit.dart';
 import 'package:dataspin_academy/controller/provider/course_info_provider.dart';
 import 'package:dataspin_academy/controller/service/api/app_ip.dart';
 import 'package:dataspin_academy/view/screen/course_info/widget/dialog_widget.dart';
 import 'package:dataspin_academy/view/screen/course_info/widget/succes_widget.dart';
+import 'package:dataspin_academy/view/screen/course_info/widget/three_icon_widget.dart';
 import 'package:dataspin_academy/view/screen/home/widget/chips_widget.dart';
+import 'package:dataspin_academy/view/screen/home/widget/mentor_card.dart';
+import 'package:dataspin_academy/view/value/app_color.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
+import 'package:dataspin_academy/view/value/app_icons.dart';
 import 'package:dataspin_academy/view/widget/buttons/main_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 
@@ -123,69 +129,36 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> {
                                       .course
                                       .courseType
                                       .name,
-                                  style: AppFonts.h3,
+                                  style: AppFonts.body16Regular
+                                      .copyWith(color: AppColor.txtSecondColor),
                                 ),
                               ),
                               const Icon(Icons.share)
                             ],
                           ),
                           SizedBox(height: 10.h),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                context
-                                    .read<CourseInfoProvider>()
-                                    .courseWithPriceData!
-                                    .course
-                                    .name,
-                                style: AppFonts.h4,
-                              ),
-                              Text(
-                                  context
-                                              .read<CourseInfoProvider>()
-                                              .courseWithPriceData!
-                                              .price ==
-                                          null
-                                      ? "Narx belgilanmagan"
-                                      : context
-                                          .read<CourseInfoProvider>()
-                                          .courseWithPriceData!
-                                          .price!
-                                          .toString(),
-                                  style: AppFonts.body16w700
-                                      .copyWith(color: Colors.green)),
-                            ],
-                          ),
-                          SizedBox(height: 10.h),
-                          Wrap(
-                            children: context
-                                .read<CourseInfoProvider>()
-                                .courseWithPriceData!
-                                .course
-                                .courseType
-                                .courseTags
-                                .map((e) => Row(
-                                      children: [
-                                        ChipsWidget(
-                                          text: "#${e.name}",
-                                          textStyle: AppFonts.label,
-                                          verticalP: 5,
-                                        ),
-                                      ],
-                                    ))
-                                .toList(),
-                          ),
-                          SizedBox(height: 10.h),
                           Text(
                             context
                                 .read<CourseInfoProvider>()
                                 .courseWithPriceData!
                                 .course
-                                .courseType
-                                .description,
-                            style: AppFonts.body16Regular,
+                                .name,
+                            style: AppFonts.h1,
+                          ),
+                          SizedBox(height: 10.h),
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 10,
+                              vertical: 4,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.green,
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            child: Text(
+                                "${context.read<CourseInfoProvider>().courseWithPriceData!.price == null ? "Narx belgilanmagan" : context.read<CourseInfoProvider>().courseWithPriceData!.price!.toString()} so'm",
+                                style: AppFonts.body16w700
+                                    .copyWith(color: Colors.white)),
                           ),
                           SizedBox(height: 10.h),
                           Text(
@@ -194,9 +167,13 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> {
                                 .courseWithPriceData!
                                 .course
                                 .description,
-                            style: AppFonts.h4w400,
+                            style: AppFonts.body16Regular
+                                .copyWith(color: AppColor.txtSecondColor),
                           ),
-                          SizedBox(height: 100.h),
+                          SizedBox(height: 24.h),
+                          const ThreeIconWidget(),
+                          SizedBox(height: 24.h),
+                          123,
                         ],
                       ),
                     ),

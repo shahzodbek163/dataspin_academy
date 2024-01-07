@@ -1,7 +1,5 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dataspin_academy/controller/bloc/news/cubit/news_cubit.dart';
-import 'package:dataspin_academy/controller/service/api/app_ip.dart';
 import 'package:dataspin_academy/view/screen/home/widget/news_widget.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
 import 'package:flutter/material.dart';

@@ -42,13 +42,6 @@ class AppFonts {
     fontFamily: "Ubuntu",
     color: Colors.black,
   );
-  static const h4w400 = TextStyle(
-    fontSize: 18,
-    height: 20 / 18,
-    fontWeight: FontWeight.w400,
-    fontFamily: "Ubuntu",
-    color: Colors.black,
-  );
 
   //////////////////////////////////////
   static const body18Regular = TextStyle(

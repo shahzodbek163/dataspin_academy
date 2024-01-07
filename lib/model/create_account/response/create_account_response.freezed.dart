@@ -228,8 +228,6 @@ mixin _$Data {
   String get primaryPhone => throw _privateConstructorUsedError;
   @JsonKey(name: "secondaryPhone")
   String? get secondaryPhone => throw _privateConstructorUsedError;
-  @JsonKey(name: "telegramUsername")
-  String? get telegramUsername => throw _privateConstructorUsedError;
   @JsonKey(name: "userData")
   UserData? get userData => throw _privateConstructorUsedError;
   @JsonKey(name: "date")
@@ -253,7 +251,6 @@ abstract class $DataCopyWith<$Res> {
       @JsonKey(name: "birthday") DateTime? birthday,
       @JsonKey(name: "primaryPhone") String primaryPhone,
       @JsonKey(name: "secondaryPhone") String? secondaryPhone,
-      @JsonKey(name: "telegramUsername") String? telegramUsername,
       @JsonKey(name: "userData") UserData? userData,
       @JsonKey(name: "date") DateTime? date});
 
@@ -280,7 +277,6 @@ class _$DataCopyWithImpl<$Res, $Val extends Data>
     Object? birthday = freezed,
     Object? primaryPhone = null,
     Object? secondaryPhone = freezed,
-    Object? telegramUsername = freezed,
     Object? userData = freezed,
     Object? date = freezed,
   }) {
@@ -312,10 +308,6 @@ class _$DataCopyWithImpl<$Res, $Val extends Data>
       secondaryPhone: freezed == secondaryPhone
           ? _value.secondaryPhone
           : secondaryPhone // ignore: cast_nullable_to_non_nullable
-              as String?,
-      telegramUsername: freezed == telegramUsername
-          ? _value.telegramUsername
-          : telegramUsername // ignore: cast_nullable_to_non_nullable
               as String?,
       userData: freezed == userData
           ? _value.userData
@@ -356,7 +348,6 @@ abstract class _$$DataImplCopyWith<$Res> implements $DataCopyWith<$Res> {
       @JsonKey(name: "birthday") DateTime? birthday,
       @JsonKey(name: "primaryPhone") String primaryPhone,
       @JsonKey(name: "secondaryPhone") String? secondaryPhone,
-      @JsonKey(name: "telegramUsername") String? telegramUsername,
       @JsonKey(name: "userData") UserData? userData,
       @JsonKey(name: "date") DateTime? date});
 
@@ -381,7 +372,6 @@ class __$$DataImplCopyWithImpl<$Res>
     Object? birthday = freezed,
     Object? primaryPhone = null,
     Object? secondaryPhone = freezed,
-    Object? telegramUsername = freezed,
     Object? userData = freezed,
     Object? date = freezed,
   }) {
@@ -414,10 +404,6 @@ class __$$DataImplCopyWithImpl<$Res>
           ? _value.secondaryPhone
           : secondaryPhone // ignore: cast_nullable_to_non_nullable
               as String?,
-      telegramUsername: freezed == telegramUsername
-          ? _value.telegramUsername
-          : telegramUsername // ignore: cast_nullable_to_non_nullable
-              as String?,
       userData: freezed == userData
           ? _value.userData
           : userData // ignore: cast_nullable_to_non_nullable
@@ -441,7 +427,6 @@ class _$DataImpl implements _Data {
       @JsonKey(name: "birthday") this.birthday,
       @JsonKey(name: "primaryPhone") required this.primaryPhone,
       @JsonKey(name: "secondaryPhone") this.secondaryPhone,
-      @JsonKey(name: "telegramUsername") this.telegramUsername,
       @JsonKey(name: "userData") this.userData,
       @JsonKey(name: "date") this.date});
 
@@ -470,9 +455,6 @@ class _$DataImpl implements _Data {
   @JsonKey(name: "secondaryPhone")
   final String? secondaryPhone;
   @override
-  @JsonKey(name: "telegramUsername")
-  final String? telegramUsername;
-  @override
   @JsonKey(name: "userData")
   final UserData? userData;
   @override
@@ -481,7 +463,7 @@ class _$DataImpl implements _Data {
 
   @override
   String toString() {
-    return 'Data(id: $id, firstname: $firstname, lastname: $lastname, middlename: $middlename, birthday: $birthday, primaryPhone: $primaryPhone, secondaryPhone: $secondaryPhone, telegramUsername: $telegramUsername, userData: $userData, date: $date)';
+    return 'Data(id: $id, firstname: $firstname, lastname: $lastname, middlename: $middlename, birthday: $birthday, primaryPhone: $primaryPhone, secondaryPhone: $secondaryPhone, userData: $userData, date: $date)';
   }
 
   @override
@@ -502,8 +484,6 @@ class _$DataImpl implements _Data {
                 other.primaryPhone == primaryPhone) &&
             (identical(other.secondaryPhone, secondaryPhone) ||
                 other.secondaryPhone == secondaryPhone) &&
-            (identical(other.telegramUsername, telegramUsername) ||
-                other.telegramUsername == telegramUsername) &&
             (identical(other.userData, userData) ||
                 other.userData == userData) &&
             (identical(other.date, date) || other.date == date));
@@ -511,18 +491,8 @@ class _$DataImpl implements _Data {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      firstname,
-      lastname,
-      middlename,
-      birthday,
-      primaryPhone,
-      secondaryPhone,
-      telegramUsername,
-      userData,
-      date);
+  int get hashCode => Object.hash(runtimeType, id, firstname, lastname,
+      middlename, birthday, primaryPhone, secondaryPhone, userData, date);
 
   @JsonKey(ignore: true)
   @override
@@ -547,7 +517,6 @@ abstract class _Data implements Data {
       @JsonKey(name: "birthday") final DateTime? birthday,
       @JsonKey(name: "primaryPhone") required final String primaryPhone,
       @JsonKey(name: "secondaryPhone") final String? secondaryPhone,
-      @JsonKey(name: "telegramUsername") final String? telegramUsername,
       @JsonKey(name: "userData") final UserData? userData,
       @JsonKey(name: "date") final DateTime? date}) = _$DataImpl;
 
@@ -574,9 +543,6 @@ abstract class _Data implements Data {
   @override
   @JsonKey(name: "secondaryPhone")
   String? get secondaryPhone;
-  @override
-  @JsonKey(name: "telegramUsername")
-  String? get telegramUsername;
   @override
   @JsonKey(name: "userData")
   UserData? get userData;

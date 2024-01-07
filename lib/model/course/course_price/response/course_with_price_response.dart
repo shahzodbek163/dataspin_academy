@@ -36,7 +36,7 @@ class CourseWithPriceData with _$CourseWithPriceData {
   const factory CourseWithPriceData({
     @JsonKey(name: "course") required Course course,
     @JsonKey(name: "mentor")  Mentor? mentor,
-    @JsonKey(name: "price")  double? price,
+    @JsonKey(name: "price")  int? price,
     @JsonKey(name: "reception_counter")
     required ReceptionCounter? receptionCounter,
   }) = _CourseWithPriceData;

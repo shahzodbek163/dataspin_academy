@@ -1,4 +1,3 @@
-
 import 'package:dataspin_academy/controller/bloc/create_account/create_account_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/create_account/register_validation/cubit/register_validation_cubit.dart';
 import 'package:dataspin_academy/model/create_account/request/create_account_request.dart';
@@ -167,9 +166,6 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                           tel2: birthdayController.text.isEmpty
                               ? null
                               : secondaryNumberController.text.trim(),
-                          tg: birthdayController.text.isEmpty
-                              ? null
-                              : tgUsernameController.text.trim(),
                         );
                         print(primaryNumberController.text);
 

@@ -26,7 +26,6 @@ mixin _$CreateAccountRequest {
   String? get middlename => throw _privateConstructorUsedError;
   String get tel1 => throw _privateConstructorUsedError;
   String? get tel2 => throw _privateConstructorUsedError;
-  String? get tg => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -46,8 +45,7 @@ abstract class $CreateAccountRequestCopyWith<$Res> {
       String lastname,
       String? middlename,
       String tel1,
-      String? tel2,
-      String? tg});
+      String? tel2});
 }
 
 /// @nodoc
@@ -70,7 +68,6 @@ class _$CreateAccountRequestCopyWithImpl<$Res,
     Object? middlename = freezed,
     Object? tel1 = null,
     Object? tel2 = freezed,
-    Object? tg = freezed,
   }) {
     return _then(_value.copyWith(
       birthday: freezed == birthday
@@ -97,10 +94,6 @@ class _$CreateAccountRequestCopyWithImpl<$Res,
           ? _value.tel2
           : tel2 // ignore: cast_nullable_to_non_nullable
               as String?,
-      tg: freezed == tg
-          ? _value.tg
-          : tg // ignore: cast_nullable_to_non_nullable
-              as String?,
     ) as $Val);
   }
 }
@@ -119,8 +112,7 @@ abstract class _$$CreateAccountRequestImplCopyWith<$Res>
       String lastname,
       String? middlename,
       String tel1,
-      String? tel2,
-      String? tg});
+      String? tel2});
 }
 
 /// @nodoc
@@ -140,7 +132,6 @@ class __$$CreateAccountRequestImplCopyWithImpl<$Res>
     Object? middlename = freezed,
     Object? tel1 = null,
     Object? tel2 = freezed,
-    Object? tg = freezed,
   }) {
     return _then(_$CreateAccountRequestImpl(
       birthday: freezed == birthday
@@ -167,10 +158,6 @@ class __$$CreateAccountRequestImplCopyWithImpl<$Res>
           ? _value.tel2
           : tel2 // ignore: cast_nullable_to_non_nullable
               as String?,
-      tg: freezed == tg
-          ? _value.tg
-          : tg // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
@@ -184,8 +171,7 @@ class _$CreateAccountRequestImpl implements _CreateAccountRequest {
       required this.lastname,
       this.middlename,
       required this.tel1,
-      this.tel2,
-      this.tg});
+      this.tel2});
 
   factory _$CreateAccountRequestImpl.fromJson(Map<String, dynamic> json) =>
       _$$CreateAccountRequestImplFromJson(json);
@@ -202,12 +188,10 @@ class _$CreateAccountRequestImpl implements _CreateAccountRequest {
   final String tel1;
   @override
   final String? tel2;
-  @override
-  final String? tg;
 
   @override
   String toString() {
-    return 'CreateAccountRequest(birthday: $birthday, firstname: $firstname, lastname: $lastname, middlename: $middlename, tel1: $tel1, tel2: $tel2, tg: $tg)';
+    return 'CreateAccountRequest(birthday: $birthday, firstname: $firstname, lastname: $lastname, middlename: $middlename, tel1: $tel1, tel2: $tel2)';
   }
 
   @override
@@ -224,14 +208,13 @@ class _$CreateAccountRequestImpl implements _CreateAccountRequest {
             (identical(other.middlename, middlename) ||
                 other.middlename == middlename) &&
             (identical(other.tel1, tel1) || other.tel1 == tel1) &&
-            (identical(other.tel2, tel2) || other.tel2 == tel2) &&
-            (identical(other.tg, tg) || other.tg == tg));
+            (identical(other.tel2, tel2) || other.tel2 == tel2));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, birthday, firstname, lastname, middlename, tel1, tel2, tg);
+      runtimeType, birthday, firstname, lastname, middlename, tel1, tel2);
 
   @JsonKey(ignore: true)
   @override
@@ -256,8 +239,7 @@ abstract class _CreateAccountRequest implements CreateAccountRequest {
       required final String lastname,
       final String? middlename,
       required final String tel1,
-      final String? tel2,
-      final String? tg}) = _$CreateAccountRequestImpl;
+      final String? tel2}) = _$CreateAccountRequestImpl;
 
   factory _CreateAccountRequest.fromJson(Map<String, dynamic> json) =
       _$CreateAccountRequestImpl.fromJson;
@@ -274,8 +256,6 @@ abstract class _CreateAccountRequest implements CreateAccountRequest {
   String get tel1;
   @override
   String? get tel2;
-  @override
-  String? get tg;
   @override
   @JsonKey(ignore: true)
   _$$CreateAccountRequestImplCopyWith<_$CreateAccountRequestImpl>

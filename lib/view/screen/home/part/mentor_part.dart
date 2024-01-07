@@ -48,8 +48,6 @@ class _MentorPartState extends State<MentorPart> {
                                 .read<ProfileDataProvider>()
                                 .change(result.data[index]);
 
-                            print(
-                                "${context.read<ProfileDataProvider>().mentorResultData} ioiooiioioio");
                             context.push(ProfileScreen.routeName);
                           },
                           child: MentorCard(

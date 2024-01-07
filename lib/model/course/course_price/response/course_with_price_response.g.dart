@@ -33,7 +33,7 @@ _$CourseWithPriceDataImpl _$$CourseWithPriceDataImplFromJson(
       mentor: json['mentor'] == null
           ? null
           : Mentor.fromJson(json['mentor'] as Map<String, dynamic>),
-      price: (json['price'] as num?)?.toDouble(),
+      price: json['price'] as int?,
       receptionCounter: json['reception_counter'] == null
           ? null
           : ReceptionCounter.fromJson(

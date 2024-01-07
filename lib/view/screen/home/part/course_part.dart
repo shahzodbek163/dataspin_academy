@@ -34,7 +34,7 @@ class _CoursePartState extends State<CoursePart> {
                 getting: () => const Center(child: CircularProgressIndicator()),
                 get: (result) {
                   return SizedBox(
-                    height: 360.h,
+                    height: result.data!.isEmpty ? 0 : 360.h,
                     child: ListView.builder(
                       padding: const EdgeInsets.only(left: 8),
                       addAutomaticKeepAlives: true,
@@ -50,7 +50,6 @@ class _CoursePartState extends State<CoursePart> {
                                   context
                                       .read<CourseInfoProvider>()
                                       .change(result.data![index]!);
-
 
                                   context.push(CourseInfoScreen.routeName);
                                 },

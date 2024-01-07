@@ -23,7 +23,6 @@ class CreateAccountRequest with _$CreateAccountRequest {
     String? middlename,
     required String tel1,
     String? tel2,
-    String? tg,
   }) = _CreateAccountRequest;
 
   factory CreateAccountRequest.fromJson(Map<String, dynamic> json) =>

@@ -15,15 +15,14 @@ class SelectableRow extends StatefulWidget {
   Color textColor;
   TextStyle textStyle;
 
-  SelectableRow({
-    super.key,
-    required this.listRes,
-    this.backgroundColor = AppColor.secondary,
-    this.textColor = AppColor.primary,
-    this.textStyle = AppFonts.body16Regular,
-    required this.onChangedIndex,
-    required this.forMainScreen
-  });
+  SelectableRow(
+      {super.key,
+      required this.listRes,
+      this.backgroundColor = AppColor.secondary,
+      this.textColor = AppColor.primary,
+      this.textStyle = AppFonts.body16Regular,
+      required this.onChangedIndex,
+      required this.forMainScreen});
 
   @override
   State<SelectableRow> createState() => _SelectableRowState();
@@ -34,7 +33,6 @@ class _SelectableRowState extends State<SelectableRow> {
 
   @override
   void initState() {
-
     super.initState();
   }
 
@@ -43,7 +41,7 @@ class _SelectableRowState extends State<SelectableRow> {
     int selectIndex = context.read<SelectableIndexProvider>().selectIndex ?? 0;
 
     return SizedBox(
-      height: 36.h,
+      height: widget.listRes.length == 1 ? 0 : 36.h,
       child: ListView.builder(
         itemCount: widget.listRes.length,
         scrollDirection: Axis.horizontal,

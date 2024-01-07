@@ -10,6 +10,7 @@ class AppColor {
   static const Color errorColor = Color(0xFFFF3B30);
   static const Color divider = Color(0xFFF1F3F6);
   static const Color iconUnfocusColor = Color(0xFFC7C7C7);
+  static const Color fd = Color(0xFFF7F8FD);
 
 
 }

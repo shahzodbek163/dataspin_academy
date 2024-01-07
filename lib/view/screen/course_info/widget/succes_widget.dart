@@ -41,7 +41,7 @@ class SuccesWidget extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 20),
                 child: Text(
                   "Ro'yxatdan o'tganligingiz uchun tashakkur. Operator javobini kuting",
-                  style: AppFonts.h4w400,
+                  style: AppFonts.body18Regular,
                   textAlign: TextAlign.center,
                 ),
               ),

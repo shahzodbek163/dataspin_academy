@@ -34,7 +34,6 @@ _$DataImpl _$$DataImplFromJson(Map<String, dynamic> json) => _$DataImpl(
           : DateTime.parse(json['birthday'] as String),
       primaryPhone: json['primaryPhone'] as String,
       secondaryPhone: json['secondaryPhone'] as String?,
-      telegramUsername: json['telegramUsername'] as String?,
       userData: json['userData'] == null
           ? null
           : UserData.fromJson(json['userData'] as Map<String, dynamic>),
@@ -51,7 +50,6 @@ Map<String, dynamic> _$$DataImplToJson(_$DataImpl instance) =>
       'birthday': instance.birthday?.toIso8601String(),
       'primaryPhone': instance.primaryPhone,
       'secondaryPhone': instance.secondaryPhone,
-      'telegramUsername': instance.telegramUsername,
       'userData': instance.userData,
       'date': instance.date?.toIso8601String(),
     };

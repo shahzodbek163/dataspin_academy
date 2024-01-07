@@ -38,7 +38,6 @@ class Data with _$Data {
     @JsonKey(name: "birthday") DateTime? birthday,
     @JsonKey(name: "primaryPhone") required String primaryPhone,
     @JsonKey(name: "secondaryPhone") String? secondaryPhone,
-    @JsonKey(name: "telegramUsername") String? telegramUsername,
     @JsonKey(name: "userData") UserData? userData,
     @JsonKey(name: "date") DateTime? date,
   }) = _Data;

@@ -39,7 +39,6 @@ class RegisterValidationCubit extends Cubit<RegisterValidationState> {
       validationData = validationData.copyWith(lastnameEmpty: false);
     }
     if (data.birthday != null) {
-      print("is not empty");
       if (data.birthday!.length != 10) {
         validationData = validationData.copyWith(birhtdayValid: false);
       } else if (data.birthday!.length == 10) {

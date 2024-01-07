@@ -46,10 +46,10 @@ class _DialogWidgetState extends State<DialogWidget> {
               maxLines: 8,
               decoration: InputDecoration(
                 hintText: "Izoh qoldiring...",
-                border:
-                    OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-                focusedBorder:
-                    OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8)),
+                focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8)),
               ),
             ),
           ),
@@ -69,20 +69,28 @@ class _DialogWidgetState extends State<DialogWidget> {
                   String hour = DateTime.now().hour.toString();
                   String minute = DateTime.now().minute.toString();
                   String second = DateTime.now().second.toString();
-                  String milliSecond = DateTime.now().millisecond.toString();
-                  String recNumber =
-                      day + month + year + hour + minute + second + milliSecond;
-                  NewReceptionRequest newReceptionRequest = NewReceptionRequest(
-                      courseId: context
-                          .read<CourseInfoProvider>()
-                          .courseWithPriceData!
-                          .course
-                          .id,
-                      receptionNumber: recNumber,
-                      description: textEditingController.text.isNotEmpty
-                          ? textEditingController.text.trim()
-                          : null);
-
+                  String milliSecond =
+                      DateTime.now().millisecond.toString();
+                  String recNumber = day +
+                      month +
+                      year +
+                      hour +
+                      minute +
+                      second +
+                      milliSecond;
+                  NewReceptionRequest newReceptionRequest =
+                      NewReceptionRequest(
+                          courseId:
+                              context
+                                  .read<CourseInfoProvider>()
+                                  .courseWithPriceData!
+                                  .course
+                                  .id,
+                          receptionNumber: recNumber,
+                          description: textEditingController.text.isNotEmpty
+                              ? textEditingController.text.trim()
+                              : null);
+        
                   context
                       .read<NewReceptionCubit>()
                       .newReception(newReceptionRequest)

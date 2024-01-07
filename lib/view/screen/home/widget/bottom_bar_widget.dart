@@ -23,7 +23,7 @@ class BottomBarWidget extends StatelessWidget {
         color: Colors.white,
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: List.generate(
             itemTitles.length,
             (index) => Material(

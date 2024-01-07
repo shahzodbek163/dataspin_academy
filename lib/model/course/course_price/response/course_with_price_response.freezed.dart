@@ -231,7 +231,7 @@ mixin _$CourseWithPriceData {
   @JsonKey(name: "mentor")
   Mentor? get mentor => throw _privateConstructorUsedError;
   @JsonKey(name: "price")
-  double? get price => throw _privateConstructorUsedError;
+  int? get price => throw _privateConstructorUsedError;
   @JsonKey(name: "reception_counter")
   ReceptionCounter? get receptionCounter => throw _privateConstructorUsedError;
 
@@ -250,7 +250,7 @@ abstract class $CourseWithPriceDataCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: "course") Course course,
       @JsonKey(name: "mentor") Mentor? mentor,
-      @JsonKey(name: "price") double? price,
+      @JsonKey(name: "price") int? price,
       @JsonKey(name: "reception_counter") ReceptionCounter? receptionCounter});
 
   $CourseCopyWith<$Res> get course;
@@ -288,7 +288,7 @@ class _$CourseWithPriceDataCopyWithImpl<$Res, $Val extends CourseWithPriceData>
       price: freezed == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as int?,
       receptionCounter: freezed == receptionCounter
           ? _value.receptionCounter
           : receptionCounter // ignore: cast_nullable_to_non_nullable
@@ -340,7 +340,7 @@ abstract class _$$CourseWithPriceDataImplCopyWith<$Res>
   $Res call(
       {@JsonKey(name: "course") Course course,
       @JsonKey(name: "mentor") Mentor? mentor,
-      @JsonKey(name: "price") double? price,
+      @JsonKey(name: "price") int? price,
       @JsonKey(name: "reception_counter") ReceptionCounter? receptionCounter});
 
   @override
@@ -379,7 +379,7 @@ class __$$CourseWithPriceDataImplCopyWithImpl<$Res>
       price: freezed == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as int?,
       receptionCounter: freezed == receptionCounter
           ? _value.receptionCounter
           : receptionCounter // ignore: cast_nullable_to_non_nullable
@@ -408,7 +408,7 @@ class _$CourseWithPriceDataImpl implements _CourseWithPriceData {
   final Mentor? mentor;
   @override
   @JsonKey(name: "price")
-  final double? price;
+  final int? price;
   @override
   @JsonKey(name: "reception_counter")
   final ReceptionCounter? receptionCounter;
@@ -454,7 +454,7 @@ abstract class _CourseWithPriceData implements CourseWithPriceData {
   const factory _CourseWithPriceData(
           {@JsonKey(name: "course") required final Course course,
           @JsonKey(name: "mentor") final Mentor? mentor,
-          @JsonKey(name: "price") final double? price,
+          @JsonKey(name: "price") final int? price,
           @JsonKey(name: "reception_counter")
           required final ReceptionCounter? receptionCounter}) =
       _$CourseWithPriceDataImpl;
@@ -470,7 +470,7 @@ abstract class _CourseWithPriceData implements CourseWithPriceData {
   Mentor? get mentor;
   @override
   @JsonKey(name: "price")
-  double? get price;
+  int? get price;
   @override
   @JsonKey(name: "reception_counter")
   ReceptionCounter? get receptionCounter;

@@ -15,7 +15,6 @@ _$CreateAccountRequestImpl _$$CreateAccountRequestImplFromJson(
       middlename: json['middlename'] as String?,
       tel1: json['tel1'] as String,
       tel2: json['tel2'] as String?,
-      tg: json['tg'] as String?,
     );
 
 Map<String, dynamic> _$$CreateAccountRequestImplToJson(
@@ -27,5 +26,4 @@ Map<String, dynamic> _$$CreateAccountRequestImplToJson(
       'middlename': instance.middlename,
       'tel1': instance.tel1,
       'tel2': instance.tel2,
-      'tg': instance.tg,
     };
