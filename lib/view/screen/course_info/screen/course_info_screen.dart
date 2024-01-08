@@ -1,15 +1,15 @@
 import 'dart:ui';
 
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dataspin_academy/controller/bloc/reception/cubit/new_reception_cubit.dart';
 import 'package:dataspin_academy/controller/provider/course_info_provider.dart';
 import 'package:dataspin_academy/controller/service/api/app_ip.dart';
+import 'package:dataspin_academy/view/screen/course_info/widget/about_course_card_widget.dart';
 import 'package:dataspin_academy/view/screen/course_info/widget/dialog_widget.dart';
+import 'package:dataspin_academy/view/screen/course_info/widget/mentor_card_course_info_widget.dart';
 import 'package:dataspin_academy/view/screen/course_info/widget/succes_widget.dart';
 import 'package:dataspin_academy/view/screen/course_info/widget/three_icon_widget.dart';
 import 'package:dataspin_academy/view/screen/home/widget/chips_widget.dart';
-import 'package:dataspin_academy/view/screen/home/widget/mentor_card.dart';
 import 'package:dataspin_academy/view/value/app_color.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
 import 'package:dataspin_academy/view/value/app_icons.dart';
@@ -20,7 +20,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lottie/lottie.dart';
 
 class CourseInfoScreen extends StatefulWidget {
   static const String routeName = "/course_info_screen";
@@ -173,7 +172,51 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> {
                           SizedBox(height: 24.h),
                           const ThreeIconWidget(),
                           SizedBox(height: 24.h),
-                          123,
+                          const MentorCardCourseInfoWidget(),
+                          SizedBox(
+                              height: context
+                                          .read<CourseInfoProvider>()
+                                          .courseWithPriceData!
+                                          .mentor!
+                                          .employee
+                                          .about ==
+                                      null
+                                  ? 0
+                                  : 28.h),
+                          const Text(
+                            "Kurs haqida",
+                            style: AppFonts.h2w700,
+                          ),
+                          const SizedBox(height: 18),
+                          const AboutCourseCardWidget(),
+                          const AboutCourseCardWidget(),
+                          const AboutCourseCardWidget(),
+                          const AboutCourseCardWidget(),
+                          SizedBox(height: 20.h),
+                          const Text(
+                            "Ushbu kursda o'rganasiz:",
+                            style: AppFonts.h2w600,
+                          ),
+                          SizedBox(height: 18.h),
+                          Wrap(
+                            children: context
+                                .read<CourseInfoProvider>()
+                                .courseWithPriceData!
+                                .course
+                                .courseType
+                                .courseTags
+                                .map((e) => Row(
+                                      children: [
+                                        ChipsWidget(
+                                          text: "#${e.name}",
+                                          textStyle: AppFonts.label,
+                                          verticalP: 5,
+                                        ),
+                                      ],
+                                    ))
+                                .toList(),
+                          ),
+                          SizedBox(height: 100.h),
                         ],
                       ),
                     ),

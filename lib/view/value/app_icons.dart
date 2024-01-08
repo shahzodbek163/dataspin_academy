@@ -10,4 +10,5 @@ class AppIcons {
   static const String languageCircle = "assets/icons/language-circle.svg";
   static const String twoUser = "assets/icons/profile-2user.svg";
   static const String call = "assets/icons/Calling.svg";
+  static const String globalEarth = "assets/icons/global.svg";
 }

@@ -44,15 +44,20 @@ class _CoursePartState extends State<CoursePart> {
                       itemBuilder: (context, index) => Padding(
                         padding: EdgeInsets.only(right: 6.w),
                         child: result.data![index]!.course.status
-                            ? CourseCardWidget(
-                                courseWithPriceData: result.data![index]!,
-                                onTap: () {
-                                  context
-                                      .read<CourseInfoProvider>()
-                                      .change(result.data![index]!);
-
-                                  context.push(CourseInfoScreen.routeName);
-                                },
+                            ? Material(
+                                color: Colors.transparent,
+                                child: InkWell(
+                                  borderRadius: BorderRadius.circular(12),
+                                  onTap: () {
+                                    context
+                                        .read<CourseInfoProvider>()
+                                        .change(result.data![index]!);
+                                    context.push(CourseInfoScreen.routeName);
+                                  },
+                                  child: CourseCardWidget(
+                                    courseWithPriceData: result.data![index]!,
+                                  ),
+                                ),
                               )
                             : null,
                       ),

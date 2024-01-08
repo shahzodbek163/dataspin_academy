@@ -1,9 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dataspin_academy/controller/bloc/bottom_bar/cubit/bottom_bar_index_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/course/course_for/course_for_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/course/course_price/cubit/course_with_price_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/course/course_type/course_type_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/mentors/mentors_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/news/cubit/news_cubit.dart';
+import 'package:dataspin_academy/controller/provider/course_info_provider.dart';
+import 'package:dataspin_academy/controller/service/api/app_ip.dart';
 import 'package:dataspin_academy/controller/service/locator/service_locator.dart';
 import 'package:dataspin_academy/view/screen/home/part/category_part.dart';
 import 'package:dataspin_academy/view/screen/home/part/course_part.dart';
@@ -77,7 +80,51 @@ class _HomeScreenState extends State<HomeScreen> {
           ListView(
             physics: const BouncingScrollPhysics(),
             children: [
-              SizedBox(height: 12.h),
+              Row(
+                children: [
+                  Stack(
+                    alignment: Alignment.center,
+                    clipBehavior: Clip.none,
+                    children: [
+                      Container(
+                        width: 100.w,
+                        height: 100.h,
+                        alignment: Alignment.center,
+                        decoration: const BoxDecoration(
+                          color: Color(0xFF5956E9),
+                          shape: BoxShape.circle,
+                        ),
+                        child: Container(
+                          width: 96.w,
+                          height: 96.h,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: const DecorationImage(
+                              image: CachedNetworkImageProvider(
+                                "${AppIp.ip}/api/image/?id=${1}",
+                                headers: {'ngrok-skip-browser-warning': "true"},
+                              ),
+                              fit: BoxFit.cover,
+                            ),
+                            border: Border.all(
+                              color: Colors.white,
+                              width: 1,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        bottom: -8.h,
+                        child: Image.asset(
+                          "assets/icons/verif.png",
+                          width: 20.w,
+                          height: 20.h,
+                        ),
+                      )
+                    ],
+                  ),
+                ],
+              ),
               SizedBox(height: 16.h),
               Padding(
                 padding: EdgeInsets.symmetric(

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ThreeIconWidget extends StatelessWidget {
   const ThreeIconWidget({super.key});
@@ -51,19 +52,27 @@ class ThreeIconWidget extends StatelessWidget {
             width: 1,
             color: AppColor.secondary,
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              SvgPicture.asset(
-                AppIcons.call,
-                height: 24.h,
-                color: AppColor.primary,
-              ),
-              const Text(
-                "Qo'ng'iroq",
-                style: AppFonts.body16Regular,
-              ),
-            ],
+          GestureDetector(
+            onTap: () {
+              launchUrl(Uri(
+                  scheme: "tel",
+                  path:
+                      "+${context.read<CourseInfoProvider>().courseWithPriceData!.mentor!.employee.face.tel1}"));
+            },
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                SvgPicture.asset(
+                  AppIcons.call,
+                  height: 24.h,
+                  color: AppColor.primary,
+                ),
+                const Text(
+                  "Qo'ng'iroq",
+                  style: AppFonts.body16Regular,
+                ),
+              ],
+            ),
           ),
         ],
       ),

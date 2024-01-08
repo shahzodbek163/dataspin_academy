@@ -9,10 +9,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class CourseCardWidget extends StatefulWidget {
   final CourseWithPriceData courseWithPriceData;
-  final VoidCallback onTap;
 
-  const CourseCardWidget(
-      {super.key, required this.courseWithPriceData, required this.onTap});
+  const CourseCardWidget({super.key, required this.courseWithPriceData});
 
   @override
   State<CourseCardWidget> createState() => _CourseCardWidgetState();
@@ -25,7 +23,6 @@ class _CourseCardWidgetState extends State<CourseCardWidget> {
       width: 358.w,
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: Colors.white,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: AppColor.divider),
       ),
@@ -98,23 +95,16 @@ class _CourseCardWidgetState extends State<CourseCardWidget> {
                       decoration: BoxDecoration(
                           color: AppColor.secondary,
                           borderRadius: BorderRadius.circular(6)),
-                      child: Material(
-                        color: Colors.transparent,
-                        child: InkWell(
-                          onTap: widget.onTap,
+                      child: Container(
+                        height: 32.h,
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(6),
-                          child: Container(
-                            height: 32.h,
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(6),
-                            ),
-                            child: Text("Ro'yxatdan o'tish",
-                                style: AppFonts.label
-                                    .copyWith(color: AppColor.primary)),
-                          ),
                         ),
+                        child: Text("Ro'yxatdan o'tish",
+                            style: AppFonts.label
+                                .copyWith(color: AppColor.primary)),
                       ),
                     )
                   ],

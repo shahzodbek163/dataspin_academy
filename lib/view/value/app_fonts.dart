@@ -16,6 +16,12 @@ class AppFonts {
       fontWeight: FontWeight.w500,
       fontFamily: "Ubuntu",
       color: Colors.black);
+  static const h2w700 = TextStyle(
+      fontSize: 24,
+      height: 28 / 24,
+      fontWeight: FontWeight.w700,
+      fontFamily: "Ubuntu",
+      color: Colors.black);
   static const h2w600 = TextStyle(
       fontSize: 18,
       height: 28 / 18,
