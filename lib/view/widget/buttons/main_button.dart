@@ -9,19 +9,19 @@ class MainButton extends StatelessWidget {
   final VoidCallback? onTap;
   double height;
 
-  MainButton(
-      {super.key,
-      required this.text,
-      required this.onTap,
-      this.isLoading = false,
-      this.height = 58, 
-
-      });
+  MainButton({
+    super.key,
+    required this.text,
+    required this.onTap,
+    this.isLoading = false,
+    this.height = 58,
+  });
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ButtonStyle(
+        overlayColor: MaterialStateProperty.all(Colors.grey.withOpacity(0.2)),
         minimumSize: MaterialStateProperty.all(Size(double.infinity, height)),
         backgroundColor: MaterialStateProperty.all(AppColor.primaryButtonColor),
         elevation: MaterialStateProperty.all(0),

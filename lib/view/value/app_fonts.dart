@@ -62,6 +62,12 @@ class AppFonts {
       fontWeight: FontWeight.w400,
       fontFamily: "Ubuntu",
       color: Colors.black);
+  static const body16w500 = TextStyle(
+      fontSize: 16,
+      height: 20 / 16,
+      fontWeight: FontWeight.w500,
+      fontFamily: "Ubuntu",
+      color: Colors.black);
   static const body16w700 = TextStyle(
       fontSize: 16,
       height: 20 / 16,
@@ -72,6 +78,12 @@ class AppFonts {
       fontSize: 14,
       height: 18 / 14,
       fontWeight: FontWeight.w400,
+      fontFamily: "Ubuntu",
+      color: Colors.black);
+  static const labelw700 = TextStyle(
+      fontSize: 14,
+      height: 18 / 14,
+      fontWeight: FontWeight.w700,
       fontFamily: "Ubuntu",
       color: Colors.black);
   static const body12Regular = TextStyle(

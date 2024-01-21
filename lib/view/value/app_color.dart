@@ -11,6 +11,7 @@ class AppColor {
   static const Color divider = Color(0xFFF1F3F6);
   static const Color iconUnfocusColor = Color(0xFFC7C7C7);
   static const Color fd = Color(0xFFF7F8FD);
-
-
+  static const Color textColor = Color(0xFF030084);
+  static const Color dividerSecondary = Color(0xFFF5F6FA);
+  static const Color iconColor = Color(0xFF8E8F96);
 }

@@ -25,7 +25,7 @@ mixin _$MentorResult {
   @JsonKey(name: "message")
   String get message => throw _privateConstructorUsedError;
   @JsonKey(name: "data")
-  List<MentorResultData> get data => throw _privateConstructorUsedError;
+  List<MentorResultData>? get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,7 +42,7 @@ abstract class $MentorResultCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: "status") bool status,
       @JsonKey(name: "message") String message,
-      @JsonKey(name: "data") List<MentorResultData> data});
+      @JsonKey(name: "data") List<MentorResultData>? data});
 }
 
 /// @nodoc
@@ -60,7 +60,7 @@ class _$MentorResultCopyWithImpl<$Res, $Val extends MentorResult>
   $Res call({
     Object? status = null,
     Object? message = null,
-    Object? data = null,
+    Object? data = freezed,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -71,10 +71,10 @@ class _$MentorResultCopyWithImpl<$Res, $Val extends MentorResult>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      data: null == data
+      data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as List<MentorResultData>,
+              as List<MentorResultData>?,
     ) as $Val);
   }
 }
@@ -90,7 +90,7 @@ abstract class _$$MentorResultImplCopyWith<$Res>
   $Res call(
       {@JsonKey(name: "status") bool status,
       @JsonKey(name: "message") String message,
-      @JsonKey(name: "data") List<MentorResultData> data});
+      @JsonKey(name: "data") List<MentorResultData>? data});
 }
 
 /// @nodoc
@@ -106,7 +106,7 @@ class __$$MentorResultImplCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? message = null,
-    Object? data = null,
+    Object? data = freezed,
   }) {
     return _then(_$MentorResultImpl(
       status: null == status
@@ -117,10 +117,10 @@ class __$$MentorResultImplCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      data: null == data
+      data: freezed == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
-              as List<MentorResultData>,
+              as List<MentorResultData>?,
     ));
   }
 }
@@ -131,7 +131,7 @@ class _$MentorResultImpl implements _MentorResult {
   const _$MentorResultImpl(
       {@JsonKey(name: "status") required this.status,
       @JsonKey(name: "message") required this.message,
-      @JsonKey(name: "data") required final List<MentorResultData> data})
+      @JsonKey(name: "data") required final List<MentorResultData>? data})
       : _data = data;
 
   factory _$MentorResultImpl.fromJson(Map<String, dynamic> json) =>
@@ -143,13 +143,15 @@ class _$MentorResultImpl implements _MentorResult {
   @override
   @JsonKey(name: "message")
   final String message;
-  final List<MentorResultData> _data;
+  final List<MentorResultData>? _data;
   @override
   @JsonKey(name: "data")
-  List<MentorResultData> get data {
+  List<MentorResultData>? get data {
+    final value = _data;
+    if (value == null) return null;
     if (_data is EqualUnmodifiableListView) return _data;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_data);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
@@ -190,7 +192,7 @@ abstract class _MentorResult implements MentorResult {
   const factory _MentorResult(
           {@JsonKey(name: "status") required final bool status,
           @JsonKey(name: "message") required final String message,
-          @JsonKey(name: "data") required final List<MentorResultData> data}) =
+          @JsonKey(name: "data") required final List<MentorResultData>? data}) =
       _$MentorResultImpl;
 
   factory _MentorResult.fromJson(Map<String, dynamic> json) =
@@ -204,7 +206,7 @@ abstract class _MentorResult implements MentorResult {
   String get message;
   @override
   @JsonKey(name: "data")
-  List<MentorResultData> get data;
+  List<MentorResultData>? get data;
   @override
   @JsonKey(ignore: true)
   _$$MentorResultImplCopyWith<_$MentorResultImpl> get copyWith =>

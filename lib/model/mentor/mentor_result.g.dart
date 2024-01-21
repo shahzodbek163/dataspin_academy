@@ -10,8 +10,8 @@ _$MentorResultImpl _$$MentorResultImplFromJson(Map<String, dynamic> json) =>
     _$MentorResultImpl(
       status: json['status'] as bool,
       message: json['message'] as String,
-      data: (json['data'] as List<dynamic>)
-          .map((e) => MentorResultData.fromJson(e as Map<String, dynamic>))
+      data: (json['data'] as List<dynamic>?)
+          ?.map((e) => MentorResultData.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

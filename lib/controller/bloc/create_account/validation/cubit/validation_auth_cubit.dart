@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:dataspin_academy/model/auth/sendcode/send_code_result.dart';
 import 'package:dataspin_academy/view/value/phone_codes.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

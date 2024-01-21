@@ -33,11 +33,11 @@ class _MentorPartState extends State<MentorPart> {
               orElse: () => const SizedBox(),
               getting: () => const CircularProgressIndicator(),
               get: (result) => ListView.builder(
-                  itemCount: result.data.length,
+                  itemCount: result.data!.length,
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
-                    if (result.data.isNotEmpty) {
+                    if (result.data!.isNotEmpty) {
                       result.data;
                       return Padding(
                         padding: const EdgeInsets.only(bottom: 16),
@@ -46,12 +46,12 @@ class _MentorPartState extends State<MentorPart> {
                           onTap: () {
                             context
                                 .read<ProfileDataProvider>()
-                                .change(result.data[index]);
+                                .change(result.data![index]);
 
                             context.push(ProfileScreen.routeName);
                           },
                           child: MentorCard(
-                            mentorResultData: result.data[index],
+                            mentorResultData: result.data![index],
                           ),
                         ),
                       );

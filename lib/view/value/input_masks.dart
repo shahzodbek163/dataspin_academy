@@ -7,7 +7,6 @@ class InputMasks {
     mask: '+998 (##) ###-##-##',
     filter: {"#": RegExp(r'[0-9]')},
     type: MaskAutoCompletionType.eager,
-
   );
   static final birthdayInputMask = MaskTextInputFormatter(
     mask: '##-##-####',

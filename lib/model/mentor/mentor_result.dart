@@ -20,7 +20,7 @@ class MentorResult with _$MentorResult {
     @JsonKey(name: "message")
     required String message,
     @JsonKey(name: "data")
-    required List<MentorResultData> data,
+    required List<MentorResultData>? data,
   }) = _MentorResult;
 
   factory MentorResult.fromJson(Map<String, dynamic> json) => _$MentorResultFromJson(json);

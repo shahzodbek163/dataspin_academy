@@ -1,8 +1,5 @@
 import 'package:dataspin_academy/controller/service/api/app_ip.dart';
-import 'package:dataspin_academy/model/auth/checkcode/check_code_response.dart';
-import 'package:dataspin_academy/model/auth/sendcode/send_code_result.dart';
-import 'package:dataspin_academy/model/auth/token_session/token_session_response.dart';
-import 'package:dataspin_academy/model/course/course_by_id/course_by_id_result.dart';
+import 'package:dataspin_academy/model/account/response/account_response.dart';
 import 'package:dataspin_academy/model/course/course_for/course_for_result.dart';
 import 'package:dataspin_academy/model/course/course_price/response/course_with_price_response.dart';
 import 'package:dataspin_academy/model/course/course_type/course_type_result.dart';
@@ -22,15 +19,6 @@ abstract class ApiService {
   factory ApiService(Dio dio) = _ApiService;
 
   //auth
-  @POST("/auth/send-code")
-  Future<SendCodeResult> sendCode(@Part() String phone);
-
-  @POST("/auth/check-code/user-check")
-  Future<CheckCodeResponse> checkCode(
-      @Part() String code, @Part() String phone);
-  @POST("/auth/token-session")
-  Future<TokenSessionResponse> tokenSession(
-      @Part() String code, @Part() String phone);
 
   @POST("/user/create")
   Future<CreateAccountResponse> createAccount(
@@ -57,4 +45,7 @@ abstract class ApiService {
   @POST("/reception/new")
   Future<NewReceptionResponse> newReception(
       @Body() NewReceptionRequest newReceptionRequest);
+
+  @GET("/user/me")
+  Future<AccountResponse> getAccount();
 }

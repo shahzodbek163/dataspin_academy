@@ -1,9 +1,7 @@
-import 'dart:ui';
-
 import 'package:dataspin_academy/controller/service/dialogs/custom_snack_bar.dart';
 import 'package:dataspin_academy/controller/service/dio/secure_storage.dart';
 import 'package:dataspin_academy/controller/service/navigation/navigation_service.dart';
-import 'package:dataspin_academy/view/screen/send_code/screen/send_code_screen.dart';
+import 'package:dataspin_academy/view/screen/home/screen/home_screen.dart';
 import 'package:dio/dio.dart';
 import 'package:go_router/go_router.dart';
 
@@ -62,7 +60,7 @@ class CustomDio {
             case 401:
               {
                 NavigationService.navigatorKey.currentState!.context
-                    .pushReplacement(SendCodeScreen.routeName);
+                    .pushReplacement(HomeScreen.routeName);
               }
               break;
           }

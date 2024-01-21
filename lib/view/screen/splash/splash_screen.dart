@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:dataspin_academy/controller/service/dio/secure_storage.dart';
 import 'package:dataspin_academy/view/screen/home/screen/home_screen.dart';
-import 'package:dataspin_academy/view/screen/send_code/screen/send_code_screen.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -27,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   checkingToken() async {
     if (SecureStorage().getAccess() == null) {
-      context.pushReplacement(SendCodeScreen.routeName);
+      context.pushReplacement(HomeScreen.routeName);
     } else {
       context.pushReplacement(HomeScreen.routeName);
     }

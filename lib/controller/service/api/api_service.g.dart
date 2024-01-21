@@ -21,113 +21,6 @@ class _ApiService implements ApiService {
   String? baseUrl;
 
   @override
-  Future<SendCodeResult> sendCode(String phone) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = FormData();
-    _data.fields.add(MapEntry(
-      'phone',
-      phone,
-    ));
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<SendCodeResult>(Options(
-      method: 'POST',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              '/auth/send-code',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = SendCodeResult.fromJson(_result.data!);
-    return value;
-  }
-
-  @override
-  Future<CheckCodeResponse> checkCode(
-    String code,
-    String phone,
-  ) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = FormData();
-    _data.fields.add(MapEntry(
-      'code',
-      code,
-    ));
-    _data.fields.add(MapEntry(
-      'phone',
-      phone,
-    ));
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<CheckCodeResponse>(Options(
-      method: 'POST',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              '/auth/check-code/user-check',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = CheckCodeResponse.fromJson(_result.data!);
-    return value;
-  }
-
-  @override
-  Future<TokenSessionResponse> tokenSession(
-    String code,
-    String phone,
-  ) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = FormData();
-    _data.fields.add(MapEntry(
-      'code',
-      code,
-    ));
-    _data.fields.add(MapEntry(
-      'phone',
-      phone,
-    ));
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<TokenSessionResponse>(Options(
-      method: 'POST',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              '/auth/token-session',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = TokenSessionResponse.fromJson(_result.data!);
-    return value;
-  }
-
-  @override
   Future<CreateAccountResponse> createAccount(
       CreateAccountRequest createAccountRequest) async {
     const _extra = <String, dynamic>{};
@@ -342,6 +235,33 @@ class _ApiService implements ApiService {
               baseUrl,
             ))));
     final value = NewReceptionResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<AccountResponse> getAccount() async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<AccountResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/user/me',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = AccountResponse.fromJson(_result.data!);
     return value;
   }
 
