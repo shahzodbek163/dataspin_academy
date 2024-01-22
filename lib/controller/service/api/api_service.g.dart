@@ -283,13 +283,15 @@ class _ApiService implements ApiService {
         birthday,
       ));
     }
-    _data.files.add(MapEntry(
-      'photo',
-      MultipartFile.fromFileSync(
-        photo!.path,
-        filename: photo.path.split(Platform.pathSeparator).last,
-      ),
-    ));
+    if (photo != null) {
+      _data.files.add(MapEntry(
+        'photo',
+        MultipartFile.fromFileSync(
+          photo.path,
+          filename: photo.path.split(Platform.pathSeparator).last,
+        ),
+      ));
+    }
     if (tel1 != null) {
       _data.fields.add(MapEntry(
         'tel1',
