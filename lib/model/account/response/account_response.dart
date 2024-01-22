@@ -2,6 +2,7 @@
 //
 //     final accountResponse = accountResponseFromJson(jsonString);
 
+import 'package:meta/meta.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'dart:convert';
 
@@ -19,7 +20,7 @@ class AccountResponse with _$AccountResponse {
   const factory AccountResponse({
     @JsonKey(name: "status") required bool status,
     @JsonKey(name: "message") required String message,
-    @JsonKey(name: "data") required AccountResponseData? data,
+    @JsonKey(name: "data") required AccountData data,
   }) = _AccountResponse;
 
   factory AccountResponse.fromJson(Map<String, dynamic> json) =>
@@ -27,30 +28,30 @@ class AccountResponse with _$AccountResponse {
 }
 
 @freezed
-class AccountResponseData with _$AccountResponseData {
-  const factory AccountResponseData({
+class AccountData with _$AccountData {
+  const factory AccountData({
     @JsonKey(name: "id") required int id,
     @JsonKey(name: "date") required DateTime date,
-    @JsonKey(name: "profilePhoto") dynamic profilePhoto,
-    @JsonKey(name: "primaryPhone") required String primaryPhone,
-    @JsonKey(name: "secondaryPhone") dynamic secondaryPhone,
+    @JsonKey(name: "userData") required ProfilePhoto userData,
     @JsonKey(name: "firstname") required String firstname,
     @JsonKey(name: "lastname") required String lastname,
     @JsonKey(name: "middlename") required String middlename,
     @JsonKey(name: "birthday") required DateTime birthday,
-    @JsonKey(name: "userData") required UserData userData,
-  }) = _AccountResponseData;
+    @JsonKey(name: "profilePhoto")  ProfilePhoto? profilePhoto,
+    @JsonKey(name: "primaryPhone") required String primaryPhone,
+    @JsonKey(name: "secondaryPhone") required String secondaryPhone,
+  }) = _AccountData;
 
-  factory AccountResponseData.fromJson(Map<String, dynamic> json) =>
-      _$AccountResponseDataFromJson(json);
+  factory AccountData.fromJson(Map<String, dynamic> json) =>
+      _$AccountDataFromJson(json);
 }
 
 @freezed
-class UserData with _$UserData {
-  const factory UserData({
+class ProfilePhoto with _$ProfilePhoto {
+  const factory ProfilePhoto({
     @JsonKey(name: "id") required int id,
-  }) = _UserData;
+  }) = _ProfilePhoto;
 
-  factory UserData.fromJson(Map<String, dynamic> json) =>
-      _$UserDataFromJson(json);
+  factory ProfilePhoto.fromJson(Map<String, dynamic> json) =>
+      _$ProfilePhotoFromJson(json);
 }

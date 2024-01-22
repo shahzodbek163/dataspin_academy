@@ -25,7 +25,7 @@ mixin _$AccountResponse {
   @JsonKey(name: "message")
   String get message => throw _privateConstructorUsedError;
   @JsonKey(name: "data")
-  AccountResponseData? get data => throw _privateConstructorUsedError;
+  AccountData get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,9 +42,9 @@ abstract class $AccountResponseCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: "status") bool status,
       @JsonKey(name: "message") String message,
-      @JsonKey(name: "data") AccountResponseData? data});
+      @JsonKey(name: "data") AccountData data});
 
-  $AccountResponseDataCopyWith<$Res>? get data;
+  $AccountDataCopyWith<$Res> get data;
 }
 
 /// @nodoc
@@ -62,7 +62,7 @@ class _$AccountResponseCopyWithImpl<$Res, $Val extends AccountResponse>
   $Res call({
     Object? status = null,
     Object? message = null,
-    Object? data = freezed,
+    Object? data = null,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -73,21 +73,17 @@ class _$AccountResponseCopyWithImpl<$Res, $Val extends AccountResponse>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      data: freezed == data
+      data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as AccountResponseData?,
+              as AccountData,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $AccountResponseDataCopyWith<$Res>? get data {
-    if (_value.data == null) {
-      return null;
-    }
-
-    return $AccountResponseDataCopyWith<$Res>(_value.data!, (value) {
+  $AccountDataCopyWith<$Res> get data {
+    return $AccountDataCopyWith<$Res>(_value.data, (value) {
       return _then(_value.copyWith(data: value) as $Val);
     });
   }
@@ -104,10 +100,10 @@ abstract class _$$AccountResponseImplCopyWith<$Res>
   $Res call(
       {@JsonKey(name: "status") bool status,
       @JsonKey(name: "message") String message,
-      @JsonKey(name: "data") AccountResponseData? data});
+      @JsonKey(name: "data") AccountData data});
 
   @override
-  $AccountResponseDataCopyWith<$Res>? get data;
+  $AccountDataCopyWith<$Res> get data;
 }
 
 /// @nodoc
@@ -123,7 +119,7 @@ class __$$AccountResponseImplCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? message = null,
-    Object? data = freezed,
+    Object? data = null,
   }) {
     return _then(_$AccountResponseImpl(
       status: null == status
@@ -134,10 +130,10 @@ class __$$AccountResponseImplCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      data: freezed == data
+      data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as AccountResponseData?,
+              as AccountData,
     ));
   }
 }
@@ -161,7 +157,7 @@ class _$AccountResponseImpl implements _AccountResponse {
   final String message;
   @override
   @JsonKey(name: "data")
-  final AccountResponseData? data;
+  final AccountData data;
 
   @override
   String toString() {
@@ -201,7 +197,7 @@ abstract class _AccountResponse implements AccountResponse {
   const factory _AccountResponse(
           {@JsonKey(name: "status") required final bool status,
           @JsonKey(name: "message") required final String message,
-          @JsonKey(name: "data") required final AccountResponseData? data}) =
+          @JsonKey(name: "data") required final AccountData data}) =
       _$AccountResponseImpl;
 
   factory _AccountResponse.fromJson(Map<String, dynamic> json) =
@@ -215,29 +211,25 @@ abstract class _AccountResponse implements AccountResponse {
   String get message;
   @override
   @JsonKey(name: "data")
-  AccountResponseData? get data;
+  AccountData get data;
   @override
   @JsonKey(ignore: true)
   _$$AccountResponseImplCopyWith<_$AccountResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-AccountResponseData _$AccountResponseDataFromJson(Map<String, dynamic> json) {
-  return _AccountResponseData.fromJson(json);
+AccountData _$AccountDataFromJson(Map<String, dynamic> json) {
+  return _AccountData.fromJson(json);
 }
 
 /// @nodoc
-mixin _$AccountResponseData {
+mixin _$AccountData {
   @JsonKey(name: "id")
   int get id => throw _privateConstructorUsedError;
   @JsonKey(name: "date")
   DateTime get date => throw _privateConstructorUsedError;
-  @JsonKey(name: "profilePhoto")
-  dynamic get profilePhoto => throw _privateConstructorUsedError;
-  @JsonKey(name: "primaryPhone")
-  String get primaryPhone => throw _privateConstructorUsedError;
-  @JsonKey(name: "secondaryPhone")
-  dynamic get secondaryPhone => throw _privateConstructorUsedError;
+  @JsonKey(name: "userData")
+  ProfilePhoto get userData => throw _privateConstructorUsedError;
   @JsonKey(name: "firstname")
   String get firstname => throw _privateConstructorUsedError;
   @JsonKey(name: "lastname")
@@ -246,40 +238,45 @@ mixin _$AccountResponseData {
   String get middlename => throw _privateConstructorUsedError;
   @JsonKey(name: "birthday")
   DateTime get birthday => throw _privateConstructorUsedError;
-  @JsonKey(name: "userData")
-  UserData get userData => throw _privateConstructorUsedError;
+  @JsonKey(name: "profilePhoto")
+  ProfilePhoto? get profilePhoto => throw _privateConstructorUsedError;
+  @JsonKey(name: "primaryPhone")
+  String get primaryPhone => throw _privateConstructorUsedError;
+  @JsonKey(name: "secondaryPhone")
+  String get secondaryPhone => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $AccountResponseDataCopyWith<AccountResponseData> get copyWith =>
+  $AccountDataCopyWith<AccountData> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AccountResponseDataCopyWith<$Res> {
-  factory $AccountResponseDataCopyWith(
-          AccountResponseData value, $Res Function(AccountResponseData) then) =
-      _$AccountResponseDataCopyWithImpl<$Res, AccountResponseData>;
+abstract class $AccountDataCopyWith<$Res> {
+  factory $AccountDataCopyWith(
+          AccountData value, $Res Function(AccountData) then) =
+      _$AccountDataCopyWithImpl<$Res, AccountData>;
   @useResult
   $Res call(
       {@JsonKey(name: "id") int id,
       @JsonKey(name: "date") DateTime date,
-      @JsonKey(name: "profilePhoto") dynamic profilePhoto,
-      @JsonKey(name: "primaryPhone") String primaryPhone,
-      @JsonKey(name: "secondaryPhone") dynamic secondaryPhone,
+      @JsonKey(name: "userData") ProfilePhoto userData,
       @JsonKey(name: "firstname") String firstname,
       @JsonKey(name: "lastname") String lastname,
       @JsonKey(name: "middlename") String middlename,
       @JsonKey(name: "birthday") DateTime birthday,
-      @JsonKey(name: "userData") UserData userData});
+      @JsonKey(name: "profilePhoto") ProfilePhoto? profilePhoto,
+      @JsonKey(name: "primaryPhone") String primaryPhone,
+      @JsonKey(name: "secondaryPhone") String secondaryPhone});
 
-  $UserDataCopyWith<$Res> get userData;
+  $ProfilePhotoCopyWith<$Res> get userData;
+  $ProfilePhotoCopyWith<$Res>? get profilePhoto;
 }
 
 /// @nodoc
-class _$AccountResponseDataCopyWithImpl<$Res, $Val extends AccountResponseData>
-    implements $AccountResponseDataCopyWith<$Res> {
-  _$AccountResponseDataCopyWithImpl(this._value, this._then);
+class _$AccountDataCopyWithImpl<$Res, $Val extends AccountData>
+    implements $AccountDataCopyWith<$Res> {
+  _$AccountDataCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -291,14 +288,14 @@ class _$AccountResponseDataCopyWithImpl<$Res, $Val extends AccountResponseData>
   $Res call({
     Object? id = null,
     Object? date = null,
-    Object? profilePhoto = freezed,
-    Object? primaryPhone = null,
-    Object? secondaryPhone = freezed,
+    Object? userData = null,
     Object? firstname = null,
     Object? lastname = null,
     Object? middlename = null,
     Object? birthday = null,
-    Object? userData = null,
+    Object? profilePhoto = freezed,
+    Object? primaryPhone = null,
+    Object? secondaryPhone = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -309,18 +306,10 @@ class _$AccountResponseDataCopyWithImpl<$Res, $Val extends AccountResponseData>
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      profilePhoto: freezed == profilePhoto
-          ? _value.profilePhoto
-          : profilePhoto // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      primaryPhone: null == primaryPhone
-          ? _value.primaryPhone
-          : primaryPhone // ignore: cast_nullable_to_non_nullable
-              as String,
-      secondaryPhone: freezed == secondaryPhone
-          ? _value.secondaryPhone
-          : secondaryPhone // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+      userData: null == userData
+          ? _value.userData
+          : userData // ignore: cast_nullable_to_non_nullable
+              as ProfilePhoto,
       firstname: null == firstname
           ? _value.firstname
           : firstname // ignore: cast_nullable_to_non_nullable
@@ -337,52 +326,74 @@ class _$AccountResponseDataCopyWithImpl<$Res, $Val extends AccountResponseData>
           ? _value.birthday
           : birthday // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      userData: null == userData
-          ? _value.userData
-          : userData // ignore: cast_nullable_to_non_nullable
-              as UserData,
+      profilePhoto: freezed == profilePhoto
+          ? _value.profilePhoto
+          : profilePhoto // ignore: cast_nullable_to_non_nullable
+              as ProfilePhoto?,
+      primaryPhone: null == primaryPhone
+          ? _value.primaryPhone
+          : primaryPhone // ignore: cast_nullable_to_non_nullable
+              as String,
+      secondaryPhone: null == secondaryPhone
+          ? _value.secondaryPhone
+          : secondaryPhone // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $UserDataCopyWith<$Res> get userData {
-    return $UserDataCopyWith<$Res>(_value.userData, (value) {
+  $ProfilePhotoCopyWith<$Res> get userData {
+    return $ProfilePhotoCopyWith<$Res>(_value.userData, (value) {
       return _then(_value.copyWith(userData: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ProfilePhotoCopyWith<$Res>? get profilePhoto {
+    if (_value.profilePhoto == null) {
+      return null;
+    }
+
+    return $ProfilePhotoCopyWith<$Res>(_value.profilePhoto!, (value) {
+      return _then(_value.copyWith(profilePhoto: value) as $Val);
     });
   }
 }
 
 /// @nodoc
-abstract class _$$AccountResponseDataImplCopyWith<$Res>
-    implements $AccountResponseDataCopyWith<$Res> {
-  factory _$$AccountResponseDataImplCopyWith(_$AccountResponseDataImpl value,
-          $Res Function(_$AccountResponseDataImpl) then) =
-      __$$AccountResponseDataImplCopyWithImpl<$Res>;
+abstract class _$$AccountDataImplCopyWith<$Res>
+    implements $AccountDataCopyWith<$Res> {
+  factory _$$AccountDataImplCopyWith(
+          _$AccountDataImpl value, $Res Function(_$AccountDataImpl) then) =
+      __$$AccountDataImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {@JsonKey(name: "id") int id,
       @JsonKey(name: "date") DateTime date,
-      @JsonKey(name: "profilePhoto") dynamic profilePhoto,
-      @JsonKey(name: "primaryPhone") String primaryPhone,
-      @JsonKey(name: "secondaryPhone") dynamic secondaryPhone,
+      @JsonKey(name: "userData") ProfilePhoto userData,
       @JsonKey(name: "firstname") String firstname,
       @JsonKey(name: "lastname") String lastname,
       @JsonKey(name: "middlename") String middlename,
       @JsonKey(name: "birthday") DateTime birthday,
-      @JsonKey(name: "userData") UserData userData});
+      @JsonKey(name: "profilePhoto") ProfilePhoto? profilePhoto,
+      @JsonKey(name: "primaryPhone") String primaryPhone,
+      @JsonKey(name: "secondaryPhone") String secondaryPhone});
 
   @override
-  $UserDataCopyWith<$Res> get userData;
+  $ProfilePhotoCopyWith<$Res> get userData;
+  @override
+  $ProfilePhotoCopyWith<$Res>? get profilePhoto;
 }
 
 /// @nodoc
-class __$$AccountResponseDataImplCopyWithImpl<$Res>
-    extends _$AccountResponseDataCopyWithImpl<$Res, _$AccountResponseDataImpl>
-    implements _$$AccountResponseDataImplCopyWith<$Res> {
-  __$$AccountResponseDataImplCopyWithImpl(_$AccountResponseDataImpl _value,
-      $Res Function(_$AccountResponseDataImpl) _then)
+class __$$AccountDataImplCopyWithImpl<$Res>
+    extends _$AccountDataCopyWithImpl<$Res, _$AccountDataImpl>
+    implements _$$AccountDataImplCopyWith<$Res> {
+  __$$AccountDataImplCopyWithImpl(
+      _$AccountDataImpl _value, $Res Function(_$AccountDataImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -390,16 +401,16 @@ class __$$AccountResponseDataImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? date = null,
-    Object? profilePhoto = freezed,
-    Object? primaryPhone = null,
-    Object? secondaryPhone = freezed,
+    Object? userData = null,
     Object? firstname = null,
     Object? lastname = null,
     Object? middlename = null,
     Object? birthday = null,
-    Object? userData = null,
+    Object? profilePhoto = freezed,
+    Object? primaryPhone = null,
+    Object? secondaryPhone = null,
   }) {
-    return _then(_$AccountResponseDataImpl(
+    return _then(_$AccountDataImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -408,18 +419,10 @@ class __$$AccountResponseDataImplCopyWithImpl<$Res>
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      profilePhoto: freezed == profilePhoto
-          ? _value.profilePhoto
-          : profilePhoto // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      primaryPhone: null == primaryPhone
-          ? _value.primaryPhone
-          : primaryPhone // ignore: cast_nullable_to_non_nullable
-              as String,
-      secondaryPhone: freezed == secondaryPhone
-          ? _value.secondaryPhone
-          : secondaryPhone // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+      userData: null == userData
+          ? _value.userData
+          : userData // ignore: cast_nullable_to_non_nullable
+              as ProfilePhoto,
       firstname: null == firstname
           ? _value.firstname
           : firstname // ignore: cast_nullable_to_non_nullable
@@ -436,31 +439,39 @@ class __$$AccountResponseDataImplCopyWithImpl<$Res>
           ? _value.birthday
           : birthday // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      userData: null == userData
-          ? _value.userData
-          : userData // ignore: cast_nullable_to_non_nullable
-              as UserData,
+      profilePhoto: freezed == profilePhoto
+          ? _value.profilePhoto
+          : profilePhoto // ignore: cast_nullable_to_non_nullable
+              as ProfilePhoto?,
+      primaryPhone: null == primaryPhone
+          ? _value.primaryPhone
+          : primaryPhone // ignore: cast_nullable_to_non_nullable
+              as String,
+      secondaryPhone: null == secondaryPhone
+          ? _value.secondaryPhone
+          : secondaryPhone // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$AccountResponseDataImpl implements _AccountResponseData {
-  const _$AccountResponseDataImpl(
+class _$AccountDataImpl implements _AccountData {
+  const _$AccountDataImpl(
       {@JsonKey(name: "id") required this.id,
       @JsonKey(name: "date") required this.date,
-      @JsonKey(name: "profilePhoto") this.profilePhoto,
-      @JsonKey(name: "primaryPhone") required this.primaryPhone,
-      @JsonKey(name: "secondaryPhone") this.secondaryPhone,
+      @JsonKey(name: "userData") required this.userData,
       @JsonKey(name: "firstname") required this.firstname,
       @JsonKey(name: "lastname") required this.lastname,
       @JsonKey(name: "middlename") required this.middlename,
       @JsonKey(name: "birthday") required this.birthday,
-      @JsonKey(name: "userData") required this.userData});
+      @JsonKey(name: "profilePhoto") this.profilePhoto,
+      @JsonKey(name: "primaryPhone") required this.primaryPhone,
+      @JsonKey(name: "secondaryPhone") required this.secondaryPhone});
 
-  factory _$AccountResponseDataImpl.fromJson(Map<String, dynamic> json) =>
-      _$$AccountResponseDataImplFromJson(json);
+  factory _$AccountDataImpl.fromJson(Map<String, dynamic> json) =>
+      _$$AccountDataImplFromJson(json);
 
   @override
   @JsonKey(name: "id")
@@ -469,14 +480,8 @@ class _$AccountResponseDataImpl implements _AccountResponseData {
   @JsonKey(name: "date")
   final DateTime date;
   @override
-  @JsonKey(name: "profilePhoto")
-  final dynamic profilePhoto;
-  @override
-  @JsonKey(name: "primaryPhone")
-  final String primaryPhone;
-  @override
-  @JsonKey(name: "secondaryPhone")
-  final dynamic secondaryPhone;
+  @JsonKey(name: "userData")
+  final ProfilePhoto userData;
   @override
   @JsonKey(name: "firstname")
   final String firstname;
@@ -490,27 +495,29 @@ class _$AccountResponseDataImpl implements _AccountResponseData {
   @JsonKey(name: "birthday")
   final DateTime birthday;
   @override
-  @JsonKey(name: "userData")
-  final UserData userData;
+  @JsonKey(name: "profilePhoto")
+  final ProfilePhoto? profilePhoto;
+  @override
+  @JsonKey(name: "primaryPhone")
+  final String primaryPhone;
+  @override
+  @JsonKey(name: "secondaryPhone")
+  final String secondaryPhone;
 
   @override
   String toString() {
-    return 'AccountResponseData(id: $id, date: $date, profilePhoto: $profilePhoto, primaryPhone: $primaryPhone, secondaryPhone: $secondaryPhone, firstname: $firstname, lastname: $lastname, middlename: $middlename, birthday: $birthday, userData: $userData)';
+    return 'AccountData(id: $id, date: $date, userData: $userData, firstname: $firstname, lastname: $lastname, middlename: $middlename, birthday: $birthday, profilePhoto: $profilePhoto, primaryPhone: $primaryPhone, secondaryPhone: $secondaryPhone)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AccountResponseDataImpl &&
+            other is _$AccountDataImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.date, date) || other.date == date) &&
-            const DeepCollectionEquality()
-                .equals(other.profilePhoto, profilePhoto) &&
-            (identical(other.primaryPhone, primaryPhone) ||
-                other.primaryPhone == primaryPhone) &&
-            const DeepCollectionEquality()
-                .equals(other.secondaryPhone, secondaryPhone) &&
+            (identical(other.userData, userData) ||
+                other.userData == userData) &&
             (identical(other.firstname, firstname) ||
                 other.firstname == firstname) &&
             (identical(other.lastname, lastname) ||
@@ -519,8 +526,12 @@ class _$AccountResponseDataImpl implements _AccountResponseData {
                 other.middlename == middlename) &&
             (identical(other.birthday, birthday) ||
                 other.birthday == birthday) &&
-            (identical(other.userData, userData) ||
-                other.userData == userData));
+            (identical(other.profilePhoto, profilePhoto) ||
+                other.profilePhoto == profilePhoto) &&
+            (identical(other.primaryPhone, primaryPhone) ||
+                other.primaryPhone == primaryPhone) &&
+            (identical(other.secondaryPhone, secondaryPhone) ||
+                other.secondaryPhone == secondaryPhone));
   }
 
   @JsonKey(ignore: true)
@@ -529,46 +540,45 @@ class _$AccountResponseDataImpl implements _AccountResponseData {
       runtimeType,
       id,
       date,
-      const DeepCollectionEquality().hash(profilePhoto),
-      primaryPhone,
-      const DeepCollectionEquality().hash(secondaryPhone),
+      userData,
       firstname,
       lastname,
       middlename,
       birthday,
-      userData);
+      profilePhoto,
+      primaryPhone,
+      secondaryPhone);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AccountResponseDataImplCopyWith<_$AccountResponseDataImpl> get copyWith =>
-      __$$AccountResponseDataImplCopyWithImpl<_$AccountResponseDataImpl>(
-          this, _$identity);
+  _$$AccountDataImplCopyWith<_$AccountDataImpl> get copyWith =>
+      __$$AccountDataImplCopyWithImpl<_$AccountDataImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$AccountResponseDataImplToJson(
+    return _$$AccountDataImplToJson(
       this,
     );
   }
 }
 
-abstract class _AccountResponseData implements AccountResponseData {
-  const factory _AccountResponseData(
-          {@JsonKey(name: "id") required final int id,
-          @JsonKey(name: "date") required final DateTime date,
-          @JsonKey(name: "profilePhoto") final dynamic profilePhoto,
-          @JsonKey(name: "primaryPhone") required final String primaryPhone,
-          @JsonKey(name: "secondaryPhone") final dynamic secondaryPhone,
-          @JsonKey(name: "firstname") required final String firstname,
-          @JsonKey(name: "lastname") required final String lastname,
-          @JsonKey(name: "middlename") required final String middlename,
-          @JsonKey(name: "birthday") required final DateTime birthday,
-          @JsonKey(name: "userData") required final UserData userData}) =
-      _$AccountResponseDataImpl;
+abstract class _AccountData implements AccountData {
+  const factory _AccountData(
+      {@JsonKey(name: "id") required final int id,
+      @JsonKey(name: "date") required final DateTime date,
+      @JsonKey(name: "userData") required final ProfilePhoto userData,
+      @JsonKey(name: "firstname") required final String firstname,
+      @JsonKey(name: "lastname") required final String lastname,
+      @JsonKey(name: "middlename") required final String middlename,
+      @JsonKey(name: "birthday") required final DateTime birthday,
+      @JsonKey(name: "profilePhoto") final ProfilePhoto? profilePhoto,
+      @JsonKey(name: "primaryPhone") required final String primaryPhone,
+      @JsonKey(name: "secondaryPhone")
+      required final String secondaryPhone}) = _$AccountDataImpl;
 
-  factory _AccountResponseData.fromJson(Map<String, dynamic> json) =
-      _$AccountResponseDataImpl.fromJson;
+  factory _AccountData.fromJson(Map<String, dynamic> json) =
+      _$AccountDataImpl.fromJson;
 
   @override
   @JsonKey(name: "id")
@@ -577,14 +587,8 @@ abstract class _AccountResponseData implements AccountResponseData {
   @JsonKey(name: "date")
   DateTime get date;
   @override
-  @JsonKey(name: "profilePhoto")
-  dynamic get profilePhoto;
-  @override
-  @JsonKey(name: "primaryPhone")
-  String get primaryPhone;
-  @override
-  @JsonKey(name: "secondaryPhone")
-  dynamic get secondaryPhone;
+  @JsonKey(name: "userData")
+  ProfilePhoto get userData;
   @override
   @JsonKey(name: "firstname")
   String get firstname;
@@ -598,41 +602,48 @@ abstract class _AccountResponseData implements AccountResponseData {
   @JsonKey(name: "birthday")
   DateTime get birthday;
   @override
-  @JsonKey(name: "userData")
-  UserData get userData;
+  @JsonKey(name: "profilePhoto")
+  ProfilePhoto? get profilePhoto;
+  @override
+  @JsonKey(name: "primaryPhone")
+  String get primaryPhone;
+  @override
+  @JsonKey(name: "secondaryPhone")
+  String get secondaryPhone;
   @override
   @JsonKey(ignore: true)
-  _$$AccountResponseDataImplCopyWith<_$AccountResponseDataImpl> get copyWith =>
+  _$$AccountDataImplCopyWith<_$AccountDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-UserData _$UserDataFromJson(Map<String, dynamic> json) {
-  return _UserData.fromJson(json);
+ProfilePhoto _$ProfilePhotoFromJson(Map<String, dynamic> json) {
+  return _ProfilePhoto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$UserData {
+mixin _$ProfilePhoto {
   @JsonKey(name: "id")
   int get id => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $UserDataCopyWith<UserData> get copyWith =>
+  $ProfilePhotoCopyWith<ProfilePhoto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UserDataCopyWith<$Res> {
-  factory $UserDataCopyWith(UserData value, $Res Function(UserData) then) =
-      _$UserDataCopyWithImpl<$Res, UserData>;
+abstract class $ProfilePhotoCopyWith<$Res> {
+  factory $ProfilePhotoCopyWith(
+          ProfilePhoto value, $Res Function(ProfilePhoto) then) =
+      _$ProfilePhotoCopyWithImpl<$Res, ProfilePhoto>;
   @useResult
   $Res call({@JsonKey(name: "id") int id});
 }
 
 /// @nodoc
-class _$UserDataCopyWithImpl<$Res, $Val extends UserData>
-    implements $UserDataCopyWith<$Res> {
-  _$UserDataCopyWithImpl(this._value, this._then);
+class _$ProfilePhotoCopyWithImpl<$Res, $Val extends ProfilePhoto>
+    implements $ProfilePhotoCopyWith<$Res> {
+  _$ProfilePhotoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -654,22 +665,22 @@ class _$UserDataCopyWithImpl<$Res, $Val extends UserData>
 }
 
 /// @nodoc
-abstract class _$$UserDataImplCopyWith<$Res>
-    implements $UserDataCopyWith<$Res> {
-  factory _$$UserDataImplCopyWith(
-          _$UserDataImpl value, $Res Function(_$UserDataImpl) then) =
-      __$$UserDataImplCopyWithImpl<$Res>;
+abstract class _$$ProfilePhotoImplCopyWith<$Res>
+    implements $ProfilePhotoCopyWith<$Res> {
+  factory _$$ProfilePhotoImplCopyWith(
+          _$ProfilePhotoImpl value, $Res Function(_$ProfilePhotoImpl) then) =
+      __$$ProfilePhotoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({@JsonKey(name: "id") int id});
 }
 
 /// @nodoc
-class __$$UserDataImplCopyWithImpl<$Res>
-    extends _$UserDataCopyWithImpl<$Res, _$UserDataImpl>
-    implements _$$UserDataImplCopyWith<$Res> {
-  __$$UserDataImplCopyWithImpl(
-      _$UserDataImpl _value, $Res Function(_$UserDataImpl) _then)
+class __$$ProfilePhotoImplCopyWithImpl<$Res>
+    extends _$ProfilePhotoCopyWithImpl<$Res, _$ProfilePhotoImpl>
+    implements _$$ProfilePhotoImplCopyWith<$Res> {
+  __$$ProfilePhotoImplCopyWithImpl(
+      _$ProfilePhotoImpl _value, $Res Function(_$ProfilePhotoImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -677,7 +688,7 @@ class __$$UserDataImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
   }) {
-    return _then(_$UserDataImpl(
+    return _then(_$ProfilePhotoImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -688,11 +699,11 @@ class __$$UserDataImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$UserDataImpl implements _UserData {
-  const _$UserDataImpl({@JsonKey(name: "id") required this.id});
+class _$ProfilePhotoImpl implements _ProfilePhoto {
+  const _$ProfilePhotoImpl({@JsonKey(name: "id") required this.id});
 
-  factory _$UserDataImpl.fromJson(Map<String, dynamic> json) =>
-      _$$UserDataImplFromJson(json);
+  factory _$ProfilePhotoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProfilePhotoImplFromJson(json);
 
   @override
   @JsonKey(name: "id")
@@ -700,14 +711,14 @@ class _$UserDataImpl implements _UserData {
 
   @override
   String toString() {
-    return 'UserData(id: $id)';
+    return 'ProfilePhoto(id: $id)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UserDataImpl &&
+            other is _$ProfilePhotoImpl &&
             (identical(other.id, id) || other.id == id));
   }
 
@@ -718,29 +729,29 @@ class _$UserDataImpl implements _UserData {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$UserDataImplCopyWith<_$UserDataImpl> get copyWith =>
-      __$$UserDataImplCopyWithImpl<_$UserDataImpl>(this, _$identity);
+  _$$ProfilePhotoImplCopyWith<_$ProfilePhotoImpl> get copyWith =>
+      __$$ProfilePhotoImplCopyWithImpl<_$ProfilePhotoImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$UserDataImplToJson(
+    return _$$ProfilePhotoImplToJson(
       this,
     );
   }
 }
 
-abstract class _UserData implements UserData {
-  const factory _UserData({@JsonKey(name: "id") required final int id}) =
-      _$UserDataImpl;
+abstract class _ProfilePhoto implements ProfilePhoto {
+  const factory _ProfilePhoto({@JsonKey(name: "id") required final int id}) =
+      _$ProfilePhotoImpl;
 
-  factory _UserData.fromJson(Map<String, dynamic> json) =
-      _$UserDataImpl.fromJson;
+  factory _ProfilePhoto.fromJson(Map<String, dynamic> json) =
+      _$ProfilePhotoImpl.fromJson;
 
   @override
   @JsonKey(name: "id")
   int get id;
   @override
   @JsonKey(ignore: true)
-  _$$UserDataImplCopyWith<_$UserDataImpl> get copyWith =>
+  _$$ProfilePhotoImplCopyWith<_$ProfilePhotoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
