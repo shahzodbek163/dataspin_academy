@@ -6,8 +6,6 @@ import 'package:dataspin_academy/controller/bloc/category_filter/course_filter_b
 import 'package:dataspin_academy/controller/bloc/course/course_for/course_for_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/course/course_price/cubit/course_with_price_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/course/course_type/course_type_cubit.dart';
-import 'package:dataspin_academy/controller/bloc/create_account/create_account_cubit.dart';
-import 'package:dataspin_academy/controller/bloc/create_account/register_validation/cubit/register_validation_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/mentors/mentors_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/news/cubit/news_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/reception/cubit/new_reception_cubit.dart';
@@ -40,7 +38,6 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (context) => PhoneNumberProvider()),
         ChangeNotifierProvider(create: (context) => ProfileDataProvider()),
         ChangeNotifierProvider(create: (context) => CategoryInfoProvider()),
-        BlocProvider(create: (context) => CreateAccountCubit()),
         BlocProvider(create: (context) => AboutUsCubit()),
         BlocProvider(create: (context) => CourseTypeCubit()),
         BlocProvider(create: (context) => CourseForCubit()),
@@ -52,7 +49,6 @@ class _MyAppState extends State<MyApp> {
         BlocProvider(create: (context) => CourseFilterByTypeBloc()),
         ChangeNotifierProvider(create: (context) => SelectableIndexProvider()),
         BlocProvider(create: (context) => BottomBarIndexCubit()),
-        BlocProvider(create: (context) => RegisterValidationCubit()),
         ChangeNotifierProvider(create: (context) => ForPdfViewProvider()),
         BlocProvider(create: (context) => AccountCubit()),
         BlocProvider(create: (context) => AccountUpdateCubit()),

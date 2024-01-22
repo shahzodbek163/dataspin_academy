@@ -15,6 +15,7 @@ class Assets {
   static const String iconsDocument = 'assets/icons/Document.svg';
   static const String iconsEdit = 'assets/icons/Edit.svg';
   static const String iconsGlobal = 'assets/icons/global.svg';
+  static const String iconsHideEye = 'assets/icons/hide_eye.svg';
   static const String iconsHome = 'assets/icons/Home.svg';
   static const String iconsImage = 'assets/icons/Image.svg';
   static const String iconsLanguageCircle = 'assets/icons/language-circle.svg';
@@ -28,6 +29,7 @@ class Assets {
   static const String iconsProfile2user = 'assets/icons/profile2user.png';
   static const String iconsRating = 'assets/icons/rating.png';
   static const String iconsScan = 'assets/icons/Scan.svg';
+  static const String iconsShowEye = 'assets/icons/show_eye.svg';
   static const String iconsSort = 'assets/icons/sort.svg';
   static const String iconsStar = 'assets/icons/star.png';
   static const String iconsTicket = 'assets/icons/Ticket.svg';
