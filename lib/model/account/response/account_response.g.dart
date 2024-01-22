@@ -11,9 +11,7 @@ _$AccountResponseImpl _$$AccountResponseImplFromJson(
     _$AccountResponseImpl(
       status: json['status'] as bool,
       message: json['message'] as String,
-      data: json['data'] == null
-          ? null
-          : AccountResponseData.fromJson(json['data'] as Map<String, dynamic>),
+      data: AccountData.fromJson(json['data'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$AccountResponseImplToJson(
@@ -24,42 +22,42 @@ Map<String, dynamic> _$$AccountResponseImplToJson(
       'data': instance.data,
     };
 
-_$AccountResponseDataImpl _$$AccountResponseDataImplFromJson(
-        Map<String, dynamic> json) =>
-    _$AccountResponseDataImpl(
+_$AccountDataImpl _$$AccountDataImplFromJson(Map<String, dynamic> json) =>
+    _$AccountDataImpl(
       id: json['id'] as int,
       date: DateTime.parse(json['date'] as String),
-      profilePhoto: json['profilePhoto'],
-      primaryPhone: json['primaryPhone'] as String,
-      secondaryPhone: json['secondaryPhone'],
+      userData: ProfilePhoto.fromJson(json['userData'] as Map<String, dynamic>),
       firstname: json['firstname'] as String,
       lastname: json['lastname'] as String,
       middlename: json['middlename'] as String,
       birthday: DateTime.parse(json['birthday'] as String),
-      userData: UserData.fromJson(json['userData'] as Map<String, dynamic>),
+      profilePhoto: json['profilePhoto'] == null
+          ? null
+          : ProfilePhoto.fromJson(json['profilePhoto'] as Map<String, dynamic>),
+      primaryPhone: json['primaryPhone'] as String,
+      secondaryPhone: json['secondaryPhone'] as String,
     );
 
-Map<String, dynamic> _$$AccountResponseDataImplToJson(
-        _$AccountResponseDataImpl instance) =>
+Map<String, dynamic> _$$AccountDataImplToJson(_$AccountDataImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'date': instance.date.toIso8601String(),
-      'profilePhoto': instance.profilePhoto,
-      'primaryPhone': instance.primaryPhone,
-      'secondaryPhone': instance.secondaryPhone,
+      'userData': instance.userData,
       'firstname': instance.firstname,
       'lastname': instance.lastname,
       'middlename': instance.middlename,
       'birthday': instance.birthday.toIso8601String(),
-      'userData': instance.userData,
+      'profilePhoto': instance.profilePhoto,
+      'primaryPhone': instance.primaryPhone,
+      'secondaryPhone': instance.secondaryPhone,
     };
 
-_$UserDataImpl _$$UserDataImplFromJson(Map<String, dynamic> json) =>
-    _$UserDataImpl(
+_$ProfilePhotoImpl _$$ProfilePhotoImplFromJson(Map<String, dynamic> json) =>
+    _$ProfilePhotoImpl(
       id: json['id'] as int,
     );
 
-Map<String, dynamic> _$$UserDataImplToJson(_$UserDataImpl instance) =>
+Map<String, dynamic> _$$ProfilePhotoImplToJson(_$ProfilePhotoImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
     };

@@ -1,6 +1,7 @@
 import 'package:dataspin_academy/controller/service/dialogs/custom_snack_bar.dart';
 import 'package:dataspin_academy/controller/service/dio/secure_storage.dart';
 import 'package:dataspin_academy/controller/service/navigation/navigation_service.dart';
+import 'package:dataspin_academy/view/screen/create_accaunt/screen/create_account_screen.dart';
 import 'package:dataspin_academy/view/screen/home/screen/home_screen.dart';
 import 'package:dio/dio.dart';
 import 'package:go_router/go_router.dart';
@@ -52,7 +53,7 @@ class CustomDio {
       InterceptorsWrapper(
         onRequest: (options, handler) {
           options.headers["Authorization"] =
-              "Bearer ${SecureStorage().getAccess()}";
+              "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0dXJzdW5hbGkiLCJpYXQiOjE3MDQ3ODU0NzEsImV4cCI6MTcwNzM3NzQ3MX0.xmAPwdPTnKEpKS8D0PosyYt6Xk9Gx8gnsJkJ2lxC-17e4O8msubXWmQ4zbHNARzmheTcdFLXGAlyby5Da_utpQ";
           return handler.next(options);
         },
         onResponse: (response, handler) {
@@ -60,7 +61,7 @@ class CustomDio {
             case 401:
               {
                 NavigationService.navigatorKey.currentState!.context
-                    .pushReplacement(HomeScreen.routeName);
+                    .pushReplacement(CreateAccountScreen.routeName);
               }
               break;
           }

@@ -265,6 +265,67 @@ class _ApiService implements ApiService {
     return value;
   }
 
+  @override
+  Future<AccountUpdateResponse> updateAccount(
+    String? birthday,
+    File? photo,
+    String? tel1,
+    String? tel2,
+  ) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
+    final _data = FormData();
+    if (birthday != null) {
+      _data.fields.add(MapEntry(
+        'birthday',
+        birthday,
+      ));
+    }
+    if (photo != null) {
+      _data.files.add(MapEntry(
+        'photo',
+        MultipartFile.fromFileSync(
+          photo.path,
+          filename: photo.path.split(Platform.pathSeparator).last,
+        ),
+      ));
+    }
+
+    if (tel1 != null) {
+      _data.fields.add(MapEntry(
+        'tel1',
+        tel1,
+      ));
+    }
+    if (tel2 != null) {
+      _data.fields.add(MapEntry(
+        'tel2',
+        tel2,
+      ));
+    }
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<AccountUpdateResponse>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/user/update-profile',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = AccountUpdateResponse.fromJson(_result.data!);
+    return value;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||

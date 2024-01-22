@@ -1,6 +1,6 @@
 import 'package:dataspin_academy/controller/service/navigation/navigation_service.dart';
 import 'package:dataspin_academy/controller/service/transition/transitions.dart';
-import 'package:dataspin_academy/view/account/screen/account_screen.dart';
+import 'package:dataspin_academy/view/screen/account/screen/account_screen.dart';
 import 'package:dataspin_academy/view/screen/categories/screen/categorie_screen.dart';
 import 'package:dataspin_academy/view/screen/course_info/screen/course_info_screen.dart';
 import 'package:dataspin_academy/view/screen/create_accaunt/screen/create_account_screen.dart';

@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:dataspin_academy/controller/service/api/app_ip.dart';
 import 'package:dataspin_academy/model/account/response/account_response.dart';
+import 'package:dataspin_academy/model/account/response/update_response/account_update_response.dart';
 import 'package:dataspin_academy/model/course/course_for/course_for_result.dart';
 import 'package:dataspin_academy/model/course/course_price/response/course_with_price_response.dart';
 import 'package:dataspin_academy/model/course/course_type/course_type_result.dart';
@@ -48,4 +51,12 @@ abstract class ApiService {
 
   @GET("/user/me")
   Future<AccountResponse> getAccount();
+
+  @POST("/user/update-profile")
+  Future<AccountUpdateResponse> updateAccount(
+    @Part() String? birthday,
+    @Part() File? photo,
+    @Part() String? tel1,
+    @Part() String? tel2,
+  );
 }
