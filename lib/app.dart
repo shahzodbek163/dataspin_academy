@@ -1,3 +1,4 @@
+import 'package:dataspin_academy/controller/bloc/aboutus/cubit/aboutus_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/account/cubit/account_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/bottom_bar/cubit/bottom_bar_index_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/category_filter/course_filter_by_type_bloc.dart';
@@ -39,6 +40,7 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (context) => ProfileDataProvider()),
         ChangeNotifierProvider(create: (context) => CategoryInfoProvider()),
         BlocProvider(create: (context) => CreateAccountCubit()),
+        BlocProvider(create: (context) => AboutUsCubit()),
         BlocProvider(create: (context) => CourseTypeCubit()),
         BlocProvider(create: (context) => CourseForCubit()),
         BlocProvider(create: (context) => CourseWithPriceCubit()),

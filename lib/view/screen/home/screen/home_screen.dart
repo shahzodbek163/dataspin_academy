@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dataspin_academy/controller/bloc/aboutus/cubit/aboutus_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/bottom_bar/cubit/bottom_bar_index_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/course/course_for/course_for_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/course/course_price/cubit/course_with_price_cubit.dart';
@@ -38,6 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
     context.read<CourseWithPriceCubit>().getAllCourseWithPrice();
     context.read<NewsCubit>().getAllNews();
     context.read<MentorsCubit>().getMentors();
+    context.read<AboutUsCubit>().getAllAboutUs();
   }
 
   @override

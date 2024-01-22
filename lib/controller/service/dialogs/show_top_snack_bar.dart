@@ -1,9 +1,7 @@
-
 import 'package:another_flushbar/flushbar.dart';
 import 'package:dataspin_academy/controller/service/navigation/navigation_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 
 showInoSnackBar(String message) {
   Flushbar(
@@ -13,7 +11,6 @@ showInoSnackBar(String message) {
     borderRadius: BorderRadius.circular(12),
     flushbarPosition: FlushbarPosition.TOP,
     leftBarIndicatorColor: Colors.transparent,
-
     message: message,
     icon: Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -52,7 +49,6 @@ showSuccessSnackBar(String message) {
           alignment: Alignment.center,
           decoration: const BoxDecoration(
             shape: BoxShape.circle,
-
           ),
         ),
       ),
@@ -69,17 +65,9 @@ showErrorSnackBar(String message) {
     leftBarIndicatorColor: Colors.transparent,
     backgroundColor: Colors.red,
     message: message,
-    icon: Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Container(
-        width: 40,
-        height: 40,
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12.r),
-        ),
-      ),
-    ),
+    icon: const Icon(Icons.error),
+    blockBackgroundInteraction: true,
+    forwardAnimationCurve: Curves.bounceInOut,
   ).show(NavigationService.navigatorKey.currentState!.context);
 }
 

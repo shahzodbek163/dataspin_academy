@@ -52,7 +52,7 @@ class CustomDio {
       InterceptorsWrapper(
         onRequest: (options, handler) {
           options.headers["Authorization"] =
-              "Bearer ${SecureStorage().getAccess()}";
+              "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0dXJzdW5hbGkiLCJpYXQiOjE3MDU4MTg4MjYsImV4cCI6MTcwODQxMDgyNn0.VyMupZ2SjRgMiF53gfcnbSHQH0OxHZQe4_ErhAqRPTcLtP4x2mDyUeXaxsSY8eQOxMEREb4SVfzRXRr1RvPfkA";
           return handler.next(options);
         },
         onResponse: (response, handler) {

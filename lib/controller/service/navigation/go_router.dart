@@ -1,15 +1,19 @@
 import 'package:dataspin_academy/controller/service/navigation/navigation_service.dart';
 import 'package:dataspin_academy/controller/service/transition/transitions.dart';
 import 'package:dataspin_academy/view/account/screen/account_screen.dart';
+import 'package:dataspin_academy/view/screen/aboutas/screen/about_as_screen.dart';
 import 'package:dataspin_academy/view/screen/categories/screen/categorie_screen.dart';
 import 'package:dataspin_academy/view/screen/course_info/screen/course_info_screen.dart';
-import 'package:dataspin_academy/view/screen/create_accaunt/screen/create_account_screen.dart';
 import 'package:dataspin_academy/view/screen/gallery/screen/gallery_screen.dart';
 import 'package:dataspin_academy/view/screen/home/screen/home_screen.dart';
+import 'package:dataspin_academy/view/screen/login/screen/login_screen.dart';
 import 'package:dataspin_academy/view/screen/menu/screen/menu_screen.dart';
+import 'package:dataspin_academy/view/screen/mycourse/screen/my_course_screen.dart';
 import 'package:dataspin_academy/view/screen/pdf_view/screen/pdf_view_screen.dart';
 import 'package:dataspin_academy/view/screen/profile_screen/screen/profile_screen.dart';
 import 'package:dataspin_academy/view/screen/promo_code/screen/promo_code_screen.dart';
+import 'package:dataspin_academy/view/screen/register/first_step/screen/first_step_screen.dart';
+import 'package:dataspin_academy/view/screen/register/second_step/screen/second_step_screen.dart';
 import 'package:dataspin_academy/view/screen/splash/splash_screen.dart';
 import 'package:dataspin_academy/view/screen/test_screen.dart';
 import 'package:go_router/go_router.dart';
@@ -17,9 +21,17 @@ import 'package:go_router/go_router.dart';
 class AppGoRouter {
   final router = GoRouter(
     navigatorKey: NavigationService.navigatorKey,
-    initialLocation: AccountScreen.routeName,
+    initialLocation: LoginScreen.routeName,
     routes: [
       ///main
+
+      GoRoute(
+        path: LoginScreen.routeName,
+        pageBuilder: (context, state) => slideTransitionRight(
+          state,
+          const LoginScreen(),
+        ),
+      ),
       GoRoute(
         path: SplashScreen.routeName,
         pageBuilder: (context, state) => slideTransitionRight(
@@ -27,12 +39,25 @@ class AppGoRouter {
           const SplashScreen(),
         ),
       ),
-
       GoRoute(
-        path: CreateAccountScreen.routeName,
+        path: MyCourseScreen.routeName,
         pageBuilder: (context, state) => slideTransitionRight(
           state,
-          const CreateAccountScreen(),
+          const MyCourseScreen(),
+        ),
+      ),
+      GoRoute(
+        path: AboutUsScreen.routeName,
+        pageBuilder: (context, state) => slideTransitionRight(
+          state,
+          const AboutUsScreen(),
+        ),
+      ),
+      GoRoute(
+        path: FirstStepRegisterScreen.routeName,
+        pageBuilder: (context, state) => slideTransitionRight(
+          state,
+          const FirstStepRegisterScreen(),
         ),
       ),
       GoRoute(
@@ -103,7 +128,14 @@ class AppGoRouter {
         path: AccountScreen.routeName,
         pageBuilder: (context, state) => slideTransitionRight(
           state,
-          AccountScreen(),
+          const AccountScreen(),
+        ),
+      ),
+      GoRoute(
+        path: SecondStepRegisterScreen.routeName,
+        pageBuilder: (context, state) => slideTransitionRight(
+          state,
+          const SecondStepRegisterScreen(),
         ),
       ),
     ],

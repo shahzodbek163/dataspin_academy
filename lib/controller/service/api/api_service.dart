@@ -1,10 +1,12 @@
 import 'package:dataspin_academy/controller/service/api/app_ip.dart';
+import 'package:dataspin_academy/model/aboutus/aboutus/about_us_result.dart';
 import 'package:dataspin_academy/model/account/response/account_response.dart';
 import 'package:dataspin_academy/model/course/course_for/course_for_result.dart';
 import 'package:dataspin_academy/model/course/course_price/response/course_with_price_response.dart';
 import 'package:dataspin_academy/model/course/course_type/course_type_result.dart';
 import 'package:dataspin_academy/model/create_account/request/create_account_request.dart';
 import 'package:dataspin_academy/model/create_account/response/create_account_response.dart';
+import 'package:dataspin_academy/model/login/response/login_response.dart';
 import 'package:dataspin_academy/model/mentor/mentor_result.dart';
 import 'package:dataspin_academy/model/news/response/news_response.dart';
 import 'package:dataspin_academy/model/reception/request/new_reception_request.dart';
@@ -36,6 +38,9 @@ abstract class ApiService {
   @GET("/course/with-prices")
   Future<CourseWithPriceResponse> getAllCourseWithPrice();
 
+  @GET("/about-us/")
+  Future<AboutUsResult> getAllAboutUs();
+
   @GET("/mentors/")
   Future<MentorResult> getAllMentor();
 
@@ -44,8 +49,14 @@ abstract class ApiService {
 
   @POST("/reception/new")
   Future<NewReceptionResponse> newReception(
-      @Body() NewReceptionRequest newReceptionRequest);
+    @Body() NewReceptionRequest newReceptionRequest,
+  );
 
   @GET("/user/me")
   Future<AccountResponse> getAccount();
+  @POST("/auth/login")
+  Future<LoginResponse> login(
+    @Part(name: "username") String username,
+    @Part(name: "password") String password,
+  );
 }

@@ -39,7 +39,6 @@ class AuthDio {
     _dio.interceptors.add(
       InterceptorsWrapper(
         onResponse: (response, handler) {
-         
           handler.next(response);
         },
         onError: (DioException e, handler) async {
@@ -52,7 +51,13 @@ class AuthDio {
               }
               break;
           } */
-          _snackBar.showError('Error occurred!');
+          if (e.type == DioExceptionType.connectionError ||
+              e.type == DioExceptionType.connectionTimeout) {
+            _snackBar.showError("Internet bilan aloqa uzildi");
+          } else {
+            _snackBar.showError("Nimadir xato");
+          }
+
           handler.next(e);
         },
       ),

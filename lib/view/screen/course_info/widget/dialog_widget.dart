@@ -35,7 +35,7 @@ class _DialogWidgetState extends State<DialogWidget> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.asset("assets/image/Frame 10 1.png"),
+          Image.asset("assets/image/dataspin.png"),
           SizedBox(height: 18.h),
           const Text("Qabulga yozilishni tasdiqlang!", style: AppFonts.h4),
           SizedBox(height: 18.h),

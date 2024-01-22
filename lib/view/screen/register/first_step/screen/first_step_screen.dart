@@ -1,26 +1,28 @@
 import 'package:dataspin_academy/controller/bloc/create_account/create_account_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/create_account/register_validation/cubit/register_validation_cubit.dart';
-import 'package:dataspin_academy/model/create_account/request/create_account_request.dart';
+import 'package:dataspin_academy/view/screen/register/second_step/screen/second_step_screen.dart';
 import 'package:dataspin_academy/view/value/app_color.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
 import 'package:dataspin_academy/view/value/app_size.dart';
 import 'package:dataspin_academy/view/value/input_masks.dart';
+import 'package:dataspin_academy/view/value/phone_codes.dart';
 import 'package:dataspin_academy/view/widget/buttons/main_button.dart';
 import 'package:dataspin_academy/view/widget/textfields/main_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
-class CreateAccountScreen extends StatefulWidget {
+class FirstStepRegisterScreen extends StatefulWidget {
   static const String routeName = "/create_account_screen";
 
-  const CreateAccountScreen({super.key});
+  const FirstStepRegisterScreen({super.key});
 
   @override
-  State<CreateAccountScreen> createState() => _CreateAccountScreenState();
+  State<FirstStepRegisterScreen> createState() => _FirstStepRegisterState();
 }
 
-class _CreateAccountScreenState extends State<CreateAccountScreen> {
+class _FirstStepRegisterState extends State<FirstStepRegisterScreen> {
   final createAccountCubit = CreateAccountCubit();
 
   final firstnameController = TextEditingController();
@@ -38,6 +40,15 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
   final tgUsernameController = TextEditingController();
 
   final registerValidationCubit = RegisterValidationCubit();
+
+  bool fnEmpty = false;
+  bool lnEmpty = false;
+
+  bool tel1Empty = false;
+  bool tel1Valid = true;
+
+  bool tel2Valid = true;
+  bool birthdayValid = true;
 
   @override
   Widget build(BuildContext context) {
@@ -75,24 +86,15 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                       hintText: "Ismingizni kiriting",
                       onReq: true,
                       controller: firstnameController,
-                      isEmpty: state.maybeWhen(
-                        orElse: () => false,
-                        data: (validationStateData) =>
-                            validationStateData.firstnameEmpty,
-                      ),
+                      isEmpty: fnEmpty,
                     ),
                     SizedBox(height: 14.h),
                     MainTextField(
-                      text: "Familiyangiz",
-                      hintText: "Familiyangizni kiriting",
-                      onReq: true,
-                      controller: lastnameController,
-                      isEmpty: state.maybeWhen(
-                        orElse: () => false,
-                        data: (validationStateData) =>
-                            validationStateData.lastnameEmpty,
-                      ),
-                    ),
+                        text: "Familiyangiz",
+                        hintText: "Familiyangizni kiriting",
+                        onReq: true,
+                        controller: lastnameController,
+                        isEmpty: lnEmpty),
                     SizedBox(height: 14.h),
                     MainTextField(
                       text: "Sharfingiz",
@@ -101,17 +103,12 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                     ),
                     SizedBox(height: 14.h),
                     MainTextField(
-                      text: "Tug’ilgan kuningiz",
-                      hintText: "28-09-2023",
-                      controller: birthdayController,
-                      maskTextInputFormatter: InputMasks.birthdayInputMask,
-                      keyboardType: TextInputType.number,
-                      isValid: state.maybeWhen(
-                        orElse: () => true,
-                        data: (validationStateData) =>
-                            validationStateData.birhtdayValid,
-                      ),
-                    ),
+                        text: "Tug’ilgan kuningiz",
+                        hintText: "28-09-2023",
+                        controller: birthdayController,
+                        maskTextInputFormatter: InputMasks.birthdayInputMask,
+                        keyboardType: TextInputType.number,
+                        isValid: birthdayValid),
                     SizedBox(height: 14.h),
                     MainTextField(
                       text: "Asosiy telefon raqam",
@@ -120,16 +117,8 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                       controller: primaryNumberController,
                       maskTextInputFormatter: InputMasks.phoneInputMask,
                       keyboardType: TextInputType.phone,
-                      isEmpty: state.maybeWhen(
-                        orElse: () => false,
-                        data: (validationStateData) =>
-                            validationStateData.phone.isEmpty,
-                      ),
-                      isValid: state.maybeWhen(
-                        orElse: () => true,
-                        data: (validationStateData) =>
-                            validationStateData.phone.isValid,
-                      ),
+                      isEmpty: tel1Empty,
+                      isValid: tel1Valid,
                     ),
                     SizedBox(height: 14.h),
                     MainTextField(
@@ -138,21 +127,70 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                       controller: secondaryNumberController,
                       keyboardType: TextInputType.phone,
                       maskTextInputFormatter: InputMasks.phoneInputMask,
-                      isValid: state.maybeWhen(
-                        orElse: () => true,
-                        data: (validationStateData) =>
-                            validationStateData.additionalPhoneValid,
-                      ),
+                      isValid: tel2Valid,
                     ),
                     SizedBox(height: 50.h),
                     MainButton(
-                      text: "Tasdiqlash",
+                      text: "Davom etish",
                       isLoading: state.maybeWhen(
                         orElse: () => false,
                         sending: () => true,
                       ),
                       onTap: () {
-                        CreateAccountRequest createAccountRequest =
+                        fnEmpty = firstnameController.text.trim().isEmpty;
+                        lnEmpty = lastnameController.text.trim().isEmpty;
+                        if (primaryNumberController.text.isEmpty) {
+                          tel1Empty = true;
+                        } else {
+                          tel1Empty = false;
+                          tel1Valid = PhoneCode.phoneCodes.contains(
+                                  primaryNumberController.text
+                                      .trim()
+                                      .substring(6, 8)) &&
+                              primaryNumberController.text.trim().length == 19;
+                        }
+                        if (secondaryNumberController.text.trim().isNotEmpty) {
+                          tel2Valid = PhoneCode.phoneCodes.contains(
+                                  secondaryNumberController.text
+                                      .trim()
+                                      .substring(6, 8)) &&
+                              secondaryNumberController.text.trim().length ==
+                                  19;
+                        } else {
+                          tel2Valid = true;
+                        }
+                        if (birthdayController.text.isNotEmpty) {
+                          if (birthdayController.text.trim().length != 10) {
+                            birthdayValid = false;
+                          } else {
+                            List<String> birthdayList =
+                                birthdayController.text.trim().split("-");
+                            if (int.parse(birthdayList[0]) > 0 &&
+                                int.parse(birthdayList[0]) < 32 &&
+                                int.parse(birthdayList[1]) > 0 &&
+                                int.parse(birthdayList[1]) < 13) {
+                              birthdayValid = true;
+                            } else {
+                              birthdayValid = false;
+                            }
+                          }
+                        } else {
+                          birthdayValid = true;
+                        }
+
+                        setState(() {});
+
+                        if (!fnEmpty &&
+                            !lnEmpty &&
+                            birthdayValid &&
+                            !tel1Empty &&
+                            tel1Valid &&
+                            tel2Valid) {
+                          print("OKOKOKOKOKOKOKOKOKOK");
+                          context.push(SecondStepRegisterScreen.routeName);
+                        }
+
+                        /*CreateAccountRequest createAccountRequest =
                             CreateAccountRequest(
                           firstname: firstnameController.text.trim(),
                           lastname: lastnameController.text.trim(),
@@ -167,9 +205,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                               ? null
                               : secondaryNumberController.text.trim(),
                         );
-                        print(primaryNumberController.text);
-
-                        registerValidationCubit.validate(createAccountRequest);
+                        print(primaryNumberController.text);*/
                       },
                     ),
                     SizedBox(height: 41.h),
