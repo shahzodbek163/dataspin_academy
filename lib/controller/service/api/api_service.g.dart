@@ -22,11 +22,68 @@ class _ApiService implements ApiService {
 
   @override
   Future<CreateAccountResponse> createAccount(
-      CreateAccountRequest createAccountRequest) async {
+    String firstname,
+    String lastname,
+    String? middlename,
+    String? birthday,
+    String tel1,
+    String? tel2,
+    File? profilePhoto,
+    String username,
+    String password,
+  ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    final _data = createAccountRequest;
+    final _data = FormData();
+    _data.fields.add(MapEntry(
+      'firstname',
+      firstname,
+    ));
+    _data.fields.add(MapEntry(
+      'lastname',
+      lastname,
+    ));
+    if (middlename != null) {
+      _data.fields.add(MapEntry(
+        'middlename',
+        middlename,
+      ));
+    }
+    if (birthday != null) {
+      _data.fields.add(MapEntry(
+        'birthday',
+        birthday,
+      ));
+    }
+    _data.fields.add(MapEntry(
+      'tel1',
+      tel1,
+    ));
+    if (tel2 != null) {
+      _data.fields.add(MapEntry(
+        'tel2',
+        tel2,
+      ));
+    }
+    if (profilePhoto != null) {
+      _data.files.add(MapEntry(
+        'profilePhoto',
+        MultipartFile.fromFileSync(
+          profilePhoto.path,
+          filename: profilePhoto.path.split(Platform.pathSeparator).last,
+        ),
+      ));
+    }
+    _data.fields.add(MapEntry(
+      'username',
+      username,
+    ));
+    _data.fields.add(MapEntry(
+      'password',
+      password,
+    ));
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<CreateAccountResponse>(Options(
       method: 'POST',

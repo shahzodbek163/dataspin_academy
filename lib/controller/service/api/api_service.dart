@@ -7,7 +7,6 @@ import 'package:dataspin_academy/model/account/response/update_response/account_
 import 'package:dataspin_academy/model/course/course_for/course_for_result.dart';
 import 'package:dataspin_academy/model/course/course_price/response/course_with_price_response.dart';
 import 'package:dataspin_academy/model/course/course_type/course_type_result.dart';
-import 'package:dataspin_academy/model/create_account/request/create_account_request.dart';
 import 'package:dataspin_academy/model/create_account/response/create_account_response.dart';
 import 'package:dataspin_academy/model/login/response/login_response.dart';
 import 'package:dataspin_academy/model/mentor/mentor_result.dart';
@@ -27,7 +26,16 @@ abstract class ApiService {
 
   @POST("/user/create")
   Future<CreateAccountResponse> createAccount(
-      @Body() CreateAccountRequest createAccountRequest);
+    @Part(name: "firstname") String firstname,
+    @Part(name: "lastname") String lastname,
+    @Part(name: "middlename") String? middlename,
+    @Part(name: "birthday") String? birthday,
+    @Part(name: "tel1") String tel1,
+    @Part(name: "tel2") String? tel2,
+    @Part(name: "profilePhoto") File? profilePhoto,
+    @Part(name: "username") String username,
+    @Part(name: "password") String password,
+  );
 
   @GET("/course-type/")
   Future<CourseTypeResult> getAllCourseType();
@@ -62,11 +70,13 @@ abstract class ApiService {
     @Part() String? tel1,
     @Part() String? tel2,
   );
+
   @POST("/auth/login")
   Future<LoginResponse> login(
     @Part(name: "username") String username,
     @Part(name: "password") String password,
   );
+
   @GET("/about-us/")
   Future<AboutUsResult> aboutUsInfo();
 }

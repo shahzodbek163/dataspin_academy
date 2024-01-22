@@ -1,4 +1,3 @@
-import 'package:dataspin_academy/controller/bloc/create_account/validation/cubit/validation_auth_cubit.dart';
 import 'package:dataspin_academy/model/enum/screen_type.dart';
 import 'package:dataspin_academy/view/value/app_color.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
@@ -12,11 +11,13 @@ class MainTextField extends StatelessWidget {
   final String hintText;
   final TextEditingController? controller;
   final MaskTextInputFormatter? maskTextInputFormatter;
-  final ValidationAuthCubit? validationAuthCubit;
   final TextInputType? keyboardType;
   final bool isEmpty;
   final bool isValid;
   final ScreenType screenType;
+  final bool isHiding;
+  final Widget? suffix;
+  final bool? animateBorder;
 
   const MainTextField({
     super.key,
@@ -25,11 +26,13 @@ class MainTextField extends StatelessWidget {
     required this.hintText,
     this.controller,
     this.maskTextInputFormatter,
-    this.validationAuthCubit,
     this.keyboardType,
     this.isEmpty = false,
     this.isValid = true,
     this.screenType = ScreenType.createAccount,
+    this.isHiding = false,
+    this.suffix,
+    this.animateBorder = false,
   });
 
   @override
@@ -66,36 +69,31 @@ class MainTextField extends StatelessWidget {
           ],
         ),
         SizedBox(height: 6.h),
-        Container(
+        AnimatedContainer(
+          duration: const Duration(milliseconds: 600),
+          curve: Curves.bounceInOut,
           width: double.infinity,
           height: 48.h,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
             border: Border.all(
               width: 1.w,
-              color: const Color(0xFFEBEBF9),
+              color: animateBorder! ? Colors.red : const Color(0xFFEBEBF9),
             ),
           ),
           child: TextField(
             controller: controller,
+            obscureText: isHiding,
             keyboardType: keyboardType,
-            /*     onChanged: (value) {
-              if (validationType != null) {
-                validationBloc!
-                    .add(ValidationEvent.format(validationType!, value));
-              }
-
-              if (context.read<CheckTapCubit>().state) {
-                if (onReq) {
-                  validationBloc!.add(ValidationEvent.empty(value));
-                }
-              }
-            }, */
             inputFormatters: maskTextInputFormatter == null
                 ? null
                 : [maskTextInputFormatter!],
             cursorColor: Colors.black,
             decoration: InputDecoration(
+              suffixIcon: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 4),
+                child: suffix,
+              ),
               contentPadding: EdgeInsets.only(left: 12.w),
               hintText: hintText,
               hintStyle:
