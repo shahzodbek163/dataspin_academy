@@ -157,33 +157,6 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<AboutUsResult> getAllAboutUs() async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<AboutUsResult>(Options(
-      method: 'GET',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              '/about-us/',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = AboutUsResult.fromJson(_result.data!);
-    return value;
-  }
-
-  @override
   Future<MentorResult> getAllMentor() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -293,6 +266,64 @@ class _ApiService implements ApiService {
   }
 
   @override
+  Future<AccountUpdateResponse> updateAccount(
+    String? birthday,
+    File? photo,
+    String? tel1,
+    String? tel2,
+  ) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
+    final _data = FormData();
+    if (birthday != null) {
+      _data.fields.add(MapEntry(
+        'birthday',
+        birthday,
+      ));
+    }
+    _data.files.add(MapEntry(
+      'photo',
+      MultipartFile.fromFileSync(
+        photo!.path,
+        filename: photo.path.split(Platform.pathSeparator).last,
+      ),
+    ));
+    if (tel1 != null) {
+      _data.fields.add(MapEntry(
+        'tel1',
+        tel1,
+      ));
+    }
+    if (tel2 != null) {
+      _data.fields.add(MapEntry(
+        'tel2',
+        tel2,
+      ));
+    }
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<AccountUpdateResponse>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/user/update-profile',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = AccountUpdateResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
   Future<LoginResponse> login(
     String username,
     String password,
@@ -327,6 +358,33 @@ class _ApiService implements ApiService {
               baseUrl,
             ))));
     final value = LoginResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<AboutUsResult> aboutUsInfo() async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<AboutUsResult>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/about-us/',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = AboutUsResult.fromJson(_result.data!);
     return value;
   }
 
