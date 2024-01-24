@@ -76,6 +76,7 @@ class _ApiService implements ApiService {
         ),
       ));
     }
+
     _data.fields.add(MapEntry(
       'username',
       username,
@@ -349,6 +350,7 @@ class _ApiService implements ApiService {
         ),
       ));
     }
+
     if (tel1 != null) {
       _data.fields.add(MapEntry(
         'tel1',

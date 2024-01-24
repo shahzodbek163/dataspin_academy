@@ -19,7 +19,7 @@ import 'package:go_router/go_router.dart';
 class AppGoRouter {
   final router = GoRouter(
     navigatorKey: NavigationService.navigatorKey,
-    initialLocation: LoginScreen.routeName,
+    initialLocation: GalleryScreen.routeName,
     routes: [
       ///main
 
@@ -92,7 +92,7 @@ class AppGoRouter {
         path: GalleryScreen.routeName,
         pageBuilder: (context, state) => slideTransitionRight(
           state,
-          const GalleryScreen(),
+           GalleryScreen(),
         ),
       ),
       GoRoute(

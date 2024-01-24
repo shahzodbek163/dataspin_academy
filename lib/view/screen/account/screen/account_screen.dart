@@ -1,9 +1,9 @@
-import 'dart:async';
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dataspin_academy/controller/bloc/account/cubit/account_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/account/update/cubit/account_update_cubit.dart';
+import 'package:dataspin_academy/controller/bloc/photo_changer/photo_changer_cubit.dart';
 import 'package:dataspin_academy/controller/service/api/app_ip.dart';
 import 'package:dataspin_academy/controller/service/dialogs/show_top_snack_bar.dart';
 import 'package:dataspin_academy/view/value/app_color.dart';
@@ -32,12 +32,12 @@ class _AccountScreenState extends State<AccountScreen> {
   final birthdayController = TextEditingController();
   final primaryNumberController = TextEditingController();
   final secondaryNumberController = TextEditingController();
-
-  XFile? photo;
+  final photoChangerCubit = PhotoChangerCubit(null);
 
   bool isEmptyPhone = false;
   bool isValidPrimaryPhone = true;
   bool isValidSecondPhone = true;
+  bool isValidBirth = true;
   bool first = false;
 
   @override
@@ -45,12 +45,10 @@ class _AccountScreenState extends State<AccountScreen> {
     super.initState();
     context.read<AccountCubit>().getAccount();
     first = true;
-    print("${first}898989");
   }
 
   @override
   Widget build(BuildContext context) {
-    print(primaryNumberController.text);
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: SafeArea(
@@ -64,6 +62,7 @@ class _AccountScreenState extends State<AccountScreen> {
               return state.maybeWhen(
                 orElse: () => const Center(
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     CircularProgressIndicator(),
                   ],
@@ -105,23 +104,28 @@ class _AccountScreenState extends State<AccountScreen> {
                       SizedBox(
                         height: 140,
                         width: 140,
-                        child: ClipRRect(
-                            borderRadius: BorderRadius.circular(70),
-                            child: photo != null
-                                ? Image.file(
-                                    File(photo!.path),
-                                    fit: BoxFit.cover,
-                                  )
-                                : response.data.profilePhoto != null
-                                    ? CachedNetworkImage(
-                                        imageUrl:
-                                            "${AppIp.ip}/api/image/?id=${response.data.profilePhoto!.id}",
+                        child: BlocBuilder<PhotoChangerCubit, XFile?>(
+                          bloc: photoChangerCubit,
+                          builder: (context, state) {
+                            return ClipRRect(
+                                borderRadius: BorderRadius.circular(70),
+                                child: state != null
+                                    ? Image.file(
+                                        File(state.path),
                                         fit: BoxFit.cover,
                                       )
-                                    : SvgPicture.asset(
-                                        AppIcons.profile,
-                                        color: Colors.black,
-                                      )),
+                                    : response.data.profilePhoto != null
+                                        ? CachedNetworkImage(
+                                            imageUrl:
+                                                "${AppIp.ip}/api/image/?id=${response.data.profilePhoto!.id}",
+                                            fit: BoxFit.cover,
+                                          )
+                                        : SvgPicture.asset(
+                                            AppIcons.profile,
+                                            color: Colors.black,
+                                          ));
+                          },
+                        ),
                       ),
                       SizedBox(height: 10.h),
                       Text(
@@ -137,8 +141,13 @@ class _AccountScreenState extends State<AccountScreen> {
                         borderRadius: BorderRadius.circular(8),
                         onTap: () async {
                           final ImagePicker imagePicker = ImagePicker();
-                          photo = await imagePicker.pickImage(
+                          XFile? xFile = await imagePicker.pickImage(
                               source: ImageSource.gallery);
+
+                          if (xFile != null) {
+                            photoChangerCubit.change(xFile);
+                          }
+
                           setState(() {});
                         },
                         child: Container(
@@ -167,11 +176,7 @@ class _AccountScreenState extends State<AccountScreen> {
                         controller: birthdayController,
                         maskTextInputFormatter: InputMasks.birthdayInputMask,
                         keyboardType: TextInputType.number,
-                        /*  isValid: state.maybeWhen(
-                            orElse: () => true,
-                            data: (validationStateData) =>
-                                validationStateData.birthdayValid,
-                          ), */
+                        isValid: isValidBirth,
                       ),
                       SizedBox(height: 14.h),
                       MainTextField(
@@ -181,16 +186,7 @@ class _AccountScreenState extends State<AccountScreen> {
                         maskTextInputFormatter: InputMasks.phoneInputMask,
                         keyboardType: TextInputType.phone,
                         isEmpty: isEmptyPhone,
-                        /*      isEmpty: state.maybeWhen(
-                            orElse: () => false,
-                            data: (validationStateData) =>
-                                validationStateData.phone.isEmpty,
-                          ), */
-                        /*   isValid: state.maybeWhen(
-                            orElse: () => true,
-                            data: (validationStateData) =>
-                                validationStateData.phone.isValid,
-                          ), */
+                        isValid: isValidPrimaryPhone,
                       ),
                       SizedBox(height: 14.h),
                       MainTextField(
@@ -211,6 +207,39 @@ class _AccountScreenState extends State<AccountScreen> {
                               updating: () => true,
                             ),
                             onTap: () {
+                              if (birthdayController.text.trim().isNotEmpty) {
+                                if (birthdayController.text.trim().length !=
+                                    10) {
+                                  isValidBirth = false;
+                                  setState(() {});
+                                } else if (birthdayController.text.length ==
+                                    10) {
+                                  List<String> list =
+                                      birthdayController.text.split("-");
+                                  String day = list[0];
+                                  String month = list[1];
+                                  String year = list[2];
+
+                                  int dayI = int.parse(day);
+                                  int monthI = int.parse(month);
+                                  int yearI = int.parse(year);
+
+                                  if (((dayI >= 1 && dayI <= 31) &&
+                                      (monthI >= 1 && monthI <= 12) &&
+                                      (yearI >= 1800 &&
+                                          yearI <= DateTime.now().year))) {
+                                    isValidBirth = true;
+                                    setState(() {});
+                                  } else {
+                                    isValidBirth = false;
+                                    setState(() {});
+                                  }
+                                }
+                              } else {
+                                isValidBirth = true;
+                                setState(() {});
+                              }
+                              ////////////////////////////////////////////
                               if (primaryNumberController.text.isEmpty) {
                                 setState(() {
                                   isEmptyPhone = true;
@@ -220,16 +249,22 @@ class _AccountScreenState extends State<AccountScreen> {
                                   isEmptyPhone = false;
                                 });
                               }
-                              String? prPhone;
                               ////////////////////////////////////////
-                              if (primaryNumberController.text.length >= 10) {
+                              String? prPhone;
+                              if (primaryNumberController.text.length >= 9) {
                                 String code = primaryNumberController.text
                                     .substring(6, 8);
                                 if (PhoneCode.phoneCodes.contains(code)) {
                                   if (primaryNumberController.text.length ==
                                       19) {
-                                        List<String> list = forServer(primaryNumberController.text);
-                                    
+                                    List<String> list =
+                                        forServer(primaryNumberController.text);
+                                    prPhone = list[0] +
+                                        list[1] +
+                                        list[2] +
+                                        list[3] +
+                                        list[4];
+
                                     isValidPrimaryPhone = true;
                                     setState(() {});
                                   } else {
@@ -248,8 +283,9 @@ class _AccountScreenState extends State<AccountScreen> {
                               if (secondaryNumberController.text
                                   .trim()
                                   .isNotEmpty) {
+                                print("second phonr");
                                 if (secondaryNumberController.text.length >=
-                                    10) {
+                                    9) {
                                   String code = secondaryNumberController.text
                                       .substring(6, 8);
                                   if (PhoneCode.phoneCodes.contains(code)) {
@@ -269,7 +305,10 @@ class _AccountScreenState extends State<AccountScreen> {
                               }
                               ///////////////////////////////////
 
-                              if (!isEmptyPhone && isValidPrimaryPhone) {
+                              if (!isEmptyPhone &&
+                                  isValidPrimaryPhone &&
+                                  isValidSecondPhone &&
+                                  isValidBirth) {
                                 print("update");
 
                                 String tel2 = "";
@@ -287,25 +326,21 @@ class _AccountScreenState extends State<AccountScreen> {
                                       birthday: birthdayController.text.isEmpty
                                           ? null
                                           : birthdayController.text,
-                                     /*  tel1:
-                                          ls[0] + ls[1] + ls[2] + ls[3] + ls[4], */
+                                      tel1: prPhone,
                                       tel2:
                                           secondaryNumberController.text.isEmpty
                                               ? ""
                                               : tel2,
-                                      photo: photo == null
+                                      photo: photoChangerCubit.state == null
                                           ? null
-                                          : File(photo!.path),
+                                          : File(photoChangerCubit.state!.path),
                                     )
                                     .then((value) {
                                   if (value) {
                                     showSuccessSnackBar(
-                                        "Ma'lumotlar yangilandi");
+                                      "Ma'lumotlar yangilandi",
+                                    );
                                   }
-                                });
-                              } else {
-                                setState(() {
-                                  isValidSecondPhone = false;
                                 });
                               }
                             },
