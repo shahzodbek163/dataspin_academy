@@ -20,24 +20,24 @@ class MainButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      style: ButtonStyle(
-        overlayColor: MaterialStateProperty.all(Colors.grey.withOpacity(0.2)),
-        minimumSize: MaterialStateProperty.all(Size(double.infinity, height)),
-        backgroundColor: MaterialStateProperty.all(AppColor.primaryButtonColor),
-        elevation: MaterialStateProperty.all(0),
-        shape: MaterialStateProperty.all(
-          RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
+        style: ButtonStyle(
+          overlayColor: MaterialStateProperty.all(Colors.grey.withOpacity(0.2)),
+          minimumSize: MaterialStateProperty.all(Size(double.infinity, height)),
+          backgroundColor:
+              MaterialStateProperty.all(AppColor.primaryButtonColor),
+          elevation: MaterialStateProperty.all(0),
+          shape: MaterialStateProperty.all(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
           ),
         ),
-      ),
-      onPressed: onTap,
-      child: !isLoading
-          ? Text(
-              text,
-              style: AppFonts.h4.copyWith(color: Colors.white),
-            )
-          : const CircularProgressIndicator(),
-    );
+        onPressed: onTap,
+        child: !isLoading
+            ? Text(
+                text,
+                style: AppFonts.h4.copyWith(color: Colors.white),
+              )
+            : const CircularProgressIndicator());
   }
 }

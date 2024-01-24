@@ -190,7 +190,7 @@ class _FirstStepRegisterState extends State<FirstStepRegisterScreen> {
                   }
                 },
               ),
-              SizedBox(height: 41.h),
+              SizedBox(height: 40.h),
             ],
           ),
         ),

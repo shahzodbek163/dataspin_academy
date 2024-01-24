@@ -43,8 +43,10 @@ class Assets {
   static const String imagePicture3 = 'assets/image/picture3.png';
   static const String imageRectangle11 = 'assets/image/Rectangle11.png';
   static const String imageThor = 'assets/image/thor.png';
+  static const String lottie53Qy8QaQZL = 'assets/lottie/53Qy8QaQZL.json';
   static const String lottieAnimation1702976632892 =
       'assets/lottie/Animation1702976632892.json';
+  static const String lottieF5FmAR9CLw = 'assets/lottie/F5FmAR9CLw.json';
   static const String ubuntuUFL = 'assets/font/Ubuntu/UFL.txt';
   static const String ubuntuUbuntuBold = 'assets/font/Ubuntu/Ubuntu-Bold.ttf';
   static const String ubuntuUbuntuBoldItalic =

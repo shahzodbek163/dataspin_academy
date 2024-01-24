@@ -24,7 +24,7 @@ abstract class ApiService {
 
   //auth
 
-  @POST("/user/create")
+  @POST("/auth/register/user")
   Future<CreateAccountResponse> createAccount(
     @Part(name: "firstname") String firstname,
     @Part(name: "lastname") String lastname,
