@@ -45,7 +45,7 @@ class CategoriesChips extends StatelessWidget {
                     child: CachedNetworkImage(
                       imageUrl:
                           "${AppIp.ip}/api/image/?id=${courseData.course.previewPhoto.id}",
-                      width: 156.w,
+                      width: 130.w,
                       height: 120.h,
                       fit: BoxFit.cover,
                     ),
@@ -58,19 +58,26 @@ class CategoriesChips extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            courseData.course.courseType.name,
-                            style: AppFonts.body12Regular.copyWith(
-                              color: AppColor.txtSecondColor,
-                              fontSize: 14,
+                          SizedBox(
+                            width: 180.w,
+                            child: Text(
+                              courseData.course.courseType.name,
+                              style: AppFonts.body12Regular.copyWith(
+                                color: AppColor.txtSecondColor,
+                                fontSize: 14,
+                              ),
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ),
                           SizedBox(height: 4.h),
-                          Text(
-                            courseData.course.name,
-                            style: AppFonts.body16w700,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
+                          SizedBox(
+                            width: 180.w,
+                            child: Text(
+                              courseData.course.name,
+                              style: AppFonts.body16w700,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
                           ),
                         ],
                       ),
@@ -119,14 +126,14 @@ class CategoriesChips extends StatelessWidget {
                                 image: DecorationImage(
                                   fit: BoxFit.cover,
                                   image: CachedNetworkImageProvider(
-                                    "${AppIp.ip}/api/image/?id=${courseData.mentor!.employee.photo.id}",
+                                    "${AppIp.ip}/api/image/?id=${courseData.mentor.employee.photo.id}",
                                   ),
                                 ),
                               ),
                             ),
                             SizedBox(width: 10.w),
                             Text(
-                              "${courseData.mentor!.employee.face.firstname} ${courseData.mentor!.employee.face.lastname}",
+                              "${courseData.mentor.employee.face.firstname} ${courseData.mentor.employee.face.lastname}",
                               style: AppFonts.body12Regular.copyWith(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 16,

@@ -1,8 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dataspin_academy/controller/bloc/comment/cubit/comment_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/reception/cubit/new_reception_cubit.dart';
 import 'package:dataspin_academy/controller/provider/course_info_provider.dart';
 import 'package:dataspin_academy/controller/service/api/app_ip.dart';
 import 'package:dataspin_academy/view/screen/course_info/widget/about_course_card_widget.dart';
+import 'package:dataspin_academy/view/screen/course_info/widget/comment_widget.dart';
 import 'package:dataspin_academy/view/screen/course_info/widget/dialog_widget.dart';
 import 'package:dataspin_academy/view/screen/course_info/widget/mentor_card_course_info_widget.dart';
 import 'package:dataspin_academy/view/screen/course_info/widget/succes_widget.dart';
@@ -16,6 +18,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CourseInfoScreen extends StatefulWidget {
   static const String routeName = "/course_info_screen";
@@ -26,6 +29,14 @@ class CourseInfoScreen extends StatefulWidget {
 }
 
 class _CourseInfoScreenState extends State<CourseInfoScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    context.read<CommentCubit>().getComment(
+        context.read<CourseInfoProvider>().courseWithPriceData!.course.id);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,7 +99,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> {
                     bottom: PreferredSize(
                         preferredSize: const Size.fromHeight(0),
                         child: Container(
-                          height: 32.h,
+                          height: 50,
                           alignment: Alignment.center,
                           decoration: const BoxDecoration(
                             color: Colors.white,
@@ -109,8 +120,11 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> {
                   ),
                   SliverToBoxAdapter(
                     child: Padding(
-                      padding:
-                          const EdgeInsets.only(left: 20, right: 20, top: 20),
+                      padding: const EdgeInsets.only(
+                        left: 20,
+                        right: 20,
+                        bottom: 100,
+                      ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -129,7 +143,14 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> {
                                       .copyWith(color: AppColor.txtSecondColor),
                                 ),
                               ),
-                              const Icon(Icons.share)
+                              InkWell(
+                                  onTap: () => launchUrl(
+                                      mode: LaunchMode.externalApplication,
+                                      Uri(
+                                          scheme: "https",
+                                          path: "//t.me/ITQuva_Rasmiy_Bot")),
+                                  borderRadius: BorderRadius.circular(30),
+                                  child: const Icon(Icons.share))
                             ],
                           ),
                           SizedBox(height: 10.h),
@@ -174,7 +195,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> {
                               height: context
                                           .read<CourseInfoProvider>()
                                           .courseWithPriceData!
-                                          .mentor!
+                                          .mentor
                                           .employee
                                           .about ==
                                       null
@@ -184,10 +205,35 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> {
                             "Kurs haqida",
                             style: AppFonts.h2w700,
                           ),
-                          const SizedBox(height: 18),
+                          SizedBox(height: 10.h),
                           ListView.builder(
+                            shrinkWrap: true,
+                            padding: EdgeInsets.zero,
+                            itemCount: context
+                                .read<CourseInfoProvider>()
+                                .courseWithPriceData!
+                                .course
+                                .courseAboutParts
+                                .length,
+                            physics: const NeverScrollableScrollPhysics(),
                             itemBuilder: (context, index) =>
-                                AboutCourseCardWidget(),
+                                AboutCourseCardWidget(
+                              iconPath:
+                                  "${AppIp.ip}/api/image/?id=${context.read<CourseInfoProvider>().courseWithPriceData!.course.courseAboutParts[index].icon!.id}",
+                              title: context
+                                  .read<CourseInfoProvider>()
+                                  .courseWithPriceData!
+                                  .course
+                                  .courseAboutParts[index]
+                                  .name,
+                              text: context
+                                      .read<CourseInfoProvider>()
+                                      .courseWithPriceData!
+                                      .course
+                                      .courseAboutParts[index]
+                                      .description ??
+                                  "Ma'lumot yo'q",
+                            ),
                           ),
                           SizedBox(height: 20.h),
                           const Text(
@@ -196,6 +242,8 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> {
                           ),
                           SizedBox(height: 18.h),
                           Wrap(
+                            spacing: 8,
+                            runSpacing: 8,
                             children: context
                                 .read<CourseInfoProvider>()
                                 .courseWithPriceData!
@@ -214,7 +262,8 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> {
                                     ))
                                 .toList(),
                           ),
-                          SizedBox(height: 100.h),
+                          SizedBox(height: 28.h),
+                          const CommentWidget()
                         ],
                       ),
                     ),

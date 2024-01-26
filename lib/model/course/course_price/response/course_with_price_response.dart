@@ -32,7 +32,7 @@ class CourseWithPriceData with _$CourseWithPriceData {
   const factory CourseWithPriceData({
     @JsonKey(name: "course") required Course course,
     @JsonKey(name: "mentor") required Mentor mentor,
-    @JsonKey(name: "price") required int price,
+    @JsonKey(name: "price") int? price,
     @JsonKey(name: "reception_counter")
     required ReceptionCounter receptionCounter,
   }) = _CourseWithPriceData;
@@ -66,7 +66,7 @@ class CourseForElement with _$CourseForElement {
     @JsonKey(name: "id") required int id,
     @JsonKey(name: "description") String? description,
     @JsonKey(name: "icon") PreviewPhoto? icon,
-    @JsonKey(name: "date") required DateTime date,
+    @JsonKey(name: "date") DateTime? date,
   }) = _CourseForElement;
 
   factory CourseForElement.fromJson(Map<String, dynamic> json) =>
@@ -113,11 +113,11 @@ class Employee with _$Employee {
   const factory Employee({
     @JsonKey(name: "id") required int id,
     @JsonKey(name: "face") required Face face,
-    @JsonKey(name: "about") required dynamic about,
+    @JsonKey(name: "about") dynamic about,
     @JsonKey(name: "photo") required PreviewPhoto photo,
     @JsonKey(name: "practice") required int practice,
     @JsonKey(name: "isVerified") required bool isVerified,
-    @JsonKey(name: "endDate") required dynamic endDate,
+    @JsonKey(name: "endDate") dynamic endDate,
     @JsonKey(name: "startDate") required DateTime startDate,
     @JsonKey(name: "stuff") required Stuff stuff,
   }) = _Employee;

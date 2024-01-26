@@ -3,6 +3,7 @@ import 'package:dataspin_academy/controller/bloc/account/cubit/account_cubit.dar
 import 'package:dataspin_academy/controller/bloc/account/update/cubit/account_update_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/bottom_bar/cubit/bottom_bar_index_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/category_filter/course_filter_by_type_bloc.dart';
+import 'package:dataspin_academy/controller/bloc/comment/cubit/comment_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/course/course_for/course_for_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/course/course_price/cubit/course_with_price_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/course/course_type/course_type_cubit.dart';
@@ -52,6 +53,7 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (context) => ForPdfViewProvider()),
         BlocProvider(create: (context) => AccountCubit()),
         BlocProvider(create: (context) => AccountUpdateCubit()),
+        BlocProvider(create: (context) => CommentCubit()),
       ],
       child: ScreenUtilInit(
         minTextAdapt: true,

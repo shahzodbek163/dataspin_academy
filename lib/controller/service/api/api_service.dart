@@ -4,6 +4,7 @@ import 'package:dataspin_academy/controller/service/api/app_ip.dart';
 import 'package:dataspin_academy/model/aboutus/aboutus/about_us_result.dart';
 import 'package:dataspin_academy/model/account/response/account_response.dart';
 import 'package:dataspin_academy/model/account/response/update_response/account_update_response.dart';
+import 'package:dataspin_academy/model/comment/response/comment_response.dart';
 import 'package:dataspin_academy/model/course/course_for/course_for_result.dart';
 import 'package:dataspin_academy/model/course/course_price/response/course_with_price_response.dart';
 import 'package:dataspin_academy/model/course/course_type/course_type_result.dart';
@@ -76,7 +77,8 @@ abstract class ApiService {
     @Part(name: "username") String username,
     @Part(name: "password") String password,
   );
-
   @GET("/about-us/")
   Future<AboutUsResult> aboutUsInfo();
+  @GET("/comments/")
+  Future<CommentResponse> getComment(@Part(name: "course_id") int courseId);
 }
