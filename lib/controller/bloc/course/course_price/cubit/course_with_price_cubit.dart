@@ -4,8 +4,8 @@ import 'package:dataspin_academy/controller/service/dio/cutom_dio.dart';
 import 'package:dataspin_academy/model/course/course_price/response/course_with_price_response.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'course_with_price_state.dart';
 part 'course_with_price_cubit.freezed.dart';
+part 'course_with_price_state.dart';
 
 class CourseWithPriceCubit extends Cubit<CourseWithPriceState> {
   final apiService = ApiService(CustomDio().get);
@@ -16,5 +16,4 @@ class CourseWithPriceCubit extends Cubit<CourseWithPriceState> {
     CourseWithPriceResponse result = await apiService.getAllCourseWithPrice();
     emit(CourseWithPriceState.get(result));
   }
-  
 }

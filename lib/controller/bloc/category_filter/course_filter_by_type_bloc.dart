@@ -3,11 +3,9 @@ import 'package:dataspin_academy/controller/bloc/course/course_price/cubit/cours
 import 'package:dataspin_academy/model/course/course_price/response/course_with_price_response.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'course_filter_by_type_event.dart';
-
-part 'course_filter_by_type_state.dart';
-
 part 'course_filter_by_type_bloc.freezed.dart';
+part 'course_filter_by_type_event.dart';
+part 'course_filter_by_type_state.dart';
 
 class CourseFilterByTypeBloc
     extends Bloc<CourseFilterByTypeEvent, CourseFilterByTypeState> {
@@ -23,7 +21,7 @@ class CourseFilterByTypeBloc
         byId: (courses, courseTypeId, name) {
           print(courseTypeId);
           List<CourseWithPriceData?> filteredCourses =
-              courses.data!.map((courseWithPrice) {
+              courses.data.map((courseWithPrice) {
             if (courseWithPrice!.course.courseType.id == courseTypeId) {
               return courseWithPrice;
             }

@@ -1,5 +1,3 @@
-import 'package:dataspin_academy/view/value/app_size.dart';
-import 'package:dataspin_academy/view/widget/appbars/text_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
@@ -14,17 +12,11 @@ class GalleryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(
-            horizontal: AppSize.horizontalPadding,
-            vertical: AppSize.verticalPadding + 30),
+      body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              TextAppbar(
-                text: "Galareya",
-              ),
               StaggeredGrid.count(
                   crossAxisCount: 6,
                   mainAxisSpacing: 4,

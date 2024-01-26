@@ -1458,7 +1458,7 @@ mixin _$Employee {
   @JsonKey(name: "isVerified")
   dynamic get isVerified => throw _privateConstructorUsedError;
   @JsonKey(name: "endDate")
-  DateTime get endDate => throw _privateConstructorUsedError;
+  DateTime? get endDate => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1480,7 +1480,7 @@ abstract class $EmployeeCopyWith<$Res> {
       @JsonKey(name: "stuff") Stuff stuff,
       @JsonKey(name: "practice") int practice,
       @JsonKey(name: "isVerified") dynamic isVerified,
-      @JsonKey(name: "endDate") DateTime endDate});
+      @JsonKey(name: "endDate") DateTime? endDate});
 
   $PhotoCopyWith<$Res> get photo;
   $FaceCopyWith<$Res> get face;
@@ -1508,7 +1508,7 @@ class _$EmployeeCopyWithImpl<$Res, $Val extends Employee>
     Object? stuff = null,
     Object? practice = null,
     Object? isVerified = freezed,
-    Object? endDate = null,
+    Object? endDate = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -1543,10 +1543,10 @@ class _$EmployeeCopyWithImpl<$Res, $Val extends Employee>
           ? _value.isVerified
           : isVerified // ignore: cast_nullable_to_non_nullable
               as dynamic,
-      endDate: null == endDate
+      endDate: freezed == endDate
           ? _value.endDate
           : endDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
     ) as $Val);
   }
 
@@ -1592,7 +1592,7 @@ abstract class _$$EmployeeImplCopyWith<$Res>
       @JsonKey(name: "stuff") Stuff stuff,
       @JsonKey(name: "practice") int practice,
       @JsonKey(name: "isVerified") dynamic isVerified,
-      @JsonKey(name: "endDate") DateTime endDate});
+      @JsonKey(name: "endDate") DateTime? endDate});
 
   @override
   $PhotoCopyWith<$Res> get photo;
@@ -1621,7 +1621,7 @@ class __$$EmployeeImplCopyWithImpl<$Res>
     Object? stuff = null,
     Object? practice = null,
     Object? isVerified = freezed,
-    Object? endDate = null,
+    Object? endDate = freezed,
   }) {
     return _then(_$EmployeeImpl(
       id: null == id
@@ -1656,10 +1656,10 @@ class __$$EmployeeImplCopyWithImpl<$Res>
           ? _value.isVerified
           : isVerified // ignore: cast_nullable_to_non_nullable
               as dynamic,
-      endDate: null == endDate
+      endDate: freezed == endDate
           ? _value.endDate
           : endDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
     ));
   }
 }
@@ -1707,7 +1707,7 @@ class _$EmployeeImpl implements _Employee {
   final dynamic isVerified;
   @override
   @JsonKey(name: "endDate")
-  final DateTime endDate;
+  final DateTime? endDate;
 
   @override
   String toString() {
@@ -1771,7 +1771,7 @@ abstract class _Employee implements Employee {
           @JsonKey(name: "stuff") required final Stuff stuff,
           @JsonKey(name: "practice") required final int practice,
           @JsonKey(name: "isVerified") required final dynamic isVerified,
-          @JsonKey(name: "endDate") required final DateTime endDate}) =
+          @JsonKey(name: "endDate") required final DateTime? endDate}) =
       _$EmployeeImpl;
 
   factory _Employee.fromJson(Map<String, dynamic> json) =
@@ -1803,7 +1803,7 @@ abstract class _Employee implements Employee {
   dynamic get isVerified;
   @override
   @JsonKey(name: "endDate")
-  DateTime get endDate;
+  DateTime? get endDate;
   @override
   @JsonKey(ignore: true)
   _$$EmployeeImplCopyWith<_$EmployeeImpl> get copyWith =>

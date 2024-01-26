@@ -68,9 +68,9 @@ class CategoriesChips extends StatelessWidget {
                           SizedBox(height: 4.h),
                           Text(
                             courseData.course.name,
-                            style: AppFonts.h4.copyWith(
-                              fontSize: 20,
-                            ),
+                            style: AppFonts.body16w700,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ],
                       ),

@@ -130,7 +130,9 @@ _$EmployeeImpl _$$EmployeeImplFromJson(Map<String, dynamic> json) =>
       stuff: Stuff.fromJson(json['stuff'] as Map<String, dynamic>),
       practice: json['practice'] as int,
       isVerified: json['isVerified'],
-      endDate: DateTime.parse(json['endDate'] as String),
+      endDate: json['endDate'] == null
+          ? null
+          : DateTime.parse(json['endDate'] as String),
     );
 
 Map<String, dynamic> _$$EmployeeImplToJson(_$EmployeeImpl instance) =>
@@ -143,7 +145,7 @@ Map<String, dynamic> _$$EmployeeImplToJson(_$EmployeeImpl instance) =>
       'stuff': instance.stuff,
       'practice': instance.practice,
       'isVerified': instance.isVerified,
-      'endDate': instance.endDate.toIso8601String(),
+      'endDate': instance.endDate?.toIso8601String(),
     };
 
 _$FaceImpl _$$FaceImplFromJson(Map<String, dynamic> json) => _$FaceImpl(

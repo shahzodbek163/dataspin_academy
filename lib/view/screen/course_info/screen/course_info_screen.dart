@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dataspin_academy/controller/bloc/reception/cubit/new_reception_cubit.dart';
 import 'package:dataspin_academy/controller/provider/course_info_provider.dart';
@@ -12,13 +10,11 @@ import 'package:dataspin_academy/view/screen/course_info/widget/three_icon_widge
 import 'package:dataspin_academy/view/screen/home/widget/chips_widget.dart';
 import 'package:dataspin_academy/view/value/app_color.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
-import 'package:dataspin_academy/view/value/app_icons.dart';
 import 'package:dataspin_academy/view/widget/buttons/main_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
 class CourseInfoScreen extends StatefulWidget {
@@ -113,7 +109,8 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> {
                   ),
                   SliverToBoxAdapter(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      padding:
+                          const EdgeInsets.only(left: 20, right: 20, top: 20),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -188,10 +185,10 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> {
                             style: AppFonts.h2w700,
                           ),
                           const SizedBox(height: 18),
-                          const AboutCourseCardWidget(),
-                          const AboutCourseCardWidget(),
-                          const AboutCourseCardWidget(),
-                          const AboutCourseCardWidget(),
+                          ListView.builder(
+                            itemBuilder: (context, index) =>
+                                AboutCourseCardWidget(),
+                          ),
                           SizedBox(height: 20.h),
                           const Text(
                             "Ushbu kursda o'rganasiz:",
@@ -206,6 +203,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> {
                                 .courseType
                                 .courseTags
                                 .map((e) => Row(
+                                      mainAxisSize: MainAxisSize.min,
                                       children: [
                                         ChipsWidget(
                                           text: "#${e.name}",

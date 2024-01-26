@@ -86,6 +86,7 @@ class AppFonts {
       fontWeight: FontWeight.w700,
       fontFamily: "Ubuntu",
       color: Colors.black);
+
   static const body12Regular = TextStyle(
       fontSize: 12,
       height: 16 / 12,

@@ -49,9 +49,10 @@ class _CoursePartState extends State<CoursePart> {
                                 child: InkWell(
                                   borderRadius: BorderRadius.circular(12),
                                   onTap: () {
+                                    result.data[index];
                                     context
                                         .read<CourseInfoProvider>()
-                                        .change(result.data![index]!);
+                                        .change(result.data[index]!);
                                     context.push(CourseInfoScreen.routeName);
                                   },
                                   child: CourseCardWidget(

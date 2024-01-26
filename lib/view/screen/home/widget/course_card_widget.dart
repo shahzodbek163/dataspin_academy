@@ -46,11 +46,29 @@ class _CourseCardWidgetState extends State<CourseCardWidget> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  widget.courseWithPriceData.course.name,
-                  textAlign: TextAlign.start,
-                  style: AppFonts.body16Regular
-                      .copyWith(color: AppColor.txtSecondColor),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      //width: 358.w,
+                      child: Text(
+                        widget.courseWithPriceData.course.name,
+                        textAlign: TextAlign.start,
+                        overflow: TextOverflow.ellipsis,
+                        style: AppFonts.body16Regular
+                            .copyWith(color: AppColor.txtSecondColor),
+                      ),
+                    ),
+                    SizedBox(width: 5.w),
+                    Text(
+                      "Ro'yxatdan o'tish",
+                      style: AppFonts.labelw700.copyWith(
+                        color: AppColor.primary,
+                        decoration: TextDecoration.underline,
+                        decorationColor: AppColor.primary,
+                      ),
+                    ),
+                  ],
                 ),
                 SizedBox(height: 8.h),
                 Row(
@@ -83,31 +101,9 @@ class _CourseCardWidgetState extends State<CourseCardWidget> {
                   ],
                 ),
                 SizedBox(height: 13.h),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      widget.courseWithPriceData.course.courseType.name,
-                      style: AppFonts.h2w600,
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                          color: AppColor.secondary,
-                          borderRadius: BorderRadius.circular(6)),
-                      child: Container(
-                        height: 32.h,
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(6),
-                        ),
-                        child: Text("Ro'yxatdan o'tish",
-                            style: AppFonts.label
-                                .copyWith(color: AppColor.primary)),
-                      ),
-                    )
-                  ],
+                Text(
+                  widget.courseWithPriceData.course.courseType.name,
+                  style: AppFonts.h2w600,
                 )
               ],
             ),
