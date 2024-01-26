@@ -31,7 +31,7 @@ _$CourseWithPriceDataImpl _$$CourseWithPriceDataImplFromJson(
     _$CourseWithPriceDataImpl(
       course: Course.fromJson(json['course'] as Map<String, dynamic>),
       mentor: Mentor.fromJson(json['mentor'] as Map<String, dynamic>),
-      price: json['price'] as int,
+      price: json['price'] as int?,
       receptionCounter: ReceptionCounter.fromJson(
           json['reception_counter'] as Map<String, dynamic>),
     );
@@ -84,7 +84,8 @@ _$CourseForElementImpl _$$CourseForElementImplFromJson(
       icon: json['icon'] == null
           ? null
           : PreviewPhoto.fromJson(json['icon'] as Map<String, dynamic>),
-      date: DateTime.parse(json['date'] as String),
+      date:
+          json['date'] == null ? null : DateTime.parse(json['date'] as String),
     );
 
 Map<String, dynamic> _$$CourseForElementImplToJson(
@@ -94,7 +95,7 @@ Map<String, dynamic> _$$CourseForElementImplToJson(
       'id': instance.id,
       'description': instance.description,
       'icon': instance.icon,
-      'date': instance.date.toIso8601String(),
+      'date': instance.date?.toIso8601String(),
     };
 
 _$PreviewPhotoImpl _$$PreviewPhotoImplFromJson(Map<String, dynamic> json) =>

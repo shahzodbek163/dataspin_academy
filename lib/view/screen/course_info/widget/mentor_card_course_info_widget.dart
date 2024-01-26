@@ -35,7 +35,7 @@ class MentorCardCourseInfoWidget extends StatelessWidget {
                       shape: BoxShape.circle,
                       image: DecorationImage(
                         image: CachedNetworkImageProvider(
-                          "${AppIp.ip}/api/image/?id=${context.read<CourseInfoProvider>().courseWithPriceData!.mentor!.employee.photo.id}",
+                          "${AppIp.ip}/api/image/?id=${context.read<CourseInfoProvider>().courseWithPriceData!.mentor.employee.photo.id}",
                           headers: const {'ngrok-skip-browser-warning': "true"},
                         ),
                         fit: BoxFit.cover,
@@ -50,7 +50,7 @@ class MentorCardCourseInfoWidget extends StatelessWidget {
                 context
                             .read<CourseInfoProvider>()
                             .courseWithPriceData!
-                            .mentor!
+                            .mentor
                             .employee
                             .isVerified ==
                         true
@@ -70,25 +70,12 @@ class MentorCardCourseInfoWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  context
-                          .read<CourseInfoProvider>()
-                          .courseWithPriceData!
-                          .mentor!
-                          .employee
-                          .face
-                          .firstname +
-                      context
-                          .read<CourseInfoProvider>()
-                          .courseWithPriceData!
-                          .mentor!
-                          .employee
-                          .face
-                          .lastname,
+                  "${context.read<CourseInfoProvider>().courseWithPriceData!.mentor.employee.face.firstname} ${context.read<CourseInfoProvider>().courseWithPriceData!.mentor.employee.face.lastname}",
                   style: AppFonts.h4,
                 ),
                 const SizedBox(height: 6),
                 Text(
-                  "Mentor",
+                  "Mentor", 
                   style:
                       AppFonts.label.copyWith(color: AppColor.txtSecondColor),
                 )
@@ -99,7 +86,7 @@ class MentorCardCourseInfoWidget extends StatelessWidget {
         context
                     .read<CourseInfoProvider>()
                     .courseWithPriceData!
-                    .mentor!
+                    .mentor
                     .employee
                     .about ==
                 null
@@ -109,7 +96,7 @@ class MentorCardCourseInfoWidget extends StatelessWidget {
           context
                   .read<CourseInfoProvider>()
                   .courseWithPriceData!
-                  .mentor!
+                  .mentor
                   .employee
                   .about ??
               "",

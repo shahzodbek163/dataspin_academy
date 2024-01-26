@@ -44,43 +44,35 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
               return state.maybeWhen(
                 orElse: () => const SizedBox(),
                 getting: () => const CircularProgressIndicator(),
-                get: (item) => Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SelectableRow(
-                      forMainScreen: false,
-                      listRes:
-                          ["Barchasi"] + item.data.map((e) => e.name).toList(),
-                      onChangedIndex: (index) {
-                        context.read<SelectableIndexProvider>().change(index);
-                        if (index == 0) {
-                          context.read<CourseWithPriceCubit>().state.maybeWhen(
-                                orElse: () {},
-                                get: (result) {
-                                  return context
-                                      .read<CourseFilterByTypeBloc>()
-                                      .add(CourseFilterByTypeEvent.all(result));
-                                },
-                              );
-                        } else {
-                          context.read<CourseWithPriceCubit>().state.maybeWhen(
-                                orElse: () {},
-                                get: (result) {
-                                  return context
-                                      .read<CourseFilterByTypeBloc>()
-                                      .add(
-                                        CourseFilterByTypeEvent.byId(
-                                          result,
-                                          item.data[index - 1].id,
-                                          item.data[index - 1].name,
-                                        ),
-                                      );
-                                },
-                              );
-                        }
-                      },
-                    ),
-                  ],
+                get: (item) => SelectableRow(
+                  forMainScreen: false,
+                  listRes: ["Barchasi"] + item.data.map((e) => e.name).toList(),
+                  onChangedIndex: (index) {
+                    context.read<SelectableIndexProvider>().change(index);
+                    if (index == 0) {
+                      context.read<CourseWithPriceCubit>().state.maybeWhen(
+                            orElse: () {},
+                            get: (result) {
+                              return context
+                                  .read<CourseFilterByTypeBloc>()
+                                  .add(CourseFilterByTypeEvent.all(result));
+                            },
+                          );
+                    } else {
+                      context.read<CourseWithPriceCubit>().state.maybeWhen(
+                            orElse: () {},
+                            get: (result) {
+                              return context.read<CourseFilterByTypeBloc>().add(
+                                    CourseFilterByTypeEvent.byId(
+                                      result,
+                                      item.data[index - 1].id,
+                                      item.data[index - 1].name,
+                                    ),
+                                  );
+                            },
+                          );
+                    }
+                  },
                 ),
               );
             },
@@ -98,7 +90,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
             builder: (context, state) => state.maybeWhen(
                 orElse: () => const SizedBox(),
                 data: (result, name) {
-                  return result.data!.isEmpty
+                  return result.data.isEmpty
                       ? const Center(
                           child: Text("Malumot yo'q"),
                         )
@@ -116,15 +108,14 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                               SizedBox(height: 8.h),
                               SizedBox(
                                 height:
-                                    (MediaQuery.of(context).size.height - 212)
-                                        .h,
+                                    MediaQuery.sizeOf(context).height * 0.75,
                                 child: ListView.builder(
                                   physics: const BouncingScrollPhysics(),
-                                  itemCount: result.data!.length,
+                                  itemCount: result.data.length,
                                   itemBuilder: (context, index) => Padding(
                                     padding: const EdgeInsets.only(bottom: 24),
                                     child: CategoriesChips(
-                                      courseData: result.data![index]!,
+                                      courseData: result.data[index]!,
                                     ),
                                   ),
                                 ),
