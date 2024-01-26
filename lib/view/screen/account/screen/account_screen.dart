@@ -43,7 +43,6 @@ class _AccountScreenState extends State<AccountScreen> {
   @override
   void initState() {
     super.initState();
-    context.read<AccountCubit>().getAccount();
     first = true;
   }
 
@@ -62,7 +61,7 @@ class _AccountScreenState extends State<AccountScreen> {
               return state.maybeWhen(
                 orElse: () => const Center(
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     CircularProgressIndicator(),
                   ],

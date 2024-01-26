@@ -1,4 +1,5 @@
 import 'package:dataspin_academy/controller/provider/for_pdf_view_provider.dart';
+import 'package:dataspin_academy/view/screen/account/screen/account_screen.dart';
 import 'package:dataspin_academy/view/screen/gallery/screen/gallery_screen.dart';
 import 'package:dataspin_academy/view/screen/menu/widget/row_widget.dart';
 import 'package:dataspin_academy/view/screen/pdf_view/screen/pdf_view_screen.dart';
@@ -81,6 +82,12 @@ class MenuScreen extends StatelessWidget {
                 iconPath: AppIcons.image,
                 text: "Galareya",
                 onTap: () => context.push(GalleryScreen.routeName),
+              ),
+              SizedBox(height: 18.h),
+              RowWidget(
+                iconPath: AppIcons.image,
+                text: "Profil",
+                onTap: () => context.push(AccountScreen.routeName),
               ),
             ],
           ),

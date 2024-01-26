@@ -1,4 +1,3 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dataspin_academy/controller/service/api/app_ip.dart';
 import 'package:dataspin_academy/model/mentor/mentor_result.dart';
@@ -85,20 +84,13 @@ class _MentorCardState extends State<MentorCard> {
             SizedBox(
               width: 250.w,
               child: Center(
-                child: AnimatedTextKit(
-                  animatedTexts: [
-                    TypewriterAnimatedText(
-                      "${widget.mentorResultData.courses.map((e) => e.courseType.name).join(", ")} developer",
-                      textStyle: AppFonts.label.copyWith(
-                        color: AppColor.txtSecondColor,
-                      ),
-                      speed: const Duration(milliseconds: 200),
-                    ),
-                  ],
-                  totalRepeatCount: 1,
-                  pause: const Duration(milliseconds: 200),
-                  displayFullTextOnTap: true,
-                  stopPauseOnTap: true,
+                child: Text(
+                  widget.mentorResultData.courses
+                      .map((e) => e.courseType.name)
+                      .join(", "),
+                  style:
+                      AppFonts.label.copyWith(color: AppColor.txtSecondColor),
+                  textAlign: TextAlign.center,
                 ),
               ),
             ),

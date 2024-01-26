@@ -1,4 +1,5 @@
 import 'package:dataspin_academy/controller/bloc/aboutus/cubit/aboutus_cubit.dart';
+import 'package:dataspin_academy/controller/bloc/account/cubit/account_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/bottom_bar/cubit/bottom_bar_index_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/course/course_for/course_for_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/course/course_price/cubit/course_with_price_cubit.dart';
@@ -6,7 +7,7 @@ import 'package:dataspin_academy/controller/bloc/course/course_type/course_type_
 import 'package:dataspin_academy/controller/bloc/mentors/mentors_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/news/cubit/news_cubit.dart';
 import 'package:dataspin_academy/controller/service/locator/service_locator.dart';
-import 'package:dataspin_academy/view/screen/account/screen/account_screen.dart';
+import 'package:dataspin_academy/view/screen/aboutas/screen/about_as_screen.dart';
 import 'package:dataspin_academy/view/screen/home/screen/home_screen.dart';
 import 'package:dataspin_academy/view/screen/home/widget/bottom_bar_widget.dart';
 import 'package:dataspin_academy/view/screen/menu/screen/menu_screen.dart';
@@ -35,6 +36,7 @@ class _MainScreenState extends State<MainScreen> {
     context.read<NewsCubit>().getAllNews();
     context.read<MentorsCubit>().getMentors();
     context.read<AboutUsCubit>().getAllAboutUs();
+    context.read<AccountCubit>().getAccount();
   }
 
   @override
@@ -77,7 +79,7 @@ class _MainScreenState extends State<MainScreen> {
             style: AppFonts.h3,
           )),
           MyCourseScreen(),
-          AccountScreen(),
+          AboutUsScreen(),
           MenuScreen(),
         ],
       ),
