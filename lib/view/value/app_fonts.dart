@@ -95,16 +95,39 @@ class AppFonts {
       color: Colors.black);
 
   static const body14Regular = TextStyle(
-      fontSize: 14,
-      height: 18 / 14,
-      fontWeight: FontWeight.w400,
-      fontFamily: "Ubuntu",
-      color: Colors.black);
+    fontSize: 14,
+    height: 18 / 14,
+    fontWeight: FontWeight.w400,
+    fontFamily: "Ubuntu",
+    color: Colors.black,
+  );
+  static const body10Medium = TextStyle(
+    fontSize: 10,
+    height: 1.3,
+    fontWeight: FontWeight.w400,
+    fontFamily: "Ubuntu",
+    color: Colors.black,
+  );
 
   static const body12w700 = TextStyle(
-      fontSize: 12,
-      height: 16 / 12,
-      fontWeight: FontWeight.w700,
-      fontFamily: "Ubuntu",
-      color: Colors.black);
+    fontSize: 12,
+    height: 16 / 12,
+    fontWeight: FontWeight.w700,
+    fontFamily: "Ubuntu",
+    color: Colors.black,
+  );
+  static const body12w500 = TextStyle(
+    fontSize: 12,
+    height: 1.3,
+    fontWeight: FontWeight.w500,
+    fontFamily: "Ubuntu",
+    color: Colors.black,
+  );
+  static const body12w400 = TextStyle(
+    fontSize: 12,
+    height: 1.3,
+    fontWeight: FontWeight.w400,
+    fontFamily: "Ubuntu",
+    color: Colors.black,
+  );
 }

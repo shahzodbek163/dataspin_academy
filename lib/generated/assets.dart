@@ -11,8 +11,11 @@ class Assets {
   static const String iconsCallBlue = 'assets/icons/CallBlue.svg';
   static const String iconsCalling = 'assets/icons/Calling.svg';
   static const String iconsCamera = 'assets/icons/Camera.svg';
+  static const String iconsCertificate = 'assets/icons/certificate.svg';
+  static const String iconsChair = 'assets/icons/chair.svg';
   static const String iconsChart = 'assets/icons/chart.svg';
   static const String iconsDocument = 'assets/icons/Document.svg';
+  static const String iconsDownload = 'assets/icons/download.svg';
   static const String iconsEdit = 'assets/icons/Edit.svg';
   static const String iconsGlobal = 'assets/icons/global.svg';
   static const String iconsHideEye = 'assets/icons/hide_eye.svg';
@@ -25,6 +28,7 @@ class Assets {
   static const String iconsMoreSquare = 'assets/icons/MoreSquare.svg';
   static const String iconsOpenBook = 'assets/icons/open_book.svg';
   static const String iconsPersonalcard = 'assets/icons/personalcard.svg';
+  static const String iconsPro = 'assets/icons/pro.svg';
   static const String iconsProfile = 'assets/icons/Profile.svg';
   static const String iconsProfile2user = 'assets/icons/profile2user.png';
   static const String iconsRating = 'assets/icons/rating.png';
@@ -34,6 +38,7 @@ class Assets {
   static const String iconsStar = 'assets/icons/star.png';
   static const String iconsTicket = 'assets/icons/Ticket.svg';
   static const String iconsTimer = 'assets/icons/timer.svg';
+  static const String iconsUserTag = 'assets/icons/user-tag.svg';
   static const String iconsVerif = 'assets/icons/verif.png';
   static const String imageDataspin = 'assets/image/dataspin.png';
   static const String imageGlavni = 'assets/image/glavni.png';

@@ -7,7 +7,8 @@ import 'package:dataspin_academy/controller/bloc/course/course_type/course_type_
 import 'package:dataspin_academy/controller/bloc/mentors/mentors_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/news/cubit/news_cubit.dart';
 import 'package:dataspin_academy/controller/service/locator/service_locator.dart';
-import 'package:dataspin_academy/view/screen/aboutas/screen/about_as_screen.dart';
+import 'package:dataspin_academy/generated/assets.dart';
+import 'package:dataspin_academy/view/screen/about_us/screen/about_as_screen.dart';
 import 'package:dataspin_academy/view/screen/home/screen/home_screen.dart';
 import 'package:dataspin_academy/view/screen/home/widget/bottom_bar_widget.dart';
 import 'package:dataspin_academy/view/screen/menu/screen/menu_screen.dart';
@@ -48,20 +49,22 @@ class _MainScreenState extends State<MainScreen> {
           AppIcons.home,
           AppIcons.news,
           AppIcons.course,
-          AppIcons.profile,
+          Assets.iconsUserTag,
           AppIcons.menu,
         ],
         itemTitles: const [
           "Bosh sahifa",
           "Yangiliklar",
           "Kurslarim",
-          "Profil",
-          "Menyu",
+          "DataSpin",
+          "Menu",
         ],
         onTabChanged: (index) {
-          locator<PageController>().animateToPage(index,
-              duration: const Duration(milliseconds: 500),
-              curve: Curves.fastLinearToSlowEaseIn);
+          locator<PageController>().animateToPage(
+            index,
+            duration: const Duration(milliseconds: 500),
+            curve: Curves.fastLinearToSlowEaseIn,
+          );
         },
       ),
       body: PageView(

@@ -43,6 +43,7 @@ class CommentWidget extends StatelessWidget {
                 child: CircularProgressIndicator(),
               ),
               get: (response) => ListView.builder(
+                padding: EdgeInsets.zero,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: response.data.length,

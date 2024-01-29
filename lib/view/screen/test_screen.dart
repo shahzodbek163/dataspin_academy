@@ -1,3 +1,4 @@
+import 'package:dataspin_academy/view/screen/promo_code/widget/my_promocode.dart';
 import 'package:flutter/material.dart';
 
 class TestScreen extends StatefulWidget {
@@ -12,20 +13,8 @@ class _TestScreenState extends State<TestScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-          child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          borderRadius: BorderRadius.circular(10),
-          hoverColor: Colors.transparent,
-          onTap: () => print("salom"),
-          child: Container(
-            height: 50,
-            width: 50,
-            decoration: const BoxDecoration(color: Colors.transparent),
-          ),
-        ),
-      )),
-    );
+        body: Center(
+      child: MyPromoCard(),
+    ));
   }
 }
