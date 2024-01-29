@@ -27,6 +27,7 @@ class Assets {
   static const String iconsMessage = 'assets/icons/message.svg';
   static const String iconsMoreSquare = 'assets/icons/MoreSquare.svg';
   static const String iconsOpenBook = 'assets/icons/open_book.svg';
+  static const String iconsPeople = 'assets/icons/people.svg';
   static const String iconsPersonalcard = 'assets/icons/personalcard.svg';
   static const String iconsPro = 'assets/icons/pro.svg';
   static const String iconsProfile = 'assets/icons/Profile.svg';

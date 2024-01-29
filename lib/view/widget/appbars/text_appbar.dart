@@ -9,7 +9,7 @@ class TextAppbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: AppFonts.h1,
+      style: AppFonts.h2,
     );
   }
 }
