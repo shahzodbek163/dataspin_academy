@@ -9,8 +9,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class CourseCardWidget extends StatefulWidget {
   final CourseWithPriceData courseWithPriceData;
+  final double pageOffset;
 
-  const CourseCardWidget({super.key, required this.courseWithPriceData});
+  const CourseCardWidget({
+    super.key,
+    required this.courseWithPriceData,
+    required this.pageOffset,
+  });
 
   @override
   State<CourseCardWidget> createState() => _CourseCardWidgetState();
@@ -20,7 +25,6 @@ class _CourseCardWidgetState extends State<CourseCardWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 358.w,
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
@@ -34,6 +38,7 @@ class _CourseCardWidgetState extends State<CourseCardWidget> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: CachedNetworkImage(
+                  alignment: Alignment(widget.pageOffset, 0),
                   fit: BoxFit.cover,
                   imageUrl:
                       "${AppIp.ip}/api/image/?id=${widget.courseWithPriceData.course.previewPhoto.id}",
@@ -85,7 +90,7 @@ class _CourseCardWidgetState extends State<CourseCardWidget> {
                         SvgPicture.asset("assets/icons/profile-2user.svg"),
                         SizedBox(width: 6.w),
                         Text(
-                          "${widget.courseWithPriceData.receptionCounter!.activeCount}",
+                          "${widget.courseWithPriceData.receptionCounter.activeCount}",
                           style: AppFonts.label,
                         ),
                         SizedBox(width: 6.w),
