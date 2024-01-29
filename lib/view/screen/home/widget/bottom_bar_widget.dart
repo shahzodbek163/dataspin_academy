@@ -9,11 +9,12 @@ class BottomBarWidget extends StatelessWidget {
   final List<String> iconPath;
   final ValueChanged<int> onTabChanged;
 
-  const BottomBarWidget(
-      {super.key,
-      required this.itemTitles,
-      required this.iconPath,
-      required this.onTabChanged});
+  const BottomBarWidget({
+    super.key,
+    required this.itemTitles,
+    required this.iconPath,
+    required this.onTabChanged,
+  });
 
   @override
   Widget build(BuildContext context) {

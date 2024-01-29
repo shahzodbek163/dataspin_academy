@@ -22,7 +22,7 @@ class _YoutubeWidgetState extends State<YoutubeWidget> {
     _controller = YoutubePlayerController(
       initialVideoId: widget.youtubeUrl,
       flags: const YoutubePlayerFlags(
-        autoPlay: true,
+        autoPlay: false,
         mute: false,
         isLive: false,
         disableDragSeek: true,

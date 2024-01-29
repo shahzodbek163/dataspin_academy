@@ -1,10 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dataspin_academy/controller/bloc/aboutus/cubit/aboutus_cubit.dart';
 import 'package:dataspin_academy/controller/service/api/app_ip.dart';
-import 'package:dataspin_academy/view/screen/aboutas/widget/informations.dart';
-import 'package:dataspin_academy/view/screen/aboutas/widget/youtube_part.dart';
+import 'package:dataspin_academy/generated/assets.dart';
+import 'package:dataspin_academy/view/screen/about_us/widget/docs_card.dart';
+import 'package:dataspin_academy/view/screen/about_us/widget/informations.dart';
+import 'package:dataspin_academy/view/screen/about_us/widget/youtube_part.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AboutUsScreen extends StatefulWidget {
   static const String routeName = "/about_as_screen";
@@ -30,6 +33,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: BlocBuilder<AboutUsCubit, AboutusState>(
           builder: (context, state) {
@@ -79,7 +83,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                   const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20),
                     child: Text(
-                      'Academiya guvohnomasi',
+                      'Akademiya hujjatlari',
                       style: TextStyle(
                         fontSize: 16,
                         color: Color(0xFF292930),
@@ -88,25 +92,14 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                     ),
                   ),
                   const SizedBox(height: 8),
-                  SizedBox(
-                    height: 212,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: 2,
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.only(right: 16),
-                          child: SizedBox(
-                            width: 168,
-                            child: CachedNetworkImage(
-                              imageUrl:
-                                  "${AppIp.ip}/api/image/?id=${response.data.licensePhotos[0].id}",
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        );
-                      },
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Column(
+                      children: [
+                        const DocsCard(docName: "Akademiya litsenziyasi"),
+                        SizedBox(height: 16.h),
+                        const DocsCard(docName: "Akademiya shartnomasi"),
+                      ],
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -175,7 +168,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                       child: Column(
                         children: [
                           const Informations(
-                            iconName: "assets/icons/global.svg",
+                            iconName: Assets.iconsGlobal,
                             text: "Offline va Online ta’lim",
                             decoration:
                                 "O’quv markazda offline ta’lim, nogironligi bor fuqarolarga online ta’lim mavjud",
@@ -186,7 +179,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                             color: Colors.black38,
                           ),
                           const Informations(
-                            iconName: "assets/icons/timer.svg",
+                            iconName: Assets.iconsPro,
                             text: "Professional mentorlar",
                             decoration:
                                 "Akademiyada barcha mentorlar yuqori saviyali dasturchi mutahassislardir",
@@ -197,7 +190,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                             color: Colors.black38,
                           ),
                           const Informations(
-                            iconName: "assets/icons/chart.svg",
+                            iconName: Assets.iconsChair,
                             text: "Zamonaviy sharoit",
                             decoration: "Zamon talabiga mos ta’lim sharoiti",
                           ),
@@ -207,7 +200,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                             color: Colors.black38,
                           ),
                           const Informations(
-                            iconName: "assets/icons/timer.svg",
+                            iconName: Assets.iconsCertificate,
                             text: "Sertifikat",
                             decoration:
                                 "O’quv markazni bitirsangiz DataSpin Academy maxsus serifikati beriladi",

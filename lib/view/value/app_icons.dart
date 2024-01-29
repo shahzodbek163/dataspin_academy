@@ -19,4 +19,5 @@ class AppIcons {
   static const String scan = "assets/icons/Scan.svg";
   static const String image = "assets/icons/Image.svg";
   static const String camera = "assets/icons/Camera.svg";
+  static const String us = "assets/icons/user_tag.svg";
 }

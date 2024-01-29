@@ -6,11 +6,13 @@ class Informations extends StatelessWidget {
   final String iconName;
   final String text;
   final String decoration;
+  final bool isIcon;
   const Informations({
     super.key,
     required this.iconName,
     required this.text,
     required this.decoration,
+    this.isIcon = true,
   });
 
   @override
@@ -25,7 +27,12 @@ class Informations extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: SvgPicture.asset(iconName),
+              child: isIcon
+                  ? SvgPicture.asset(iconName)
+                  : Image.asset(
+                      iconName,
+                      color: const Color(0xFF5956E9),
+                    ),
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,

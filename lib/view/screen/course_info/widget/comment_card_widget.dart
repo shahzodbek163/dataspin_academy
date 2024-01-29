@@ -15,7 +15,14 @@ class CommentCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        Text(
+          commentData!.date.toString().substring(0, 10),
+          style: AppFonts.body14Regular.copyWith(
+            color: AppColor.primary,
+          ),
+        ),
         SizedBox(
           width: double.infinity,
           child: Text(
@@ -32,33 +39,30 @@ class CommentCardWidget extends StatelessWidget {
           children: [
             Row(
               children: [
-                Container(
-                    height: 48.h,
-                    width: 48.w,
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(color: Colors.black)),
-                    child: commentData!.userInfo.profilePhoto == null
-                        ? SvgPicture.asset(
-                            AppIcons.profile,
-                            color: Colors.black,
-                          )
-                        : CachedNetworkImage(
+                commentData!.userInfo.profilePhoto == null
+                    ? SvgPicture.asset(
+                        AppIcons.profile,
+                        color: Colors.black,
+                      )
+                    : SizedBox(
+                        width: 36,
+                        height: 36,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(18),
+                          child: CachedNetworkImage(
                             imageUrl:
-                                "${AppIp.ip}/api/image/?id=${commentData!.userInfo.profilePhoto.id}")),
+                                "${AppIp.ip}/api/image/?id=${commentData!.userInfo.profilePhoto.id}",
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
                 SizedBox(width: 12.w),
                 Text(
                   "${commentData!.userInfo.firstname} ${commentData!.userInfo.lastname}",
-                  style: AppFonts.h4,
+                  style: AppFonts.body16w500,
                 ),
               ],
             ),
-            Text(
-              commentData!.date.toString().substring(0, 10),
-              style: AppFonts.body18Regular.copyWith(
-                color: AppColor.txtSecondColor,
-              ),
-            )
           ],
         ),
       ],

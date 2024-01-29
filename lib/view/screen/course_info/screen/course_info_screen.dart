@@ -15,6 +15,7 @@ import 'package:dataspin_academy/view/value/app_fonts.dart';
 import 'package:dataspin_academy/view/widget/buttons/main_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -87,7 +88,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> {
                     flexibleSpace: FlexibleSpaceBar(
                       background: CachedNetworkImage(
                         imageUrl:
-                            "${AppIp.ip}/api/image/?id=${context.read<CourseInfoProvider>().courseWithPriceData!.course.previewPhoto.id}",
+                            "${AppIp.ip}/api/image/?id=${context.read<CourseInfoProvider>().courseWithPriceData!.course.courseType.photo.id}",
                         fit: BoxFit.cover,
                       ),
                       stretchModes: const [
@@ -178,6 +179,38 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> {
                                     .copyWith(color: Colors.white)),
                           ),
                           SizedBox(height: 10.h),
+                          SizedBox(
+                            height: 48,
+                            child: MainButton(
+                              text: "Ro'yxatdan o'tish",
+                              onTap: () {
+                                context
+                                    .read<NewReceptionCubit>()
+                                    .state
+                                    .maybeWhen(
+                                      orElse: () {},
+                                      initial: () {
+                                        showDialog(
+                                          context: context,
+                                          builder: (context) =>
+                                              const DialogWidget(),
+                                        );
+                                      },
+                                    );
+                              },
+                            ),
+                          ).animate(
+                            effects: [
+                              MoveEffect(
+                                curve: Curves.fastLinearToSlowEaseIn,
+                                duration: 500.ms,
+                                begin: const Offset(400, 0),
+                                end: const Offset(0, 0),
+                              )
+                            ],
+                            delay: 1000.ms,
+                          ),
+                          SizedBox(height: 12.h),
                           Text(
                             context
                                 .read<CourseInfoProvider>()
@@ -269,24 +302,6 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> {
                     ),
                   )
                 ],
-              ),
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: MainButton(
-                onTap: () {
-                  context.read<NewReceptionCubit>().state.maybeWhen(
-                        orElse: () {},
-                        initial: () {
-                          showDialog(
-                            context: context,
-                            builder: (context) => const DialogWidget(),
-                          );
-                        },
-                      );
-                },
-                text: "Ro'yxatdan o'tish",
-                height: 62.h,
               ),
             ),
             BlocBuilder<NewReceptionCubit, NewReceptionState>(
