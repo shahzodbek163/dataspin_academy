@@ -1,7 +1,10 @@
 import 'package:dataspin_academy/view/screen/mycourse/widget/selectable_button.dart';
 import 'package:dataspin_academy/view/screen/promo_code/widget/my_promocode.dart';
 import 'package:dataspin_academy/view/screen/promo_code/widget/promocode_card_square.dart';
+import 'package:dataspin_academy/view/value/app_color.dart';
+import 'package:dataspin_academy/view/value/app_fonts.dart';
 import 'package:dataspin_academy/view/widget/appbars/text_appbar.dart';
+import 'package:dataspin_academy/view/widget/textfields/main_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -80,27 +83,71 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
                         },
                       ),
                     ),
-                    ListView.builder(
-                      padding: EdgeInsets.zero,
-                      itemCount: 20,
-                      itemBuilder: (context, index) => Padding(
-                        padding: const EdgeInsets.only(bottom: 12),
-                        child: const MyPromoCard().animate(
-                          effects: [
-                            MoveEffect(
-                              begin: Offset(
-                                  index % 2 == 0
-                                      ? -MediaQuery.sizeOf(context).width
-                                      : MediaQuery.sizeOf(context).width,
-                                  0),
-                              end: const Offset(0, 0),
-                              duration: 1000.ms,
-                              delay: (index * 300).ms,
-                              curve: Curves.fastLinearToSlowEaseIn,
+                    Column(
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            const Expanded(
+                              child: MainTextField(
+                                text: "Yangi Promokod",
+                                hintText: "Yangi promokodni kiriting",
+                              ),
+                            ),
+                            SizedBox(width: 12.w),
+                            Material(
+                              color: Colors.transparent,
+                              child: InkWell(
+                                onTap: () {},
+                                borderRadius: BorderRadius.circular(8),
+                                child: Container(
+                                  width: 110.w,
+                                  height: 48.h,
+                                  alignment: Alignment.center,
+                                  decoration: ShapeDecoration(
+                                    color: AppColor.primary,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                  ),
+                                  child: Text(
+                                    "Saqlash",
+                                    style: AppFonts.body16Regular.copyWith(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ),
                             )
                           ],
                         ),
-                      ),
+                        SizedBox(height: 16.h),
+                        Expanded(
+                          child: ListView.builder(
+                            padding: EdgeInsets.zero,
+                            itemCount: 20,
+                            shrinkWrap: true,
+                            itemBuilder: (context, index) => Padding(
+                              padding: const EdgeInsets.only(bottom: 12),
+                              child: const MyPromoCard().animate(
+                                effects: [
+                                  MoveEffect(
+                                    begin: Offset(
+                                        index % 2 == 0
+                                            ? -MediaQuery.sizeOf(context).width
+                                            : MediaQuery.sizeOf(context).width,
+                                        0),
+                                    end: const Offset(0, 0),
+                                    duration: 1000.ms,
+                                    delay: (index * 300).ms,
+                                    curve: Curves.fastLinearToSlowEaseIn,
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     )
                   ],
                 ),
