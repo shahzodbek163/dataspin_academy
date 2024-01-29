@@ -21,85 +21,88 @@ class _DialogWidgetState extends State<DialogWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
-      ),
-      backgroundColor: Colors.white,
-      surfaceTintColor: Colors.white,
-      contentPadding: const EdgeInsets.symmetric(
-        horizontal: 20,
-        vertical: 20,
-      ),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Image.asset("assets/image/dataspin.png"),
-          SizedBox(height: 18.h),
-          const Text("Qabulga yozilishni tasdiqlang!", style: AppFonts.h4),
-          SizedBox(height: 18.h),
-          SizedBox(
-            width: 600.w,
-            child: TextField(
-              controller: textEditingController,
-              maxLines: 7,
-              decoration: InputDecoration(
-                hintText: "Izoh qoldiring...",
-                border:
-                    OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-                focusedBorder:
-                    OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+    return Container(
+      decoration: const BoxDecoration(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
+          color: Colors.white),
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Image.asset("assets/image/dataspin.png"),
+            SizedBox(height: 18.h),
+            const Text("Qabulga yozilishni tasdiqlang!", style: AppFonts.h4),
+            SizedBox(height: 18.h),
+            SizedBox(
+              width: 600.w,
+              child: TextField(
+                controller: textEditingController,
+                maxLines: 7,
+                decoration: InputDecoration(
+                  hintText: "Izoh qoldiring...",
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8)),
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8)),
+                ),
               ),
             ),
-          ),
-          SizedBox(height: 18.h),
-          BlocBuilder<NewReceptionCubit, NewReceptionState>(
-            builder: (context, state) {
-              return MainButton(
-                text: "Tasdiqlash",
-                isLoading: state.maybeWhen(
-                  orElse: () => false,
-                  sending: () => true,
-                ),
-                onTap: () {
-                  String year = DateTime.now().year.toString();
-                  String month = DateTime.now().month.toString();
-                  String day = DateTime.now().day.toString();
-                  String hour = DateTime.now().hour.toString();
-                  String minute = DateTime.now().minute.toString();
-                  String second = DateTime.now().second.toString();
-                  String milliSecond = DateTime.now().millisecond.toString();
-                  String recNumber =
-                      day + month + year + hour + minute + second + milliSecond;
-                  NewReceptionRequest newReceptionRequest = NewReceptionRequest(
-                      courseId: context
-                          .read<CourseInfoProvider>()
-                          .courseWithPriceData!
-                          .course
-                          .id,
-                      receptionNumber: recNumber,
-                      description: textEditingController.text.isNotEmpty
-                          ? textEditingController.text.trim()
-                          : null);
+            SizedBox(height: 18.h),
+            BlocBuilder<NewReceptionCubit, NewReceptionState>(
+              builder: (context, state) {
+                return MainButton(
+                  text: "Tasdiqlash",
+                  isLoading: state.maybeWhen(
+                    orElse: () => false,
+                    sending: () => true,
+                  ),
+                  onTap: () {
+                    String year = DateTime.now().year.toString();
+                    String month = DateTime.now().month.toString();
+                    String day = DateTime.now().day.toString();
+                    String hour = DateTime.now().hour.toString();
+                    String minute = DateTime.now().minute.toString();
+                    String second = DateTime.now().second.toString();
+                    String milliSecond = DateTime.now().millisecond.toString();
+                    String recNumber = day +
+                        month +
+                        year +
+                        hour +
+                        minute +
+                        second +
+                        milliSecond;
+                    NewReceptionRequest newReceptionRequest =
+                        NewReceptionRequest(
+                            courseId: context
+                                .read<CourseInfoProvider>()
+                                .courseWithPriceData!
+                                .course
+                                .id,
+                            receptionNumber: recNumber,
+                            description: textEditingController.text.isNotEmpty
+                                ? textEditingController.text.trim()
+                                : null);
 
-                  context
-                      .read<NewReceptionCubit>()
-                      .newReception(newReceptionRequest)
-                      .then((value) {
-                    if (value) {
-                      textEditingController.clear();
-                      context
-                          .read<CourseWithPriceCubit>()
-                          .getAllCourseWithPrice();
-                      context.pop();
-                    }
-                  });
-                },
-              );
-            },
-          )
-        ],
+                    context
+                        .read<NewReceptionCubit>()
+                        .newReception(newReceptionRequest)
+                        .then((value) {
+                      if (value) {
+                        textEditingController.clear();
+                        context
+                            .read<CourseWithPriceCubit>()
+                            .getAllCourseWithPrice();
+                        context.pop();
+                      }
+                    });
+                  },
+                );
+              },
+            )
+          ],
+        ),
       ),
     );
   }

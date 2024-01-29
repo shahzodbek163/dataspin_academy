@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'dart:math' as math;
 
 class CoursePart extends StatefulWidget {
   const CoursePart({super.key});
@@ -17,6 +18,14 @@ class CoursePart extends StatefulWidget {
 }
 
 class _CoursePartState extends State<CoursePart> {
+  late PageController pageController;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    pageController = PageController(viewportFraction: 0.92);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -34,32 +43,50 @@ class _CoursePartState extends State<CoursePart> {
                 getting: () => const Center(child: CircularProgressIndicator()),
                 get: (result) {
                   return SizedBox(
-                    height: result.data!.isEmpty ? 0 : 360.h,
-                    child: ListView.builder(
-                      padding: const EdgeInsets.only(left: 8),
-                      addAutomaticKeepAlives: true,
+                    height: result.data.isEmpty ? 0 : 360.h,
+                    child: PageView.builder(
+                      clipBehavior: Clip.none,
                       scrollDirection: Axis.horizontal,
+                      controller: pageController,
                       physics: const BouncingScrollPhysics(),
-                      itemCount: result.data!.length,
+                      itemCount: result.data.length,
                       itemBuilder: (context, index) => Padding(
-                        padding: EdgeInsets.only(right: 6.w),
-                        child: result.data![index]!.course.status
-                            ? Material(
-                                color: Colors.transparent,
-                                child: InkWell(
-                                  borderRadius: BorderRadius.circular(12),
-                                  onTap: () {
-                                    result.data[index];
-                                    context
-                                        .read<CourseInfoProvider>()
-                                        .change(result.data[index]!);
-                                    context.push(CourseInfoScreen.routeName);
-                                  },
-                                  child: CourseCardWidget(
-                                    courseWithPriceData: result.data![index]!,
-                                  ),
-                                ),
-                              )
+                        padding: EdgeInsets.only(right: 8.w),
+                        child: result.data[index]!.course.status
+                            ? AnimatedBuilder(
+                                animation: pageController,
+                                builder: (context, child) {
+                                  double pageOffset = 0;
+                                  if (pageController.position.haveDimensions) {
+                                    pageOffset = pageController.page! - index;
+                                  }
+                                  double gausse = math.exp(
+                                      -(math.pow(pageOffset.abs() - 0.5, 2) /
+                                          0.08));
+                                  return Material(
+                                    color: Colors.transparent,
+                                    child: InkWell(
+                                      borderRadius: BorderRadius.circular(12),
+                                      onTap: () {
+                                        result.data[index];
+                                        context
+                                            .read<CourseInfoProvider>()
+                                            .change(result.data[index]!);
+                                        context
+                                            .push(CourseInfoScreen.routeName);
+                                      },
+                                      child: Transform.translate(
+                                        offset: Offset(
+                                            -16 * gausse * pageOffset.sign, 0),
+                                        child: CourseCardWidget(
+                                          pageOffset: pageOffset,
+                                          courseWithPriceData:
+                                              result.data[index]!,
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                })
                             : null,
                       ),
                     ),
