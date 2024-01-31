@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
+import 'package:dataspin_academy/controller/bloc/splash/jump_screen.dart';
 import 'package:dataspin_academy/controller/service/api/api_service.dart';
 import 'package:dataspin_academy/controller/service/dialogs/show_top_snack_bar.dart';
 import 'package:dataspin_academy/controller/service/dio/auth_dio.dart';
@@ -59,6 +60,6 @@ class UserRegisterCubit extends Cubit<UserRegisterState> {
 
   _navigateToHome() {
     NavigationService.navigatorKey.currentState!.context
-        .pushReplacement(HomeScreen.routeName);
+        .pushReplacement(JumpScreen.routeName);
   }
 }
