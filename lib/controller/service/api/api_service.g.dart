@@ -67,13 +67,15 @@ class _ApiService implements ApiService {
         tel2,
       ));
     }
-    _data.files.add(MapEntry(
-      'profilePhoto',
-      MultipartFile.fromFileSync(
-        profilePhoto.path,
-        filename: profilePhoto.path.split(Platform.pathSeparator).last,
-      ),
-    ));
+    if (profilePhoto != null) {
+      _data.files.add(MapEntry(
+        'profilePhoto',
+        MultipartFile.fromFileSync(
+          profilePhoto.path,
+          filename: profilePhoto.path.split(Platform.pathSeparator).last,
+        ),
+      ));
+    }
     _data.fields.add(MapEntry(
       'username',
       username,
@@ -338,13 +340,15 @@ class _ApiService implements ApiService {
         birthday,
       ));
     }
-    _data.files.add(MapEntry(
-      'photo',
-      MultipartFile.fromFileSync(
-        photo.path,
-        filename: photo.path.split(Platform.pathSeparator).last,
-      ),
-    ));
+    if (photo != null) {
+      _data.files.add(MapEntry(
+        'photo',
+        MultipartFile.fromFileSync(
+          photo.path,
+          filename: photo.path.split(Platform.pathSeparator).last,
+        ),
+      ));
+    }
     if (tel1 != null) {
       _data.fields.add(MapEntry(
         'tel1',
@@ -506,54 +510,56 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<bool> getMyPromo() async {
+  Future<AllPromocodeResponse> getMyPromo() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<bool>(_setStreamType<bool>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<AllPromocodeResponse>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/promo/user',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
-    final value = _result.data!;
+            .compose(
+              _dio.options,
+              '/promo/user',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = AllPromocodeResponse.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<bool> getAllPromo() async {
+  Future<AllPromocodeResponse> getAllPromo() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<bool>(_setStreamType<bool>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<AllPromocodeResponse>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/promo/',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
-    final value = _result.data!;
+            .compose(
+              _dio.options,
+              '/promo/',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = AllPromocodeResponse.fromJson(_result.data!);
     return value;
   }
 

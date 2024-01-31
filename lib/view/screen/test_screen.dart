@@ -1,4 +1,3 @@
-import 'package:dataspin_academy/view/screen/promo_code/widget/my_promocode.dart';
 import 'package:flutter/material.dart';
 
 class TestScreen extends StatefulWidget {
@@ -12,9 +11,9 @@ class TestScreen extends StatefulWidget {
 class _TestScreenState extends State<TestScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
         body: Center(
-      child: MyPromoCard(),
+      child: Text("asdasd"),
     ));
   }
 }

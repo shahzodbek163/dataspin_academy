@@ -1,4 +1,5 @@
 import 'package:dataspin_academy/generated/assets.dart';
+import 'package:dataspin_academy/model/promocode/response/all_promocode_response.dart';
 import 'package:dataspin_academy/view/value/app_color.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
 import 'package:flutter/material.dart';
@@ -6,12 +7,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class MyPromoCard extends StatelessWidget {
-  const MyPromoCard({Key? key}) : super(key: key);
+  final AllPromocodeData promocodeData;
+  const MyPromoCard({
+    Key? key,
+    required this.promocodeData,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 64.h,
+      height: 64,
       decoration: ShapeDecoration(
         color: const Color(0xFFF5F6FA),
         shape: RoundedRectangleBorder(
@@ -26,7 +31,7 @@ class MyPromoCard extends StatelessWidget {
             child: Container(
               alignment: Alignment.center,
               padding: const EdgeInsets.symmetric(horizontal: 12),
-              height: 16.h,
+              height: 16,
               decoration: const ShapeDecoration(
                 color: AppColor.primary,
                 shape: RoundedRectangleBorder(
@@ -37,17 +42,17 @@ class MyPromoCard extends StatelessWidget {
                 ),
               ),
               child: Text(
-                "02-02-2024",
+                promocodeData.date.toString(),
                 style: AppFonts.body10Medium.copyWith(color: Colors.white),
               ),
             ),
           ),
-          const Positioned(
+          Positioned(
             top: 28,
             left: 12,
             bottom: 20,
             child: Text(
-              "WKA2UY",
+              promocodeData.promoCode,
               style: AppFonts.body16Regular,
             ),
           ),
@@ -57,8 +62,8 @@ class MyPromoCard extends StatelessWidget {
             bottom: 0,
             child: Row(
               children: [
-                const Text(
-                  "12",
+                Text(
+                  promocodeData.totalCount.toString(),
                   style: AppFonts.body16Regular,
                 ),
                 SizedBox(width: 8.w),

@@ -4,5 +4,5 @@ part of 'get_my_promos_cubit.dart';
 class GetMyPromosState with _$GetMyPromosState {
   const factory GetMyPromosState.initial() = _Initial;
   const factory GetMyPromosState.loading() = _Loading;
-  const factory GetMyPromosState.loaded() = _Loaded;
+  const factory GetMyPromosState.loaded(AllPromocodeResponse data) = _Loaded;
 }
