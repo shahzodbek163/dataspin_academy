@@ -1,5 +1,4 @@
 import 'package:dataspin_academy/controller/bloc/account/cubit/account_cubit.dart';
-import 'package:dataspin_academy/controller/bloc/comment/cubit/comment_cubit.dart';
 import 'package:dataspin_academy/view/screen/home/part/category_part.dart';
 import 'package:dataspin_academy/view/screen/home/part/course_part.dart';
 import 'package:dataspin_academy/view/screen/home/part/mentor_part.dart';
@@ -34,6 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: ListView(
           physics: const BouncingScrollPhysics(),
           children: [
+            SizedBox(height: 14.h),
             Padding(
               padding:
                   EdgeInsets.symmetric(horizontal: AppSize.horizontalPadding.w),
