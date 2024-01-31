@@ -1,5 +1,7 @@
 import 'package:dataspin_academy/controller/bloc/promocode/create_promo/create_promo_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/promocode/my_promos/get_my_promos_cubit.dart';
+import 'package:dataspin_academy/controller/bloc/promocode/get_all_promo/get_all_promo_cubit.dart';
+import 'package:dataspin_academy/controller/bloc/promocode/my_promos/get_my_promos_cubit.dart';
 import 'package:dataspin_academy/view/screen/mycourse/widget/selectable_button.dart';
 import 'package:dataspin_academy/view/screen/promo_code/widget/my_promocode.dart';
 import 'package:dataspin_academy/view/screen/promo_code/widget/promocode_card_square.dart';
@@ -25,7 +27,6 @@ class PromoCodeScreen extends StatefulWidget {
 
 class _PromoCodeScreenState extends State<PromoCodeScreen> {
   final pageController = PageController();
-
   final promoController = TextEditingController();
   final getMyPromoCodeCubit = GetMyPromosCubit();
 
@@ -41,6 +42,25 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
     promoController.dispose();
     getMyPromoCodeCubit.close();
     super.dispose();
+  }
+
+  final getAllPromoCubit = GetAllPromoCubit();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getAllPromoCubit.getAllPromocode();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    pageController.dispose();
+    createPromoCubit.close();
+    promoController.dispose();
+    getAllPromoCubit.close();
   }
 
   @override
@@ -107,6 +127,7 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
                     Column(
                       children: [
                         BlocBuilder<CreatePromoCubit, CreatePromoState>(
+                          bloc: createPromoCubit,
                           builder: (context, state) {
                             return Row(
                               crossAxisAlignment: CrossAxisAlignment.end,
@@ -123,46 +144,37 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
                                   ),
                                 ),
                                 SizedBox(width: 12.w),
-                                BlocListener<CreatePromoCubit,
-                                    CreatePromoState>(
-                                  listener: (context, state) {
-                                    if (state ==
-                                        const CreatePromoState.created()) {
-                                      getMyPromoCodeCubit.getData();
-                                    }
-                                  },
-                                  child: Material(
-                                    color: Colors.transparent,
-                                    child: InkWell(
-                                      onTap: () {
-                                        context.read<CreatePromoCubit>().create(
-                                              promoController.text.trim(),
-                                            );
-                                      },
-                                      borderRadius: BorderRadius.circular(8),
-                                      child: Container(
-                                        width: 110.w,
-                                        height: 48.h,
-                                        alignment: Alignment.center,
-                                        decoration: ShapeDecoration(
-                                          color: AppColor.primary,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                          ),
+                                Material(
+                                  color: Colors.transparent,
+                                  child: InkWell(
+                                    onTap: () {
+                                      createPromoCubit.create(
+                                        promoController.text.trim(),
+                                      );
+                                    },
+                                    borderRadius: BorderRadius.circular(8),
+                                    child: Container(
+                                      width: 110.w,
+                                      height: 48.h,
+                                      alignment: Alignment.center,
+                                      decoration: ShapeDecoration(
+                                        color: AppColor.primary,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
                                         ),
-                                        child: state.maybeWhen(
-                                          orElse: () => Text(
-                                            "Saqlash",
-                                            style:
-                                                AppFonts.body16Regular.copyWith(
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                          creating: () =>
-                                              const CircularProgressIndicator(
+                                      ),
+                                      child: state.maybeWhen(
+                                        orElse: () => Text(
+                                          "Saqlash",
+                                          style:
+                                              AppFonts.body16Regular.copyWith(
                                             color: Colors.white,
                                           ),
+                                        ),
+                                        creating: () =>
+                                            const CircularProgressIndicator(
+                                          color: Colors.white,
                                         ),
                                       ),
                                     ),
@@ -174,57 +186,35 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
                         ),
                         SizedBox(height: 16.h),
                         Expanded(
-                          child:
-                              BlocBuilder<GetMyPromosCubit, GetMyPromosState>(
-                            bloc: getMyPromoCodeCubit,
-                            builder: (context, state) {
-                              return state.maybeWhen(
-                                orElse: () => const CircularProgressIndicator(),
-                                loaded: (data) => data.data.isNotEmpty
-                                    ? ListView.builder(
-                                        padding: EdgeInsets.zero,
-                                        itemCount: data.data.length,
-                                        shrinkWrap: true,
-                                        itemBuilder: (context, index) =>
-                                            Padding(
-                                          padding:
-                                              const EdgeInsets.only(bottom: 12),
-                                          child: MyPromoCard(
-                                            promocodeData: data.data[index],
-                                          ).animate(
-                                            effects: [
-                                              MoveEffect(
-                                                begin: Offset(
-                                                    index % 2 == 0
-                                                        ? -MediaQuery.sizeOf(
-                                                                context)
-                                                            .width
-                                                        : MediaQuery.sizeOf(
-                                                                context)
-                                                            .width,
-                                                    0),
-                                                end: const Offset(0, 0),
-                                                duration: 1000.ms,
-                                                delay: (index * 300).ms,
-                                                curve: Curves
-                                                    .fastLinearToSlowEaseIn,
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      )
-                                    : const Center(
-                                        child: Text("Ma'lumotlar mavjud emas"),
-                                      ),
-                              );
-                            },
+                          child: ListView.builder(
+                            padding: EdgeInsets.zero,
+                            itemCount: 20,
+                            shrinkWrap: true,
+                            itemBuilder: (context, index) => Padding(
+                              padding: const EdgeInsets.only(bottom: 12),
+                              child: const MyPromoCard().animate(
+                                effects: [
+                                  MoveEffect(
+                                    begin: Offset(
+                                        index % 2 == 0
+                                            ? -MediaQuery.sizeOf(context).width
+                                            : MediaQuery.sizeOf(context).width,
+                                        0),
+                                    end: const Offset(0, 0),
+                                    duration: 1000.ms,
+                                    delay: (index * 300).ms,
+                                    curve: Curves.fastLinearToSlowEaseIn,
+                                  )
+                                ],
+                              ),
+                            ),
                           ),
                         ),
                       ],
-                    ),
+                    )
                   ],
                 ),
-              ),
+              )
             ],
           ),
         ),
