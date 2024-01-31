@@ -1,3 +1,4 @@
+import 'package:dataspin_academy/controller/bloc/promocode/create_promo/create_promo_cubit.dart';
 import 'package:dataspin_academy/view/screen/mycourse/widget/selectable_button.dart';
 import 'package:dataspin_academy/view/screen/promo_code/widget/my_promocode.dart';
 import 'package:dataspin_academy/view/screen/promo_code/widget/promocode_card_square.dart';
@@ -7,6 +8,7 @@ import 'package:dataspin_academy/view/widget/appbars/text_appbar.dart';
 import 'package:dataspin_academy/view/widget/textfields/main_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -22,6 +24,8 @@ class PromoCodeScreen extends StatefulWidget {
 
 class _PromoCodeScreenState extends State<PromoCodeScreen> {
   final pageController = PageController();
+  final createPromoCubit = CreatePromoCubit();
+  final promoController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,41 +89,63 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
                     ),
                     Column(
                       children: [
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            const Expanded(
-                              child: MainTextField(
-                                text: "Yangi Promokod",
-                                hintText: "Yangi promokodni kiriting",
-                              ),
-                            ),
-                            SizedBox(width: 12.w),
-                            Material(
-                              color: Colors.transparent,
-                              child: InkWell(
-                                onTap: () {},
-                                borderRadius: BorderRadius.circular(8),
-                                child: Container(
-                                  width: 110.w,
-                                  height: 48.h,
-                                  alignment: Alignment.center,
-                                  decoration: ShapeDecoration(
-                                    color: AppColor.primary,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                  ),
-                                  child: Text(
-                                    "Saqlash",
-                                    style: AppFonts.body16Regular.copyWith(
-                                      color: Colors.white,
+                        BlocBuilder<CreatePromoCubit, CreatePromoState>(
+                          bloc: createPromoCubit,
+                          builder: (context, state) {
+                            return Row(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Expanded(
+                                  child: MainTextField(
+                                    controller: promoController,
+                                    text: "Yangi Promokod",
+                                    hintText: "Yangi promokodni kiriting",
+                                    animateBorder: state.maybeWhen(
+                                      orElse: () => false,
+                                      invalid: () => true,
                                     ),
                                   ),
                                 ),
-                              ),
-                            )
-                          ],
+                                SizedBox(width: 12.w),
+                                Material(
+                                  color: Colors.transparent,
+                                  child: InkWell(
+                                    onTap: () {
+                                      createPromoCubit.create(
+                                        promoController.text.trim(),
+                                      );
+                                    },
+                                    borderRadius: BorderRadius.circular(8),
+                                    child: Container(
+                                      width: 110.w,
+                                      height: 48.h,
+                                      alignment: Alignment.center,
+                                      decoration: ShapeDecoration(
+                                        color: AppColor.primary,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                      ),
+                                      child: state.maybeWhen(
+                                        orElse: () => Text(
+                                          "Saqlash",
+                                          style:
+                                              AppFonts.body16Regular.copyWith(
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                        creating: () =>
+                                            const CircularProgressIndicator(
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            );
+                          },
                         ),
                         SizedBox(height: 16.h),
                         Expanded(

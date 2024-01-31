@@ -13,7 +13,7 @@ class _ApiService implements ApiService {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://dataspinacademy.uz/api';
+    baseUrl ??= 'http://192.168.161.66/api';
   }
 
   final Dio _dio;
@@ -475,6 +475,37 @@ class _ApiService implements ApiService {
               baseUrl,
             ))));
     final value = CommentResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<MentorResult> createPromo(String promoCode) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = FormData();
+    _data.fields.add(MapEntry(
+      'promocode',
+      promoCode,
+    ));
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<MentorResult>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/promo/new',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = MentorResult.fromJson(_result.data!);
     return value;
   }
 
