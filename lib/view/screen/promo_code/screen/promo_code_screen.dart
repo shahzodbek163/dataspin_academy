@@ -27,24 +27,13 @@ class PromoCodeScreen extends StatefulWidget {
 class _PromoCodeScreenState extends State<PromoCodeScreen> {
   final pageController = PageController();
   final promoController = TextEditingController();
-  final getMyPromoCodeCubit = GetMyPromosCubit();
-
-  @override
-  void initState() {
-    getMyPromoCodeCubit.getData();
-    getAllPromoCubit.getAllPromocode();
-    super.initState();
-  }
 
   @override
   void dispose() {
     pageController.dispose();
     promoController.dispose();
-    getMyPromoCodeCubit.close();
     super.dispose();
   }
-
-  final getAllPromoCubit = GetAllPromoCubit();
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +71,6 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
                   controller: pageController,
                   children: [
                     BlocBuilder<GetAllPromoCubit, GetAllPromoState>(
-                      bloc: getAllPromoCubit,
                       builder: (context, state) {
                         return state.maybeWhen(
                             orElse: () => const Center(
@@ -98,7 +86,7 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
                                       padding: EdgeInsets.zero,
                                       physics: const BouncingScrollPhysics(),
                                       addAutomaticKeepAlives: true,
-                                      itemCount: 21,
+                                      itemCount: data.data.length,
                                       crossAxisSpacing: 16,
                                       mainAxisSpacing: 16,
                                       gridDelegate:
@@ -146,35 +134,49 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
                                 SizedBox(width: 12.w),
                                 Material(
                                   color: Colors.transparent,
-                                  child: InkWell(
-                                    onTap: () {
-                                      context.read<CreatePromoCubit>().create(
-                                            promoController.text.trim(),
-                                          );
+                                  child: BlocListener<CreatePromoCubit,
+                                      CreatePromoState>(
+                                    listener: (context, state) {
+                                      if (state ==
+                                          const CreatePromoState.created()) {
+                                        context
+                                            .read<GetMyPromosCubit>()
+                                            .getData();
+                                        context
+                                            .read<GetAllPromoCubit>()
+                                            .getAllPromocode();
+                                      }
                                     },
-                                    borderRadius: BorderRadius.circular(8),
-                                    child: Container(
-                                      width: 110.w,
-                                      height: 48.h,
-                                      alignment: Alignment.center,
-                                      decoration: ShapeDecoration(
-                                        color: AppColor.primary,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(8),
-                                        ),
-                                      ),
-                                      child: state.maybeWhen(
-                                        orElse: () => Text(
-                                          "Saqlash",
-                                          style:
-                                              AppFonts.body16Regular.copyWith(
-                                            color: Colors.white,
+                                    child: InkWell(
+                                      onTap: () {
+                                        context.read<CreatePromoCubit>().create(
+                                              promoController.text.trim(),
+                                            );
+                                      },
+                                      borderRadius: BorderRadius.circular(8),
+                                      child: Container(
+                                        width: 110.w,
+                                        height: 48.h,
+                                        alignment: Alignment.center,
+                                        decoration: ShapeDecoration(
+                                          color: AppColor.primary,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(8),
                                           ),
                                         ),
-                                        creating: () =>
-                                            const CircularProgressIndicator(
-                                          color: Colors.white,
+                                        child: state.maybeWhen(
+                                          orElse: () => Text(
+                                            "Saqlash",
+                                            style:
+                                                AppFonts.body16Regular.copyWith(
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                          creating: () =>
+                                              const CircularProgressIndicator(
+                                            color: Colors.white,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -190,44 +192,45 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
                               BlocBuilder<GetMyPromosCubit, GetMyPromosState>(
                             builder: (context, state) {
                               return state.maybeWhen(
-                                  orElse: () => const Center(
-                                      child: CircularProgressIndicator()),
-                                  loaded: (data) => data.data.isEmpty
-                                      ? const Center(
-                                          child: Text("Ma'lumot mavjud emas"),
-                                        )
-                                      : ListView.builder(
-                                          padding: EdgeInsets.zero,
-                                          itemCount: 20,
-                                          shrinkWrap: true,
-                                          itemBuilder: (context, index) =>
-                                              Padding(
-                                            padding: const EdgeInsets.only(
-                                                bottom: 12),
-                                            child: MyPromoCard(
-                                              promocodeData: data.data[index],
-                                            ).animate(
-                                              effects: [
-                                                MoveEffect(
-                                                  begin: Offset(
-                                                      index % 2 == 0
-                                                          ? -MediaQuery.sizeOf(
-                                                                  context)
-                                                              .width
-                                                          : MediaQuery.sizeOf(
-                                                                  context)
-                                                              .width,
-                                                      0),
-                                                  end: const Offset(0, 0),
-                                                  duration: 1000.ms,
-                                                  delay: (index * 300).ms,
-                                                  curve: Curves
-                                                      .fastLinearToSlowEaseIn,
-                                                )
-                                              ],
-                                            ),
+                                orElse: () => const Center(
+                                    child: CircularProgressIndicator()),
+                                loaded: (data) => data.data.isEmpty
+                                    ? const Center(
+                                        child: Text("Ma'lumot mavjud emas"),
+                                      )
+                                    : ListView.builder(
+                                        padding: EdgeInsets.zero,
+                                        itemCount: data.data.length,
+                                        shrinkWrap: true,
+                                        itemBuilder: (context, index) =>
+                                            Padding(
+                                          padding:
+                                              const EdgeInsets.only(bottom: 12),
+                                          child: MyPromoCard(
+                                            promocodeData: data.data[index],
+                                          ).animate(
+                                            effects: [
+                                              MoveEffect(
+                                                begin: Offset(
+                                                    index % 2 == 0
+                                                        ? -MediaQuery.sizeOf(
+                                                                context)
+                                                            .width
+                                                        : MediaQuery.sizeOf(
+                                                                context)
+                                                            .width,
+                                                    0),
+                                                end: const Offset(0, 0),
+                                                duration: 1000.ms,
+                                                delay: (index * 300).ms,
+                                                curve: Curves
+                                                    .fastLinearToSlowEaseIn,
+                                              )
+                                            ],
                                           ),
-                                        ));
+                                        ),
+                                      ),
+                              );
                             },
                           ),
                         ),
