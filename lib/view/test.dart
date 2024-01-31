@@ -1,4 +1,3 @@
-import 'package:dataspin_academy/view/screen/promo_code/widget/promocode_card_square.dart';
 import 'package:flutter/material.dart';
 
 class TestData extends StatelessWidget {
@@ -8,7 +7,7 @@ class TestData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(child: PromoCodeCardSquare()),
+      body: Center(child: Text("data")),
     );
   }
 }

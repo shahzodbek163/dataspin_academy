@@ -1,5 +1,4 @@
 import 'package:dataspin_academy/controller/bloc/promocode/create_promo/create_promo_cubit.dart';
-import 'package:dataspin_academy/controller/bloc/promocode/my_promos/get_my_promos_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/promocode/get_all_promo/get_all_promo_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/promocode/my_promos/get_my_promos_cubit.dart';
 import 'package:dataspin_academy/view/screen/mycourse/widget/selectable_button.dart';
@@ -33,6 +32,7 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
   @override
   void initState() {
     getMyPromoCodeCubit.getData();
+    getAllPromoCubit.getAllPromocode();
     super.initState();
   }
 
@@ -45,23 +45,6 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
   }
 
   final getAllPromoCubit = GetAllPromoCubit();
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    getAllPromoCubit.getAllPromocode();
-  }
-
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-    pageController.dispose();
-    createPromoCubit.close();
-    promoController.dispose();
-    getAllPromoCubit.close();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -98,36 +81,53 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
                 child: PageView(
                   controller: pageController,
                   children: [
-                    AnimationLimiter(
-                      child: MasonryGridView.builder(
-                        shrinkWrap: true,
-                        padding: EdgeInsets.zero,
-                        physics: const BouncingScrollPhysics(),
-                        addAutomaticKeepAlives: true,
-                        itemCount: 21,
-                        crossAxisSpacing: 16,
-                        mainAxisSpacing: 16,
-                        gridDelegate:
-                            const SliverSimpleGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                        ),
-                        itemBuilder: (context, index) {
-                          return AnimationConfiguration.staggeredGrid(
-                            columnCount: 21,
-                            position: index,
-                            duration: const Duration(milliseconds: 800),
-                            child: const ScaleAnimation(
-                              child:
-                                  FadeInAnimation(child: PromoCodeCardSquare()),
-                            ),
-                          );
-                        },
-                      ),
+                    BlocBuilder<GetAllPromoCubit, GetAllPromoState>(
+                      bloc: getAllPromoCubit,
+                      builder: (context, state) {
+                        return state.maybeWhen(
+                            orElse: () => const Center(
+                                  child: CircularProgressIndicator(),
+                                ),
+                            loaded: (data) => data.data.isEmpty
+                                ? const Center(
+                                    child: Text("Ma'lumot mavjud emas"),
+                                  )
+                                : AnimationLimiter(
+                                    child: MasonryGridView.builder(
+                                      shrinkWrap: true,
+                                      padding: EdgeInsets.zero,
+                                      physics: const BouncingScrollPhysics(),
+                                      addAutomaticKeepAlives: true,
+                                      itemCount: 21,
+                                      crossAxisSpacing: 16,
+                                      mainAxisSpacing: 16,
+                                      gridDelegate:
+                                          const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 2,
+                                      ),
+                                      itemBuilder: (context, index) {
+                                        return AnimationConfiguration
+                                            .staggeredGrid(
+                                          columnCount: data.data.length,
+                                          position: index,
+                                          duration:
+                                              const Duration(milliseconds: 800),
+                                          child: ScaleAnimation(
+                                            child: FadeInAnimation(
+                                                child: PromoCodeCardSquare(
+                                              allPromocodeData:
+                                                  data.data[index],
+                                            )),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ));
+                      },
                     ),
                     Column(
                       children: [
                         BlocBuilder<CreatePromoCubit, CreatePromoState>(
-                          bloc: createPromoCubit,
                           builder: (context, state) {
                             return Row(
                               crossAxisAlignment: CrossAxisAlignment.end,
@@ -148,9 +148,9 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
                                   color: Colors.transparent,
                                   child: InkWell(
                                     onTap: () {
-                                      createPromoCubit.create(
-                                        promoController.text.trim(),
-                                      );
+                                      context.read<CreatePromoCubit>().create(
+                                            promoController.text.trim(),
+                                          );
                                     },
                                     borderRadius: BorderRadius.circular(8),
                                     child: Container(
@@ -186,28 +186,49 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
                         ),
                         SizedBox(height: 16.h),
                         Expanded(
-                          child: ListView.builder(
-                            padding: EdgeInsets.zero,
-                            itemCount: 20,
-                            shrinkWrap: true,
-                            itemBuilder: (context, index) => Padding(
-                              padding: const EdgeInsets.only(bottom: 12),
-                              child: const MyPromoCard().animate(
-                                effects: [
-                                  MoveEffect(
-                                    begin: Offset(
-                                        index % 2 == 0
-                                            ? -MediaQuery.sizeOf(context).width
-                                            : MediaQuery.sizeOf(context).width,
-                                        0),
-                                    end: const Offset(0, 0),
-                                    duration: 1000.ms,
-                                    delay: (index * 300).ms,
-                                    curve: Curves.fastLinearToSlowEaseIn,
-                                  )
-                                ],
-                              ),
-                            ),
+                          child:
+                              BlocBuilder<GetMyPromosCubit, GetMyPromosState>(
+                            builder: (context, state) {
+                              return state.maybeWhen(
+                                  orElse: () => const Center(
+                                      child: CircularProgressIndicator()),
+                                  loaded: (data) => data.data.isEmpty
+                                      ? const Center(
+                                          child: Text("Ma'lumot mavjud emas"),
+                                        )
+                                      : ListView.builder(
+                                          padding: EdgeInsets.zero,
+                                          itemCount: 20,
+                                          shrinkWrap: true,
+                                          itemBuilder: (context, index) =>
+                                              Padding(
+                                            padding: const EdgeInsets.only(
+                                                bottom: 12),
+                                            child: MyPromoCard(
+                                              promocodeData: data.data[index],
+                                            ).animate(
+                                              effects: [
+                                                MoveEffect(
+                                                  begin: Offset(
+                                                      index % 2 == 0
+                                                          ? -MediaQuery.sizeOf(
+                                                                  context)
+                                                              .width
+                                                          : MediaQuery.sizeOf(
+                                                                  context)
+                                                              .width,
+                                                      0),
+                                                  end: const Offset(0, 0),
+                                                  duration: 1000.ms,
+                                                  delay: (index * 300).ms,
+                                                  curve: Curves
+                                                      .fastLinearToSlowEaseIn,
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ));
+                            },
                           ),
                         ),
                       ],
