@@ -81,4 +81,7 @@ abstract class ApiService {
   Future<AboutUsResult> aboutUsInfo();
   @GET("/comments/")
   Future<CommentResponse> getComment(@Part(name: "course_id") int courseId);
+
+  @POST("/promo/new")
+  Future<MentorResult> createPromo(@Part(name: "promocode") String promoCode);
 }
