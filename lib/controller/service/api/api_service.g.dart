@@ -13,7 +13,7 @@ class _ApiService implements ApiService {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://192.168.161.66/api';
+    baseUrl ??= 'http://192.168.54.66/api';
   }
 
   final Dio _dio;
@@ -67,15 +67,13 @@ class _ApiService implements ApiService {
         tel2,
       ));
     }
-    if (profilePhoto != null) {
-      _data.files.add(MapEntry(
-        'profilePhoto',
-        MultipartFile.fromFileSync(
-          profilePhoto.path,
-          filename: profilePhoto.path.split(Platform.pathSeparator).last,
-        ),
-      ));
-    }
+    _data.files.add(MapEntry(
+      'profilePhoto',
+      MultipartFile.fromFileSync(
+        profilePhoto.path,
+        filename: profilePhoto.path.split(Platform.pathSeparator).last,
+      ),
+    ));
     _data.fields.add(MapEntry(
       'username',
       username,
@@ -340,15 +338,13 @@ class _ApiService implements ApiService {
         birthday,
       ));
     }
-    if (photo != null) {
-      _data.files.add(MapEntry(
-        'photo',
-        MultipartFile.fromFileSync(
-          photo.path,
-          filename: photo.path.split(Platform.pathSeparator).last,
-        ),
-      ));
-    }
+    _data.files.add(MapEntry(
+      'photo',
+      MultipartFile.fromFileSync(
+        photo.path,
+        filename: photo.path.split(Platform.pathSeparator).last,
+      ),
+    ));
     if (tel1 != null) {
       _data.fields.add(MapEntry(
         'tel1',
@@ -506,6 +502,84 @@ class _ApiService implements ApiService {
               baseUrl,
             ))));
     final value = MentorResult.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<bool> getMyPromo() async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<bool>(_setStreamType<bool>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/promo/user',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        ))));
+    final value = _result.data!;
+    return value;
+  }
+
+  @override
+  Future<bool> getAllPromo() async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<bool>(_setStreamType<bool>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/promo/',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        ))));
+    final value = _result.data!;
+    return value;
+  }
+
+  @override
+  Future<bool> getPromoSubscribers(int id) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'id': id};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<bool>(_setStreamType<bool>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/promo/subscribers/',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        ))));
+    final value = _result.data!;
     return value;
   }
 

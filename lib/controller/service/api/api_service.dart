@@ -84,4 +84,13 @@ abstract class ApiService {
 
   @POST("/promo/new")
   Future<MentorResult> createPromo(@Part(name: "promocode") String promoCode);
+
+  @GET("/promo/user")
+  Future<bool> getMyPromo();
+
+  @GET("/promo/")
+  Future<bool> getAllPromo();
+
+  @GET("/promo/subscribers/")
+  Future<bool> getPromoSubscribers(@Query("id") int id);
 }
