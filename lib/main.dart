@@ -7,5 +7,3 @@ void main(List<String> args) async {
   await init();
   runApp(const MyApp());
 }
-//MuhammadAyyub
-//Ayyubbek08
