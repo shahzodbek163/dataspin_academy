@@ -5,110 +5,48 @@ class GalleryScreen extends StatelessWidget {
   static const String routeName = "/gallery_screen";
   GalleryScreen({super.key});
 
-  List countsMain = [2, 2, 1, 1, 4, 1, 2, 2];
-  List countsCross = [2, 1, 1, 1, 2, 1, 1, 2];
-  List colorsCont = [Colors.red, Colors.green, Colors.amber, Colors.black];
+  List photos = [
+    "https://imageio.forbes.com/specials-images/imageserve/5d35eacaf1176b0008974b54/2020-Chevrolet-Corvette-Stingray/0x0.jpg?format=jpg&crop=4560,2565,x790,y784,safe&width=960",
+    "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGNhcnN8ZW58MHx8MHx8fDA%3D",
+    "https://img.freepik.com/free-photo/luxurious-car-parked-highway-with-illuminated-headlight-sunset_181624-60607.jpg",
+    "https://images.pexels.com/photos/120049/pexels-photo-120049.jpeg?cs=srgb&dl=pexels-mike-bird-120049.jpg&fm=jpg",
+    "https://imageio.forbes.com/specials-images/imageserve/5d35eacaf1176b0008974b54/2020-Chevrolet-Corvette-Stingray/0x0.jpg?format=jpg&crop=4560,2565,x790,y784,safe&width=960",
+    "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGNhcnN8ZW58MHx8MHx8fDA%3D",
+    "https://img.freepik.com/free-photo/luxurious-car-parked-highway-with-illuminated-headlight-sunset_181624-60607.jpg",
+    "https://images.pexels.com/photos/120049/pexels-photo-120049.jpeg?cs=srgb&dl=pexels-mike-bird-120049.jpg&fm=jpg",
+    "https://imageio.forbes.com/specials-images/imageserve/5d35eacaf1176b0008974b54/2020-Chevrolet-Corvette-Stingray/0x0.jpg?format=jpg&crop=4560,2565,x790,y784,safe&width=960",
+    "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGNhcnN8ZW58MHx8MHx8fDA%3D",
+    "https://img.freepik.com/free-photo/luxurious-car-parked-highway-with-illuminated-headlight-sunset_181624-60607.jpg",
+    "https://images.pexels.com/photos/120049/pexels-photo-120049.jpeg?cs=srgb&dl=pexels-mike-bird-120049.jpg&fm=jpg",
+    "https://imageio.forbes.com/specials-images/imageserve/5d35eacaf1176b0008974b54/2020-Chevrolet-Corvette-Stingray/0x0.jpg?format=jpg&crop=4560,2565,x790,y784,safe&width=960",
+    "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGNhcnN8ZW58MHx8MHx8fDA%3D",
+    "https://img.freepik.com/free-photo/luxurious-car-parked-highway-with-illuminated-headlight-sunset_181624-60607.jpg",
+    "https://images.pexels.com/photos/120049/pexels-photo-120049.jpeg?cs=srgb&dl=pexels-mike-bird-120049.jpg&fm=jpg",
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              StaggeredGrid.count(
-                  crossAxisCount: 6,
-                  mainAxisSpacing: 4,
-                  crossAxisSpacing: 4,
-                  children: [
-                    StaggeredGridTile.count(
-                        crossAxisCellCount: 2,
-                        mainAxisCellCount: 4,
-                        child: Container(
-                          color: Colors.amber,
-                        )),
-                    StaggeredGridTile.count(
-                        crossAxisCellCount: 4,
-                        mainAxisCellCount: 2,
-                        child: Container(
-                          color: Colors.amber,
-                        )),
-                    StaggeredGridTile.count(
-                        crossAxisCellCount: 2,
-                        mainAxisCellCount: 2,
-                        child: Container(
-                          color: Colors.amber,
-                        )),
-                    StaggeredGridTile.count(
-                        crossAxisCellCount: 2,
-                        mainAxisCellCount: 2,
-                        child: Container(
-                          color: Colors.amber,
-                        )),
-                    StaggeredGridTile.count(
-                        crossAxisCellCount: 6,
-                        mainAxisCellCount: 2,
-                        child: Container(
-                          color: Colors.amber,
-                        )),
-                    StaggeredGridTile.count(
-                        crossAxisCellCount: 2,
-                        mainAxisCellCount: 2,
-                        child: Container(
-                          color: Colors.amber,
-                        )),
-                    StaggeredGridTile.count(
-                        crossAxisCellCount: 4,
-                        mainAxisCellCount: 2,
-                        child: Container(
-                          color: Colors.amber,
-                        )),
-                    StaggeredGridTile.count(
-                        crossAxisCellCount: 2,
-                        mainAxisCellCount: 4,
-                        child: Container(
-                          color: Colors.amber,
-                        )),
-                    StaggeredGridTile.count(
-                        crossAxisCellCount: 4,
-                        mainAxisCellCount: 2,
-                        child: Container(
-                          color: Colors.amber,
-                        )),
-                    StaggeredGridTile.count(
-                        crossAxisCellCount: 2,
-                        mainAxisCellCount: 2,
-                        child: Container(
-                          color: Colors.amber,
-                        )),
-                    StaggeredGridTile.count(
-                        crossAxisCellCount: 2,
-                        mainAxisCellCount: 2,
-                        child: Container(
-                          color: Colors.amber,
-                        )),
-                    StaggeredGridTile.count(
-                        crossAxisCellCount: 6,
-                        mainAxisCellCount: 2,
-                        child: Container(
-                          color: Colors.amber,
-                        )),
-                    StaggeredGridTile.count(
-                        crossAxisCellCount: 2,
-                        mainAxisCellCount: 2,
-                        child: Container(
-                          color: Colors.amber,
-                        )),
-                    StaggeredGridTile.count(
-                        crossAxisCellCount: 4,
-                        mainAxisCellCount: 2,
-                        child: Container(
-                          color: Colors.amber,
-                        )),
-                  ])
-            ],
-          ),
+          child: GridView.custom(
+              shrinkWrap: true,
+              gridDelegate: SliverQuiltedGridDelegate(
+                  crossAxisCount: 4,
+                  repeatPattern: QuiltedGridRepeatPattern.inverted,
+                  pattern: [
+                    const QuiltedGridTile(2, 2),
+                    const QuiltedGridTile(1, 1),
+                    const QuiltedGridTile(1, 1),
+                    const QuiltedGridTile(1, 2),
+                  ]),
+              childrenDelegate: SliverChildBuilderDelegate(
+                (context, index) => Image.network(
+                  photos[index],
+                  fit: BoxFit.cover,
+                ),
+                childCount: photos.length,
+              )),
         ),
       ),
     );
