@@ -1,4 +1,5 @@
 import 'package:dataspin_academy/controller/bloc/promocode/create_promo/create_promo_cubit.dart';
+import 'package:dataspin_academy/controller/bloc/promocode/get_all_promo/get_all_promo_cubit.dart';
 import 'package:dataspin_academy/view/screen/mycourse/widget/selectable_button.dart';
 import 'package:dataspin_academy/view/screen/promo_code/widget/my_promocode.dart';
 import 'package:dataspin_academy/view/screen/promo_code/widget/promocode_card_square.dart';
@@ -26,6 +27,25 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
   final pageController = PageController();
   final createPromoCubit = CreatePromoCubit();
   final promoController = TextEditingController();
+  final getAllPromoCubit = GetAllPromoCubit();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getAllPromoCubit.getAllPromocode();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    pageController.dispose();
+    createPromoCubit.close();
+    promoController.dispose();
+    getAllPromoCubit.close();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,31 +81,50 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
                 child: PageView(
                   controller: pageController,
                   children: [
-                    AnimationLimiter(
-                      child: MasonryGridView.builder(
-                        shrinkWrap: true,
-                        padding: EdgeInsets.zero,
-                        physics: const BouncingScrollPhysics(),
-                        addAutomaticKeepAlives: true,
-                        itemCount: 21,
-                        crossAxisSpacing: 16,
-                        mainAxisSpacing: 16,
-                        gridDelegate:
-                            const SliverSimpleGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                        ),
-                        itemBuilder: (context, index) {
-                          return AnimationConfiguration.staggeredGrid(
-                            columnCount: 21,
-                            position: index,
-                            duration: const Duration(milliseconds: 800),
-                            child: const ScaleAnimation(
-                              child:
-                                  FadeInAnimation(child: PromoCodeCardSquare()),
-                            ),
-                          );
-                        },
-                      ),
+                    BlocBuilder<GetAllPromoCubit, GetAllPromoState>(
+                      bloc: getAllPromoCubit,
+                      builder: (context, state) {
+                        return state.maybeWhen(
+                          orElse: () => const Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                          loaded: (response) => response.data.isEmpty
+                              ? const Center(
+                                  child: Text("Ma'lumot mavjud emas"),
+                                )
+                              : AnimationLimiter(
+                                  child: MasonryGridView.builder(
+                                    shrinkWrap: true,
+                                    padding: EdgeInsets.zero,
+                                    physics: const BouncingScrollPhysics(),
+                                    addAutomaticKeepAlives: true,
+                                    itemCount: response.data.length,
+                                    crossAxisSpacing: 16,
+                                    mainAxisSpacing: 16,
+                                    gridDelegate:
+                                        const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 2,
+                                    ),
+                                    itemBuilder: (context, index) {
+                                      return AnimationConfiguration
+                                          .staggeredGrid(
+                                        columnCount: 21,
+                                        position: index,
+                                        duration:
+                                            const Duration(milliseconds: 800),
+                                        child: ScaleAnimation(
+                                          child: FadeInAnimation(
+                                              child: PromoCodeCardSquare(
+                                            allPromocodeData:
+                                                response.data[index],
+                                          )),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                        );
+                      },
                     ),
                     Column(
                       children: [

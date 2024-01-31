@@ -1,9 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dataspin_academy/controller/service/api/app_ip.dart';
+import 'package:dataspin_academy/model/promocode/response/all_promocode_response.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
 import 'package:flutter/material.dart';
 
 class PromoCodeCardSquare extends StatelessWidget {
-  const PromoCodeCardSquare({Key? key}) : super(key: key);
+  AllPromocodeData allPromocodeData;
+  PromoCodeCardSquare({
+    Key? key,
+    required this.allPromocodeData,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,21 +25,25 @@ class PromoCodeCardSquare extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          const Text('3048687', style: AppFonts.h3w400),
+          Text(allPromocodeData.promoCode, style: AppFonts.h3w400),
           Container(
             width: 56,
             height: 56,
-            decoration: const ShapeDecoration(
+            decoration: ShapeDecoration(
               image: DecorationImage(
-                image: CachedNetworkImageProvider(
-                  "https://i.pinimg.com/originals/db/1f/9a/db1f9a3eaca4758faae5f83947fa807c.jpg",
-                ),
+                image: allPromocodeData.userInfo.profilePhoto == null
+                    ? const CachedNetworkImageProvider(
+                        "https://qph.cf2.quoracdn.net/main-qimg-2b21b9dd05c757fe30231fac65b504dd")
+                    : CachedNetworkImageProvider(
+                        "${AppIp.ip}/api/image/?id=${allPromocodeData.userInfo.profilePhoto!.id}"),
                 fit: BoxFit.cover,
               ),
-              shape: OvalBorder(),
+              shape: const OvalBorder(),
             ),
           ),
-          const Text('Aziza Ikomaliyeva', style: AppFonts.body12w400),
+          Text(
+              "${allPromocodeData.userInfo.firstname} ${allPromocodeData.userInfo.lastname}",
+              style: AppFonts.body12w400),
           Text(
             'Promokod orqali\nro’yxatdan o’tganlar',
             textAlign: TextAlign.center,
@@ -41,7 +51,8 @@ class PromoCodeCardSquare extends StatelessWidget {
               color: const Color(0XFF6941C6),
             ),
           ),
-          const Text('24 ta', style: AppFonts.body12w400),
+          Text(allPromocodeData.totalCount.toString(),
+              style: AppFonts.body12w400),
         ],
       ),
     );

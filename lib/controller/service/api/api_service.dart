@@ -12,6 +12,7 @@ import 'package:dataspin_academy/model/create_account/response/create_account_re
 import 'package:dataspin_academy/model/login/response/login_response.dart';
 import 'package:dataspin_academy/model/mentor/mentor_result.dart';
 import 'package:dataspin_academy/model/news/response/news_response.dart';
+import 'package:dataspin_academy/model/promocode/response/all_promocode_response.dart';
 import 'package:dataspin_academy/model/reception/request/new_reception_request.dart';
 import 'package:dataspin_academy/model/reception/response/new_reception_response.dart';
 import 'package:dio/dio.dart';
@@ -89,7 +90,7 @@ abstract class ApiService {
   Future<bool> getMyPromo();
 
   @GET("/promo/")
-  Future<bool> getAllPromo();
+  Future<AllPromocodeResponse> getAllPromo();
 
   @GET("/promo/subscribers/")
   Future<bool> getPromoSubscribers(@Query("id") int id);
