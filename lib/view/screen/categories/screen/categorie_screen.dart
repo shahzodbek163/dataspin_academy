@@ -116,7 +116,6 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                   itemBuilder: (context, index) => Padding(
                                     padding: const EdgeInsets.only(bottom: 24),
                                     child: CategoriesChips(
-                                      key: UniqueKey(),
                                       courseData: result.data[index]!,
                                     ),
                                   ).animate(
