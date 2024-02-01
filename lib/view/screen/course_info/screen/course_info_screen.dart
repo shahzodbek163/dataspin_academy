@@ -297,7 +297,13 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> {
                                 .toList(),
                           ),
                           SizedBox(height: 28.h),
-                          const CommentWidget()
+                          CommentWidget(
+                            courseId: context
+                                .read<CourseInfoProvider>()
+                                .courseWithPriceData!
+                                .course
+                                .id,
+                          )
                         ],
                       ),
                     ),

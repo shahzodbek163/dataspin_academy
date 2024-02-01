@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dataspin_academy/controller/service/api/app_ip.dart';
+import 'package:dataspin_academy/controller/service/api/url_photo.dart';
 import 'package:dataspin_academy/model/comment/response/comment_response.dart';
 import 'package:dataspin_academy/view/value/app_color.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
@@ -17,12 +18,6 @@ class CommentCardWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          commentData!.date.toString().substring(0, 10),
-          style: AppFonts.body14Regular.copyWith(
-            color: AppColor.primary,
-          ),
-        ),
         SizedBox(
           width: double.infinity,
           child: Text(
@@ -49,11 +44,14 @@ class CommentCardWidget extends StatelessWidget {
                         height: 36,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(18),
-                          child: CachedNetworkImage(
-                            imageUrl:
-                                "${AppIp.ip}/api/image/?id=${commentData!.userInfo.profilePhoto.id}",
-                            fit: BoxFit.cover,
-                          ),
+                          child: commentData!.userInfo.profilePhoto == null
+                              ? CachedNetworkImage(imageUrl: AppIcons.profileNo)
+                              : CachedNetworkImage(
+                                  imageUrl: UrlPhoto.url(commentData!
+                                      .userInfo.profilePhoto!.id
+                                      .toString()),
+                                  fit: BoxFit.cover,
+                                ),
                         ),
                       ),
                 SizedBox(width: 12.w),
@@ -62,6 +60,12 @@ class CommentCardWidget extends StatelessWidget {
                   style: AppFonts.body16w500,
                 ),
               ],
+            ),
+            Text(
+              commentData!.date.toString().substring(0, 10),
+              style: AppFonts.body14Regular.copyWith(
+                color: AppColor.primary,
+              ),
             ),
           ],
         ),

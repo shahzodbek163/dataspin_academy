@@ -83,7 +83,7 @@ class _AccountScreenState extends State<AccountScreen> {
 
                     if (secondaryNumberController.text.isNotEmpty) {
                       List<String> tel2 =
-                          convertToFormatPhone(response.data.secondaryPhone);
+                          convertToFormatPhone(response.data.secondaryPhone!);
 
                       secondaryNumberController.value = TextEditingValue(
                           text:
@@ -132,7 +132,7 @@ class _AccountScreenState extends State<AccountScreen> {
                         style: AppFonts.h3,
                       ),
                       Text(
-                        response.data.middlename,
+                        response.data.middlename ?? "",
                         style: AppFonts.h3,
                       ),
                       SizedBox(height: 10.h),

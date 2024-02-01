@@ -29,13 +29,15 @@ _$AccountDataImpl _$$AccountDataImplFromJson(Map<String, dynamic> json) =>
       userData: ProfilePhoto.fromJson(json['userData'] as Map<String, dynamic>),
       firstname: json['firstname'] as String,
       lastname: json['lastname'] as String,
-      middlename: json['middlename'] as String,
-      birthday: DateTime.parse(json['birthday'] as String),
+      middlename: json['middlename'] as String?,
+      birthday: json['birthday'] == null
+          ? null
+          : DateTime.parse(json['birthday'] as String),
       profilePhoto: json['profilePhoto'] == null
           ? null
           : ProfilePhoto.fromJson(json['profilePhoto'] as Map<String, dynamic>),
       primaryPhone: json['primaryPhone'] as String,
-      secondaryPhone: json['secondaryPhone'] as String,
+      secondaryPhone: json['secondaryPhone'] as String?,
     );
 
 Map<String, dynamic> _$$AccountDataImplToJson(_$AccountDataImpl instance) =>
@@ -46,7 +48,7 @@ Map<String, dynamic> _$$AccountDataImplToJson(_$AccountDataImpl instance) =>
       'firstname': instance.firstname,
       'lastname': instance.lastname,
       'middlename': instance.middlename,
-      'birthday': instance.birthday.toIso8601String(),
+      'birthday': instance.birthday?.toIso8601String(),
       'profilePhoto': instance.profilePhoto,
       'primaryPhone': instance.primaryPhone,
       'secondaryPhone': instance.secondaryPhone,

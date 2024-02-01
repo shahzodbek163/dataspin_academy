@@ -2,6 +2,7 @@
 //
 //     final commentResponse = commentResponseFromJson(jsonString);
 
+import 'package:dataspin_academy/model/account/response/account_response.dart';
 import 'package:meta/meta.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'dart:convert';
@@ -33,7 +34,7 @@ class CommentData with _$CommentData {
         @JsonKey(name: "id")
         required int id,
         @JsonKey(name: "userInfo")
-        required UserInfo userInfo,
+        required AccountData userInfo,
         @JsonKey(name: "date")
         required DateTime date,
         @JsonKey(name: "course")
@@ -57,33 +58,6 @@ class Course with _$Course {
     factory Course.fromJson(Map<String, dynamic> json) => _$CourseFromJson(json);
 }
 
-@freezed
-class UserInfo with _$UserInfo {
-    const factory UserInfo({
-        @JsonKey(name: "id")
-        required int id,
-        @JsonKey(name: "date")
-        required DateTime date,
-        @JsonKey(name: "profilePhoto")
-        required ProfilePhoto profilePhoto,
-        @JsonKey(name: "firstname")
-        required String firstname,
-        @JsonKey(name: "lastname")
-        required String lastname,
-        @JsonKey(name: "middlename")
-        required String middlename,
-        @JsonKey(name: "birthday")
-        required DateTime birthday,
-        @JsonKey(name: "primaryPhone")
-        required String primaryPhone,
-        @JsonKey(name: "secondaryPhone")
-        required String secondaryPhone,
-        @JsonKey(name: "userData")
-        required ProfilePhoto userData,
-    }) = _UserInfo;
-
-    factory UserInfo.fromJson(Map<String, dynamic> json) => _$UserInfoFromJson(json);
-}
 
 @freezed
 class ProfilePhoto with _$ProfilePhoto {

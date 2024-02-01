@@ -235,15 +235,15 @@ mixin _$AccountData {
   @JsonKey(name: "lastname")
   String get lastname => throw _privateConstructorUsedError;
   @JsonKey(name: "middlename")
-  String get middlename => throw _privateConstructorUsedError;
+  String? get middlename => throw _privateConstructorUsedError;
   @JsonKey(name: "birthday")
-  DateTime get birthday => throw _privateConstructorUsedError;
+  DateTime? get birthday => throw _privateConstructorUsedError;
   @JsonKey(name: "profilePhoto")
   ProfilePhoto? get profilePhoto => throw _privateConstructorUsedError;
   @JsonKey(name: "primaryPhone")
   String get primaryPhone => throw _privateConstructorUsedError;
   @JsonKey(name: "secondaryPhone")
-  String get secondaryPhone => throw _privateConstructorUsedError;
+  String? get secondaryPhone => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -263,11 +263,11 @@ abstract class $AccountDataCopyWith<$Res> {
       @JsonKey(name: "userData") ProfilePhoto userData,
       @JsonKey(name: "firstname") String firstname,
       @JsonKey(name: "lastname") String lastname,
-      @JsonKey(name: "middlename") String middlename,
-      @JsonKey(name: "birthday") DateTime birthday,
+      @JsonKey(name: "middlename") String? middlename,
+      @JsonKey(name: "birthday") DateTime? birthday,
       @JsonKey(name: "profilePhoto") ProfilePhoto? profilePhoto,
       @JsonKey(name: "primaryPhone") String primaryPhone,
-      @JsonKey(name: "secondaryPhone") String secondaryPhone});
+      @JsonKey(name: "secondaryPhone") String? secondaryPhone});
 
   $ProfilePhotoCopyWith<$Res> get userData;
   $ProfilePhotoCopyWith<$Res>? get profilePhoto;
@@ -291,11 +291,11 @@ class _$AccountDataCopyWithImpl<$Res, $Val extends AccountData>
     Object? userData = null,
     Object? firstname = null,
     Object? lastname = null,
-    Object? middlename = null,
-    Object? birthday = null,
+    Object? middlename = freezed,
+    Object? birthday = freezed,
     Object? profilePhoto = freezed,
     Object? primaryPhone = null,
-    Object? secondaryPhone = null,
+    Object? secondaryPhone = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -318,14 +318,14 @@ class _$AccountDataCopyWithImpl<$Res, $Val extends AccountData>
           ? _value.lastname
           : lastname // ignore: cast_nullable_to_non_nullable
               as String,
-      middlename: null == middlename
+      middlename: freezed == middlename
           ? _value.middlename
           : middlename // ignore: cast_nullable_to_non_nullable
-              as String,
-      birthday: null == birthday
+              as String?,
+      birthday: freezed == birthday
           ? _value.birthday
           : birthday // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       profilePhoto: freezed == profilePhoto
           ? _value.profilePhoto
           : profilePhoto // ignore: cast_nullable_to_non_nullable
@@ -334,10 +334,10 @@ class _$AccountDataCopyWithImpl<$Res, $Val extends AccountData>
           ? _value.primaryPhone
           : primaryPhone // ignore: cast_nullable_to_non_nullable
               as String,
-      secondaryPhone: null == secondaryPhone
+      secondaryPhone: freezed == secondaryPhone
           ? _value.secondaryPhone
           : secondaryPhone // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 
@@ -376,11 +376,11 @@ abstract class _$$AccountDataImplCopyWith<$Res>
       @JsonKey(name: "userData") ProfilePhoto userData,
       @JsonKey(name: "firstname") String firstname,
       @JsonKey(name: "lastname") String lastname,
-      @JsonKey(name: "middlename") String middlename,
-      @JsonKey(name: "birthday") DateTime birthday,
+      @JsonKey(name: "middlename") String? middlename,
+      @JsonKey(name: "birthday") DateTime? birthday,
       @JsonKey(name: "profilePhoto") ProfilePhoto? profilePhoto,
       @JsonKey(name: "primaryPhone") String primaryPhone,
-      @JsonKey(name: "secondaryPhone") String secondaryPhone});
+      @JsonKey(name: "secondaryPhone") String? secondaryPhone});
 
   @override
   $ProfilePhotoCopyWith<$Res> get userData;
@@ -404,11 +404,11 @@ class __$$AccountDataImplCopyWithImpl<$Res>
     Object? userData = null,
     Object? firstname = null,
     Object? lastname = null,
-    Object? middlename = null,
-    Object? birthday = null,
+    Object? middlename = freezed,
+    Object? birthday = freezed,
     Object? profilePhoto = freezed,
     Object? primaryPhone = null,
-    Object? secondaryPhone = null,
+    Object? secondaryPhone = freezed,
   }) {
     return _then(_$AccountDataImpl(
       id: null == id
@@ -431,14 +431,14 @@ class __$$AccountDataImplCopyWithImpl<$Res>
           ? _value.lastname
           : lastname // ignore: cast_nullable_to_non_nullable
               as String,
-      middlename: null == middlename
+      middlename: freezed == middlename
           ? _value.middlename
           : middlename // ignore: cast_nullable_to_non_nullable
-              as String,
-      birthday: null == birthday
+              as String?,
+      birthday: freezed == birthday
           ? _value.birthday
           : birthday // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       profilePhoto: freezed == profilePhoto
           ? _value.profilePhoto
           : profilePhoto // ignore: cast_nullable_to_non_nullable
@@ -447,10 +447,10 @@ class __$$AccountDataImplCopyWithImpl<$Res>
           ? _value.primaryPhone
           : primaryPhone // ignore: cast_nullable_to_non_nullable
               as String,
-      secondaryPhone: null == secondaryPhone
+      secondaryPhone: freezed == secondaryPhone
           ? _value.secondaryPhone
           : secondaryPhone // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -464,11 +464,11 @@ class _$AccountDataImpl implements _AccountData {
       @JsonKey(name: "userData") required this.userData,
       @JsonKey(name: "firstname") required this.firstname,
       @JsonKey(name: "lastname") required this.lastname,
-      @JsonKey(name: "middlename") required this.middlename,
-      @JsonKey(name: "birthday") required this.birthday,
+      @JsonKey(name: "middlename") this.middlename,
+      @JsonKey(name: "birthday") this.birthday,
       @JsonKey(name: "profilePhoto") this.profilePhoto,
       @JsonKey(name: "primaryPhone") required this.primaryPhone,
-      @JsonKey(name: "secondaryPhone") required this.secondaryPhone});
+      @JsonKey(name: "secondaryPhone") this.secondaryPhone});
 
   factory _$AccountDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$AccountDataImplFromJson(json);
@@ -490,10 +490,10 @@ class _$AccountDataImpl implements _AccountData {
   final String lastname;
   @override
   @JsonKey(name: "middlename")
-  final String middlename;
+  final String? middlename;
   @override
   @JsonKey(name: "birthday")
-  final DateTime birthday;
+  final DateTime? birthday;
   @override
   @JsonKey(name: "profilePhoto")
   final ProfilePhoto? profilePhoto;
@@ -502,7 +502,7 @@ class _$AccountDataImpl implements _AccountData {
   final String primaryPhone;
   @override
   @JsonKey(name: "secondaryPhone")
-  final String secondaryPhone;
+  final String? secondaryPhone;
 
   @override
   String toString() {
@@ -565,17 +565,17 @@ class _$AccountDataImpl implements _AccountData {
 
 abstract class _AccountData implements AccountData {
   const factory _AccountData(
-      {@JsonKey(name: "id") required final int id,
-      @JsonKey(name: "date") required final DateTime date,
-      @JsonKey(name: "userData") required final ProfilePhoto userData,
-      @JsonKey(name: "firstname") required final String firstname,
-      @JsonKey(name: "lastname") required final String lastname,
-      @JsonKey(name: "middlename") required final String middlename,
-      @JsonKey(name: "birthday") required final DateTime birthday,
-      @JsonKey(name: "profilePhoto") final ProfilePhoto? profilePhoto,
-      @JsonKey(name: "primaryPhone") required final String primaryPhone,
-      @JsonKey(name: "secondaryPhone")
-      required final String secondaryPhone}) = _$AccountDataImpl;
+          {@JsonKey(name: "id") required final int id,
+          @JsonKey(name: "date") required final DateTime date,
+          @JsonKey(name: "userData") required final ProfilePhoto userData,
+          @JsonKey(name: "firstname") required final String firstname,
+          @JsonKey(name: "lastname") required final String lastname,
+          @JsonKey(name: "middlename") final String? middlename,
+          @JsonKey(name: "birthday") final DateTime? birthday,
+          @JsonKey(name: "profilePhoto") final ProfilePhoto? profilePhoto,
+          @JsonKey(name: "primaryPhone") required final String primaryPhone,
+          @JsonKey(name: "secondaryPhone") final String? secondaryPhone}) =
+      _$AccountDataImpl;
 
   factory _AccountData.fromJson(Map<String, dynamic> json) =
       _$AccountDataImpl.fromJson;
@@ -597,10 +597,10 @@ abstract class _AccountData implements AccountData {
   String get lastname;
   @override
   @JsonKey(name: "middlename")
-  String get middlename;
+  String? get middlename;
   @override
   @JsonKey(name: "birthday")
-  DateTime get birthday;
+  DateTime? get birthday;
   @override
   @JsonKey(name: "profilePhoto")
   ProfilePhoto? get profilePhoto;
@@ -609,7 +609,7 @@ abstract class _AccountData implements AccountData {
   String get primaryPhone;
   @override
   @JsonKey(name: "secondaryPhone")
-  String get secondaryPhone;
+  String? get secondaryPhone;
   @override
   @JsonKey(ignore: true)
   _$$AccountDataImplCopyWith<_$AccountDataImpl> get copyWith =>

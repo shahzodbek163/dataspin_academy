@@ -1,6 +1,8 @@
+import 'package:dataspin_academy/controller/bloc/splash/jump_screen.dart';
 import 'package:dataspin_academy/controller/service/navigation/navigation_service.dart';
 import 'package:dataspin_academy/controller/service/transition/transitions.dart';
 import 'package:dataspin_academy/view/screen/account/screen/account_screen.dart';
+import 'package:dataspin_academy/view/screen/allcourse/screen/all_course_screen.dart';
 import 'package:dataspin_academy/view/screen/categories/screen/categorie_screen.dart';
 import 'package:dataspin_academy/view/screen/course_info/screen/course_info_screen.dart';
 import 'package:dataspin_academy/view/screen/gallery/screen/gallery_screen.dart';
@@ -20,7 +22,7 @@ import 'package:go_router/go_router.dart';
 class AppGoRouter {
   final router = GoRouter(
     navigatorKey: NavigationService.navigatorKey,
-    initialLocation: MainScreen.routeName,
+    initialLocation: LoginScreen.routeName,
     routes: [
       ///main
 
@@ -29,6 +31,20 @@ class AppGoRouter {
         pageBuilder: (context, state) => slideTransitionRight(
           state,
           const TestScreen(),
+        ),
+      ),
+      GoRoute(
+        path: AllCourseScreen.routeName,
+        pageBuilder: (context, state) => slideTransitionRight(
+          state,
+          const AllCourseScreen(),
+        ),
+      ),
+      GoRoute(
+        path: JumpScreen.routeName,
+        pageBuilder: (context, state) => slideTransitionRight(
+          state,
+          const JumpScreen(),
         ),
       ),
       GoRoute(

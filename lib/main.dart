@@ -3,7 +3,7 @@ import 'package:dataspin_academy/controller/service/init/init.dart';
 import 'package:flutter/material.dart';
 
 void main(List<String> args) async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();  
   await init();
   runApp(const MyApp());
 }
