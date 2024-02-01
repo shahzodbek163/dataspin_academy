@@ -221,7 +221,7 @@ mixin _$CommentData {
   @JsonKey(name: "id")
   int get id => throw _privateConstructorUsedError;
   @JsonKey(name: "userInfo")
-  UserInfo get userInfo => throw _privateConstructorUsedError;
+  AccountData get userInfo => throw _privateConstructorUsedError;
   @JsonKey(name: "date")
   DateTime get date => throw _privateConstructorUsedError;
   @JsonKey(name: "course")
@@ -243,12 +243,12 @@ abstract class $CommentDataCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: "id") int id,
-      @JsonKey(name: "userInfo") UserInfo userInfo,
+      @JsonKey(name: "userInfo") AccountData userInfo,
       @JsonKey(name: "date") DateTime date,
       @JsonKey(name: "course") Course course,
       @JsonKey(name: "replyText") String replyText});
 
-  $UserInfoCopyWith<$Res> get userInfo;
+  $AccountDataCopyWith<$Res> get userInfo;
   $CourseCopyWith<$Res> get course;
 }
 
@@ -279,7 +279,7 @@ class _$CommentDataCopyWithImpl<$Res, $Val extends CommentData>
       userInfo: null == userInfo
           ? _value.userInfo
           : userInfo // ignore: cast_nullable_to_non_nullable
-              as UserInfo,
+              as AccountData,
       date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
@@ -297,8 +297,8 @@ class _$CommentDataCopyWithImpl<$Res, $Val extends CommentData>
 
   @override
   @pragma('vm:prefer-inline')
-  $UserInfoCopyWith<$Res> get userInfo {
-    return $UserInfoCopyWith<$Res>(_value.userInfo, (value) {
+  $AccountDataCopyWith<$Res> get userInfo {
+    return $AccountDataCopyWith<$Res>(_value.userInfo, (value) {
       return _then(_value.copyWith(userInfo: value) as $Val);
     });
   }
@@ -322,13 +322,13 @@ abstract class _$$CommentDataImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: "id") int id,
-      @JsonKey(name: "userInfo") UserInfo userInfo,
+      @JsonKey(name: "userInfo") AccountData userInfo,
       @JsonKey(name: "date") DateTime date,
       @JsonKey(name: "course") Course course,
       @JsonKey(name: "replyText") String replyText});
 
   @override
-  $UserInfoCopyWith<$Res> get userInfo;
+  $AccountDataCopyWith<$Res> get userInfo;
   @override
   $CourseCopyWith<$Res> get course;
 }
@@ -358,7 +358,7 @@ class __$$CommentDataImplCopyWithImpl<$Res>
       userInfo: null == userInfo
           ? _value.userInfo
           : userInfo // ignore: cast_nullable_to_non_nullable
-              as UserInfo,
+              as AccountData,
       date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
@@ -393,7 +393,7 @@ class _$CommentDataImpl implements _CommentData {
   final int id;
   @override
   @JsonKey(name: "userInfo")
-  final UserInfo userInfo;
+  final AccountData userInfo;
   @override
   @JsonKey(name: "date")
   final DateTime date;
@@ -445,7 +445,7 @@ class _$CommentDataImpl implements _CommentData {
 abstract class _CommentData implements CommentData {
   const factory _CommentData(
           {@JsonKey(name: "id") required final int id,
-          @JsonKey(name: "userInfo") required final UserInfo userInfo,
+          @JsonKey(name: "userInfo") required final AccountData userInfo,
           @JsonKey(name: "date") required final DateTime date,
           @JsonKey(name: "course") required final Course course,
           @JsonKey(name: "replyText") required final String replyText}) =
@@ -459,7 +459,7 @@ abstract class _CommentData implements CommentData {
   int get id;
   @override
   @JsonKey(name: "userInfo")
-  UserInfo get userInfo;
+  AccountData get userInfo;
   @override
   @JsonKey(name: "date")
   DateTime get date;
@@ -630,399 +630,6 @@ abstract class _Course implements Course {
   @override
   @JsonKey(ignore: true)
   _$$CourseImplCopyWith<_$CourseImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-UserInfo _$UserInfoFromJson(Map<String, dynamic> json) {
-  return _UserInfo.fromJson(json);
-}
-
-/// @nodoc
-mixin _$UserInfo {
-  @JsonKey(name: "id")
-  int get id => throw _privateConstructorUsedError;
-  @JsonKey(name: "date")
-  DateTime get date => throw _privateConstructorUsedError;
-  @JsonKey(name: "profilePhoto")
-  ProfilePhoto get profilePhoto => throw _privateConstructorUsedError;
-  @JsonKey(name: "firstname")
-  String get firstname => throw _privateConstructorUsedError;
-  @JsonKey(name: "lastname")
-  String get lastname => throw _privateConstructorUsedError;
-  @JsonKey(name: "middlename")
-  String get middlename => throw _privateConstructorUsedError;
-  @JsonKey(name: "birthday")
-  DateTime get birthday => throw _privateConstructorUsedError;
-  @JsonKey(name: "primaryPhone")
-  String get primaryPhone => throw _privateConstructorUsedError;
-  @JsonKey(name: "secondaryPhone")
-  String get secondaryPhone => throw _privateConstructorUsedError;
-  @JsonKey(name: "userData")
-  ProfilePhoto get userData => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $UserInfoCopyWith<UserInfo> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $UserInfoCopyWith<$Res> {
-  factory $UserInfoCopyWith(UserInfo value, $Res Function(UserInfo) then) =
-      _$UserInfoCopyWithImpl<$Res, UserInfo>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: "id") int id,
-      @JsonKey(name: "date") DateTime date,
-      @JsonKey(name: "profilePhoto") ProfilePhoto profilePhoto,
-      @JsonKey(name: "firstname") String firstname,
-      @JsonKey(name: "lastname") String lastname,
-      @JsonKey(name: "middlename") String middlename,
-      @JsonKey(name: "birthday") DateTime birthday,
-      @JsonKey(name: "primaryPhone") String primaryPhone,
-      @JsonKey(name: "secondaryPhone") String secondaryPhone,
-      @JsonKey(name: "userData") ProfilePhoto userData});
-
-  $ProfilePhotoCopyWith<$Res> get profilePhoto;
-  $ProfilePhotoCopyWith<$Res> get userData;
-}
-
-/// @nodoc
-class _$UserInfoCopyWithImpl<$Res, $Val extends UserInfo>
-    implements $UserInfoCopyWith<$Res> {
-  _$UserInfoCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? date = null,
-    Object? profilePhoto = null,
-    Object? firstname = null,
-    Object? lastname = null,
-    Object? middlename = null,
-    Object? birthday = null,
-    Object? primaryPhone = null,
-    Object? secondaryPhone = null,
-    Object? userData = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      date: null == date
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      profilePhoto: null == profilePhoto
-          ? _value.profilePhoto
-          : profilePhoto // ignore: cast_nullable_to_non_nullable
-              as ProfilePhoto,
-      firstname: null == firstname
-          ? _value.firstname
-          : firstname // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastname: null == lastname
-          ? _value.lastname
-          : lastname // ignore: cast_nullable_to_non_nullable
-              as String,
-      middlename: null == middlename
-          ? _value.middlename
-          : middlename // ignore: cast_nullable_to_non_nullable
-              as String,
-      birthday: null == birthday
-          ? _value.birthday
-          : birthday // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      primaryPhone: null == primaryPhone
-          ? _value.primaryPhone
-          : primaryPhone // ignore: cast_nullable_to_non_nullable
-              as String,
-      secondaryPhone: null == secondaryPhone
-          ? _value.secondaryPhone
-          : secondaryPhone // ignore: cast_nullable_to_non_nullable
-              as String,
-      userData: null == userData
-          ? _value.userData
-          : userData // ignore: cast_nullable_to_non_nullable
-              as ProfilePhoto,
-    ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ProfilePhotoCopyWith<$Res> get profilePhoto {
-    return $ProfilePhotoCopyWith<$Res>(_value.profilePhoto, (value) {
-      return _then(_value.copyWith(profilePhoto: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ProfilePhotoCopyWith<$Res> get userData {
-    return $ProfilePhotoCopyWith<$Res>(_value.userData, (value) {
-      return _then(_value.copyWith(userData: value) as $Val);
-    });
-  }
-}
-
-/// @nodoc
-abstract class _$$UserInfoImplCopyWith<$Res>
-    implements $UserInfoCopyWith<$Res> {
-  factory _$$UserInfoImplCopyWith(
-          _$UserInfoImpl value, $Res Function(_$UserInfoImpl) then) =
-      __$$UserInfoImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: "id") int id,
-      @JsonKey(name: "date") DateTime date,
-      @JsonKey(name: "profilePhoto") ProfilePhoto profilePhoto,
-      @JsonKey(name: "firstname") String firstname,
-      @JsonKey(name: "lastname") String lastname,
-      @JsonKey(name: "middlename") String middlename,
-      @JsonKey(name: "birthday") DateTime birthday,
-      @JsonKey(name: "primaryPhone") String primaryPhone,
-      @JsonKey(name: "secondaryPhone") String secondaryPhone,
-      @JsonKey(name: "userData") ProfilePhoto userData});
-
-  @override
-  $ProfilePhotoCopyWith<$Res> get profilePhoto;
-  @override
-  $ProfilePhotoCopyWith<$Res> get userData;
-}
-
-/// @nodoc
-class __$$UserInfoImplCopyWithImpl<$Res>
-    extends _$UserInfoCopyWithImpl<$Res, _$UserInfoImpl>
-    implements _$$UserInfoImplCopyWith<$Res> {
-  __$$UserInfoImplCopyWithImpl(
-      _$UserInfoImpl _value, $Res Function(_$UserInfoImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? date = null,
-    Object? profilePhoto = null,
-    Object? firstname = null,
-    Object? lastname = null,
-    Object? middlename = null,
-    Object? birthday = null,
-    Object? primaryPhone = null,
-    Object? secondaryPhone = null,
-    Object? userData = null,
-  }) {
-    return _then(_$UserInfoImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      date: null == date
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      profilePhoto: null == profilePhoto
-          ? _value.profilePhoto
-          : profilePhoto // ignore: cast_nullable_to_non_nullable
-              as ProfilePhoto,
-      firstname: null == firstname
-          ? _value.firstname
-          : firstname // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastname: null == lastname
-          ? _value.lastname
-          : lastname // ignore: cast_nullable_to_non_nullable
-              as String,
-      middlename: null == middlename
-          ? _value.middlename
-          : middlename // ignore: cast_nullable_to_non_nullable
-              as String,
-      birthday: null == birthday
-          ? _value.birthday
-          : birthday // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      primaryPhone: null == primaryPhone
-          ? _value.primaryPhone
-          : primaryPhone // ignore: cast_nullable_to_non_nullable
-              as String,
-      secondaryPhone: null == secondaryPhone
-          ? _value.secondaryPhone
-          : secondaryPhone // ignore: cast_nullable_to_non_nullable
-              as String,
-      userData: null == userData
-          ? _value.userData
-          : userData // ignore: cast_nullable_to_non_nullable
-              as ProfilePhoto,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$UserInfoImpl implements _UserInfo {
-  const _$UserInfoImpl(
-      {@JsonKey(name: "id") required this.id,
-      @JsonKey(name: "date") required this.date,
-      @JsonKey(name: "profilePhoto") required this.profilePhoto,
-      @JsonKey(name: "firstname") required this.firstname,
-      @JsonKey(name: "lastname") required this.lastname,
-      @JsonKey(name: "middlename") required this.middlename,
-      @JsonKey(name: "birthday") required this.birthday,
-      @JsonKey(name: "primaryPhone") required this.primaryPhone,
-      @JsonKey(name: "secondaryPhone") required this.secondaryPhone,
-      @JsonKey(name: "userData") required this.userData});
-
-  factory _$UserInfoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$UserInfoImplFromJson(json);
-
-  @override
-  @JsonKey(name: "id")
-  final int id;
-  @override
-  @JsonKey(name: "date")
-  final DateTime date;
-  @override
-  @JsonKey(name: "profilePhoto")
-  final ProfilePhoto profilePhoto;
-  @override
-  @JsonKey(name: "firstname")
-  final String firstname;
-  @override
-  @JsonKey(name: "lastname")
-  final String lastname;
-  @override
-  @JsonKey(name: "middlename")
-  final String middlename;
-  @override
-  @JsonKey(name: "birthday")
-  final DateTime birthday;
-  @override
-  @JsonKey(name: "primaryPhone")
-  final String primaryPhone;
-  @override
-  @JsonKey(name: "secondaryPhone")
-  final String secondaryPhone;
-  @override
-  @JsonKey(name: "userData")
-  final ProfilePhoto userData;
-
-  @override
-  String toString() {
-    return 'UserInfo(id: $id, date: $date, profilePhoto: $profilePhoto, firstname: $firstname, lastname: $lastname, middlename: $middlename, birthday: $birthday, primaryPhone: $primaryPhone, secondaryPhone: $secondaryPhone, userData: $userData)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UserInfoImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.date, date) || other.date == date) &&
-            (identical(other.profilePhoto, profilePhoto) ||
-                other.profilePhoto == profilePhoto) &&
-            (identical(other.firstname, firstname) ||
-                other.firstname == firstname) &&
-            (identical(other.lastname, lastname) ||
-                other.lastname == lastname) &&
-            (identical(other.middlename, middlename) ||
-                other.middlename == middlename) &&
-            (identical(other.birthday, birthday) ||
-                other.birthday == birthday) &&
-            (identical(other.primaryPhone, primaryPhone) ||
-                other.primaryPhone == primaryPhone) &&
-            (identical(other.secondaryPhone, secondaryPhone) ||
-                other.secondaryPhone == secondaryPhone) &&
-            (identical(other.userData, userData) ||
-                other.userData == userData));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      date,
-      profilePhoto,
-      firstname,
-      lastname,
-      middlename,
-      birthday,
-      primaryPhone,
-      secondaryPhone,
-      userData);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$UserInfoImplCopyWith<_$UserInfoImpl> get copyWith =>
-      __$$UserInfoImplCopyWithImpl<_$UserInfoImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$UserInfoImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _UserInfo implements UserInfo {
-  const factory _UserInfo(
-      {@JsonKey(name: "id") required final int id,
-      @JsonKey(name: "date") required final DateTime date,
-      @JsonKey(name: "profilePhoto") required final ProfilePhoto profilePhoto,
-      @JsonKey(name: "firstname") required final String firstname,
-      @JsonKey(name: "lastname") required final String lastname,
-      @JsonKey(name: "middlename") required final String middlename,
-      @JsonKey(name: "birthday") required final DateTime birthday,
-      @JsonKey(name: "primaryPhone") required final String primaryPhone,
-      @JsonKey(name: "secondaryPhone") required final String secondaryPhone,
-      @JsonKey(name: "userData")
-      required final ProfilePhoto userData}) = _$UserInfoImpl;
-
-  factory _UserInfo.fromJson(Map<String, dynamic> json) =
-      _$UserInfoImpl.fromJson;
-
-  @override
-  @JsonKey(name: "id")
-  int get id;
-  @override
-  @JsonKey(name: "date")
-  DateTime get date;
-  @override
-  @JsonKey(name: "profilePhoto")
-  ProfilePhoto get profilePhoto;
-  @override
-  @JsonKey(name: "firstname")
-  String get firstname;
-  @override
-  @JsonKey(name: "lastname")
-  String get lastname;
-  @override
-  @JsonKey(name: "middlename")
-  String get middlename;
-  @override
-  @JsonKey(name: "birthday")
-  DateTime get birthday;
-  @override
-  @JsonKey(name: "primaryPhone")
-  String get primaryPhone;
-  @override
-  @JsonKey(name: "secondaryPhone")
-  String get secondaryPhone;
-  @override
-  @JsonKey(name: "userData")
-  ProfilePhoto get userData;
-  @override
-  @JsonKey(ignore: true)
-  _$$UserInfoImplCopyWith<_$UserInfoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

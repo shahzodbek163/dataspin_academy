@@ -42,7 +42,7 @@ class ThreeIconWidget extends StatelessWidget {
             children: [
               SvgPicture.asset(AppIcons.twoUser, height: 24.h),
               Text(
-                "${context.read<CourseInfoProvider>().courseWithPriceData!.receptionCounter!.activeCount} nafar o'quvchi",
+                "${context.read<CourseInfoProvider>().courseWithPriceData!.receptionCounter.activeCount} nafar o'quvchi",
                 style: AppFonts.body16Regular,
               ),
             ],
@@ -57,7 +57,7 @@ class ThreeIconWidget extends StatelessWidget {
               launchUrl(Uri(
                   scheme: "tel",
                   path:
-                      "+${context.read<CourseInfoProvider>().courseWithPriceData!.mentor!.employee.face.tel1}"));
+                      "+${context.read<CourseInfoProvider>().courseWithPriceData!.mentor.employee.face.tel1}"));
             },
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,

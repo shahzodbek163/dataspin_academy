@@ -13,7 +13,7 @@ class _ApiService implements ApiService {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://192.168.54.66/api';
+    baseUrl ??= 'http://192.168.217.66/api';
   }
 
   final Dio _dio;
@@ -586,6 +586,71 @@ class _ApiService implements ApiService {
           baseUrl,
         ))));
     final value = _result.data!;
+    return value;
+  }
+
+  @override
+  Future<ReceptionByUserResponse> getReceptionByUser() async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ReceptionByUserResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/reception/by-user',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = ReceptionByUserResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<MentorResult> postComment(
+    int courseId,
+    String text,
+  ) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = FormData();
+    _data.fields.add(MapEntry(
+      'course_id',
+      courseId.toString(),
+    ));
+    _data.fields.add(MapEntry(
+      'text',
+      text,
+    ));
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<MentorResult>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/comments/reply',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = MentorResult.fromJson(_result.data!);
     return value;
   }
 

@@ -15,6 +15,7 @@ import 'package:dataspin_academy/model/news/response/news_response.dart';
 import 'package:dataspin_academy/model/promocode/response/all_promocode_response.dart';
 import 'package:dataspin_academy/model/reception/request/new_reception_request.dart';
 import 'package:dataspin_academy/model/reception/response/new_reception_response.dart';
+import 'package:dataspin_academy/model/reception/response/reception_by_user/response/reception_by_user_response.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/http.dart';
 
@@ -94,4 +95,13 @@ abstract class ApiService {
 
   @GET("/promo/subscribers/")
   Future<bool> getPromoSubscribers(@Query("id") int id);
+
+  @GET("/reception/by-user")
+  Future<ReceptionByUserResponse> getReceptionByUser();
+
+  @POST("/comments/reply")
+  Future<MentorResult> postComment(
+    @Part(name: "course_id") int courseId,
+    @Part(name: "text") String text,
+  );
 }

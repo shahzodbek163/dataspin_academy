@@ -20,4 +20,6 @@ class AppIcons {
   static const String image = "assets/icons/Image.svg";
   static const String camera = "assets/icons/Camera.svg";
   static const String us = "assets/icons/user_tag.svg";
+  static const String profileNo = "https://qph.cf2.quoracdn.net/main-qimg-2b21b9dd05c757fe30231fac65b504dd";
+  static const String fling = "assets/icons/fling.svg";
 }

@@ -27,7 +27,7 @@ Map<String, dynamic> _$$CommentResponseImplToJson(
 _$CommentDataImpl _$$CommentDataImplFromJson(Map<String, dynamic> json) =>
     _$CommentDataImpl(
       id: json['id'] as int,
-      userInfo: UserInfo.fromJson(json['userInfo'] as Map<String, dynamic>),
+      userInfo: AccountData.fromJson(json['userInfo'] as Map<String, dynamic>),
       date: DateTime.parse(json['date'] as String),
       course: Course.fromJson(json['course'] as Map<String, dynamic>),
       replyText: json['replyText'] as String,
@@ -51,35 +51,6 @@ Map<String, dynamic> _$$CourseImplToJson(_$CourseImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
       'id': instance.id,
-    };
-
-_$UserInfoImpl _$$UserInfoImplFromJson(Map<String, dynamic> json) =>
-    _$UserInfoImpl(
-      id: json['id'] as int,
-      date: DateTime.parse(json['date'] as String),
-      profilePhoto:
-          ProfilePhoto.fromJson(json['profilePhoto'] as Map<String, dynamic>),
-      firstname: json['firstname'] as String,
-      lastname: json['lastname'] as String,
-      middlename: json['middlename'] as String,
-      birthday: DateTime.parse(json['birthday'] as String),
-      primaryPhone: json['primaryPhone'] as String,
-      secondaryPhone: json['secondaryPhone'] as String,
-      userData: ProfilePhoto.fromJson(json['userData'] as Map<String, dynamic>),
-    );
-
-Map<String, dynamic> _$$UserInfoImplToJson(_$UserInfoImpl instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'date': instance.date.toIso8601String(),
-      'profilePhoto': instance.profilePhoto,
-      'firstname': instance.firstname,
-      'lastname': instance.lastname,
-      'middlename': instance.middlename,
-      'birthday': instance.birthday.toIso8601String(),
-      'primaryPhone': instance.primaryPhone,
-      'secondaryPhone': instance.secondaryPhone,
-      'userData': instance.userData,
     };
 
 _$ProfilePhotoImpl _$$ProfilePhotoImplFromJson(Map<String, dynamic> json) =>

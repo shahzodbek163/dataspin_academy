@@ -35,11 +35,11 @@ class AccountData with _$AccountData {
     @JsonKey(name: "userData") required ProfilePhoto userData,
     @JsonKey(name: "firstname") required String firstname,
     @JsonKey(name: "lastname") required String lastname,
-    @JsonKey(name: "middlename") required String middlename,
-    @JsonKey(name: "birthday") required DateTime birthday,
-    @JsonKey(name: "profilePhoto")  ProfilePhoto? profilePhoto,
+    @JsonKey(name: "middlename") String? middlename,
+    @JsonKey(name: "birthday") DateTime? birthday,
+    @JsonKey(name: "profilePhoto") ProfilePhoto? profilePhoto,
     @JsonKey(name: "primaryPhone") required String primaryPhone,
-    @JsonKey(name: "secondaryPhone") required String secondaryPhone,
+    @JsonKey(name: "secondaryPhone") String? secondaryPhone,
   }) = _AccountData;
 
   factory AccountData.fromJson(Map<String, dynamic> json) =>
