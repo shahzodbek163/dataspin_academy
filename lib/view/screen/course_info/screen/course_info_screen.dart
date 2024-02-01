@@ -41,6 +41,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: WillPopScope(
         onWillPop: () async {
           context.read<NewReceptionCubit>().backInitialState();
@@ -190,11 +191,10 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> {
                                     .maybeWhen(
                                       orElse: () {},
                                       initial: () {
-                                        showDialog(
-                                          context: context,
-                                          builder: (context) =>
-                                              const DialogWidget(),
-                                        );
+                                        showModalBottomSheet(
+                                            context: context,
+                                            builder: (context) =>
+                                                const DialogWidget());
                                       },
                                     );
                               },
@@ -217,8 +217,9 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> {
                                 .courseWithPriceData!
                                 .course
                                 .description,
-                            style: AppFonts.body16Regular
-                                .copyWith(color: AppColor.txtSecondColor),
+                            style: AppFonts.body16Regular.copyWith(
+                              color: AppColor.txtSecondColor,
+                            ),
                           ),
                           SizedBox(height: 24.h),
                           const ThreeIconWidget(),
@@ -308,23 +309,6 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> {
                     ),
                   )
                 ],
-              ),
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: MainButton(
-                onTap: () {
-                  context.read<NewReceptionCubit>().state.maybeWhen(
-                        orElse: () {},
-                        initial: () {
-                          showModalBottomSheet(
-                              context: context,
-                              builder: (context) => const DialogWidget());
-                        },
-                      );
-                },
-                text: "Ro'yxatdan o'tish",
-                height: 62.h,
               ),
             ),
             BlocBuilder<NewReceptionCubit, NewReceptionState>(

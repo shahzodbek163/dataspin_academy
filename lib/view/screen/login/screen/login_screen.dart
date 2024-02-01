@@ -1,4 +1,5 @@
 import 'package:dataspin_academy/controller/bloc/auth/login/login_cubit/login_cubit.dart';
+import 'package:dataspin_academy/view/screen/main/screen/main_screen.dart';
 import 'package:dataspin_academy/view/screen/register/first_step/screen/first_step_screen.dart';
 import 'package:dataspin_academy/view/value/app_color.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
@@ -111,8 +112,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       setState(() {});
                       if (usernameController.text.isNotEmpty &&
                           passwordController.text.isNotEmpty) {
-                        _loginCubit.login(usernameController.text.trim(),
-                            passwordController.text.trim());
+                        _loginCubit.login(
+                          usernameController.text.trim(),
+                          passwordController.text.trim(),
+                        );
                       }
                     },
                     isLoading: state.maybeWhen(

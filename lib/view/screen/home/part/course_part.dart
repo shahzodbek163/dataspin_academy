@@ -1,5 +1,6 @@
 import 'package:dataspin_academy/controller/bloc/course/course_price/cubit/course_with_price_cubit.dart';
 import 'package:dataspin_academy/controller/provider/course_info_provider.dart';
+import 'package:dataspin_academy/view/screen/allcourse/screen/all_course_screen.dart';
 import 'package:dataspin_academy/view/screen/course_info/screen/course_info_screen.dart';
 import 'package:dataspin_academy/view/screen/home/widget/course_card_widget.dart';
 import 'package:dataspin_academy/view/screen/home/widget/row_text_widget.dart';
@@ -33,7 +34,12 @@ class _CoursePartState extends State<CoursePart> {
         Padding(
           padding:
               EdgeInsets.symmetric(horizontal: AppSize.horizontalPadding.w),
-          child: const RowTextWidget(leftText: "Kurslar"),
+          child: RowTextWidget(
+            leftText: "Kurslar",
+            onTap: () {
+              context.push(AllCourseScreen.routeName);
+            },
+          ),
         ),
         SizedBox(height: 12.h),
         BlocBuilder<CourseWithPriceCubit, CourseWithPriceState>(

@@ -8,6 +8,7 @@ import 'package:dataspin_academy/view/value/app_icons.dart';
 import 'package:dataspin_academy/view/widget/appbars/simple_appbar.dart';
 import 'package:dataspin_academy/view/widget/buttons/selectble_row.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -115,8 +116,25 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                   itemBuilder: (context, index) => Padding(
                                     padding: const EdgeInsets.only(bottom: 24),
                                     child: CategoriesChips(
+                                      key: UniqueKey(),
                                       courseData: result.data[index]!,
                                     ),
+                                  ).animate(
+                                    effects: [
+                                      MoveEffect(
+                                        begin: Offset(
+                                            index % 2 == 0
+                                                ? -MediaQuery.sizeOf(context)
+                                                    .width
+                                                : MediaQuery.sizeOf(context)
+                                                    .width,
+                                            0),
+                                        end: const Offset(0, 0),
+                                        duration: 1000.ms,
+                                        delay: (index * 300).ms,
+                                        curve: Curves.fastLinearToSlowEaseIn,
+                                      )
+                                    ],
                                   ),
                                 ),
                               )
