@@ -10,6 +10,7 @@ import 'package:dataspin_academy/view/screen/home/screen/home_screen.dart';
 import 'package:dataspin_academy/view/screen/login/screen/login_screen.dart';
 import 'package:dataspin_academy/view/screen/main/screen/main_screen.dart';
 import 'package:dataspin_academy/view/screen/menu/screen/menu_screen.dart';
+import 'package:dataspin_academy/view/screen/news/screen/news_screen.dart';
 import 'package:dataspin_academy/view/screen/pdf_view/screen/pdf_view_screen.dart';
 import 'package:dataspin_academy/view/screen/profile_screen/screen/profile_screen.dart';
 import 'package:dataspin_academy/view/screen/promo_code/screen/promo_code_screen.dart';
@@ -22,7 +23,7 @@ import 'package:go_router/go_router.dart';
 class AppGoRouter {
   final router = GoRouter(
     navigatorKey: NavigationService.navigatorKey,
-    initialLocation: LoginScreen.routeName,
+    initialLocation: MainScreen.routeName,
     routes: [
       ///main
 
@@ -31,6 +32,20 @@ class AppGoRouter {
         pageBuilder: (context, state) => slideTransitionRight(
           state,
           const TestScreen(),
+        ),
+      ),
+      GoRoute(
+        path: TestScreen.routeName,
+        pageBuilder: (context, state) => slideTransitionRight(
+          state,
+          const TestScreen(),
+        ),
+      ),
+      GoRoute(
+        path: NewsScreen.routeName,
+        pageBuilder: (context, state) => slideTransitionRight(
+          state,
+          const NewsScreen(),
         ),
       ),
       GoRoute(
