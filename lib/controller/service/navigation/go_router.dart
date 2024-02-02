@@ -1,4 +1,5 @@
 import 'package:dataspin_academy/controller/bloc/splash/jump_screen.dart';
+import 'package:dataspin_academy/controller/provider/new_desc_provider.dart';
 import 'package:dataspin_academy/controller/service/navigation/navigation_service.dart';
 import 'package:dataspin_academy/controller/service/transition/transitions.dart';
 import 'package:dataspin_academy/view/screen/account/screen/account_screen.dart';
@@ -10,6 +11,7 @@ import 'package:dataspin_academy/view/screen/home/screen/home_screen.dart';
 import 'package:dataspin_academy/view/screen/login/screen/login_screen.dart';
 import 'package:dataspin_academy/view/screen/main/screen/main_screen.dart';
 import 'package:dataspin_academy/view/screen/menu/screen/menu_screen.dart';
+import 'package:dataspin_academy/view/screen/newdecs/screen/new_desc.dart';
 import 'package:dataspin_academy/view/screen/news/screen/news_screen.dart';
 import 'package:dataspin_academy/view/screen/pdf_view/screen/pdf_view_screen.dart';
 import 'package:dataspin_academy/view/screen/profile_screen/screen/profile_screen.dart';
@@ -18,6 +20,7 @@ import 'package:dataspin_academy/view/screen/register/first_step/screen/first_st
 import 'package:dataspin_academy/view/screen/register/second_step/screen/second_step_screen.dart';
 import 'package:dataspin_academy/view/screen/splash/splash_screen.dart';
 import 'package:dataspin_academy/view/screen/test_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class AppGoRouter {
@@ -140,6 +143,11 @@ class AppGoRouter {
           state,
           const PromoCodeScreen(),
         ),
+      ),
+      GoRoute(
+        path: NewDescScreen.routeName,
+        pageBuilder: (context, state) =>
+            slideTransitionRight(state, const NewDescScreen()),
       ),
       GoRoute(
         path: PdfViewScreen.routeName,

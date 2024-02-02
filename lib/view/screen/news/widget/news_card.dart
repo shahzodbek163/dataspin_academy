@@ -1,138 +1,140 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dataspin_academy/controller/provider/new_desc_provider.dart';
+import 'package:dataspin_academy/controller/service/api/url_photo.dart';
+import 'package:dataspin_academy/model/news/response/news_response.dart';
+import 'package:dataspin_academy/view/screen/newdecs/screen/new_desc.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
-class NewsCard extends StatefulWidget {
-  const NewsCard({super.key});
+class NewsCard extends StatelessWidget {
+  final NewsData data;
+  const NewsCard({
+    super.key,
+    required this.data,
+  });
 
-  @override
-  State<NewsCard> createState() => _NewsCardState();
-}
-
-class _NewsCardState extends State<NewsCard> {
   @override
   Widget build(BuildContext context) {
+    String month = "";
+    String day = "";
+    if (data.date.month < 10) {
+      month = "0${data.date.month}";
+    } else {
+      month = data.date.month.toString();
+    }
+    if (data.date.day < 10) {
+      day = "0${data.date.day}";
+    } else {
+      day = data.date.day.toString();
+    }
     return Container(
       height: 214,
       width: double.infinity,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5),
-        image: const DecorationImage(
+        borderRadius: BorderRadius.circular(8),
+        image: DecorationImage(
           fit: BoxFit.cover,
-          image: AssetImage("assets/image/picture0.png"),
+          image: CachedNetworkImageProvider(
+              UrlPhoto.url(data.photo.id.toString())),
         ),
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+      child: Stack(
         children: [
-          Row(
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              gradient: const LinearGradient(
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter,
+                colors: [Colors.black, Colors.black12],
+              ),
+            ),
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Container(
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(5),
-                    bottomRight: Radius.circular(5),
+              Row(
+                children: [
+                  Container(
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(5),
+                        bottomRight: Radius.circular(5),
+                      ),
+                      color: Color(0xFF6941C6),
+                    ),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                    child: Text(
+                      "${data.date.year}-$month-$day dan boshlab",
+                      style: AppFonts.body10Medium.copyWith(
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
-                  color: Color(0xFF6941C6),
-                ),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                child: Text(
-                  "2024 - yilning 12-fevraldan boshlab",
-                  style: AppFonts.body10Medium.copyWith(
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white,
-                  ),
-                ),
+                  const Spacer(),
+                ],
               ),
               const Spacer(),
-            ],
-          ),
-          const Spacer(),
-          Padding(
-            padding: const EdgeInsets.only(left: 18, right: 18, bottom: 15),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+              Padding(
+                padding: const EdgeInsets.only(left: 18, right: 18, bottom: 15),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 4),
-                      child: Row(
-                        children: [
-                          SvgPicture.asset(
-                            "assets/icons/carbon_delivery.svg",
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(height: 8),
+                        Text(
+                          data.name,
+                          style: AppFonts.h3.copyWith(
+                            color: Colors.white,
                           ),
-                          const SizedBox(width: 5),
-                          const Text(
-                            "Bepul yetkazib berish",
-                            style: AppFonts.body10Medium,
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      "Xiaomi smart toilet",
-                      style: AppFonts.h3.copyWith(
-                        color: Colors.white,
-                      ),
-                    ),
-                    const SizedBox(height: 1),
-                    SizedBox(
-                      width: 180,
-                      child: Text(
-                        "Erkaklar uchun maxsus ingichka disayndagi premium soat NordGreen",
-                        style: AppFonts.body12Regular.copyWith(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w400,
                         ),
-                      ),
+                        const SizedBox(height: 1),
+                        SizedBox(
+                          width: 180,
+                          child: Text(
+                            data.shortDesc,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: AppFonts.body12Regular.copyWith(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                    const SizedBox(height: 8),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF05AB63),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 2,
-                        horizontal: 6,
-                      ),
-                      child: Text(
-                        "2 350 000 so’m",
-                        style: AppFonts.body10Medium.copyWith(
-                          fontSize: 8,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
+                    const Spacer(),
+                    InkWell(
+                      onTap: () {
+                        context.read<NewDescProvider>().newsChange(data);
+                        context.push(NewDescScreen.routeName);
+                      },
+                      child: Container(
+                        width: 36,
+                        height: 36,
+                        alignment: Alignment.center,
+                        decoration: const BoxDecoration(
+                          color: Color(0xFf6941C6),
+                          shape: BoxShape.circle,
+                        ),
+                        child: SvgPicture.asset(
+                          "assets/icons/arrow_right.svg",
+                          width: 20,
+                          height: 20,
                         ),
                       ),
                     ),
                   ],
                 ),
-                const Spacer(),
-                Container(
-                  width: 36,
-                  height: 36,
-                  alignment: Alignment.center,
-                  decoration: const BoxDecoration(
-                    color: Color(0xFf6941C6),
-                    shape: BoxShape.circle,
-                  ),
-                  child: SvgPicture.asset(
-                    "assets/icons/arrow_right.svg",
-                    width: 20,
-                    height: 20,
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ],
       ),
