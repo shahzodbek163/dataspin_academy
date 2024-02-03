@@ -1,5 +1,5 @@
 class AppIp {
   AppIp._();
 
-  static const String ip = "http://192.168.181.66";
+  static const String ip = "http://192.168.58.66";
 }

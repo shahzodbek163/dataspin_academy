@@ -26,7 +26,7 @@ import 'package:go_router/go_router.dart';
 class AppGoRouter {
   final router = GoRouter(
     navigatorKey: NavigationService.navigatorKey,
-    initialLocation: MainScreen.routeName,
+    initialLocation: SplashScreen.routeName,
     routes: [
       ///main
 

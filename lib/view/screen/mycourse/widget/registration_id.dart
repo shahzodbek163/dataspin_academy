@@ -83,7 +83,7 @@ class RegistrationId extends StatelessWidget {
               ),
               const Spacer(),
               Text(
-                receptionByUserData.date.toString().substring(0, 10),
+                "${receptionByUserData.date.toString().substring(0, 10)} ${receptionByUserData.date.hour}:${receptionByUserData.date.minute}",
                 style: const TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w500,
