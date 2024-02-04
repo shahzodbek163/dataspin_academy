@@ -2,8 +2,7 @@
 //
 //     final newReceptionRequest = newReceptionRequestFromJson(jsonString);
 
-// ignore_for_file: invalid_annotation_target
-
+import 'package:meta/meta.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'dart:convert';
 
@@ -21,6 +20,7 @@ class NewReceptionRequest with _$NewReceptionRequest {
   const factory NewReceptionRequest({
     @JsonKey(name: "courseID") required int courseId,
     @JsonKey(name: "description") String? description,
+    @JsonKey(name: "promo_code") String? promoCode,
     @JsonKey(name: "receptionNumber") required String receptionNumber,
   }) = _NewReceptionRequest;
 

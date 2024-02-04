@@ -13,7 +13,7 @@ class _ApiService implements ApiService {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://192.168.217.66/api';
+    baseUrl ??= 'http://192.168.181.66/api';
   }
 
   final Dio _dio;
@@ -349,6 +349,7 @@ class _ApiService implements ApiService {
         ),
       ));
     }
+
     if (tel1 != null) {
       _data.fields.add(MapEntry(
         'tel1',
