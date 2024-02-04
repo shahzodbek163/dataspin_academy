@@ -16,6 +16,7 @@ import 'package:dataspin_academy/controller/bloc/reception/cubit/new_reception_c
 import 'package:dataspin_academy/controller/provider/category_info_provider.dart';
 import 'package:dataspin_academy/controller/provider/course_info_provider.dart';
 import 'package:dataspin_academy/controller/provider/for_pdf_view_provider.dart';
+import 'package:dataspin_academy/controller/provider/new_desc_provider.dart';
 import 'package:dataspin_academy/controller/provider/phone_number_provider.dart';
 import 'package:dataspin_academy/controller/provider/profile_data_provider.dart';
 import 'package:dataspin_academy/controller/provider/selectble_index_provider.dart';
@@ -42,6 +43,7 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (context) => PhoneNumberProvider()),
         ChangeNotifierProvider(create: (context) => ProfileDataProvider()),
         ChangeNotifierProvider(create: (context) => CategoryInfoProvider()),
+        ChangeNotifierProvider(create: (context) => NewDescProvider()),
         BlocProvider(create: (context) => AboutUsCubit()),
         BlocProvider(create: (context) => CourseTypeCubit()),
         BlocProvider(create: (context) => CourseForCubit()),

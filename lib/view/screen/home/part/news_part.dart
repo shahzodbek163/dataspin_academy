@@ -17,7 +17,7 @@ class NewsPart extends StatelessWidget {
           orElse: () => const SizedBox(),
           getting: () => const Center(child: CircularProgressIndicator()),
           get: (result) {
-            if (result.data!.isEmpty) {
+            if (result.data.isEmpty) {
               return const SizedBox();
             } else {
               return Stack(
@@ -25,10 +25,10 @@ class NewsPart extends StatelessWidget {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(8),
                     child: CarouselSlider.builder(
-                        itemCount: result.data!.length,
+                        itemCount: result.data.length,
                         itemBuilder: (context, index, realIndex) {
                           return NewsWidget(
-                            newsData: result.data![index],
+                            newsData: result.data[index],
                           );
                         },
                         options: CarouselOptions(
@@ -43,17 +43,19 @@ class NewsPart extends StatelessWidget {
                   Positioned(
                     right: 0,
                     child: Container(
-                      height: 20.h,
                       padding: EdgeInsets.symmetric(horizontal: 6.w),
                       decoration: const BoxDecoration(
-                          color: Color(0xFFFF5C00),
+                          color: Colors.green,
                           borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(8),
                               topRight: Radius.circular(8))),
-                      child: Text(
-                        "Yangiliklar",
-                        style:
-                            AppFonts.body12w700.copyWith(color: Colors.white),
+                      child: Padding(
+                        padding: const EdgeInsets.all(4),
+                        child: Text(
+                          "Yangiliklar",
+                          style:
+                              AppFonts.body12w700.copyWith(color: Colors.white),
+                        ),
                       ),
                     ),
                   ),
