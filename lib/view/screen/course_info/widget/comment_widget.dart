@@ -58,6 +58,7 @@ class _CommentWidgetState extends State<CommentWidget> {
           },
           child: MainTextField(
             text: "",
+            
             hintText: "Fikr",
             controller: commentField,
             animateBorder: isEmpty,

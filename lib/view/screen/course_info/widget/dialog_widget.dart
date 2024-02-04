@@ -2,8 +2,10 @@ import 'package:dataspin_academy/controller/bloc/course/course_price/cubit/cours
 import 'package:dataspin_academy/controller/bloc/reception/cubit/new_reception_cubit.dart';
 import 'package:dataspin_academy/controller/provider/course_info_provider.dart';
 import 'package:dataspin_academy/model/reception/request/new_reception_request.dart';
+import 'package:dataspin_academy/view/value/app_color.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
 import 'package:dataspin_academy/view/widget/buttons/main_button.dart';
+import 'package:dataspin_academy/view/widget/textfields/main_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,6 +20,7 @@ class DialogWidget extends StatefulWidget {
 
 class _DialogWidgetState extends State<DialogWidget> {
   final textEditingController = TextEditingController();
+  final promoController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -40,14 +43,38 @@ class _DialogWidgetState extends State<DialogWidget> {
               child: TextField(
                 controller: textEditingController,
                 maxLines: 7,
+                cursorColor: Colors.black,
                 decoration: InputDecoration(
                   hintText: "Izoh qoldiring...",
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8)),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: const Color(0xFFEBEBF9),
+                      width: 1.w,
+                    ),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
                   focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8)),
+                    borderSide: BorderSide(
+                      color: const Color(0xFFEBEBF9),
+                      width: 1.w,
+                    ),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
                 ),
               ),
+            ),
+            SizedBox(height: 18.h),
+            Text(
+              "Agar sizda promokod mavjud bo'lsa kiritishingiz mumkin",
+              style: AppFonts.body12Regular.copyWith(
+                color: AppColor.txtSecondColor,
+              ),
+            ),
+            SizedBox(height: 10.h),
+            MainTextField(
+              hintText: "Promokod",
+              upText: false,
+              controller: promoController,
             ),
             SizedBox(height: 18.h),
             BlocBuilder<NewReceptionCubit, NewReceptionState>(
@@ -56,9 +83,11 @@ class _DialogWidgetState extends State<DialogWidget> {
                   text: "Tasdiqlash",
                   isLoading: state.maybeWhen(
                     orElse: () => false,
-                    sending: () => true,
+                    sending: () =>  true,
+
                   ),
                   onTap: () {
+                
                     String year = DateTime.now().year.toString();
                     String month = DateTime.now().month.toString();
                     String day = DateTime.now().day.toString();
@@ -75,6 +104,9 @@ class _DialogWidgetState extends State<DialogWidget> {
                         milliSecond;
                     NewReceptionRequest newReceptionRequest =
                         NewReceptionRequest(
+                            promoCode: promoController.text.trim().isNotEmpty
+                                ? promoController.text.trim()
+                                : null,
                             courseId: context
                                 .read<CourseInfoProvider>()
                                 .courseWithPriceData!
@@ -91,16 +123,20 @@ class _DialogWidgetState extends State<DialogWidget> {
                         .then((value) {
                       if (value) {
                         textEditingController.clear();
+                        promoController.text.trim();
                         context
                             .read<CourseWithPriceCubit>()
                             .getAllCourseWithPrice();
                         context.pop();
                       }
+                      else{
+                        
+                      }
                     });
                   },
                 );
               },
-            )
+            ),
           ],
         ),
       ),

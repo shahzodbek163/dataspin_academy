@@ -7,7 +7,7 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class MainTextField extends StatelessWidget {
   final bool onReq;
-  final String text;
+  final String? text;
   final String hintText;
   final TextEditingController? controller;
   final MaskTextInputFormatter? maskTextInputFormatter;
@@ -18,11 +18,12 @@ class MainTextField extends StatelessWidget {
   final bool isHiding;
   final Widget? suffix;
   final bool? animateBorder;
+  final bool upText;
 
   const MainTextField({
     super.key,
     this.onReq = false,
-    required this.text,
+    this.text,
     required this.hintText,
     this.controller,
     this.maskTextInputFormatter,
@@ -33,6 +34,7 @@ class MainTextField extends StatelessWidget {
     this.isHiding = false,
     this.suffix,
     this.animateBorder = false,
+    this.upText = true,
   });
 
   @override
@@ -40,35 +42,37 @@ class MainTextField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          children: [
-            Text(
-              text,
-              style: AppFonts.label,
-            ),
-            SizedBox(width: 5.w),
-            onReq
-                ? Text(
-                    "*",
+        !upText
+            ? const SizedBox()
+            : Column(
+                children: [
+                  Text(
+                    text!,
+                    style: AppFonts.label,
+                  ),
+                  SizedBox(width: 5.w),
+                  onReq
+                      ? Text(
+                          "*",
+                          style: AppFonts.label.copyWith(
+                            color: const Color(0xFFFF0000),
+                          ),
+                        )
+                      : const SizedBox(),
+                  Text(
+                    isEmpty
+                        ? "(Ma'lumot kiritilishi zarur)"
+                        : !isValid
+                            ? "Noto'g'ri ma'lumot kiritildi"
+                            : "",
                     style: AppFonts.label.copyWith(
-                      color: const Color(0xFFFF0000),
+                      color: AppColor.errorColor,
+                      fontSize: 12,
                     ),
-                  )
-                : const SizedBox(),
-            Text(
-              isEmpty
-                  ? "(Ma'lumot kiritilishi zarur)"
-                  : !isValid
-                      ? "Noto'g'ri ma'lumot kiritildi"
-                      : "",
-              style: AppFonts.label.copyWith(
-                color: AppColor.errorColor,
-                fontSize: 12,
+                  ),
+                  SizedBox(height: 6.h),
+                ],
               ),
-            ),
-          ],
-        ),
-        SizedBox(height: 6.h),
         AnimatedContainer(
           duration: const Duration(milliseconds: 600),
           curve: Curves.bounceInOut,

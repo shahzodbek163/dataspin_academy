@@ -25,7 +25,7 @@ mixin _$NewsResponse {
   @JsonKey(name: "message")
   String get message => throw _privateConstructorUsedError;
   @JsonKey(name: "data")
-  List<NewsData>? get data => throw _privateConstructorUsedError;
+  List<NewsData> get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,7 +42,7 @@ abstract class $NewsResponseCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: "status") bool status,
       @JsonKey(name: "message") String message,
-      @JsonKey(name: "data") List<NewsData>? data});
+      @JsonKey(name: "data") List<NewsData> data});
 }
 
 /// @nodoc
@@ -60,7 +60,7 @@ class _$NewsResponseCopyWithImpl<$Res, $Val extends NewsResponse>
   $Res call({
     Object? status = null,
     Object? message = null,
-    Object? data = freezed,
+    Object? data = null,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -71,10 +71,10 @@ class _$NewsResponseCopyWithImpl<$Res, $Val extends NewsResponse>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      data: freezed == data
+      data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as List<NewsData>?,
+              as List<NewsData>,
     ) as $Val);
   }
 }
@@ -90,7 +90,7 @@ abstract class _$$NewsResponseImplCopyWith<$Res>
   $Res call(
       {@JsonKey(name: "status") bool status,
       @JsonKey(name: "message") String message,
-      @JsonKey(name: "data") List<NewsData>? data});
+      @JsonKey(name: "data") List<NewsData> data});
 }
 
 /// @nodoc
@@ -106,7 +106,7 @@ class __$$NewsResponseImplCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? message = null,
-    Object? data = freezed,
+    Object? data = null,
   }) {
     return _then(_$NewsResponseImpl(
       status: null == status
@@ -117,10 +117,10 @@ class __$$NewsResponseImplCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      data: freezed == data
+      data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
-              as List<NewsData>?,
+              as List<NewsData>,
     ));
   }
 }
@@ -131,7 +131,7 @@ class _$NewsResponseImpl implements _NewsResponse {
   const _$NewsResponseImpl(
       {@JsonKey(name: "status") required this.status,
       @JsonKey(name: "message") required this.message,
-      @JsonKey(name: "data") final List<NewsData>? data})
+      @JsonKey(name: "data") required final List<NewsData> data})
       : _data = data;
 
   factory _$NewsResponseImpl.fromJson(Map<String, dynamic> json) =>
@@ -143,15 +143,13 @@ class _$NewsResponseImpl implements _NewsResponse {
   @override
   @JsonKey(name: "message")
   final String message;
-  final List<NewsData>? _data;
+  final List<NewsData> _data;
   @override
   @JsonKey(name: "data")
-  List<NewsData>? get data {
-    final value = _data;
-    if (value == null) return null;
+  List<NewsData> get data {
     if (_data is EqualUnmodifiableListView) return _data;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_data);
   }
 
   @override
@@ -190,9 +188,10 @@ class _$NewsResponseImpl implements _NewsResponse {
 
 abstract class _NewsResponse implements NewsResponse {
   const factory _NewsResponse(
-      {@JsonKey(name: "status") required final bool status,
-      @JsonKey(name: "message") required final String message,
-      @JsonKey(name: "data") final List<NewsData>? data}) = _$NewsResponseImpl;
+          {@JsonKey(name: "status") required final bool status,
+          @JsonKey(name: "message") required final String message,
+          @JsonKey(name: "data") required final List<NewsData> data}) =
+      _$NewsResponseImpl;
 
   factory _NewsResponse.fromJson(Map<String, dynamic> json) =
       _$NewsResponseImpl.fromJson;
@@ -205,7 +204,7 @@ abstract class _NewsResponse implements NewsResponse {
   String get message;
   @override
   @JsonKey(name: "data")
-  List<NewsData>? get data;
+  List<NewsData> get data;
   @override
   @JsonKey(ignore: true)
   _$$NewsResponseImplCopyWith<_$NewsResponseImpl> get copyWith =>
@@ -222,12 +221,14 @@ mixin _$NewsData {
   String get name => throw _privateConstructorUsedError;
   @JsonKey(name: "id")
   int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: "date")
+  DateTime get date => throw _privateConstructorUsedError;
+  @JsonKey(name: "photo")
+  Photo get photo => throw _privateConstructorUsedError;
   @JsonKey(name: "shortDesc")
   String get shortDesc => throw _privateConstructorUsedError;
   @JsonKey(name: "fullDesc")
   String get fullDesc => throw _privateConstructorUsedError;
-  @JsonKey(name: "photo")
-  Photo get photo => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -243,9 +244,10 @@ abstract class $NewsDataCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: "name") String name,
       @JsonKey(name: "id") int id,
+      @JsonKey(name: "date") DateTime date,
+      @JsonKey(name: "photo") Photo photo,
       @JsonKey(name: "shortDesc") String shortDesc,
-      @JsonKey(name: "fullDesc") String fullDesc,
-      @JsonKey(name: "photo") Photo photo});
+      @JsonKey(name: "fullDesc") String fullDesc});
 
   $PhotoCopyWith<$Res> get photo;
 }
@@ -265,9 +267,10 @@ class _$NewsDataCopyWithImpl<$Res, $Val extends NewsData>
   $Res call({
     Object? name = null,
     Object? id = null,
+    Object? date = null,
+    Object? photo = null,
     Object? shortDesc = null,
     Object? fullDesc = null,
-    Object? photo = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -278,6 +281,14 @@ class _$NewsDataCopyWithImpl<$Res, $Val extends NewsData>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
+      date: null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      photo: null == photo
+          ? _value.photo
+          : photo // ignore: cast_nullable_to_non_nullable
+              as Photo,
       shortDesc: null == shortDesc
           ? _value.shortDesc
           : shortDesc // ignore: cast_nullable_to_non_nullable
@@ -286,10 +297,6 @@ class _$NewsDataCopyWithImpl<$Res, $Val extends NewsData>
           ? _value.fullDesc
           : fullDesc // ignore: cast_nullable_to_non_nullable
               as String,
-      photo: null == photo
-          ? _value.photo
-          : photo // ignore: cast_nullable_to_non_nullable
-              as Photo,
     ) as $Val);
   }
 
@@ -313,9 +320,10 @@ abstract class _$$NewsDataImplCopyWith<$Res>
   $Res call(
       {@JsonKey(name: "name") String name,
       @JsonKey(name: "id") int id,
+      @JsonKey(name: "date") DateTime date,
+      @JsonKey(name: "photo") Photo photo,
       @JsonKey(name: "shortDesc") String shortDesc,
-      @JsonKey(name: "fullDesc") String fullDesc,
-      @JsonKey(name: "photo") Photo photo});
+      @JsonKey(name: "fullDesc") String fullDesc});
 
   @override
   $PhotoCopyWith<$Res> get photo;
@@ -334,9 +342,10 @@ class __$$NewsDataImplCopyWithImpl<$Res>
   $Res call({
     Object? name = null,
     Object? id = null,
+    Object? date = null,
+    Object? photo = null,
     Object? shortDesc = null,
     Object? fullDesc = null,
-    Object? photo = null,
   }) {
     return _then(_$NewsDataImpl(
       name: null == name
@@ -347,6 +356,14 @@ class __$$NewsDataImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
+      date: null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      photo: null == photo
+          ? _value.photo
+          : photo // ignore: cast_nullable_to_non_nullable
+              as Photo,
       shortDesc: null == shortDesc
           ? _value.shortDesc
           : shortDesc // ignore: cast_nullable_to_non_nullable
@@ -355,10 +372,6 @@ class __$$NewsDataImplCopyWithImpl<$Res>
           ? _value.fullDesc
           : fullDesc // ignore: cast_nullable_to_non_nullable
               as String,
-      photo: null == photo
-          ? _value.photo
-          : photo // ignore: cast_nullable_to_non_nullable
-              as Photo,
     ));
   }
 }
@@ -369,9 +382,10 @@ class _$NewsDataImpl implements _NewsData {
   const _$NewsDataImpl(
       {@JsonKey(name: "name") required this.name,
       @JsonKey(name: "id") required this.id,
+      @JsonKey(name: "date") required this.date,
+      @JsonKey(name: "photo") required this.photo,
       @JsonKey(name: "shortDesc") required this.shortDesc,
-      @JsonKey(name: "fullDesc") required this.fullDesc,
-      @JsonKey(name: "photo") required this.photo});
+      @JsonKey(name: "fullDesc") required this.fullDesc});
 
   factory _$NewsDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$NewsDataImplFromJson(json);
@@ -383,18 +397,21 @@ class _$NewsDataImpl implements _NewsData {
   @JsonKey(name: "id")
   final int id;
   @override
+  @JsonKey(name: "date")
+  final DateTime date;
+  @override
+  @JsonKey(name: "photo")
+  final Photo photo;
+  @override
   @JsonKey(name: "shortDesc")
   final String shortDesc;
   @override
   @JsonKey(name: "fullDesc")
   final String fullDesc;
-  @override
-  @JsonKey(name: "photo")
-  final Photo photo;
 
   @override
   String toString() {
-    return 'NewsData(name: $name, id: $id, shortDesc: $shortDesc, fullDesc: $fullDesc, photo: $photo)';
+    return 'NewsData(name: $name, id: $id, date: $date, photo: $photo, shortDesc: $shortDesc, fullDesc: $fullDesc)';
   }
 
   @override
@@ -404,17 +421,18 @@ class _$NewsDataImpl implements _NewsData {
             other is _$NewsDataImpl &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.date, date) || other.date == date) &&
+            (identical(other.photo, photo) || other.photo == photo) &&
             (identical(other.shortDesc, shortDesc) ||
                 other.shortDesc == shortDesc) &&
             (identical(other.fullDesc, fullDesc) ||
-                other.fullDesc == fullDesc) &&
-            (identical(other.photo, photo) || other.photo == photo));
+                other.fullDesc == fullDesc));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, name, id, shortDesc, fullDesc, photo);
+      Object.hash(runtimeType, name, id, date, photo, shortDesc, fullDesc);
 
   @JsonKey(ignore: true)
   @override
@@ -432,11 +450,13 @@ class _$NewsDataImpl implements _NewsData {
 
 abstract class _NewsData implements NewsData {
   const factory _NewsData(
-      {@JsonKey(name: "name") required final String name,
-      @JsonKey(name: "id") required final int id,
-      @JsonKey(name: "shortDesc") required final String shortDesc,
-      @JsonKey(name: "fullDesc") required final String fullDesc,
-      @JsonKey(name: "photo") required final Photo photo}) = _$NewsDataImpl;
+          {@JsonKey(name: "name") required final String name,
+          @JsonKey(name: "id") required final int id,
+          @JsonKey(name: "date") required final DateTime date,
+          @JsonKey(name: "photo") required final Photo photo,
+          @JsonKey(name: "shortDesc") required final String shortDesc,
+          @JsonKey(name: "fullDesc") required final String fullDesc}) =
+      _$NewsDataImpl;
 
   factory _NewsData.fromJson(Map<String, dynamic> json) =
       _$NewsDataImpl.fromJson;
@@ -448,14 +468,17 @@ abstract class _NewsData implements NewsData {
   @JsonKey(name: "id")
   int get id;
   @override
+  @JsonKey(name: "date")
+  DateTime get date;
+  @override
+  @JsonKey(name: "photo")
+  Photo get photo;
+  @override
   @JsonKey(name: "shortDesc")
   String get shortDesc;
   @override
   @JsonKey(name: "fullDesc")
   String get fullDesc;
-  @override
-  @JsonKey(name: "photo")
-  Photo get photo;
   @override
   @JsonKey(ignore: true)
   _$$NewsDataImplCopyWith<_$NewsDataImpl> get copyWith =>

@@ -194,7 +194,10 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> {
                                         showModalBottomSheet(
                                             context: context,
                                             builder: (context) =>
-                                                const DialogWidget());
+                                                const FractionallySizedBox(
+                                                  heightFactor: 1.5,
+                                                  child: DialogWidget(),
+                                                ));
                                       },
                                     );
                               },

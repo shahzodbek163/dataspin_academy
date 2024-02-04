@@ -13,6 +13,7 @@ import 'package:dataspin_academy/view/screen/home/screen/home_screen.dart';
 import 'package:dataspin_academy/view/screen/home/widget/bottom_bar_widget.dart';
 import 'package:dataspin_academy/view/screen/menu/screen/menu_screen.dart';
 import 'package:dataspin_academy/view/screen/mycourse/screen/my_course_screen.dart';
+import 'package:dataspin_academy/view/screen/news/screen/news_screen.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
 import 'package:dataspin_academy/view/value/app_icons.dart';
 import 'package:flutter/material.dart';
@@ -76,11 +77,7 @@ class _MainScreenState extends State<MainScreen> {
         },
         children: const [
           HomeScreen(),
-          Center(
-              child: Text(
-            "Yangiliklar",
-            style: AppFonts.h3,
-          )),
+          NewsScreen(),
           MyCourseScreen(),
           AboutUsScreen(),
           MenuScreen(),

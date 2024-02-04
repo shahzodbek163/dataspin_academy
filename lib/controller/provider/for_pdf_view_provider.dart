@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class ForPdfViewProvider extends ChangeNotifier {
-  String? filePath;
+  int? photoId;
 
-  void change(String filePath) {
-    this.filePath = filePath;
+  void change(int photoIdP) {
+    photoId = photoIdP;
     notifyListeners();
   }
 }

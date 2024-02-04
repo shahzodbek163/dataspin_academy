@@ -13,7 +13,11 @@ class _ApiService implements ApiService {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://192.168.217.66/api';
+<<<<<<< HEAD
+    baseUrl ??= 'http://192.168.181.66/api';
+=======
+    baseUrl ??= 'http://192.168.58.66/api';
+>>>>>>> 78547dfd900f5f9d1502899d10ec5465344d0bad
   }
 
   final Dio _dio;
@@ -67,15 +71,13 @@ class _ApiService implements ApiService {
         tel2,
       ));
     }
-    if (profilePhoto != null) {
-      _data.files.add(MapEntry(
-        'profilePhoto',
-        MultipartFile.fromFileSync(
-          profilePhoto.path,
-          filename: profilePhoto.path.split(Platform.pathSeparator).last,
-        ),
-      ));
-    }
+    _data.files.add(MapEntry(
+      'profilePhoto',
+      MultipartFile.fromFileSync(
+        profilePhoto!.path,
+        filename: profilePhoto.path.split(Platform.pathSeparator).last,
+      ),
+    ));
     _data.fields.add(MapEntry(
       'username',
       username,
@@ -340,15 +342,13 @@ class _ApiService implements ApiService {
         birthday,
       ));
     }
-    if (photo != null) {
-      _data.files.add(MapEntry(
-        'photo',
-        MultipartFile.fromFileSync(
-          photo.path,
-          filename: photo.path.split(Platform.pathSeparator).last,
-        ),
-      ));
-    }
+    _data.files.add(MapEntry(
+      'photo',
+      MultipartFile.fromFileSync(
+        photo!.path,
+        filename: photo.path.split(Platform.pathSeparator).last,
+      ),
+    ));
     if (tel1 != null) {
       _data.fields.add(MapEntry(
         'tel1',

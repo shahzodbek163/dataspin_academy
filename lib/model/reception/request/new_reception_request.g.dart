@@ -11,6 +11,7 @@ _$NewReceptionRequestImpl _$$NewReceptionRequestImplFromJson(
     _$NewReceptionRequestImpl(
       courseId: json['courseID'] as int,
       description: json['description'] as String?,
+      promoCode: json['promo_code'] as String?,
       receptionNumber: json['receptionNumber'] as String,
     );
 
@@ -19,5 +20,6 @@ Map<String, dynamic> _$$NewReceptionRequestImplToJson(
     <String, dynamic>{
       'courseID': instance.courseId,
       'description': instance.description,
+      'promo_code': instance.promoCode,
       'receptionNumber': instance.receptionNumber,
     };

@@ -2,8 +2,6 @@
 //
 //     final newsResponse = newsResponseFromJson(jsonString);
 
-// ignore_for_file: invalid_annotation_target
-
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'dart:convert';
 
@@ -20,7 +18,7 @@ class NewsResponse with _$NewsResponse {
   const factory NewsResponse({
     @JsonKey(name: "status") required bool status,
     @JsonKey(name: "message") required String message,
-    @JsonKey(name: "data") List<NewsData>? data,
+    @JsonKey(name: "data") required List<NewsData> data,
   }) = _NewsResponse;
 
   factory NewsResponse.fromJson(Map<String, dynamic> json) =>
@@ -32,9 +30,10 @@ class NewsData with _$NewsData {
   const factory NewsData({
     @JsonKey(name: "name") required String name,
     @JsonKey(name: "id") required int id,
+    @JsonKey(name: "date") required DateTime date,
+    @JsonKey(name: "photo") required Photo photo,
     @JsonKey(name: "shortDesc") required String shortDesc,
     @JsonKey(name: "fullDesc") required String fullDesc,
-    @JsonKey(name: "photo") required Photo photo,
   }) = _NewsData;
 
   factory NewsData.fromJson(Map<String, dynamic> json) =>

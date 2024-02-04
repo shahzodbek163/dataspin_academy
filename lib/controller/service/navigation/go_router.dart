@@ -17,14 +17,16 @@ import 'package:dataspin_academy/view/screen/register/first_step/screen/first_st
 import 'package:dataspin_academy/view/screen/register/second_step/screen/second_step_screen.dart';
 import 'package:dataspin_academy/view/screen/splash/splash_screen.dart';
 import 'package:dataspin_academy/view/screen/test_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class AppGoRouter {
   final router = GoRouter(
     navigatorKey: NavigationService.navigatorKey,
-    initialLocation: MainScreen.routeName,
+    initialLocation: LoginScreen.routeName,
     routes: [
       ///main
+
       GoRoute(
         path: TestScreen.routeName,
         pageBuilder: (context, state) => slideTransitionRight(

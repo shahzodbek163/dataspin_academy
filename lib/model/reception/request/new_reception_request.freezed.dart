@@ -24,6 +24,8 @@ mixin _$NewReceptionRequest {
   int get courseId => throw _privateConstructorUsedError;
   @JsonKey(name: "description")
   String? get description => throw _privateConstructorUsedError;
+  @JsonKey(name: "promo_code")
+  String? get promoCode => throw _privateConstructorUsedError;
   @JsonKey(name: "receptionNumber")
   String get receptionNumber => throw _privateConstructorUsedError;
 
@@ -42,6 +44,7 @@ abstract class $NewReceptionRequestCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: "courseID") int courseId,
       @JsonKey(name: "description") String? description,
+      @JsonKey(name: "promo_code") String? promoCode,
       @JsonKey(name: "receptionNumber") String receptionNumber});
 }
 
@@ -60,6 +63,7 @@ class _$NewReceptionRequestCopyWithImpl<$Res, $Val extends NewReceptionRequest>
   $Res call({
     Object? courseId = null,
     Object? description = freezed,
+    Object? promoCode = freezed,
     Object? receptionNumber = null,
   }) {
     return _then(_value.copyWith(
@@ -70,6 +74,10 @@ class _$NewReceptionRequestCopyWithImpl<$Res, $Val extends NewReceptionRequest>
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      promoCode: freezed == promoCode
+          ? _value.promoCode
+          : promoCode // ignore: cast_nullable_to_non_nullable
               as String?,
       receptionNumber: null == receptionNumber
           ? _value.receptionNumber
@@ -90,6 +98,7 @@ abstract class _$$NewReceptionRequestImplCopyWith<$Res>
   $Res call(
       {@JsonKey(name: "courseID") int courseId,
       @JsonKey(name: "description") String? description,
+      @JsonKey(name: "promo_code") String? promoCode,
       @JsonKey(name: "receptionNumber") String receptionNumber});
 }
 
@@ -106,6 +115,7 @@ class __$$NewReceptionRequestImplCopyWithImpl<$Res>
   $Res call({
     Object? courseId = null,
     Object? description = freezed,
+    Object? promoCode = freezed,
     Object? receptionNumber = null,
   }) {
     return _then(_$NewReceptionRequestImpl(
@@ -116,6 +126,10 @@ class __$$NewReceptionRequestImplCopyWithImpl<$Res>
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      promoCode: freezed == promoCode
+          ? _value.promoCode
+          : promoCode // ignore: cast_nullable_to_non_nullable
               as String?,
       receptionNumber: null == receptionNumber
           ? _value.receptionNumber
@@ -131,6 +145,7 @@ class _$NewReceptionRequestImpl implements _NewReceptionRequest {
   const _$NewReceptionRequestImpl(
       {@JsonKey(name: "courseID") required this.courseId,
       @JsonKey(name: "description") this.description,
+      @JsonKey(name: "promo_code") this.promoCode,
       @JsonKey(name: "receptionNumber") required this.receptionNumber});
 
   factory _$NewReceptionRequestImpl.fromJson(Map<String, dynamic> json) =>
@@ -143,12 +158,15 @@ class _$NewReceptionRequestImpl implements _NewReceptionRequest {
   @JsonKey(name: "description")
   final String? description;
   @override
+  @JsonKey(name: "promo_code")
+  final String? promoCode;
+  @override
   @JsonKey(name: "receptionNumber")
   final String receptionNumber;
 
   @override
   String toString() {
-    return 'NewReceptionRequest(courseId: $courseId, description: $description, receptionNumber: $receptionNumber)';
+    return 'NewReceptionRequest(courseId: $courseId, description: $description, promoCode: $promoCode, receptionNumber: $receptionNumber)';
   }
 
   @override
@@ -160,14 +178,16 @@ class _$NewReceptionRequestImpl implements _NewReceptionRequest {
                 other.courseId == courseId) &&
             (identical(other.description, description) ||
                 other.description == description) &&
+            (identical(other.promoCode, promoCode) ||
+                other.promoCode == promoCode) &&
             (identical(other.receptionNumber, receptionNumber) ||
                 other.receptionNumber == receptionNumber));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, courseId, description, receptionNumber);
+  int get hashCode => Object.hash(
+      runtimeType, courseId, description, promoCode, receptionNumber);
 
   @JsonKey(ignore: true)
   @override
@@ -188,6 +208,7 @@ abstract class _NewReceptionRequest implements NewReceptionRequest {
   const factory _NewReceptionRequest(
       {@JsonKey(name: "courseID") required final int courseId,
       @JsonKey(name: "description") final String? description,
+      @JsonKey(name: "promo_code") final String? promoCode,
       @JsonKey(name: "receptionNumber")
       required final String receptionNumber}) = _$NewReceptionRequestImpl;
 
@@ -200,6 +221,9 @@ abstract class _NewReceptionRequest implements NewReceptionRequest {
   @override
   @JsonKey(name: "description")
   String? get description;
+  @override
+  @JsonKey(name: "promo_code")
+  String? get promoCode;
   @override
   @JsonKey(name: "receptionNumber")
   String get receptionNumber;

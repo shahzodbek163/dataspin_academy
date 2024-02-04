@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:bloc/bloc.dart';
 import 'package:dataspin_academy/controller/service/api/api_service.dart';
 import 'package:dataspin_academy/controller/service/dio/cutom_dio.dart';
@@ -16,6 +18,7 @@ class NewReceptionCubit extends Cubit<NewReceptionState> {
     NewReceptionResponse result =
         await apiService.newReception(newReceptionRequest);
     emit(NewReceptionState.send(result));
+
     return true;
   }
 
