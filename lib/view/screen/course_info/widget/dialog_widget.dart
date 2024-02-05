@@ -1,5 +1,6 @@
 import 'package:dataspin_academy/controller/bloc/course/course_price/cubit/course_with_price_cubit.dart';
 import 'package:dataspin_academy/controller/bloc/reception/cubit/new_reception_cubit.dart';
+import 'package:dataspin_academy/controller/bloc/reception/reception_by_user/cubit/reception_by_user_cubit.dart';
 import 'package:dataspin_academy/controller/provider/course_info_provider.dart';
 import 'package:dataspin_academy/model/reception/request/new_reception_request.dart';
 import 'package:dataspin_academy/view/value/app_color.dart';
@@ -123,6 +124,9 @@ class _DialogWidgetState extends State<DialogWidget> {
                       if (value) {
                         textEditingController.clear();
                         promoController.text.trim();
+                        context
+                            .read<ReceptionByUserCubit>()
+                            .getReceptionByUser();
                         context
                             .read<CourseWithPriceCubit>()
                             .getAllCourseWithPrice();

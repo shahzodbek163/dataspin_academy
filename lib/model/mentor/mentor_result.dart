@@ -2,9 +2,9 @@
 //
 //     final mentorResult = mentorResultFromJson(jsonString);
 
-import 'package:meta/meta.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'dart:convert';
+
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'mentor_result.freezed.dart';
 part 'mentor_result.g.dart';
@@ -19,7 +19,7 @@ class MentorResult with _$MentorResult {
   const factory MentorResult({
     @JsonKey(name: "status") required bool status,
     @JsonKey(name: "message") required String message,
-    @JsonKey(name: "data") required List<MentorResultData> data,
+    @JsonKey(name: "data") required List<MentorResultData>? data,
   }) = _MentorResult;
 
   factory MentorResult.fromJson(Map<String, dynamic> json) =>
@@ -66,8 +66,8 @@ class CourseForElement with _$CourseForElement {
     @JsonKey(name: "icon") Photo? icon,
     @JsonKey(name: "name") required String name,
     @JsonKey(name: "id") required int id,
-    @JsonKey(name: "description")  String? description,
-    @JsonKey(name: "date")  DateTime? date,
+    @JsonKey(name: "description") String? description,
+    @JsonKey(name: "date") DateTime? date,
   }) = _CourseForElement;
 
   factory CourseForElement.fromJson(Map<String, dynamic> json) =>
