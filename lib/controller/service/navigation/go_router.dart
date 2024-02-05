@@ -18,6 +18,7 @@ import 'package:dataspin_academy/view/screen/register/first_step/screen/first_st
 import 'package:dataspin_academy/view/screen/register/second_step/screen/second_step_screen.dart';
 import 'package:dataspin_academy/view/screen/splash/splash_screen.dart';
 import 'package:dataspin_academy/view/screen/test_screen.dart';
+import 'package:dataspin_academy/view/screen/unactive_screen.dart';
 import 'package:go_router/go_router.dart';
 
 class AppGoRouter {
@@ -160,6 +161,13 @@ class AppGoRouter {
         pageBuilder: (context, state) => slideTransitionRight(
           state,
           const NewDescScreen(),
+        ),
+      ),
+      GoRoute(
+        path: UnactiveScreen.routeName,
+        pageBuilder: (context, state) => slideTransitionRight(
+          state,
+          const UnactiveScreen(),
         ),
       ),
     ],

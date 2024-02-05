@@ -86,6 +86,7 @@ class _MentorState extends State<Mentor> {
               SizedBox(height: 4.h),
               Text(
                 widget.information,
+                textAlign: TextAlign.center,
                 style: AppFonts.label.copyWith(
                   color: AppColor.txtSecondColor,
                 ),

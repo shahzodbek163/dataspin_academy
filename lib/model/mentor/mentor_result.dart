@@ -19,7 +19,7 @@ class MentorResult with _$MentorResult {
   const factory MentorResult({
     @JsonKey(name: "status") required bool status,
     @JsonKey(name: "message") required String message,
-    @JsonKey(name: "data") required List<MentorResultData> data,
+    @JsonKey(name: "data")  List<MentorResultData>? data,
   }) = _MentorResult;
 
   factory MentorResult.fromJson(Map<String, dynamic> json) =>

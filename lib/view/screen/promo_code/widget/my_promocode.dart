@@ -42,7 +42,7 @@ class MyPromoCard extends StatelessWidget {
                 ),
               ),
               child: Text(
-                promocodeData.date.toString(),
+                "${promocodeData.date.toString().substring(0, 10)} ${promocodeData.date.hour + 5}:${promocodeData.date.minute}",
                 style: AppFonts.body10Medium.copyWith(color: Colors.white),
               ),
             ),

@@ -177,7 +177,13 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> {
                               borderRadius: BorderRadius.circular(30),
                             ),
                             child: Text(
-                                "${context.read<CourseInfoProvider>().courseWithPriceData!.price == null ? "Narx belgilanmagan" : context.read<CourseInfoProvider>().courseWithPriceData!.price!.toString()} so'm",
+                                context
+                                            .read<CourseInfoProvider>()
+                                            .courseWithPriceData!
+                                            .price ==
+                                        null
+                                    ? "Narx belgilanmagan"
+                                    : "${context.read<CourseInfoProvider>().courseWithPriceData!.price!} so'm",
                                 style: AppFonts.body16w700
                                     .copyWith(color: Colors.white)),
                           ),
