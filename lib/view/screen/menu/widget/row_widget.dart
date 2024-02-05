@@ -7,13 +7,17 @@ import 'package:flutter_svg/flutter_svg.dart';
 class RowWidget extends StatelessWidget {
   String iconPath;
   String text;
+  Color textColor;
   VoidCallback? onTap;
-  RowWidget(
-      {super.key,
-      this.iconPath = AppIcons.callWithoutSound,
-      this.text = "Call Markaz", 
-      this.onTap,
-      });
+  Color iconColor;
+  RowWidget({
+    super.key,
+    this.iconPath = AppIcons.callWithoutSound,
+    this.text = "Call Markaz",
+    this.onTap,
+    this.iconColor = Colors.black,
+    this.textColor = Colors.black,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,17 +28,21 @@ class RowWidget extends StatelessWidget {
         children: [
           Row(
             children: [
-              SvgPicture.asset(iconPath),
+              SvgPicture.asset(
+                iconPath,
+                color: iconColor,
+              ),
               SizedBox(width: 12.w),
               Text(
                 text,
-                style: AppFonts.body16w500,
+                style: AppFonts.body16w500.copyWith(color: textColor),
               )
             ],
           ),
-          const Icon(
+           Icon(
             Icons.arrow_forward_ios_rounded,
             size: 20,
+            color: iconColor,
           )
         ],
       ),

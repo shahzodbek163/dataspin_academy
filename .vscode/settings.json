@@ -3,5 +3,6 @@
         "aboutas",
         "Aboutus",
         "dataspin"
-    ]
+    ],
+    "workbench.editor.preventPinnedEditorClose": "keyboardAndMouse"
 }

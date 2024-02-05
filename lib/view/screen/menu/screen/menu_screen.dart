@@ -1,6 +1,8 @@
 import 'package:dataspin_academy/controller/provider/for_pdf_view_provider.dart';
+import 'package:dataspin_academy/controller/service/dio/secure_storage.dart';
 import 'package:dataspin_academy/view/screen/account/screen/account_screen.dart';
 import 'package:dataspin_academy/view/screen/gallery/screen/gallery_screen.dart';
+import 'package:dataspin_academy/view/screen/login/screen/login_screen.dart';
 import 'package:dataspin_academy/view/screen/menu/widget/row_widget.dart';
 import 'package:dataspin_academy/view/screen/pdf_view/screen/pdf_view_screen.dart';
 import 'package:dataspin_academy/view/screen/promo_code/screen/promo_code_screen.dart';
@@ -53,7 +55,7 @@ class MenuScreen extends StatelessWidget {
                 iconPath: AppIcons.openBook,
                 text: "Bizning shartnoma",
                 onTap: () {
-                  context.read<ForPdfViewProvider>().change(67);
+                  context.read<ForPdfViewProvider>().change(65);
                   context.push(PdfViewScreen.routeName);
                 },
               ),
@@ -62,7 +64,7 @@ class MenuScreen extends StatelessWidget {
                 iconPath: AppIcons.personalCard,
                 text: "O’quv markaz litsenziyasi",
                 onTap: () {
-                  context.read<ForPdfViewProvider>().change(68);
+                  context.read<ForPdfViewProvider>().change(66);
                   context.push(PdfViewScreen.routeName);
                 },
               ),
@@ -84,6 +86,16 @@ class MenuScreen extends StatelessWidget {
                 text: "Profil",
                 onTap: () => context.push(AccountScreen.routeName),
               ),
+              SizedBox(height: 18.h),
+              RowWidget(
+                  iconPath: AppIcons.logOut,
+                  text: "Chiqish",
+                  textColor: Colors.red,
+                  iconColor: Colors.red,
+                  onTap: () {
+                    context.pushReplacement(LoginScreen.routeName);
+                    SecureStorage().clear();
+                  }),
             ],
           ),
         ),

@@ -1,13 +1,16 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dataspin_academy/controller/bloc/aboutus/cubit/aboutus_cubit.dart';
+import 'package:dataspin_academy/controller/provider/for_pdf_view_provider.dart';
 import 'package:dataspin_academy/controller/service/api/app_ip.dart';
 import 'package:dataspin_academy/generated/assets.dart';
-import 'package:dataspin_academy/view/screen/about_us/widget/docs_card.dart';
+import 'package:dataspin_academy/view/widget/docs_card.dart';
 import 'package:dataspin_academy/view/screen/about_us/widget/informations.dart';
 import 'package:dataspin_academy/view/screen/about_us/widget/youtube_part.dart';
+import 'package:dataspin_academy/view/screen/pdf_view/screen/pdf_view_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class AboutUsScreen extends StatefulWidget {
   static const String routeName = "/about_as_screen";
@@ -88,9 +91,21 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Column(
                       children: [
-                        const DocsCard(docName: "Akademiya litsenziyasi"),
+                        DocsCard(
+                          docName: "Akademiya litsenziyasi",
+                          onTap: () {
+                            context.read<ForPdfViewProvider>().change(66);
+                            context.push(PdfViewScreen.routeName);
+                          },
+                        ),
                         SizedBox(height: 16.h),
-                        const DocsCard(docName: "Akademiya shartnomasi"),
+                        DocsCard(
+                          docName: "Akademiya shartnomasi",
+                          onTap: () {
+                            context.read<ForPdfViewProvider>().change(65);
+                            context.push(PdfViewScreen.routeName);
+                          },
+                        ),
                       ],
                     ),
                   ),

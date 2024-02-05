@@ -58,7 +58,6 @@ class _CommentWidgetState extends State<CommentWidget> {
           },
           child: MainTextField(
             text: "",
-            
             hintText: "Fikr",
             controller: commentField,
             animateBorder: isEmpty,
@@ -78,7 +77,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                     }
                   },
                   child: Padding(
-                    padding: const EdgeInsets.all(4),
+                    padding: const EdgeInsets.all(5),
                     child: SvgPicture.asset(
                       AppIcons.fling,
                     ),

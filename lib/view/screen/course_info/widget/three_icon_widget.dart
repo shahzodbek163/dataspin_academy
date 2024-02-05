@@ -42,7 +42,7 @@ class ThreeIconWidget extends StatelessWidget {
             children: [
               SvgPicture.asset(AppIcons.twoUser, height: 24.h),
               Text(
-                "${context.read<CourseInfoProvider>().courseWithPriceData!.receptionCounter.activeCount} nafar o'quvchi",
+                "${context.read<CourseInfoProvider>().courseWithPriceData!.receptionCounter.totalCount} nafar o'quvchi",
                 style: AppFonts.body16Regular,
               ),
             ],

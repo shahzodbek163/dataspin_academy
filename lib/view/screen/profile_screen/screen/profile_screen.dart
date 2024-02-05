@@ -1,6 +1,8 @@
 import 'package:dataspin_academy/controller/bloc/mentors/mentors_cubit.dart';
+import 'package:dataspin_academy/controller/provider/for_pdf_view_provider.dart';
 import 'package:dataspin_academy/controller/provider/profile_data_provider.dart';
 import 'package:dataspin_academy/controller/service/api/app_ip.dart';
+import 'package:dataspin_academy/view/screen/pdf_view/screen/pdf_view_screen.dart';
 import 'package:dataspin_academy/view/screen/profile_screen/part/youtube_test.dart';
 import 'package:dataspin_academy/view/screen/profile_screen/widget/courses_card.dart';
 import 'package:dataspin_academy/view/screen/profile_screen/widget/mentor.dart';
@@ -8,9 +10,11 @@ import 'package:dataspin_academy/view/value/app_color.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
 import 'package:dataspin_academy/view/value/app_icons.dart';
 import 'package:dataspin_academy/view/widget/appbars/simple_appbar.dart';
+import 'package:dataspin_academy/view/widget/docs_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class ProfileScreen extends StatefulWidget {
   static const String routeName = "/profile_screen";
@@ -25,6 +29,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     final mentorData = context.read<ProfileDataProvider>().mentorResultData;
+    YoutubeTest.videoID = mentorData!.youTubeLinks;
     return Scaffold(
       appBar: SimpleAppbar.simpleAppbar(
         leadingIconPath: AppIcons.backArrow,
@@ -35,7 +40,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 22.h, vertical: 24.h),
-
           child: BlocBuilder<MentorsCubit, MentorsState>(
             builder: (context, state) {
               return state.maybeWhen(
@@ -59,18 +63,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         //
                         isVerified: mentorData.employee.isVerified,
                       ),
-                      SizedBox(height: 24.h),
-                      const Text(
-                        "Men haqimda",
-                        style: AppFonts.h3,
-                      ),
-                      SizedBox(height: 14.h),
-                      Text(
-                        mentorData.employee.about ?? "Ma'limot yo'q",
-                        style: AppFonts.body18Regular.copyWith(
-                          color: AppColor.txtSecondColor,
-                        ),
-                      ),
+                      mentorData.cv != null
+                          ? Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(height: 24.h),
+                                const Text(
+                                  "Men haqimda",
+                                  style: AppFonts.h3,
+                                ),
+                                SizedBox(height: 14.h),
+                                DocsCard(
+                                  docName: "Rezyume",
+                                  onTap: () {
+                                    context
+                                        .read<ForPdfViewProvider>()
+                                        .change(mentorData.cv!.id);
+                                    context.push(PdfViewScreen.routeName);
+                                  },
+                                ),
+                              ],
+                            )
+                          : const SizedBox(),
                       SizedBox(height: 35.h),
                       const Text(
                         "Maxsus video",
@@ -99,8 +113,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           image:
                               "${AppIp.ip}/api/image/?id=${mentorData.courses[index].courseType.photo.id}",
                           information: mentorData.courses[index].name,
-                          courseName:
-                              mentorData.courses[index].courseType.name,
+                          courseName: mentorData.courses[index].courseType.name,
                         ),
                       ),
                     ],
