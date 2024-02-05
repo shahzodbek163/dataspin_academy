@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
+import 'package:dataspin_academy/controller/bloc/splash/jump_screen.dart';
 import 'package:dataspin_academy/controller/service/api/api_service.dart';
 import 'package:dataspin_academy/controller/service/dialogs/show_top_snack_bar.dart';
 import 'package:dataspin_academy/controller/service/dio/auth_dio.dart';
@@ -10,6 +11,7 @@ import 'package:dataspin_academy/controller/service/navigation/navigation_servic
 import 'package:dataspin_academy/model/create_account/response/create_account_response.dart';
 import 'package:dataspin_academy/model/login/response/login_response.dart';
 import 'package:dataspin_academy/model/user_data/user_data_model.dart';
+import 'package:dataspin_academy/view/screen/home/screen/home_screen.dart';
 import 'package:dataspin_academy/view/screen/main/screen/main_screen.dart';
 import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
