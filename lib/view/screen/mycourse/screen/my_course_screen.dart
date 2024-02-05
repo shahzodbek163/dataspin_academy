@@ -2,6 +2,7 @@ import 'package:dataspin_academy/controller/bloc/reception/reception_by_user/cub
 import 'package:dataspin_academy/view/screen/mycourse/widget/registration_id.dart';
 import 'package:dataspin_academy/view/screen/mycourse/widget/selectable_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MyCourseScreen extends StatefulWidget {
@@ -14,22 +15,6 @@ class MyCourseScreen extends StatefulWidget {
 }
 
 class _MyCourseScreenState extends State<MyCourseScreen> {
-  final receptionByUserCubit = ReceptionByUserCubit();
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    receptionByUserCubit.getReceptionByUser();
-  }
-
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-    receptionByUserCubit.close();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,7 +48,6 @@ class _MyCourseScreenState extends State<MyCourseScreen> {
               ),
               Expanded(
                 child: BlocBuilder<ReceptionByUserCubit, ReceptionByUserState>(
-                  bloc: receptionByUserCubit,
                   builder: (context, state) {
                     return state.maybeWhen(
                       orElse: () => const Center(
@@ -73,15 +57,23 @@ class _MyCourseScreenState extends State<MyCourseScreen> {
                           ? const Center(
                               child: Text("Ma'lumot mavjud emas"),
                             )
-                          : ListView.builder(
-                              itemCount: response.data.length,
-                              shrinkWrap: true,
-                              physics: const BouncingScrollPhysics(),
-                              itemBuilder: (context, index) {
-                                return RegistrationId(
-                                  receptionByUserData: response.data[index],
-                                );
-                              },
+                          : SingleChildScrollView(
+                              child: Column(
+                                children: List.generate(
+                                  response.data.length,
+                                  (index) => RegistrationId(
+                                    receptionByUserData: response.data[index],
+                                  ).animate(
+                                    effects: [
+                                      FlipEffect(
+                                        delay: (300 * (index + 1)).ms,
+                                        curve: Curves.fastLinearToSlowEaseIn,
+                                        duration: 2000.ms,
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
                             ),
                     );
                   },

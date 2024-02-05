@@ -12,6 +12,7 @@ import 'package:dataspin_academy/view/screen/course_info/widget/three_icon_widge
 import 'package:dataspin_academy/view/screen/home/widget/chips_widget.dart';
 import 'package:dataspin_academy/view/value/app_color.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
+import 'package:dataspin_academy/view/widget/bottom_sheet/app_bottom_sheet.dart';
 import 'package:dataspin_academy/view/widget/buttons/main_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,6 +21,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:wtf_sliding_sheet/wtf_sliding_sheet.dart';
 
 class CourseInfoScreen extends StatefulWidget {
   static const String routeName = "/course_info_screen";
@@ -191,13 +193,14 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> {
                                     .maybeWhen(
                                       orElse: () {},
                                       initial: () {
-                                        showModalBottomSheet(
-                                            context: context,
-                                            builder: (context) =>
-                                                const FractionallySizedBox(
-                                                  heightFactor: 1.5,
-                                                  child: DialogWidget(),
-                                                ));
+                                        showSlidingBottomSheet(
+                                          context,
+                                          builder: (context) =>
+                                              AppBottomSheet.sheetDialog(
+                                            content: const DialogWidget(),
+                                            snappings: [0.8],
+                                          ),
+                                        );
                                       },
                                     );
                               },

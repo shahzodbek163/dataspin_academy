@@ -3,6 +3,7 @@ import 'package:dataspin_academy/controller/bloc/news/cubit/news_cubit.dart';
 import 'package:dataspin_academy/view/screen/home/widget/news_widget.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -59,6 +60,16 @@ class NewsPart extends StatelessWidget {
                       ),
                     ),
                   ),
+                ],
+              ).animate(
+                effects: [
+                  MoveEffect(
+                    delay: 300.ms,
+                    begin: Offset(MediaQuery.sizeOf(context).width, 0),
+                    end: const Offset(0, 0),
+                    duration: 1000.ms,
+                    curve: Curves.fastLinearToSlowEaseIn,
+                  )
                 ],
               );
             }

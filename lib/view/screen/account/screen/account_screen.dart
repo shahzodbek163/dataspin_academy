@@ -59,31 +59,25 @@ class _AccountScreenState extends State<AccountScreen> {
           child: BlocBuilder<AccountCubit, AccountState>(
             builder: (context, state) {
               return state.maybeWhen(
-                orElse: () => const Center(
-                    child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CircularProgressIndicator(),
-                  ],
-                )),
+                orElse: () => const Center(child: CircularProgressIndicator()),
                 get: (response) {
                   if (first) {
-                    String year =
-                        response.data.birthday.toString().substring(0, 4);
-                    String month =
-                        response.data.birthday.toString().substring(5, 7);
-                    String day =
-                        response.data.birthday.toString().substring(8, 10);
+                    if (response.data.birthday != null) {
+                      String year =
+                          response.data.birthday.toString().substring(0, 4);
+                      String month =
+                          response.data.birthday.toString().substring(5, 7);
+                      String day =
+                          response.data.birthday.toString().substring(8, 10);
+                      birthdayController.value =
+                          TextEditingValue(text: "$day-$month-$year");
+                    }
 
-                    birthdayController.value =
-                        TextEditingValue(text: "$day-$month-$year");
-
-                    List<String> tel1 =
-                        convertToFormatPhone(response.data.primaryPhone);
+                    List<String> tel1 = forServer(response.data.primaryPhone);
 
                     if (secondaryNumberController.text.isNotEmpty) {
                       List<String> tel2 =
-                          convertToFormatPhone(response.data.secondaryPhone!);
+                          forServer(response.data.secondaryPhone!);
 
                       secondaryNumberController.value = TextEditingValue(
                           text:

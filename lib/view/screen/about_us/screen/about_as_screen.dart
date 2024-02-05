@@ -19,14 +19,6 @@ class AboutUsScreen extends StatefulWidget {
 }
 
 class _AboutUsScreenState extends State<AboutUsScreen> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    context.read<AboutUsCubit>().getAllAboutUs();
-    print("obnaydvwua");
-  }
-
   final controller = PageController();
   int index = 0;
 

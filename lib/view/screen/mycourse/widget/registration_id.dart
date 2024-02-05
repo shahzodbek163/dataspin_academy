@@ -6,8 +6,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class RegistrationId extends StatelessWidget {
-  ReceptionByUserData receptionByUserData;
-  RegistrationId({super.key, required this.receptionByUserData});
+  final ReceptionByUserData receptionByUserData;
+  const RegistrationId({super.key, required this.receptionByUserData});
 
   @override
   Widget build(BuildContext context) {

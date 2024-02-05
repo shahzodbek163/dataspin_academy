@@ -10,6 +10,7 @@ import 'package:dataspin_academy/view/screen/home/screen/home_screen.dart';
 import 'package:dataspin_academy/view/screen/login/screen/login_screen.dart';
 import 'package:dataspin_academy/view/screen/main/screen/main_screen.dart';
 import 'package:dataspin_academy/view/screen/menu/screen/menu_screen.dart';
+import 'package:dataspin_academy/view/screen/newdecs/screen/new_desc.dart';
 import 'package:dataspin_academy/view/screen/pdf_view/screen/pdf_view_screen.dart';
 import 'package:dataspin_academy/view/screen/profile_screen/screen/profile_screen.dart';
 import 'package:dataspin_academy/view/screen/promo_code/screen/promo_code_screen.dart';
@@ -17,13 +18,12 @@ import 'package:dataspin_academy/view/screen/register/first_step/screen/first_st
 import 'package:dataspin_academy/view/screen/register/second_step/screen/second_step_screen.dart';
 import 'package:dataspin_academy/view/screen/splash/splash_screen.dart';
 import 'package:dataspin_academy/view/screen/test_screen.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class AppGoRouter {
   final router = GoRouter(
     navigatorKey: NavigationService.navigatorKey,
-    initialLocation: LoginScreen.routeName,
+    initialLocation: SplashScreen.routeName,
     routes: [
       ///main
 
@@ -153,6 +153,13 @@ class AppGoRouter {
         pageBuilder: (context, state) => slideTransitionRight(
           state,
           const MainScreen(),
+        ),
+      ),
+      GoRoute(
+        path: NewDescScreen.routeName,
+        pageBuilder: (context, state) => slideTransitionRight(
+          state,
+          const NewDescScreen(),
         ),
       ),
     ],

@@ -26,8 +26,9 @@ class _DialogWidgetState extends State<DialogWidget> {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-          borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
-          color: Colors.white),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
+        color: Colors.white,
+      ),
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
@@ -83,11 +84,9 @@ class _DialogWidgetState extends State<DialogWidget> {
                   text: "Tasdiqlash",
                   isLoading: state.maybeWhen(
                     orElse: () => false,
-                    sending: () =>  true,
-
+                    sending: () => true,
                   ),
                   onTap: () {
-                
                     String year = DateTime.now().year.toString();
                     String month = DateTime.now().month.toString();
                     String day = DateTime.now().day.toString();
@@ -128,10 +127,7 @@ class _DialogWidgetState extends State<DialogWidget> {
                             .read<CourseWithPriceCubit>()
                             .getAllCourseWithPrice();
                         context.pop();
-                      }
-                      else{
-                        
-                      }
+                      } else {}
                     });
                   },
                 );

@@ -1,4 +1,5 @@
 import 'package:dataspin_academy/controller/service/dialogs/custom_snack_bar.dart';
+import 'package:dataspin_academy/controller/service/dio/secure_storage.dart';
 import 'package:dataspin_academy/controller/service/navigation/navigation_service.dart';
 import 'package:dataspin_academy/view/screen/login/screen/login_screen.dart';
 import 'package:dio/dio.dart';
@@ -9,7 +10,7 @@ class CustomDio {
   static final CustomSnackBar _snackBar = CustomSnackBar();
 
   CustomDio() {
-    // final token = SecureStorage().getAccess();
+    final token = SecureStorage().getAccess();
 
     _dio = Dio(
       BaseOptions(
@@ -50,8 +51,7 @@ class CustomDio {
     _dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) {
-          options.headers["Authorization"] =
-              "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0dXJzdW5hbGkiLCJpYXQiOjE3MDQ3ODU0NzEsImV4cCI6MTcwNzM3NzQ3MX0.xmAPwdPTnKEpKS8D0PosyYt6Xk9Gx8gnsJkJ2lxC-17e4O8msubXWmQ4zbHNARzmheTcdFLXGAlyby5Da_utpQ";
+          options.headers["Authorization"] = "Bearer $token";
           return handler.next(options);
         },
         onResponse: (response, handler) {

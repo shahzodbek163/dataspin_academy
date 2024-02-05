@@ -8,6 +8,7 @@ import 'package:dataspin_academy/view/value/app_fonts.dart';
 import 'package:dataspin_academy/view/value/app_size.dart';
 import 'package:dataspin_academy/view/widget/buttons/selectble_row.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -48,6 +49,14 @@ class CategoryPart extends StatelessWidget {
                 ),
               ),
             ],
+          ).animate(
+            effects: [
+              FadeEffect(
+                delay: 600.ms,
+                curve: Curves.fastLinearToSlowEaseIn,
+                duration: 1000.ms,
+              )
+            ],
           ),
         ),
         SizedBox(height: 14.h),
@@ -75,6 +84,16 @@ class CategoryPart extends StatelessWidget {
                       );
                   context.push(CategoriesScreen.routeName);
                 },
+              ).animate(
+                effects: [
+                  MoveEffect(
+                    begin: Offset(MediaQuery.sizeOf(context).width, 0),
+                    end: const Offset(0, 0),
+                    delay: 900.ms,
+                    curve: Curves.fastLinearToSlowEaseIn,
+                    duration: 500.ms,
+                  )
+                ],
               ),
             );
           },
