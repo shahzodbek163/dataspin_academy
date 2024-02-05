@@ -1,13 +1,16 @@
-import 'package:dataspin_academy/generated/assets.dart';
 import 'package:dataspin_academy/view/value/app_color.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class DocsCard extends StatelessWidget {
   final String docName;
-  const DocsCard({Key? key, required this.docName}) : super(key: key);
+  final VoidCallback? onTap;
+  const DocsCard({
+    Key? key,
+    required this.docName,
+    this.onTap,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,25 +37,22 @@ class DocsCard extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 4),
-            child: Container(
-              width: 112.w,
-              alignment: Alignment.center,
-              decoration: ShapeDecoration(
-                color: AppColor.primary,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(6),
-                ),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Yuklash",
-                    style: AppFonts.body14Regular.copyWith(color: Colors.white),
+            child: InkWell(
+              onTap: onTap,
+              borderRadius: BorderRadius.circular(6),
+              child: Container(
+                width: 112.w,
+                alignment: Alignment.center,
+                decoration: ShapeDecoration(
+                  color: AppColor.primary,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(6),
                   ),
-                  SizedBox(width: 8.w),
-                  SvgPicture.asset(Assets.iconsDownload)
-                ],
+                ),
+                child: Text(
+                  "Ochish",
+                  style: AppFonts.body14Regular.copyWith(color: Colors.white),
+                ),
               ),
             ),
           )

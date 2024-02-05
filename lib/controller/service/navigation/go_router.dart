@@ -1,5 +1,4 @@
 import 'package:dataspin_academy/controller/bloc/splash/jump_screen.dart';
-import 'package:dataspin_academy/controller/provider/new_desc_provider.dart';
 import 'package:dataspin_academy/controller/service/navigation/navigation_service.dart';
 import 'package:dataspin_academy/controller/service/transition/transitions.dart';
 import 'package:dataspin_academy/view/screen/account/screen/account_screen.dart';
@@ -20,7 +19,6 @@ import 'package:dataspin_academy/view/screen/register/first_step/screen/first_st
 import 'package:dataspin_academy/view/screen/register/second_step/screen/second_step_screen.dart';
 import 'package:dataspin_academy/view/screen/splash/splash_screen.dart';
 import 'package:dataspin_academy/view/screen/test_screen.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class AppGoRouter {

@@ -44,7 +44,7 @@ class MainTextField extends StatelessWidget {
       children: [
         !upText
             ? const SizedBox()
-            : Column(
+            : Row(
                 children: [
                   Text(
                     text!,

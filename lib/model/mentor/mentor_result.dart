@@ -2,9 +2,9 @@
 //
 //     final mentorResult = mentorResultFromJson(jsonString);
 
-import 'dart:convert';
-
+import 'package:meta/meta.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'dart:convert';
 
 part 'mentor_result.freezed.dart';
 part 'mentor_result.g.dart';
@@ -19,7 +19,7 @@ class MentorResult with _$MentorResult {
   const factory MentorResult({
     @JsonKey(name: "status") required bool status,
     @JsonKey(name: "message") required String message,
-    @JsonKey(name: "data") required List<MentorResultData>? data,
+    @JsonKey(name: "data") required List<MentorResultData> data,
   }) = _MentorResult;
 
   factory MentorResult.fromJson(Map<String, dynamic> json) =>
@@ -30,10 +30,12 @@ class MentorResult with _$MentorResult {
 class MentorResultData with _$MentorResultData {
   const factory MentorResultData({
     @JsonKey(name: "id") required int id,
-    @JsonKey(name: "date") required DateTime? date,
+    @JsonKey(name: "date") required DateTime date,
+    @JsonKey(name: "courses") required List<Course> courses,
+    @JsonKey(name: "cv") Photo? cv,
     @JsonKey(name: "subMentors") required List<Employee> subMentors,
     @JsonKey(name: "employee") required Employee employee,
-    @JsonKey(name: "courses") required List<Course> courses,
+    @JsonKey(name: "youTubeLinks") required String youTubeLinks,
   }) = _MentorResultData;
 
   factory MentorResultData.fromJson(Map<String, dynamic> json) =>
@@ -45,11 +47,14 @@ class Course with _$Course {
   const factory Course({
     @JsonKey(name: "name") required String name,
     @JsonKey(name: "id") required int id,
-    @JsonKey(name: "description") required String description,
+    @JsonKey(name: "date") required DateTime date,
     @JsonKey(name: "status") required bool status,
     @JsonKey(name: "courseFor") required CourseForElement courseFor,
     @JsonKey(name: "courseType") required CourseType courseType,
     @JsonKey(name: "previewPhoto") required Photo previewPhoto,
+    @JsonKey(name: "description") required String description,
+    @JsonKey(name: "courseAboutParts")
+    required List<CourseForElement> courseAboutParts,
   }) = _Course;
 
   factory Course.fromJson(Map<String, dynamic> json) => _$CourseFromJson(json);
@@ -58,29 +63,15 @@ class Course with _$Course {
 @freezed
 class CourseForElement with _$CourseForElement {
   const factory CourseForElement({
+    @JsonKey(name: "icon") Photo? icon,
     @JsonKey(name: "name") required String name,
     @JsonKey(name: "id") required int id,
-    @JsonKey(name: "date") required DateTime date,
-    @JsonKey(name: "description") String? description,
+    @JsonKey(name: "description")  String? description,
+    @JsonKey(name: "date")  DateTime? date,
   }) = _CourseForElement;
 
   factory CourseForElement.fromJson(Map<String, dynamic> json) =>
       _$CourseForElementFromJson(json);
-}
-
-@freezed
-class CourseType with _$CourseType {
-  const factory CourseType({
-    @JsonKey(name: "name") required String name,
-    @JsonKey(name: "id") required int id,
-    @JsonKey(name: "date") required DateTime date,
-    @JsonKey(name: "description") required String description,
-    @JsonKey(name: "photo") required Photo photo,
-    @JsonKey(name: "courseTags") required List<CourseForElement> courseTags,
-  }) = _CourseType;
-
-  factory CourseType.fromJson(Map<String, dynamic> json) =>
-      _$CourseTypeFromJson(json);
 }
 
 @freezed
@@ -93,17 +84,32 @@ class Photo with _$Photo {
 }
 
 @freezed
+class CourseType with _$CourseType {
+  const factory CourseType({
+    @JsonKey(name: "name") required String name,
+    @JsonKey(name: "id") required int id,
+    @JsonKey(name: "date") required DateTime date,
+    @JsonKey(name: "photo") required Photo photo,
+    @JsonKey(name: "description") required String description,
+    @JsonKey(name: "courseTags") required List<CourseForElement> courseTags,
+  }) = _CourseType;
+
+  factory CourseType.fromJson(Map<String, dynamic> json) =>
+      _$CourseTypeFromJson(json);
+}
+
+@freezed
 class Employee with _$Employee {
   const factory Employee({
     @JsonKey(name: "id") required int id,
-    @JsonKey(name: "startDate") required DateTime startDate,
     @JsonKey(name: "photo") required Photo photo,
-    @JsonKey(name: "face") required Face face,
-    @JsonKey(name: "about") required dynamic about,
+    @JsonKey(name: "endDate") dynamic endDate,
     @JsonKey(name: "stuff") required Stuff stuff,
+    @JsonKey(name: "face") required Face face,
+    @JsonKey(name: "startDate") required DateTime startDate,
     @JsonKey(name: "practice") required int practice,
-    @JsonKey(name: "isVerified") required dynamic isVerified,
-    @JsonKey(name: "endDate") required DateTime? endDate,
+    @JsonKey(name: "isVerified") required bool isVerified,
+    @JsonKey(name: "speciality") dynamic speciality,
   }) = _Employee;
 
   factory Employee.fromJson(Map<String, dynamic> json) =>
@@ -115,13 +121,13 @@ class Face with _$Face {
   const factory Face({
     @JsonKey(name: "id") required int id,
     @JsonKey(name: "date") required DateTime date,
+    @JsonKey(name: "tel1") required String tel1,
+    @JsonKey(name: "tel2") required String tel2,
+    @JsonKey(name: "passport") required String passport,
     @JsonKey(name: "firstname") required String firstname,
     @JsonKey(name: "lastname") required String lastname,
     @JsonKey(name: "middlename") required String middlename,
-    @JsonKey(name: "passport") required String passport,
     @JsonKey(name: "birthday") required DateTime birthday,
-    @JsonKey(name: "tel1") required String tel1,
-    @JsonKey(name: "tel2") required String tel2,
   }) = _Face;
 
   factory Face.fromJson(Map<String, dynamic> json) => _$FaceFromJson(json);
