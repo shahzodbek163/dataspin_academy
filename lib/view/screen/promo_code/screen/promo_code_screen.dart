@@ -4,6 +4,7 @@ import 'package:dataspin_academy/controller/bloc/promocode/my_promos/get_my_prom
 import 'package:dataspin_academy/view/screen/mycourse/widget/selectable_button.dart';
 import 'package:dataspin_academy/view/screen/promo_code/widget/my_promocode.dart';
 import 'package:dataspin_academy/view/screen/promo_code/widget/promocode_card_square.dart';
+import 'package:dataspin_academy/view/screen/unactive_screen.dart';
 import 'package:dataspin_academy/view/value/app_color.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
 import 'package:dataspin_academy/view/widget/appbars/text_appbar.dart';
@@ -14,6 +15,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:go_router/go_router.dart';
 
 class PromoCodeScreen extends StatefulWidget {
   static const String routeName = "/promo_code_screen";
@@ -206,27 +208,33 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
                                             Padding(
                                           padding:
                                               const EdgeInsets.only(bottom: 12),
-                                          child: MyPromoCard(
-                                            promocodeData: data.data[index],
-                                          ).animate(
-                                            effects: [
-                                              MoveEffect(
-                                                begin: Offset(
-                                                    index % 2 == 0
-                                                        ? -MediaQuery.sizeOf(
-                                                                context)
-                                                            .width
-                                                        : MediaQuery.sizeOf(
-                                                                context)
-                                                            .width,
-                                                    0),
-                                                end: const Offset(0, 0),
-                                                duration: 1000.ms,
-                                                delay: (index * 300).ms,
-                                                curve: Curves
-                                                    .fastLinearToSlowEaseIn,
-                                              )
-                                            ],
+                                          child: GestureDetector(
+                                            onTap: () {
+                                              context.push(
+                                                  UnactiveScreen.routeName);
+                                            },
+                                            child: MyPromoCard(
+                                              promocodeData: data.data[index],
+                                            ).animate(
+                                              effects: [
+                                                MoveEffect(
+                                                  begin: Offset(
+                                                      index % 2 == 0
+                                                          ? -MediaQuery.sizeOf(
+                                                                  context)
+                                                              .width
+                                                          : MediaQuery.sizeOf(
+                                                                  context)
+                                                              .width,
+                                                      0),
+                                                  end: const Offset(0, 0),
+                                                  duration: 1000.ms,
+                                                  delay: (index * 300).ms,
+                                                  curve: Curves
+                                                      .fastLinearToSlowEaseIn,
+                                                )
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),

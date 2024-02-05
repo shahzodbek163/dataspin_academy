@@ -15,6 +15,7 @@ class MyCourseScreen extends StatefulWidget {
 }
 
 class _MyCourseScreenState extends State<MyCourseScreen> {
+  final pageController = PageController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,40 +44,55 @@ class _MyCourseScreenState extends State<MyCourseScreen> {
                   ],
                   onChangeIndex: (value) {
                     print(value);
+                    pageController.animateToPage(
+                      value,
+                      duration: const Duration(milliseconds: 1),
+                      curve: Animate.defaultCurve,
+                    );
                   },
                 ),
               ),
               Expanded(
-                child: BlocBuilder<ReceptionByUserCubit, ReceptionByUserState>(
-                  builder: (context, state) {
-                    return state.maybeWhen(
-                      orElse: () => const Center(
-                        child: CircularProgressIndicator(),
-                      ),
-                      loaded: (response) => response.data.isEmpty
-                          ? const Center(
-                              child: Text("Ma'lumot mavjud emas"),
-                            )
-                          : SingleChildScrollView(
-                              child: Column(
-                                children: List.generate(
-                                  response.data.length,
-                                  (index) => RegistrationId(
-                                    receptionByUserData: response.data[index],
-                                  ).animate(
-                                    effects: [
-                                      FlipEffect(
-                                        delay: (300 * (index + 1)).ms,
-                                        curve: Curves.fastLinearToSlowEaseIn,
-                                        duration: 2000.ms,
-                                      )
-                                    ],
+                child: PageView(
+                  controller: pageController,
+                  children: [
+                    BlocBuilder<ReceptionByUserCubit, ReceptionByUserState>(
+                      builder: (context, state) {
+                        return state.maybeWhen(
+                          orElse: () => const Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                          loaded: (response) => response.data.isEmpty
+                              ? const Center(
+                                  child: Text("Ma'lumot mavjud emas"),
+                                )
+                              : SingleChildScrollView(
+                                  child: Column(
+                                    children: List.generate(
+                                      response.data.length,
+                                      (index) => RegistrationId(
+                                        receptionByUserData:
+                                            response.data[index],
+                                      ).animate(
+                                        effects: [
+                                          FlipEffect(
+                                            delay: (300 * (index + 1)).ms,
+                                            curve:
+                                                Curves.fastLinearToSlowEaseIn,
+                                            duration: 2000.ms,
+                                          )
+                                        ],
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ),
-                    );
-                  },
+                        );
+                      },
+                    ),
+                    const Center(
+                      child: Text("Ushbu servis hozir mavjud emas"),
+                    )
+                  ],
                 ),
               ),
             ],
