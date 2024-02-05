@@ -102,7 +102,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                         DocsCard(
                           docName: "Akademiya litsenziyasi",
                           onTap: () {
-                            context.read<ForPdfViewProvider>().change(68);
+                            context.read<ForPdfViewProvider>().change(66);
                             context.push(PdfViewScreen.routeName);
                           },
                         ),
@@ -110,7 +110,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                         DocsCard(
                           docName: "Akademiya shartnomasi",
                           onTap: () {
-                            context.read<ForPdfViewProvider>().change(67);
+                            context.read<ForPdfViewProvider>().change(65);
                             context.push(PdfViewScreen.routeName);
                           },
                         ),

@@ -29,6 +29,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     final mentorData = context.read<ProfileDataProvider>().mentorResultData;
+    YoutubeTest.videoID = mentorData!.youTubeLinks;
     return Scaffold(
       appBar: SimpleAppbar.simpleAppbar(
         leadingIconPath: AppIcons.backArrow,

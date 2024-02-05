@@ -93,7 +93,7 @@ class _CourseCardWidgetState extends State<CourseCardWidget> {
                         SvgPicture.asset("assets/icons/profile-2user.svg"),
                         SizedBox(width: 6.w),
                         Text(
-                          "${widget.courseWithPriceData.receptionCounter.activeCount}",
+                          "${widget.courseWithPriceData.receptionCounter.totalCount}",
                           style: AppFonts.label,
                         ),
                         SizedBox(width: 6.w),

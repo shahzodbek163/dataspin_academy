@@ -55,7 +55,7 @@ class MenuScreen extends StatelessWidget {
                 iconPath: AppIcons.openBook,
                 text: "Bizning shartnoma",
                 onTap: () {
-                  context.read<ForPdfViewProvider>().change(67);
+                  context.read<ForPdfViewProvider>().change(65);
                   context.push(PdfViewScreen.routeName);
                 },
               ),
@@ -64,7 +64,7 @@ class MenuScreen extends StatelessWidget {
                 iconPath: AppIcons.personalCard,
                 text: "O’quv markaz litsenziyasi",
                 onTap: () {
-                  context.read<ForPdfViewProvider>().change(68);
+                  context.read<ForPdfViewProvider>().change(66);
                   context.push(PdfViewScreen.routeName);
                 },
               ),

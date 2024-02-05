@@ -22,9 +22,7 @@ class CommentCardWidget extends StatelessWidget {
           width: double.infinity,
           child: Text(
             commentData!.replyText,
-            style: AppFonts.body16Regular.copyWith(
-              color: AppColor.txtSecondColor,
-            ),
+            style: AppFonts.body16Regular,
             overflow: TextOverflow.fade,
           ),
         ),
@@ -40,8 +38,8 @@ class CommentCardWidget extends StatelessWidget {
                         color: Colors.black,
                       )
                     : SizedBox(
-                        width: 36,
-                        height: 36,
+                        width: 30.w,
+                        height: 30.w,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(18),
                           child: commentData!.userInfo.profilePhoto == null
@@ -57,7 +55,8 @@ class CommentCardWidget extends StatelessWidget {
                 SizedBox(width: 12.w),
                 Text(
                   "${commentData!.userInfo.firstname} ${commentData!.userInfo.lastname}",
-                  style: AppFonts.body16w500,
+                  style: AppFonts.body16w500
+                      .copyWith(color: AppColor.txtSecondColor),
                 ),
               ],
             ),
