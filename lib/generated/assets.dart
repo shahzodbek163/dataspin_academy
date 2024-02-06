@@ -5,23 +5,27 @@ class Assets {
   static const String assetsDataspinacademy = 'assets/dataspinacademy.png';
   static const String assetsIconsProfile2user =
       'assets/icons/profile-2user.svg';
+  static const String iconsArrowRight = 'assets/icons/arrow_right.svg';
   static const String iconsBackIcon = 'assets/icons/back_icon.svg';
   static const String iconsBook = 'assets/icons/book.png';
   static const String iconsCall = 'assets/icons/Call.svg';
   static const String iconsCallBlue = 'assets/icons/CallBlue.svg';
   static const String iconsCalling = 'assets/icons/Calling.svg';
   static const String iconsCamera = 'assets/icons/Camera.svg';
+  static const String iconsCarbonDelivery = 'assets/icons/carbon_delivery.svg';
   static const String iconsCertificate = 'assets/icons/certificate.svg';
   static const String iconsChair = 'assets/icons/chair.svg';
   static const String iconsChart = 'assets/icons/chart.svg';
   static const String iconsDocument = 'assets/icons/Document.svg';
   static const String iconsDownload = 'assets/icons/download.svg';
   static const String iconsEdit = 'assets/icons/Edit.svg';
+  static const String iconsFling = 'assets/icons/fling.svg';
   static const String iconsGlobal = 'assets/icons/global.svg';
   static const String iconsHideEye = 'assets/icons/hide_eye.svg';
   static const String iconsHome = 'assets/icons/Home.svg';
   static const String iconsImage = 'assets/icons/Image.svg';
   static const String iconsLanguageCircle = 'assets/icons/language-circle.svg';
+  static const String iconsLogout = 'assets/icons/Logout.svg';
   static const String iconsMap = 'assets/icons/map.svg';
   static const String iconsMdiMagnify = 'assets/icons/mdi_magnify.svg';
   static const String iconsMessage = 'assets/icons/message.svg';
@@ -44,6 +48,7 @@ class Assets {
   static const String imageDataspin = 'assets/image/dataspin.png';
   static const String imageGlavni = 'assets/image/glavni.png';
   static const String imagePatch = 'assets/image/patch.png';
+  static const String imagePicture0 = 'assets/image/picture0.png';
   static const String imagePicture1 = 'assets/image/picture1.png';
   static const String imagePicture2 = 'assets/image/picture2.png';
   static const String imagePicture3 = 'assets/image/picture3.png';
@@ -53,6 +58,7 @@ class Assets {
   static const String lottieAnimation1702976632892 =
       'assets/lottie/Animation1702976632892.json';
   static const String lottieF5FmAR9CLw = 'assets/lottie/F5FmAR9CLw.json';
+  static const String lottieSplash = 'assets/lottie/splash.json';
   static const String ubuntuUFL = 'assets/font/Ubuntu/UFL.txt';
   static const String ubuntuUbuntuBold = 'assets/font/Ubuntu/Ubuntu-Bold.ttf';
   static const String ubuntuUbuntuBoldItalic =

@@ -2,10 +2,10 @@
 //
 //     final receptionByUserResponse = receptionByUserResponseFromJson(jsonString);
 
-import 'package:dataspin_academy/model/account/response/account_response.dart';
-import 'package:meta/meta.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'dart:convert';
+
+import 'package:dataspin_academy/model/account/response/account_response.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'reception_by_user_response.freezed.dart';
 part 'reception_by_user_response.g.dart';

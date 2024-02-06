@@ -1,12 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dataspin_academy/controller/bloc/aboutus/cubit/aboutus_cubit.dart';
-import 'package:dataspin_academy/controller/provider/for_pdf_view_provider.dart';
 import 'package:dataspin_academy/controller/service/api/app_ip.dart';
+import 'package:dataspin_academy/controller/service/locator/service_locator.dart';
+import 'package:dataspin_academy/controller/service/pdf_id_changer.dart';
 import 'package:dataspin_academy/generated/assets.dart';
-import 'package:dataspin_academy/view/widget/docs_card.dart';
 import 'package:dataspin_academy/view/screen/about_us/widget/informations.dart';
 import 'package:dataspin_academy/view/screen/about_us/widget/youtube_part.dart';
+import 'package:dataspin_academy/view/screen/image_viewer/screen/image_viewer_screen.dart';
 import 'package:dataspin_academy/view/screen/pdf_view/screen/pdf_view_screen.dart';
+import 'package:dataspin_academy/view/widget/docs_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -34,7 +36,6 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
           builder: (context, state) {
             return state.maybeWhen(
               orElse: () => const Text("data"),
-              getting: () => const Center(child: CircularProgressIndicator()),
               get: (response) => Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -62,12 +63,29 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                       itemBuilder: (context, index) {
                         return Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 6),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(6),
-                            child: CachedNetworkImage(
-                              imageUrl:
-                                  "${AppIp.ip}/api/image/?id=${response.data.additionalPhoto[index].id}",
-                              fit: BoxFit.cover,
+                          child: GestureDetector(
+                            onTap: () {
+                              locator.get<PdfIdChanger>().change(
+                                  response.data.additionalPhoto[index].id);
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const ImageViewerScreen(),
+                                ),
+                              );
+                            },
+                            child: Hero(
+                              tag: response.data.additionalPhoto[index].id
+                                  .toString(),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(6),
+                                child: CachedNetworkImage(
+                                  imageUrl:
+                                      "${AppIp.ip}/api/image/?id=${response.data.additionalPhoto[index].id}",
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
                             ),
                           ),
                         );
@@ -94,7 +112,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                         DocsCard(
                           docName: "Akademiya litsenziyasi",
                           onTap: () {
-                            context.read<ForPdfViewProvider>().change(66);
+                            locator.get<PdfIdChanger>().change(66);
                             context.push(PdfViewScreen.routeName);
                           },
                         ),
@@ -102,7 +120,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                         DocsCard(
                           docName: "Akademiya shartnomasi",
                           onTap: () {
-                            context.read<ForPdfViewProvider>().change(65);
+                            locator.get<PdfIdChanger>().change(65);
                             context.push(PdfViewScreen.routeName);
                           },
                         ),

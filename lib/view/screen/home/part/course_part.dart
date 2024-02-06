@@ -56,7 +56,6 @@ class _CoursePartState extends State<CoursePart> {
           builder: (context, state) {
             return state.maybeWhen(
               orElse: () => const SizedBox(),
-              getting: () => const Center(child: CircularProgressIndicator()),
               get: (result) {
                 return SizedBox(
                   height: result.data.isEmpty ? 0 : 360.h,

@@ -16,7 +16,6 @@ class NewsPart extends StatelessWidget {
       builder: (context, state) {
         return state.maybeWhen(
           orElse: () => const SizedBox(),
-          getting: () => const Center(child: CircularProgressIndicator()),
           get: (result) {
             if (result.data.isEmpty) {
               return const SizedBox();

@@ -73,6 +73,7 @@ class MainTextField extends StatelessWidget {
                   SizedBox(height: 6.h),
                 ],
               ),
+        SizedBox(height: 4.h),
         AnimatedContainer(
           duration: const Duration(milliseconds: 600),
           curve: Curves.bounceInOut,

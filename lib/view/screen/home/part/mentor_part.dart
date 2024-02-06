@@ -40,7 +40,6 @@ class _MentorPartState extends State<MentorPart> {
           builder: (context, state) {
             return state.maybeWhen(
               orElse: () => const SizedBox(),
-              getting: () => const CircularProgressIndicator(),
               get: (result) => ListView.builder(
                 itemCount: result.data!.length,
                 shrinkWrap: true,

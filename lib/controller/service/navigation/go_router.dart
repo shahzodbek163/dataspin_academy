@@ -7,6 +7,7 @@ import 'package:dataspin_academy/view/screen/categories/screen/categorie_screen.
 import 'package:dataspin_academy/view/screen/course_info/screen/course_info_screen.dart';
 import 'package:dataspin_academy/view/screen/gallery/screen/gallery_screen.dart';
 import 'package:dataspin_academy/view/screen/home/screen/home_screen.dart';
+import 'package:dataspin_academy/view/screen/image_viewer/screen/image_viewer_screen.dart';
 import 'package:dataspin_academy/view/screen/login/screen/login_screen.dart';
 import 'package:dataspin_academy/view/screen/main/screen/main_screen.dart';
 import 'package:dataspin_academy/view/screen/menu/screen/menu_screen.dart';
@@ -112,6 +113,13 @@ class AppGoRouter {
         pageBuilder: (context, state) => slideTransitionRight(
           state,
           const MenuScreen(),
+        ),
+      ),
+      GoRoute(
+        path: ImageViewerScreen.routeName,
+        pageBuilder: (context, state) => scaleTransition(
+          state,
+          const ImageViewerScreen(),
         ),
       ),
       GoRoute(

@@ -14,6 +14,7 @@ class NewsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -44,10 +45,11 @@ class NewsScreen extends StatelessWidget {
                           effects: [
                             MoveEffect(
                               begin: Offset(
-                                  index % 2 == 0
-                                      ? -MediaQuery.sizeOf(context).width - 100
-                                      : MediaQuery.sizeOf(context).width + 100,
-                                  0),
+                                index % 2 == 0
+                                    ? -MediaQuery.sizeOf(context).width
+                                    : MediaQuery.sizeOf(context).width,
+                                0,
+                              ),
                               end: const Offset(0, 0),
                               duration: 1000.ms,
                               delay: (index * 300).ms,

@@ -62,17 +62,17 @@ class _MyCourseScreenState extends State<MyCourseScreen> {
                           orElse: () => const Center(
                             child: CircularProgressIndicator(),
                           ),
-                          loaded: (response) => response.data.isEmpty
+                          loaded: (response) => response.data!.isEmpty
                               ? const Center(
                                   child: Text("Ma'lumot mavjud emas"),
                                 )
                               : SingleChildScrollView(
                                   child: Column(
                                     children: List.generate(
-                                      response.data.length,
+                                      response.data!.length,
                                       (index) => RegistrationId(
                                         receptionByUserData:
-                                            response.data[index],
+                                            response.data![index],
                                       ).animate(
                                         effects: [
                                           FlipEffect(

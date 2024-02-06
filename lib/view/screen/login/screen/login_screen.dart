@@ -1,5 +1,5 @@
 import 'package:dataspin_academy/controller/bloc/auth/login/login_cubit/login_cubit.dart';
-import 'package:dataspin_academy/view/screen/main/screen/main_screen.dart';
+import 'package:dataspin_academy/generated/assets.dart';
 import 'package:dataspin_academy/view/screen/register/first_step/screen/first_step_screen.dart';
 import 'package:dataspin_academy/view/value/app_color.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
@@ -9,6 +9,7 @@ import 'package:dataspin_academy/view/widget/textfields/main_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -28,6 +29,8 @@ class _LoginScreenState extends State<LoginScreen> {
   bool isEmptyUsername = false;
   bool isEmptyPassword = false;
   bool isValidPassword = true;
+
+  bool _isHidingPassword = false;
 
   @override
   void dispose() {
@@ -76,6 +79,22 @@ class _LoginScreenState extends State<LoginScreen> {
                 text: "Foydalanuvchi paroli",
                 keyboardType: TextInputType.emailAddress,
                 isEmpty: isEmptyPassword,
+                isHiding: _isHidingPassword,
+                suffix: InkWell(
+                  onTap: () {
+                    _isHidingPassword = !_isHidingPassword;
+                    setState(() {});
+                  },
+                  borderRadius: BorderRadius.circular(12),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SvgPicture.asset(
+                      _isHidingPassword
+                          ? Assets.iconsShowEye
+                          : Assets.iconsHideEye,
+                    ),
+                  ),
+                ),
               ),
               SizedBox(height: 20.h),
               Row(

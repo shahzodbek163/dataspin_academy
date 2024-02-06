@@ -21,30 +21,37 @@ class RowWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(5),
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SvgPicture.asset(
-                iconPath,
-                color: iconColor,
+              Row(
+                children: [
+                  SvgPicture.asset(
+                    iconPath,
+                    color: iconColor,
+                  ),
+                  SizedBox(width: 12.w),
+                  Text(
+                    text,
+                    style: AppFonts.body16w500.copyWith(color: textColor),
+                  )
+                ],
               ),
-              SizedBox(width: 12.w),
-              Text(
-                text,
-                style: AppFonts.body16w500.copyWith(color: textColor),
+              Icon(
+                Icons.arrow_forward_ios_rounded,
+                size: 20,
+                color: iconColor,
               )
             ],
           ),
-           Icon(
-            Icons.arrow_forward_ios_rounded,
-            size: 20,
-            color: iconColor,
-          )
-        ],
+        ),
       ),
     );
   }

@@ -5,7 +5,7 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 class YoutubeTest extends StatefulWidget {
   static String videoID = 'yivH2E-DZUE';
   //https://www.youtube.com/watch?v=BKRpHDeRxeg
-  
+
   const YoutubeTest({super.key});
 
   @override
@@ -21,7 +21,7 @@ class _YoutubeTestState extends State<YoutubeTest> {
     _controller = YoutubePlayerController(
       initialVideoId: YoutubeTest.videoID,
       flags: const YoutubePlayerFlags(
-        autoPlay: true,
+        autoPlay: false,
         mute: false,
         isLive: false,
         disableDragSeek: true,

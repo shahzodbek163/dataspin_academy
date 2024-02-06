@@ -1,7 +1,7 @@
-import 'package:dataspin_academy/controller/provider/for_pdf_view_provider.dart';
 import 'package:dataspin_academy/controller/service/api/url_photo.dart';
+import 'package:dataspin_academy/controller/service/locator/service_locator.dart';
+import 'package:dataspin_academy/controller/service/pdf_id_changer.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class PdfViewScreen extends StatelessWidget {
@@ -11,8 +11,13 @@ class PdfViewScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SafeArea(
-            child: SfPdfViewer.network(UrlPhoto.url(
-                context.read<ForPdfViewProvider>().photoId.toString()))));
+      body: SafeArea(
+        child: SfPdfViewer.network(
+          UrlPhoto.url(
+            locator.get<PdfIdChanger>().id.toString(),
+          ),
+        ),
+      ),
+    );
   }
 }

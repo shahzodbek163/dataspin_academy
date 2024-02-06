@@ -64,7 +64,6 @@ class CategoryPart extends StatelessWidget {
           builder: (context, state) {
             return state.maybeWhen(
               orElse: () => const SizedBox(),
-              getting: () => const CircularProgressIndicator(),
               get: (item) => SelectableRow(
                 forMainScreen: true,
                 listRes: [""] + item.data.map((e) => e.name).toList(),

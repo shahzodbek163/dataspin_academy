@@ -1,12 +1,12 @@
 import 'package:dataspin_academy/controller/bloc/mentors/mentors_cubit.dart';
-import 'package:dataspin_academy/controller/provider/for_pdf_view_provider.dart';
 import 'package:dataspin_academy/controller/provider/profile_data_provider.dart';
 import 'package:dataspin_academy/controller/service/api/app_ip.dart';
+import 'package:dataspin_academy/controller/service/locator/service_locator.dart';
+import 'package:dataspin_academy/controller/service/pdf_id_changer.dart';
 import 'package:dataspin_academy/view/screen/pdf_view/screen/pdf_view_screen.dart';
 import 'package:dataspin_academy/view/screen/profile_screen/part/youtube_test.dart';
 import 'package:dataspin_academy/view/screen/profile_screen/widget/courses_card.dart';
 import 'package:dataspin_academy/view/screen/profile_screen/widget/mentor.dart';
-import 'package:dataspin_academy/view/value/app_color.dart';
 import 'package:dataspin_academy/view/value/app_fonts.dart';
 import 'package:dataspin_academy/view/value/app_icons.dart';
 import 'package:dataspin_academy/view/widget/appbars/simple_appbar.dart';
@@ -76,8 +76,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 DocsCard(
                                   docName: "Rezyume",
                                   onTap: () {
-                                    context
-                                        .read<ForPdfViewProvider>()
+                                    locator
+                                        .get<PdfIdChanger>()
                                         .change(mentorData.cv!.id);
                                     context.push(PdfViewScreen.routeName);
                                   },

@@ -1,7 +1,7 @@
-import 'package:dataspin_academy/controller/provider/for_pdf_view_provider.dart';
 import 'package:dataspin_academy/controller/service/dio/secure_storage.dart';
+import 'package:dataspin_academy/controller/service/locator/service_locator.dart';
+import 'package:dataspin_academy/controller/service/pdf_id_changer.dart';
 import 'package:dataspin_academy/view/screen/account/screen/account_screen.dart';
-import 'package:dataspin_academy/view/screen/gallery/screen/gallery_screen.dart';
 import 'package:dataspin_academy/view/screen/login/screen/login_screen.dart';
 import 'package:dataspin_academy/view/screen/menu/widget/row_widget.dart';
 import 'package:dataspin_academy/view/screen/pdf_view/screen/pdf_view_screen.dart';
@@ -10,7 +10,6 @@ import 'package:dataspin_academy/view/value/app_icons.dart';
 import 'package:dataspin_academy/view/value/app_size.dart';
 import 'package:dataspin_academy/view/widget/appbars/text_appbar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -55,7 +54,7 @@ class MenuScreen extends StatelessWidget {
                 iconPath: AppIcons.openBook,
                 text: "Bizning shartnoma",
                 onTap: () {
-                  context.read<ForPdfViewProvider>().change(65);
+                  locator.get<PdfIdChanger>().change(65);
                   context.push(PdfViewScreen.routeName);
                 },
               ),
@@ -64,7 +63,7 @@ class MenuScreen extends StatelessWidget {
                 iconPath: AppIcons.personalCard,
                 text: "O’quv markaz litsenziyasi",
                 onTap: () {
-                  context.read<ForPdfViewProvider>().change(66);
+                  locator.get<PdfIdChanger>().change(66);
                   context.push(PdfViewScreen.routeName);
                 },
               ),
@@ -74,12 +73,11 @@ class MenuScreen extends StatelessWidget {
                 text: "Promokodlar",
                 onTap: () => context.push(PromoCodeScreen.routeName),
               ),
-              SizedBox(height: 18.h),
-              RowWidget(
+              /*RowWidget(
                 iconPath: AppIcons.image,
                 text: "Galareya",
                 onTap: () => context.push(GalleryScreen.routeName),
-              ),
+              ),*/
               SizedBox(height: 18.h),
               RowWidget(
                 iconPath: AppIcons.image,

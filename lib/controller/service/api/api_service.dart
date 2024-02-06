@@ -43,6 +43,9 @@ abstract class ApiService {
   @GET("/course-type/")
   Future<CourseTypeResult> getAllCourseType();
 
+  @GET("/comments/delete")
+  Future<void> deleteComment(@Query("course_id") int course_id);
+
   @GET("/course-for/")
   Future<CourseForResult> getAllCourseFor();
 

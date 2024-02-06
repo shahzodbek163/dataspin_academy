@@ -13,7 +13,7 @@ class _ApiService implements ApiService {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://192.168.226.66/api';
+    baseUrl ??= 'http://dataspinacademy.uz/api';
   }
 
   final Dio _dio;
@@ -130,6 +130,30 @@ class _ApiService implements ApiService {
             ))));
     final value = CourseTypeResult.fromJson(_result.data!);
     return value;
+  }
+
+  @override
+  Future<void> deleteComment(int course_id) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'course_id': course_id};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    await _dio.fetch<void>(_setStreamType<void>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/comments/delete',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        ))));
   }
 
   @override

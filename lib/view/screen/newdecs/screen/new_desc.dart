@@ -53,28 +53,31 @@ class NewDescScreen extends StatelessWidget {
                       "Nomi",
                       style: AppFonts.h4,
                     ),
+                    const SizedBox(height: 8),
                     Text(
                       newsData.name,
                       style: AppFonts.body16Regular.copyWith(
                         color: AppColor.txtSecondColor,
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 24),
                     const Text(
                       "Qisqacha ma'lumot",
                       style: AppFonts.h4,
                     ),
+                    const SizedBox(height: 8),
                     Text(
                       newsData.shortDesc,
                       style: AppFonts.body16Regular.copyWith(
                         color: AppColor.txtSecondColor,
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 24),
                     const Text(
                       "To'liq ma'lumot",
                       style: AppFonts.h4,
                     ),
+                    const SizedBox(height: 8),
                     Text(
                       newsData.fullDesc,
                       style: AppFonts.body16Regular.copyWith(
