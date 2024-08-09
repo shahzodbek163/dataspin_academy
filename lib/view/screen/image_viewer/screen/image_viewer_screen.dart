@@ -10,18 +10,18 @@ class ImageViewerScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: Colors.black,
       body: Center(
-        // child: Hero(
-        //   tag: locator.get<PdfIdChanger>().id.toString(),
-        //   child: PhotoView(
-        //     imageProvider: CachedNetworkImageProvider(
-        //       "http://dataspinacademy.uz/api/image/?id=${locator.get<PdfIdChanger>().id.toString()}",
-        //     ),
-        //   ),
-        // ),
-      ),
+          // child: Hero(
+          //   tag: locator.get<PdfIdChanger>().id.toString(),
+          //   child: PhotoView(
+          //     imageProvider: CachedNetworkImageProvider(
+          //       "http://dataspinacademy.uz/api/image/?id=${locator.get<PdfIdChanger>().id.toString()}",
+          //     ),
+          //   ),
+          // ),
+          ),
     );
   }
 }
