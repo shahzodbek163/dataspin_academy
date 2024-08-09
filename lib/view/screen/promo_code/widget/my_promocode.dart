@@ -38,7 +38,7 @@ class MyPromoCard extends StatelessWidget {
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(8),
                     bottomRight: Radius.circular(8),
-                  ),
+                  ),        
                 ),
               ),
               child: Text(

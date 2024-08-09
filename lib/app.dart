@@ -23,7 +23,7 @@ import 'package:dataspin_academy/controller/provider/profile_data_provider.dart'
 import 'package:dataspin_academy/controller/provider/selectble_index_provider.dart';
 import 'package:dataspin_academy/controller/service/navigation/go_router.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';  
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
